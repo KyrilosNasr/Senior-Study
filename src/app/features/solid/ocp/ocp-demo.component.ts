@@ -2,7 +2,7 @@ import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { CardModule } from 'primeng/card';
-import { Tabs, TabList, TabPanel, TabPanels } from 'primeng/tabs';
+import { Tabs, Tab, TabList, TabPanel, TabPanels } from 'primeng/tabs';
 import { ButtonModule } from 'primeng/button';
 import { SelectModule } from 'primeng/select';
 import { InputNumberModule } from 'primeng/inputnumber';
@@ -12,7 +12,6 @@ import { CreditCardProcessorService } from '../shared/services/credit-card-proce
 import { PayPalProcessorService } from '../shared/services/paypal-processor.service';
 import { CryptoProcessorService } from '../shared/services/crypto-processor.service';
 import { Payment, PaymentRequest } from '../shared/models/payment.model';
-import { TabsModule } from 'primeng/tabs';
 
 @Component({
   selector: 'app-ocp-demo',
@@ -22,14 +21,14 @@ import { TabsModule } from 'primeng/tabs';
     FormsModule,
     CardModule,
     Tabs,
+    Tab,
     TabList,
     TabPanel,
     TabPanels,
     ButtonModule,
     SelectModule,
     InputNumberModule,
-    MessageModule,
-    TabsModule
+    MessageModule
   ],
   templateUrl: './ocp-demo.component.html',
   styleUrl: './ocp-demo.component.scss'

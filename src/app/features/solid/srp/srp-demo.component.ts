@@ -2,7 +2,7 @@ import { Component, signal, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { CardModule } from 'primeng/card';
-import { Tabs, TabList, TabPanel, TabPanels } from 'primeng/tabs';
+import { Tabs, Tab, TabList, TabPanel, TabPanels } from 'primeng/tabs';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { MessageModule } from 'primeng/message';
@@ -10,8 +10,6 @@ import { UserRepositoryService } from '../shared/services/user-repository.servic
 import { UserValidatorService } from '../shared/services/user-validator.service';
 import { UserNotifierService } from '../shared/services/user-notifier.service';
 import { CreateUserDto, User } from '../shared/models/user.model';
-import { TabsModule } from 'primeng/tabs';
-
 
 @Component({
   selector: 'app-srp-demo',
@@ -21,12 +19,12 @@ import { TabsModule } from 'primeng/tabs';
     FormsModule,
     CardModule,
     Tabs,
+    Tab,
     TabList,
     TabPanel,
     TabPanels,
     ButtonModule,
     InputTextModule,
-    TabsModule,
     MessageModule
   ],
   templateUrl: './srp-demo.component.html',

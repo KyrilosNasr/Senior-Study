@@ -2,7 +2,7 @@ import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { CardModule } from 'primeng/card';
-import { Tabs, TabList, TabPanel, TabPanels } from 'primeng/tabs';
+import { Tabs, Tab, TabList, TabPanel, TabPanels } from 'primeng/tabs';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputNumberModule } from 'primeng/inputnumber';
@@ -17,6 +17,7 @@ import { TabsModule } from 'primeng/tabs';
     FormsModule,
     CardModule,
     Tabs,
+    Tab,
     TabList,
     TabPanel,
     TabPanels,

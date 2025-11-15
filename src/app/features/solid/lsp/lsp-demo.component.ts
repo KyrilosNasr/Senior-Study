@@ -2,12 +2,11 @@ import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { CardModule } from 'primeng/card';
-import { Tabs, TabList, TabPanel, TabPanels } from 'primeng/tabs';
+import { Tabs, Tab, TabList, TabPanel, TabPanels } from 'primeng/tabs';
 import { ButtonModule } from 'primeng/button';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { MessageModule } from 'primeng/message';
 import { Shape, Rectangle, Square } from '../shared/models/shape.model';
-import { TabsModule } from 'primeng/tabs';
 
 // Violation: Square extends Rectangle incorrectly
 class BadRectangle implements Rectangle {
@@ -71,13 +70,13 @@ class GoodSquare implements Square {
     FormsModule,
     CardModule,
     Tabs,
+    Tab,
     TabList,
     TabPanel,
     TabPanels,
     ButtonModule,
     InputNumberModule,
-    MessageModule,
-    TabsModule
+    MessageModule
   ],
   templateUrl: './lsp-demo.component.html',
   styleUrl: './lsp-demo.component.scss'

@@ -1,13 +1,13 @@
 import { Component, signal, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CardModule } from 'primeng/card';
-import { Tabs, TabList, TabPanel, TabPanels } from 'primeng/tabs';
+import { Tabs, Tab, TabList, TabPanel, TabPanels } from 'primeng/tabs';
 import { ButtonModule } from 'primeng/button';
 import { MessageModule } from 'primeng/message';
 import { Repository } from '../shared/interfaces/repository.interface';
 import { UserRepositoryService } from '../shared/services/user-repository.service';
 import { User } from '../shared/models/user.model';
-import { TabsModule } from 'primeng/tabs';
+
 // Violation: High-level module depends on concrete implementation
 class BadUserService {
   private repository = new UserRepositoryService(); // Direct dependency on concrete class
@@ -29,7 +29,7 @@ class GoodUserService {
 @Component({
   selector: 'app-dip-demo',
   standalone: true,
-  imports: [CommonModule, CardModule, Tabs, TabList, TabPanel, TabPanels, ButtonModule, MessageModule, TabsModule],
+  imports: [CommonModule, CardModule, Tabs, Tab, TabList, TabPanel, TabPanels, ButtonModule, MessageModule],
   templateUrl: './dip-demo.component.html',
   styleUrl: './dip-demo.component.scss'
 })
