@@ -1,0 +1,108 @@
+<div class="max-w-7xl mx-auto space-y-6">
+  <!-- Header -->
+  <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+    <h1 class="text-3xl font-bold text-gray-800 dark:text-gray-200 mb-2">Interface Segregation Principle (ISP)</h1>
+    <p class="text-gray-600 dark:text-gray-400">
+      Clients should not be forced to depend upon interfaces that they do not use.
+    </p>
+  </div>
+
+  <!-- Explanation -->
+  <p-card class="shadow-md">
+    <div class="space-y-4">
+      <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200">What is ISP?</h2>
+      <p class="text-gray-700 dark:text-gray-300">
+        The Interface Segregation Principle states that no client should be forced to depend on methods it does not use. 
+        Instead of having one large interface, we should have multiple smaller, more specific interfaces. 
+        This prevents classes from being forced to implement methods they don't need.
+      </p>
+      <div class="bg-orange-50 dark:bg-orange-900/20 p-4 rounded-lg">
+        <h3 class="font-semibold text-orange-900 dark:text-orange-200 mb-2">Key Benefits:</h3>
+        <ul class="list-disc list-inside space-y-1 text-orange-800 dark:text-orange-300">
+          <li>Prevents fat interfaces with unused methods</li>
+          <li>Reduces coupling between classes</li>
+          <li>Makes interfaces more focused and cohesive</li>
+          <li>Easier to maintain and extend</li>
+        </ul>
+      </div>
+    </div>
+  </p-card>
+
+  <!-- Code Examples -->
+  <p-card class="shadow-md">
+    <p-tabs value="0">
+      <p-tablist>
+        <p-tab value="0">❌ Violation</p-tab>
+        <p-tab value="1">✅ Solution</p-tab>
+      </p-tablist>
+      <p-tabpanels>
+        <p-tabpanel value="0">
+          <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>{{ violationCode }}</code></pre>
+        </p-tabpanel>
+        <p-tabpanel value="1">
+          <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>{{ solutionCode }}</code></pre>
+        </p-tabpanel>
+      </p-tabpanels>
+    </p-tabs>
+  </p-card>
+
+  <!-- Live Demo -->
+  <p-card class="shadow-md">
+    <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">Live Demo</h2>
+    <p class="text-gray-700 dark:text-gray-300 mb-6">
+      Compare the violation (fat interface) with the solution (segregated interfaces).
+    </p>
+
+    <div class="space-y-4">
+      <div class="border-2 border-red-200 dark:border-red-800 rounded-lg p-4">
+        <h3 class="text-lg font-semibold text-red-800 dark:text-red-200 mb-2">❌ Violation</h3>
+        <p-button
+          label="Test Violation"
+          icon="pi pi-exclamation-triangle"
+          severity="danger"
+          (click)="testViolation()"
+        ></p-button>
+        @if (violationResult()) {
+          <p-message severity="warn" [text]="violationResult()" class="mt-4"></p-message>
+        }
+      </div>
+
+      <div class="border-2 border-green-200 dark:border-green-800 rounded-lg p-4">
+        <h3 class="text-lg font-semibold text-green-800 dark:text-green-200 mb-2">✅ Solution</h3>
+        <p-button
+          label="Test Solution"
+          icon="pi pi-check"
+          severity="success"
+          (click)="testSolution()"
+        ></p-button>
+        @if (solutionResult()) {
+          <p-message severity="success" [text]="solutionResult()" class="mt-4"></p-message>
+        }
+      </div>
+    </div>
+  </p-card>
+
+  <!-- Key Takeaways -->
+  <p-card class="shadow-md">
+    <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">Key Takeaways</h2>
+    <ul class="space-y-2 text-gray-700 dark:text-gray-300">
+      <li class="flex items-start">
+        <span class="text-green-500 mr-2">✓</span>
+        <span>Split large interfaces into smaller, focused ones</span>
+      </li>
+      <li class="flex items-start">
+        <span class="text-green-500 mr-2">✓</span>
+        <span>Classes should only implement interfaces they actually use</span>
+      </li>
+      <li class="flex items-start">
+        <span class="text-green-500 mr-2">✓</span>
+        <span>Avoid "fat" interfaces with many unrelated methods</span>
+      </li>
+      <li class="flex items-start">
+        <span class="text-green-500 mr-2">✓</span>
+        <span>Use composition to combine multiple interfaces when needed</span>
+      </li>
+    </ul>
+  </p-card>
+</div>
+

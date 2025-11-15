@@ -1,0 +1,92 @@
+<div class="max-w-7xl mx-auto space-y-6">
+  <!-- Header -->
+  <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+    <h1 class="text-3xl font-bold text-gray-800 dark:text-gray-200 mb-2">Dependency Inversion Principle (DIP)</h1>
+    <p class="text-gray-600 dark:text-gray-400">
+      High-level modules should not depend on low-level modules. Both should depend on abstractions.
+    </p>
+  </div>
+
+  <!-- Explanation -->
+  <p-card class="shadow-md">
+    <div class="space-y-4">
+      <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200">What is DIP?</h2>
+      <p class="text-gray-700 dark:text-gray-300">
+        The Dependency Inversion Principle states that high-level modules should not depend on low-level modules. 
+        Both should depend on abstractions (interfaces). Abstractions should not depend on details; 
+        details should depend on abstractions. This principle promotes loose coupling and makes code more flexible.
+      </p>
+      <div class="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-lg">
+        <h3 class="font-semibold text-indigo-900 dark:text-indigo-200 mb-2">Key Benefits:</h3>
+        <ul class="list-disc list-inside space-y-1 text-indigo-800 dark:text-indigo-300">
+          <li>Reduces coupling between modules</li>
+          <li>Makes code more testable (easy to mock dependencies)</li>
+          <li>Enables swapping implementations easily</li>
+          <li>Promotes better architecture and design</li>
+        </ul>
+      </div>
+    </div>
+  </p-card>
+
+  <!-- Code Examples -->
+  <p-card class="shadow-md">
+    <p-tabs value="0">
+      <p-tablist>
+        <p-tab value="0">❌ Violation</p-tab>
+        <p-tab value="1">✅ Solution</p-tab>
+      </p-tablist>
+      <p-tabpanels>
+        <p-tabpanel value="0">
+          <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>{{ violationCode }}</code></pre>
+        </p-tabpanel>
+        <p-tabpanel value="1">
+          <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>{{ solutionCode }}</code></pre>
+        </p-tabpanel>
+      </p-tabpanels>
+    </p-tabs>
+  </p-card>
+
+  <!-- Live Demo -->
+  <p-card class="shadow-md">
+    <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">Live Demo</h2>
+    <p class="text-gray-700 dark:text-gray-300 mb-6">
+      This demo shows how dependency injection allows high-level code to depend on abstractions.
+    </p>
+
+    <div class="space-y-4">
+      <p-button
+        label="Test Dependency Inversion"
+        icon="pi pi-check"
+        (click)="testDependencyInversion()"
+      ></p-button>
+      
+      @if (testResult()) {
+        <p-message severity="success" [text]="testResult()"></p-message>
+      }
+    </div>
+  </p-card>
+
+  <!-- Key Takeaways -->
+  <p-card class="shadow-md">
+    <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">Key Takeaways</h2>
+    <ul class="space-y-2 text-gray-700 dark:text-gray-300">
+      <li class="flex items-start">
+        <span class="text-green-500 mr-2">✓</span>
+        <span>Depend on abstractions (interfaces), not concrete implementations</span>
+      </li>
+      <li class="flex items-start">
+        <span class="text-green-500 mr-2">✓</span>
+        <span>Use dependency injection to provide dependencies</span>
+      </li>
+      <li class="flex items-start">
+        <span class="text-green-500 mr-2">✓</span>
+        <span>High-level modules define what they need, low-level modules provide it</span>
+      </li>
+      <li class="flex items-start">
+        <span class="text-green-500 mr-2">✓</span>
+        <span>Makes code more flexible, testable, and maintainable</span>
+      </li>
+    </ul>
+  </p-card>
+</div>
+

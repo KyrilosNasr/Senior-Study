@@ -1,0 +1,200 @@
+<div class="max-w-7xl mx-auto space-y-6">
+  <!-- Header -->
+  <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+    <h1 class="text-3xl font-bold text-gray-800 dark:text-gray-200 mb-2">Inheritance</h1>
+    <p class="text-gray-600 dark:text-gray-400">
+      A mechanism where a new class is derived from an existing class, inheriting its properties and methods.
+    </p>
+  </div>
+
+  <!-- Explanation -->
+  <p-card class="shadow-md">
+    <div class="space-y-4">
+      <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200">What is Inheritance?</h2>
+      <p class="text-gray-700 dark:text-gray-300">
+        Inheritance allows a class (child/subclass) to inherit properties and methods from another class (parent/superclass). 
+        This promotes code reuse and establishes an "is-a" relationship. The child class can extend or override 
+        the parent's functionality while maintaining the base structure.
+      </p>
+      <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg">
+        <h3 class="font-semibold text-purple-900 dark:text-purple-200 mb-2">Key Benefits:</h3>
+        <ul class="list-disc list-inside space-y-1 text-purple-800 dark:text-purple-300">
+          <li>Code reuse and reduction of duplication</li>
+          <li>Establishes hierarchical relationships</li>
+          <li>Easier maintenance and updates</li>
+          <li>Polymorphism support</li>
+        </ul>
+      </div>
+    </div>
+  </p-card>
+
+  <!-- Code Examples -->
+  <p-card class="shadow-md">
+    <p-tabs value="0">
+      <p-tablist>
+        <p-tab value="0">❌ Violation</p-tab>
+        <p-tab value="1">✅ Solution</p-tab>
+      </p-tablist>
+      <p-tabpanels>
+        <p-tabpanel value="0">
+          <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>{{ violationCode }}</code></pre>
+        </p-tabpanel>
+        <p-tabpanel value="1">
+          <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>{{ solutionCode }}</code></pre>
+        </p-tabpanel>
+      </p-tabpanels>
+    </p-tabs>
+  </p-card>
+
+  <!-- Live Demo -->
+  <p-card class="shadow-md">
+    <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">Live Demo</h2>
+    <p class="text-gray-700 dark:text-gray-300 mb-6">
+      Create different types of vehicles. Notice how they all inherit common properties (brand, model, year) 
+      from the Vehicle base class, but each has its own specific characteristics.
+    </p>
+
+    <div class="space-y-6">
+      <!-- Create Vehicle -->
+      <div class="border-2 border-gray-200 dark:border-gray-700 rounded-lg p-4">
+        <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">Create Vehicle</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+          <div>
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Vehicle Type</label>
+            <p-select
+              [options]="vehicleTypes"
+              [(ngModel)]="vehicleType"
+              optionLabel="label"
+              optionValue="value"
+              class="w-full"
+            ></p-select>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Brand</label>
+            <input
+              pInputText
+              type="text"
+              [(ngModel)]="brand"
+              placeholder="Toyota"
+              class="w-full"
+            />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Model</label>
+            <input
+              pInputText
+              type="text"
+              [(ngModel)]="model"
+              placeholder="Camry"
+              class="w-full"
+            />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Year</label>
+            <p-inputNumber
+              [(ngModel)]="year"
+              [min]="1900"
+              [max]="2024"
+              [showButtons]="true"
+              class="w-full"
+            ></p-inputNumber>
+          </div>
+          @if (vehicleType() === 'car') {
+            <div>
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Doors</label>
+              <p-inputNumber
+                [(ngModel)]="doors"
+                [min]="2"
+                [max]="6"
+                [showButtons]="true"
+                class="w-full"
+              ></p-inputNumber>
+            </div>
+          }
+          @if (vehicleType() === 'motorcycle') {
+            <div>
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Engine Size (cc)</label>
+              <p-inputNumber
+                [(ngModel)]="engineSize"
+                [min]="50"
+                [max]="2000"
+                [showButtons]="true"
+                class="w-full"
+              ></p-inputNumber>
+            </div>
+          }
+          @if (vehicleType() === 'truck') {
+            <div>
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Cargo Capacity (kg)</label>
+              <p-inputNumber
+                [(ngModel)]="cargoCapacity"
+                [min]="100"
+                [max]="50000"
+                [showButtons]="true"
+                class="w-full"
+              ></p-inputNumber>
+            </div>
+          }
+        </div>
+        <p-button
+          label="Create Vehicle"
+          icon="pi pi-plus"
+          (click)="createVehicle()"
+          [disabled]="!brand().trim() || !model().trim()"
+        ></p-button>
+      </div>
+
+      <!-- Vehicle List -->
+      @if (vehicles().length > 0) {
+        <div class="border-2 border-green-200 dark:border-green-800 rounded-lg p-4">
+          <h3 class="text-lg font-semibold text-green-800 dark:text-green-200 mb-4">Created Vehicles</h3>
+          <div class="space-y-2 mb-4">
+            @for (vehicle of vehicles(); track vehicle.getInfo()) {
+              <div
+                class="p-3 bg-gray-100 dark:bg-gray-700 rounded cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-600"
+                (click)="selectVehicle(vehicle)"
+              >
+                <p class="text-sm text-gray-800 dark:text-gray-200">{{ vehicle.getInfo() }}</p>
+              </div>
+            }
+          </div>
+
+          @if (selectedVehicle(); as vehicle) {
+            <div class="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+              <h4 class="font-semibold text-blue-900 dark:text-blue-200 mb-2">Selected Vehicle:</h4>
+              <p class="text-sm text-blue-800 dark:text-blue-300 mb-2">
+                <strong>Info:</strong> {{ vehicle.getInfo() }}<br>
+                <strong>Start:</strong> {{ vehicle.start() }}<br>
+                <strong>Stop:</strong> {{ vehicle.stop() }}
+              </p>
+            </div>
+          }
+        </div>
+      }
+    </div>
+  </p-card>
+
+  <!-- Key Takeaways -->
+  <p-card class="shadow-md">
+    <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">Key Takeaways</h2>
+    <ul class="space-y-2 text-gray-700 dark:text-gray-300">
+      <li class="flex items-start">
+        <span class="text-green-500 mr-2">✓</span>
+        <span>Use inheritance to establish "is-a" relationships</span>
+      </li>
+      <li class="flex items-start">
+        <span class="text-green-500 mr-2">✓</span>
+        <span>Child classes inherit properties and methods from parent classes</span>
+      </li>
+      <li class="flex items-start">
+        <span class="text-green-500 mr-2">✓</span>
+        <span>Use abstract classes for base classes that shouldn't be instantiated</span>
+      </li>
+      <li class="flex items-start">
+        <span class="text-green-500 mr-2">✓</span>
+        <span>Override methods in child classes to provide specific implementations</span>
+      </li>
+    </ul>
+  </p-card>
+</div>
+

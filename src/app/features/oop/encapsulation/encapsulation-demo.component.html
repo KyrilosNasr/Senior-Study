@@ -1,0 +1,169 @@
+<div class="max-w-7xl mx-auto space-y-6">
+  <!-- Header -->
+  <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+    <h1 class="text-3xl font-bold text-gray-800 dark:text-gray-200 mb-2">Encapsulation</h1>
+    <p class="text-gray-600 dark:text-gray-400">
+      Bundling data and methods that operate on that data within a single unit, and restricting access to internal details.
+    </p>
+  </div>
+
+  <!-- Explanation -->
+  <p-card class="shadow-md">
+    <div class="space-y-4">
+      <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200">What is Encapsulation?</h2>
+      <p class="text-gray-700 dark:text-gray-300">
+        Encapsulation is the bundling of data (attributes) and methods (functions) that operate on that data 
+        into a single unit called a class. It restricts direct access to some of an object's components, 
+        which is a means of preventing accidental interference and misuse of the data.
+      </p>
+      <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg">
+        <h3 class="font-semibold text-blue-900 dark:text-blue-200 mb-2">Key Benefits:</h3>
+        <ul class="list-disc list-inside space-y-1 text-blue-800 dark:text-blue-300">
+          <li>Data protection and validation</li>
+          <li>Controlled access through methods</li>
+          <li>Hides implementation details</li>
+          <li>Easier to maintain and modify</li>
+        </ul>
+      </div>
+    </div>
+  </p-card>
+
+  <!-- Code Examples -->
+  <p-card class="shadow-md">
+    <p-tabs value="0">
+      <p-tablist>
+        <p-tab value="0">❌ Violation</p-tab>
+        <p-tab value="1">✅ Solution</p-tab>
+      </p-tablist>
+      <p-tabpanels>
+        <p-tabpanel value="0">
+          <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>{{ violationCode }}</code></pre>
+        </p-tabpanel>
+        <p-tabpanel value="1">
+          <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>{{ solutionCode }}</code></pre>
+        </p-tabpanel>
+      </p-tabpanels>
+    </p-tabs>
+  </p-card>
+
+  <!-- Live Demo -->
+  <p-card class="shadow-md">
+    <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">Live Demo</h2>
+    <p class="text-gray-700 dark:text-gray-300 mb-6">
+      Create a bank account and perform transactions. Notice how the balance is protected and can only be modified through controlled methods.
+    </p>
+
+    <div class="space-y-6">
+      <!-- Create Account -->
+      <div class="border-2 border-gray-200 dark:border-gray-700 rounded-lg p-4">
+        <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">Create Account</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+          <div>
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Account Number</label>
+            <input
+              pInputText
+              type="text"
+              [(ngModel)]="accountNumber"
+              placeholder="ACC-12345"
+              class="w-full"
+            />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Initial Balance</label>
+            <p-inputNumber
+              [(ngModel)]="initialBalance"
+              [min]="0"
+              [showButtons]="true"
+              class="w-full"
+            ></p-inputNumber>
+          </div>
+        </div>
+        <p-button
+          label="Create Account"
+          icon="pi pi-plus"
+          (click)="createAccount()"
+          [disabled]="!accountNumber().trim()"
+        ></p-button>
+      </div>
+
+      <!-- Account Operations -->
+      @if (account(); as acc) {
+        <div class="border-2 border-green-200 dark:border-green-800 rounded-lg p-4">
+          <h3 class="text-lg font-semibold text-green-800 dark:text-green-200 mb-4">Account Operations</h3>
+          
+          <div class="mb-4 p-4 bg-gray-100 dark:bg-gray-700 rounded">
+            <p class="text-sm text-gray-800 dark:text-gray-200">
+              <strong>Account:</strong> {{ acc.getAccountNumber() }}<br>
+              <strong>Balance:</strong> ${{ acc.getBalance() }}
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Deposit Amount</label>
+              <p-inputNumber
+                [(ngModel)]="depositAmount"
+                [min]="0.01"
+                [showButtons]="true"
+                class="w-full"
+              ></p-inputNumber>
+              <p-button
+                label="Deposit"
+                icon="pi pi-arrow-down"
+                severity="success"
+                (click)="deposit()"
+                [disabled]="depositAmount() <= 0"
+                class="mt-2 w-full"
+              ></p-button>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Withdraw Amount</label>
+              <p-inputNumber
+                [(ngModel)]="withdrawAmount"
+                [min]="0.01"
+                [showButtons]="true"
+                class="w-full"
+              ></p-inputNumber>
+              <p-button
+                label="Withdraw"
+                icon="pi pi-arrow-up"
+                severity="danger"
+                (click)="withdraw()"
+                [disabled]="withdrawAmount() <= 0"
+                class="mt-2 w-full"
+              ></p-button>
+            </div>
+          </div>
+        </div>
+      }
+
+      @if (message()) {
+        <p-message [severity]="account() ? 'success' : 'info'" [text]="message()"></p-message>
+      }
+    </div>
+  </p-card>
+
+  <!-- Key Takeaways -->
+  <p-card class="shadow-md">
+    <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">Key Takeaways</h2>
+    <ul class="space-y-2 text-gray-700 dark:text-gray-300">
+      <li class="flex items-start">
+        <span class="text-green-500 mr-2">✓</span>
+        <span>Use private/protected access modifiers to hide internal data</span>
+      </li>
+      <li class="flex items-start">
+        <span class="text-green-500 mr-2">✓</span>
+        <span>Provide controlled access through public methods (getters/setters)</span>
+      </li>
+      <li class="flex items-start">
+        <span class="text-green-500 mr-2">✓</span>
+        <span>Add validation and business logic in accessor methods</span>
+      </li>
+      <li class="flex items-start">
+        <span class="text-green-500 mr-2">✓</span>
+        <span>Protects data integrity and prevents unauthorized access</span>
+      </li>
+    </ul>
+  </p-card>
+</div>
+

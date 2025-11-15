@@ -1,0 +1,104 @@
+<div class="max-w-7xl mx-auto space-y-6">
+  <!-- Header -->
+  <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+    <h1 class="text-3xl font-bold text-gray-800 dark:text-gray-200 mb-2">Abstraction</h1>
+    <p class="text-gray-600 dark:text-gray-400">
+      Hiding complex implementation details and exposing only essential features through a simplified interface.
+    </p>
+  </div>
+
+  <!-- Explanation -->
+  <p-card class="shadow-md">
+    <div class="space-y-4">
+      <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200">What is Abstraction?</h2>
+      <p class="text-gray-700 dark:text-gray-300">
+        Abstraction is the process of hiding complex implementation details and showing only the essential features 
+        of an object. It focuses on what an object does rather than how it does it. In programming, abstraction 
+        is achieved through abstract classes and interfaces, which define contracts without providing implementation details.
+      </p>
+      <div class="bg-teal-50 dark:bg-teal-900/20 p-4 rounded-lg">
+        <h3 class="font-semibold text-teal-900 dark:text-teal-200 mb-2">Key Benefits:</h3>
+        <ul class="list-disc list-inside space-y-1 text-teal-800 dark:text-teal-300">
+          <li>Simplifies complex systems</li>
+          <li>Hides implementation details</li>
+          <li>Reduces complexity for users</li>
+          <li>Enables flexibility and extensibility</li>
+        </ul>
+      </div>
+    </div>
+  </p-card>
+
+  <!-- Code Examples -->
+  <p-card class="shadow-md">
+    <p-tabs value="0">
+      <p-tablist>
+        <p-tab value="0">❌ Violation</p-tab>
+        <p-tab value="1">✅ Solution</p-tab>
+      </p-tablist>
+      <p-tabpanels>
+        <p-tabpanel value="0">
+          <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>{{ violationCode }}</code></pre>
+        </p-tabpanel>
+        <p-tabpanel value="1">
+          <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>{{ solutionCode }}</code></pre>
+        </p-tabpanel>
+      </p-tabpanels>
+    </p-tabs>
+  </p-card>
+
+  <!-- Live Demo -->
+  <p-card class="shadow-md">
+    <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">Live Demo</h2>
+    <p class="text-gray-700 dark:text-gray-300 mb-6">
+      Select a database type and see how the same interface (Database) can work with different implementations. 
+      The UserRepositoryService doesn't need to know the specific database details - it works through the abstraction.
+    </p>
+
+    <div class="space-y-4">
+      <div>
+        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Select Database</label>
+        <p-select
+          [options]="databases"
+          [(ngModel)]="selectedDatabase"
+          optionLabel="label"
+          optionValue="value"
+          class="w-full"
+        ></p-select>
+      </div>
+
+      <p-button
+        label="Test Abstraction"
+        icon="pi pi-check"
+        (click)="testAbstraction()"
+      ></p-button>
+
+      @if (result()) {
+        <p-message severity="success" [text]="result()"></p-message>
+      }
+    </div>
+  </p-card>
+
+  <!-- Key Takeaways -->
+  <p-card class="shadow-md">
+    <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">Key Takeaways</h2>
+    <ul class="space-y-2 text-gray-700 dark:text-gray-300">
+      <li class="flex items-start">
+        <span class="text-green-500 mr-2">✓</span>
+        <span>Use interfaces and abstract classes to define contracts</span>
+      </li>
+      <li class="flex items-start">
+        <span class="text-green-500 mr-2">✓</span>
+        <span>Hide implementation details behind abstractions</span>
+      </li>
+      <li class="flex items-start">
+        <span class="text-green-500 mr-2">✓</span>
+        <span>Focus on what an object does, not how it does it</span>
+      </li>
+      <li class="flex items-start">
+        <span class="text-green-500 mr-2">✓</span>
+        <span>Makes code more maintainable and flexible</span>
+      </li>
+    </ul>
+  </p-card>
+</div>
+

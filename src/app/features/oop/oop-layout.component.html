@@ -1,0 +1,46 @@
+<div class="flex min-h-screen bg-gray-50 dark:bg-gray-900">
+  <!-- Mobile Sidebar -->
+  <p-drawer
+    [visible]="sidebarVisible()"
+    (visibleChange)="sidebarVisible.set($event)"
+    position="left"
+    header="OOP Concepts"
+    [closeOnEscape]="true"
+    styleClass="w-64 lg:hidden"
+  >
+    <div class="p-4">
+      <p-menu [model]="menuItems" [style]="{ width: '100%', border: 'none' }"></p-menu>
+    </div>
+  </p-drawer>
+
+  <!-- Desktop Sidebar -->
+  <aside class="hidden lg:block w-64 bg-white dark:bg-gray-800 shadow-lg border-r border-gray-200 dark:border-gray-700">
+    <div class="p-6 sticky top-0">
+      <h1 class="text-2xl font-bold mb-6 text-gray-800 dark:text-gray-200">OOP</h1>
+      <p-menu [model]="menuItems" [style]="{ width: '100%', border: 'none' }"></p-menu>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="flex-1 flex flex-col">
+    <!-- Mobile Header -->
+    <header class="lg:hidden bg-white dark:bg-gray-800 shadow-md p-4 flex items-center justify-between">
+      <button
+        pButton
+        type="button"
+        icon="pi pi-bars"
+        (click)="toggleSidebar()"
+        class="p-button-text"
+        label="Menu"
+      ></button>
+      <h1 class="text-xl font-bold text-gray-800 dark:text-gray-200">OOP Concepts</h1>
+      <div class="w-20"></div>
+    </header>
+
+    <!-- Content Area -->
+    <div class="flex-1 p-4 lg:p-8">
+      <router-outlet></router-outlet>
+    </div>
+  </main>
+</div>
+
