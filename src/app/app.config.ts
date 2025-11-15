@@ -1,5 +1,4 @@
 import { ApplicationConfig, provideBrowserGlobalErrorListeners, provideZoneChangeDetection } from '@angular/core';
-import { APP_BASE_HREF } from '@angular/common';
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
@@ -18,8 +17,6 @@ export const appConfig: ApplicationConfig = {
       theme: {
         preset: Aura
       }
-    }),
-    // Use baseHref from HTML <base> tag, fallback to '/' for local development
-    { provide: APP_BASE_HREF, useValue: document.querySelector('base')?.getAttribute('href') || '/' }
+    })
   ]
 };

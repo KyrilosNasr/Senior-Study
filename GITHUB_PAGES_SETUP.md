@@ -51,6 +51,7 @@ If you prefer to deploy manually:
 
 - **Base Href**: The app is configured with `baseHref: "/Senior-Study/"` which matches your repository name
 - **`.nojekyll` file**: Created in `docs/` to prevent Jekyll processing
+- **`404.html` file**: Automatically created to handle SPA routing (fixes refresh issues)
 - **Build Output**: Files are automatically moved from `docs/browser/` to `docs/` after build
 
 ## 🔍 Verify Deployment
@@ -62,7 +63,13 @@ https://kyrilosnasr.github.io/Senior-Study/
 
 ## 🐛 Troubleshooting
 
-If you see 404 errors:
+### 404 Errors on Refresh
+If you see "Page not found" when refreshing a route:
+1. Ensure `404.html` exists in the `docs` folder (created automatically during build)
+2. The `404.html` file redirects to `index.html` so Angular's router can handle the route
+3. After deploying, wait a few minutes for GitHub Pages to update
+
+### Other 404 Errors
 1. Verify the `baseHref` in `angular.json` matches your repository name
 2. Check that GitHub Pages is enabled and pointing to the `docs` folder
 3. Ensure the `.nojekyll` file exists in the `docs` folder
@@ -70,6 +77,7 @@ If you see 404 errors:
 
 ## 📦 Build Scripts
 
-- `npm run build:github-pages` - Build and prepare for GitHub Pages
-- `npm run deploy:github-pages` - Move files from browser/ to docs/ (runs automatically)
+- `npm run build:github-pages` - Build and prepare for GitHub Pages (includes 404.html creation)
+- `npm run deploy:github-pages` - Move files from browser/ to docs/ and create 404.html (runs automatically)
+- `npm run create-404` - Create 404.html from index.html (for SPA routing support)
 
