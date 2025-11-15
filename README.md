@@ -1,7 +1,20 @@
 # 🎓 Senior Angular Study Project
 
-**Status**: ✅ **COMPLETE & READY FOR DEVELOPMENT**
-**Last Updated**: 2025-11-05
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-View%20Application-blue?style=for-the-badge)](https://kyrilosnasr.github.io/Senior-Study/)
+[![Angular](https://img.shields.io/badge/Angular-20.0.0-red?style=flat-square&logo=angular)](https://angular.dev)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.8.2-blue?style=flat-square&logo=typescript)](https://www.typescriptlang.org)
+[![PrimeNG](https://img.shields.io/badge/PrimeNG-20.2.0-0078D4?style=flat-square)](https://primeng.org)
+
+**Status**: ✅ **COMPLETE & READY FOR DEVELOPMENT**  
+**Last Updated**: 2025-11-15
+
+## 🌐 Live Demo
+
+**👉 [View Live Application](https://kyrilosnasr.github.io/Senior-Study/)**
+
+The application is deployed on GitHub Pages and includes interactive demos for:
+- **SOLID Principles** (SRP, OCP, LSP, ISP, DIP)
+- **OOP Concepts** (Encapsulation, Inheritance, Polymorphism, Abstraction)
 
 ---
 
@@ -20,6 +33,9 @@
 ---
 
 ## 🚀 Quick Start
+
+### 🌐 Live Demo
+**👉 [View Live Application](https://kyrilosnasr.github.io/Senior-Study/)**
 
 ### Start Development Server
 ```bash
@@ -45,8 +61,9 @@ npm run format       # Format code
 
 ### Build for Production
 ```bash
-npm run build:prod   # Production build
-npm run build:analyze # Build and analyze bundle size
+npm run build:prod        # Production build
+npm run build:github-pages # Build for GitHub Pages deployment
+npm run build:analyze      # Build and analyze bundle size
 ```
 
 ---
@@ -304,6 +321,12 @@ npm run prepare         # Initialize Husky
 ---
 
 ## 📚 Documentation
+
+### 📖 Study Plan
+See the complete 12-week curriculum: [`angular_senior_study.md`](./angular_senior_study.md)
+
+### 🌐 Live Demo
+**👉 [View Live Application](https://kyrilosnasr.github.io/Senior-Study/)**
 
 ### Configuration Files to Create
 
@@ -621,12 +644,20 @@ describe('UserComponent', () => {
 
 ## 📖 Additional Resources
 
+### 🌐 Live Demo
+- **[View Live Application](https://kyrilosnasr.github.io/Senior-Study/)** - Interactive SOLID & OOP demos
+
+### 📚 Documentation Links
 - [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli)
 - [Angular Documentation](https://angular.dev)
 - [NgRx Documentation](https://ngrx.io)
 - [PrimeNG Documentation](https://primeng.org)
 - [Tailwind CSS Documentation](https://tailwindcss.com)
 - [TypeScript Documentation](https://www.typescriptlang.org)
+
+### 📝 Project Documentation
+- [12-Week Study Plan](./angular_senior_study.md) - Complete curriculum
+- [GitHub Pages Setup](./GITHUB_PAGES_SETUP.md) - Deployment guide
 
 ---
 
