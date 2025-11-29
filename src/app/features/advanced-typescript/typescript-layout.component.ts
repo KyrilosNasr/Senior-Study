@@ -77,6 +77,11 @@ export class TypeScriptLayoutComponent {
           label: 'OOP Concepts',
           icon: 'pi pi-arrow-right',
           routerLink: '/oop/encapsulation'
+        },
+        {
+          label: 'RxJS Patterns',
+          icon: 'pi pi-arrow-right',
+          routerLink: '/rxjs/custom-operators'
         }
       ]
     }

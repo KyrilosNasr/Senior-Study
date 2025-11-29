@@ -17,5 +17,9 @@ export const routes: Routes = [
   {
     path: 'typescript',
     loadChildren: () => import('./features/advanced-typescript/typescript.routes').then(m => m.typescriptRoutes)
+  },
+  {
+    path: 'rxjs',
+    loadChildren: () => import('./features/rxjs/rxjs.routes').then(m => m.rxjsRoutes)
   }
 ];

@@ -57,6 +57,11 @@ export class OopLayoutComponent {
           label: 'Advanced TypeScript',
           icon: 'pi pi-arrow-right',
           routerLink: '/typescript/advanced-types'
+        },
+        {
+          label: 'RxJS Patterns',
+          icon: 'pi pi-arrow-right',
+          routerLink: '/rxjs/custom-operators'
         }
       ]
     }

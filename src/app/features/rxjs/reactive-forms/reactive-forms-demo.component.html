@@ -1,0 +1,121 @@
+<div class="max-w-7xl mx-auto space-y-6">
+  <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+    <h1 class="text-3xl font-bold text-gray-800 dark:text-gray-200 mb-2">Reactive Forms Integration</h1>
+    <p class="text-gray-600 dark:text-gray-400">
+      Combining Angular Reactive Forms with RxJS for powerful form handling patterns.
+    </p>
+  </div>
+
+  <p-card class="shadow-md">
+    <div class="space-y-4">
+      <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200">RxJS + Reactive Forms</h2>
+      <p class="text-gray-700 dark:text-gray-300">
+        Reactive Forms' valueChanges is an Observable, making it perfect for integration with RxJS operators
+        like debounceTime, distinctUntilChanged, and combineLatest.
+      </p>
+      <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg">
+        <h3 class="font-semibold text-blue-900 dark:text-blue-200 mb-2">Common Patterns:</h3>
+        <ul class="list-disc list-inside space-y-1 text-blue-800 dark:text-blue-300">
+          <li>Debounced search inputs</li>
+          <li>Combining multiple form controls</li>
+          <li>Async validation</li>
+          <li>Auto-save with auditTime</li>
+        </ul>
+      </div>
+    </div>
+  </p-card>
+
+  <p-card class="shadow-md">
+    <p-tabs value="0">
+      <p-tablist>
+        <p-tab value="0">❌ Violation</p-tab>
+        <p-tab value="1">✅ Solution</p-tab>
+      </p-tablist>
+      <p-tabpanels>
+        <p-tabpanel value="0">
+          <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>{{ violationCode }}</code></pre>
+        </p-tabpanel>
+        <p-tabpanel value="1">
+          <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>{{ solutionCode }}</code></pre>
+        </p-tabpanel>
+      </p-tabpanels>
+    </p-tabs>
+  </p-card>
+
+  <p-card class="shadow-md">
+    <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">Live Demo</h2>
+    <p class="text-gray-700 dark:text-gray-300 mb-6">
+      Type in the search field - notice how results only appear after you stop typing for 300ms (debounced).
+    </p>
+    
+    <form [formGroup]="searchForm" class="space-y-4">
+      <div>
+        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Search</label>
+        <input
+          pInputText
+          type="text"
+          formControlName="search"
+          placeholder="Type to search (min 2 characters)..."
+          class="w-full"
+        />
+      </div>
+      
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Category</label>
+          <select formControlName="category" class="w-full p-2 border rounded">
+            <option value="all">All</option>
+            <option value="tech">Tech</option>
+            <option value="design">Design</option>
+          </select>
+        </div>
+        
+        <div>
+          <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Sort By</label>
+          <select formControlName="sortBy" class="w-full p-2 border rounded">
+            <option value="name">Name</option>
+            <option value="date">Date</option>
+          </select>
+        </div>
+      </div>
+    </form>
+
+    @if (isSearching()) {
+      <p class="text-gray-600 dark:text-gray-400 mt-4">Searching...</p>
+    }
+
+    @if (searchResults().length > 0) {
+      <div class="mt-4 bg-gray-100 dark:bg-gray-700 p-4 rounded">
+        <h3 class="font-semibold mb-2">Results:</h3>
+        <ul class="list-disc list-inside">
+          @for (result of searchResults(); track result.id) {
+            <li>{{ result | json }}</li>
+          }
+        </ul>
+      </div>
+    }
+  </p-card>
+
+  <p-card class="shadow-md">
+    <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">Key Takeaways</h2>
+    <ul class="space-y-2 text-gray-700 dark:text-gray-300">
+      <li class="flex items-start">
+        <span class="text-green-500 mr-2">✓</span>
+        <span>Use valueChanges with debounceTime for search inputs</span>
+      </li>
+      <li class="flex items-start">
+        <span class="text-green-500 mr-2">✓</span>
+        <span>Combine multiple form controls with combineLatest</span>
+      </li>
+      <li class="flex items-start">
+        <span class="text-green-500 mr-2">✓</span>
+        <span>Use distinctUntilChanged to prevent duplicate API calls</span>
+      </li>
+      <li class="flex items-start">
+        <span class="text-green-500 mr-2">✓</span>
+        <span>Use startWith to provide initial values</span>
+      </li>
+    </ul>
+  </p-card>
+</div>
+

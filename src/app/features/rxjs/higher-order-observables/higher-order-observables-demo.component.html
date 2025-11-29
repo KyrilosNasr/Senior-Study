@@ -1,0 +1,111 @@
+<div class="max-w-7xl mx-auto space-y-6">
+  <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+    <h1 class="text-3xl font-bold text-gray-800 dark:text-gray-200 mb-2">Higher-Order Observables</h1>
+    <p class="text-gray-600 dark:text-gray-400">
+      Managing observables that emit other observables using flattening operators.
+    </p>
+  </div>
+
+  <p-card class="shadow-md">
+    <div class="space-y-4">
+      <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200">What are Higher-Order Observables?</h2>
+      <p class="text-gray-700 dark:text-gray-300">
+        Higher-order observables are observables that emit other observables. Flattening operators like switchMap,
+        mergeMap, concatMap, and exhaustMap handle these nested observables.
+      </p>
+      <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg">
+        <h3 class="font-semibold text-blue-900 dark:text-blue-200 mb-2">Key Patterns:</h3>
+        <ul class="list-disc list-inside space-y-1 text-blue-800 dark:text-blue-300">
+          <li>Polling: Repeated data fetching at intervals</li>
+          <li>Sequential chains: Dependent API calls</li>
+          <li>Parallel requests: Independent operations</li>
+          <li>Cancellation: SwitchMap cancels previous requests</li>
+        </ul>
+      </div>
+    </div>
+  </p-card>
+
+  <p-card class="shadow-md">
+    <p-tabs value="0">
+      <p-tablist>
+        <p-tab value="0">❌ Violation</p-tab>
+        <p-tab value="1">✅ Solution</p-tab>
+      </p-tablist>
+      <p-tabpanels>
+        <p-tabpanel value="0">
+          <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>{{ violationCode }}</code></pre>
+        </p-tabpanel>
+        <p-tabpanel value="1">
+          <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>{{ solutionCode }}</code></pre>
+        </p-tabpanel>
+      </p-tabpanels>
+    </p-tabs>
+  </p-card>
+
+  <p-card class="shadow-md">
+    <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">Live Demo</h2>
+    
+    <div class="space-y-6">
+      <div class="border-2 border-gray-200 dark:border-gray-700 rounded-lg p-4">
+        <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">Polling Pattern</h3>
+        <p-button
+          label="Start Polling"
+          icon="pi pi-play"
+          (click)="startPolling()"
+          [disabled]="isPolling()"
+          class="mb-4"
+        ></p-button>
+        
+        @if (pollingData().length > 0) {
+          <div class="bg-gray-100 dark:bg-gray-700 p-4 rounded">
+            <h4 class="font-semibold mb-2">Polled Data:</h4>
+            <ul class="list-disc list-inside space-y-1 text-sm">
+              @for (item of pollingData(); track $index) {
+                <li>{{ item | json }}</li>
+              }
+            </ul>
+          </div>
+        }
+      </div>
+
+      <div class="border-2 border-gray-200 dark:border-gray-700 rounded-lg p-4">
+        <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">Sequential Request Chain</h3>
+        <p-button
+          label="Load User Data (Sequential)"
+          icon="pi pi-download"
+          (click)="testSequential()"
+          class="mb-4"
+        ></p-button>
+        
+        @if (sequentialData(); as data) {
+          <div class="bg-gray-100 dark:bg-gray-700 p-4 rounded">
+            <pre class="text-sm">{{ data | json }}</pre>
+          </div>
+        }
+      </div>
+    </div>
+  </p-card>
+
+  <p-card class="shadow-md">
+    <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">Key Takeaways</h2>
+    <ul class="space-y-2 text-gray-700 dark:text-gray-300">
+      <li class="flex items-start">
+        <span class="text-green-500 mr-2">✓</span>
+        <span>Use switchMap for cancellable operations (search, typeahead)</span>
+      </li>
+      <li class="flex items-start">
+        <span class="text-green-500 mr-2">✓</span>
+        <span>Use concatMap when order matters (sequential operations)</span>
+      </li>
+      <li class="flex items-start">
+        <span class="text-green-500 mr-2">✓</span>
+        <span>Use mergeMap for parallel independent operations</span>
+      </li>
+      <li class="flex items-start">
+        <span class="text-green-500 mr-2">✓</span>
+        <span>Avoid nested subscriptions - use flattening operators</span>
+      </li>
+    </ul>
+  </p-card>
+</div>
+

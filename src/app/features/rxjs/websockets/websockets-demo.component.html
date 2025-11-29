@@ -1,0 +1,129 @@
+<div class="max-w-7xl mx-auto space-y-6">
+  <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+    <h1 class="text-3xl font-bold text-gray-800 dark:text-gray-200 mb-2">WebSockets & Real-time Patterns</h1>
+    <p class="text-gray-600 dark:text-gray-400">
+      Using RxJS WebSocketSubject for real-time communication with automatic reconnection.
+    </p>
+  </div>
+
+  <p-card class="shadow-md">
+    <div class="space-y-4">
+      <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200">RxJS WebSocket</h2>
+      <p class="text-gray-700 dark:text-gray-300">
+        WebSocketSubject provides a reactive interface to WebSocket connections with built-in reconnection
+        logic, error handling, and composability with RxJS operators.
+      </p>
+      <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg">
+        <h3 class="font-semibold text-blue-900 dark:text-blue-200 mb-2">Features:</h3>
+        <ul class="list-disc list-inside space-y-1 text-blue-800 dark:text-blue-300">
+          <li>Automatic reconnection with exponential backoff</li>
+          <li>Observable-based API</li>
+          <li>Error handling and recovery</li>
+          <li>Composable with RxJS operators</li>
+        </ul>
+      </div>
+    </div>
+  </p-card>
+
+  <p-card class="shadow-md">
+    <p-tabs value="0">
+      <p-tablist>
+        <p-tab value="0">❌ Violation</p-tab>
+        <p-tab value="1">✅ Solution</p-tab>
+      </p-tablist>
+      <p-tabpanels>
+        <p-tabpanel value="0">
+          <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>{{ violationCode }}</code></pre>
+        </p-tabpanel>
+        <p-tabpanel value="1">
+          <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>{{ solutionCode }}</code></pre>
+        </p-tabpanel>
+      </p-tabpanels>
+    </p-tabs>
+  </p-card>
+
+  <p-card class="shadow-md">
+    <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">Live Demo</h2>
+    
+    <div class="space-y-6">
+      <div class="border-2 border-gray-200 dark:border-gray-700 rounded-lg p-4">
+        <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">WebSocket Connection</h3>
+        <div class="mb-4 flex gap-2">
+          <p-button
+            label="Connect"
+            icon="pi pi-link"
+            (click)="connect()"
+            [disabled]="isConnected()"
+            severity="success"
+          ></p-button>
+          <p-button
+            label="Disconnect"
+            icon="pi pi-unlink"
+            (click)="disconnect()"
+            [disabled]="!isConnected()"
+            severity="danger"
+          ></p-button>
+        </div>
+        <div class="bg-gray-100 dark:bg-gray-700 p-4 rounded">
+          <p><strong>Status:</strong> {{ connectionStatus() }}</p>
+        </div>
+      </div>
+
+      <div class="border-2 border-gray-200 dark:border-gray-700 rounded-lg p-4">
+        <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">Messages</h3>
+        <div class="mb-4">
+          <input
+            pInputText
+            type="text"
+            [(ngModel)]="messageText"
+            placeholder="Type a message..."
+            class="w-full mb-2"
+            [disabled]="!isConnected()"
+          />
+          <p-button
+            label="Send"
+            icon="pi pi-send"
+            (click)="sendMessage()"
+            [disabled]="!isConnected() || !messageText().trim()"
+          ></p-button>
+        </div>
+        
+        <div class="bg-gray-100 dark:bg-gray-700 p-4 rounded max-h-64 overflow-y-auto">
+          @if (messages().length === 0) {
+            <p class="text-gray-500">No messages yet</p>
+          } @else {
+            @for (msg of messages(); track msg.timestamp) {
+              <div class="mb-2 p-2 bg-white dark:bg-gray-800 rounded">
+                <p class="text-sm"><strong>{{ msg.type }}:</strong> {{ msg.payload | json }}</p>
+                <p class="text-xs text-gray-500">{{ msg.timestamp | date:'short' }}</p>
+              </div>
+            }
+          }
+        </div>
+      </div>
+    </div>
+  </p-card>
+
+  <p-card class="shadow-md">
+    <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">Key Takeaways</h2>
+    <ul class="space-y-2 text-gray-700 dark:text-gray-300">
+      <li class="flex items-start">
+        <span class="text-green-500 mr-2">✓</span>
+        <span>Use WebSocketSubject for reactive WebSocket connections</span>
+      </li>
+      <li class="flex items-start">
+        <span class="text-green-500 mr-2">✓</span>
+        <span>Implement reconnection logic with retryWhen and exponential backoff</span>
+      </li>
+      <li class="flex items-start">
+        <span class="text-green-500 mr-2">✓</span>
+        <span>Use share() to allow multiple subscribers to share one connection</span>
+      </li>
+      <li class="flex items-start">
+        <span class="text-green-500 mr-2">✓</span>
+        <span>Always clean up connections in ngOnDestroy</span>
+      </li>
+    </ul>
+  </p-card>
+</div>
+

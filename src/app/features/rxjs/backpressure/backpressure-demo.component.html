@@ -1,0 +1,105 @@
+<div class="max-w-7xl mx-auto space-y-6">
+  <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+    <h1 class="text-3xl font-bold text-gray-800 dark:text-gray-200 mb-2">Backpressure & Rate Limiting</h1>
+    <p class="text-gray-600 dark:text-gray-400">
+      Controlling the frequency of emissions to handle high-frequency events efficiently.
+    </p>
+  </div>
+
+  <p-card class="shadow-md">
+    <div class="space-y-4">
+      <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200">What is Backpressure?</h2>
+      <p class="text-gray-700 dark:text-gray-300">
+        Backpressure occurs when a producer emits values faster than a consumer can process them.
+        Rate limiting operators help control this flow.
+      </p>
+      <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg">
+        <h3 class="font-semibold text-blue-900 dark:text-blue-200 mb-2">Rate Limiting Operators:</h3>
+        <ul class="list-disc list-inside space-y-1 text-blue-800 dark:text-blue-300">
+          <li><strong>debounceTime:</strong> Wait for pause, then emit latest</li>
+          <li><strong>throttleTime:</strong> Emit first, then ignore for duration</li>
+          <li><strong>sampleTime:</strong> Emit latest value at intervals</li>
+          <li><strong>auditTime:</strong> Wait for source to complete, emit latest</li>
+        </ul>
+      </div>
+    </div>
+  </p-card>
+
+  <p-card class="shadow-md">
+    <p-tabs value="0">
+      <p-tablist>
+        <p-tab value="0">❌ Violation</p-tab>
+        <p-tab value="1">✅ Solution</p-tab>
+      </p-tablist>
+      <p-tabpanels>
+        <p-tabpanel value="0">
+          <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>{{ violationCode }}</code></pre>
+        </p-tabpanel>
+        <p-tabpanel value="1">
+          <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>{{ solutionCode }}</code></pre>
+        </p-tabpanel>
+      </p-tabpanels>
+    </p-tabs>
+  </p-card>
+
+  <p-card class="shadow-md">
+    <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">Live Demo</h2>
+    
+    <div class="space-y-6">
+      <div class="border-2 border-gray-200 dark:border-gray-700 rounded-lg p-4">
+        <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">Debounce (Search Input)</h3>
+        <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">
+          Type quickly - notice the debounced value only updates after you stop typing for 300ms
+        </p>
+        <input
+          #searchInput
+          pInputText
+          type="text"
+          [(ngModel)]="searchValue"
+          placeholder="Type to search..."
+          class="w-full mb-2"
+        />
+        <div class="bg-gray-100 dark:bg-gray-700 p-4 rounded">
+          <p><strong>Current:</strong> {{ searchValue() }}</p>
+          <p><strong>Debounced (300ms):</strong> {{ debouncedValue() }}</p>
+        </div>
+      </div>
+
+      <div class="border-2 border-gray-200 dark:border-gray-700 rounded-lg p-4">
+        <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">Throttle</h3>
+        <p-button
+          label="Generate Rapid Events"
+          icon="pi pi-bolt"
+          (click)="testThrottle()"
+          class="mb-4"
+        ></p-button>
+        <div class="bg-gray-100 dark:bg-gray-700 p-4 rounded">
+          <p><strong>Throttled Value:</strong> {{ throttledValue() }}</p>
+        </div>
+      </div>
+    </div>
+  </p-card>
+
+  <p-card class="shadow-md">
+    <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">Key Takeaways</h2>
+    <ul class="space-y-2 text-gray-700 dark:text-gray-300">
+      <li class="flex items-start">
+        <span class="text-green-500 mr-2">✓</span>
+        <span>Use debounceTime for search inputs and form validation</span>
+      </li>
+      <li class="flex items-start">
+        <span class="text-green-500 mr-2">✓</span>
+        <span>Use throttleTime for scroll events and mouse movements</span>
+      </li>
+      <li class="flex items-start">
+        <span class="text-green-500 mr-2">✓</span>
+        <span>Use sampleTime when you need periodic updates</span>
+      </li>
+      <li class="flex items-start">
+        <span class="text-green-500 mr-2">✓</span>
+        <span>Choose appropriate delay times based on use case</span>
+      </li>
+    </ul>
+  </p-card>
+</div>
+

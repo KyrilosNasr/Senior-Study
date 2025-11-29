@@ -89,12 +89,18 @@
 **Wednesday (2h)**
 - Advanced RxJS Operators: mergeMap, switchMap, exhaustMap, concatMap
 - Custom RxJS Operators
+- Higher-Order Observables: Polling patterns, Sequential request chains
+- Subject Patterns: BehaviorSubject, ReplaySubject, AsyncSubject
+- Race Condition Prevention: Request deduplication, Sequential queues
 - **Create:** Retry with exponential backoff operator
+- **Practice:** Build polling service with cancellation
 
 **Thursday (2h)**
 - RxJS Performance: shareReplay, distinctUntilChanged
-- Memory leak prevention strategies
+- Advanced Caching: Stale-while-revalidate pattern, TTL management
+- Memory leak prevention strategies: takeUntilDestroyed, DestroyRef patterns
 - **Audit:** Identify and fix subscription leaks
+- **Implement:** Advanced caching service with stale-while-revalidate
 
 ### Week 4: Modern Angular Features
 **Sunday (2h)**
@@ -114,8 +120,10 @@
 
 **Wednesday (2h)**
 - Functional Route Guards & Resolvers
+- RxJS Route Guards & Resolvers: Observable-based guards, Route resolvers with error handling
 - CanMatch guards for feature flagging
 - **Implement:** Role-based access control with functional guards
+- **Practice:** Build RxJS-based route guards and resolvers
 
 **Thursday (2h)**
 - inject() function in functional contexts
@@ -201,7 +209,9 @@
 **Wednesday (2h)**
 - TrackBy functions & *ngFor optimization
 - Immutable data patterns
+- Backpressure & Rate Limiting: throttleTime, debounceTime, sampleTime, auditTime
 - **Refactor:** Optimize list rendering performance
+- **Implement:** Rate limiting for high-frequency events
 
 **Thursday (2h)**
 - Lazy Loading: Routes, Modules, Components
@@ -282,8 +292,10 @@
 
 **Wednesday (2h)**
 - Testing Pyramid: Unit, Integration, E2E
+- RxJS Marble Testing: TestScheduler, cold/hot observables, expectObservable
 - Jest setup & configuration
 - **Write:** High-coverage unit tests
+- **Practice:** Write marble tests for custom operators
 
 **Thursday (2h)**
 - Component Testing with Testing Library
@@ -302,13 +314,17 @@
 
 **Monday (2h)**
 - WebSockets & Real-time communication
+- RxJS WebSocket Patterns: WebSocketSubject, Reconnection strategies, Error handling
 - SignalR integration patterns
 - **Build:** Real-time notification system
+- **Implement:** WebSocket service with automatic reconnection
 
 **Tuesday (2h)**
 - Advanced Forms: Dynamic forms, Custom validators
-- Reactive forms architecture
+- Reactive Forms Integration: Form valueChanges with RxJS, Async validators, combineLatest patterns
+- Advanced Error Handling: Retry strategies, Error recovery patterns
 - **Create:** Form builder with validation rules engine
+- **Practice:** Build search form with RxJS debouncing and async validation
 
 **Wednesday (2h)**
 - Custom Form Controls (ControlValueAccessor)

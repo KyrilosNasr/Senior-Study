@@ -1,0 +1,132 @@
+<div class="max-w-7xl mx-auto space-y-6">
+  <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+    <h1 class="text-3xl font-bold text-gray-800 dark:text-gray-200 mb-2">Race Condition Prevention</h1>
+    <p class="text-gray-600 dark:text-gray-400">
+      Preventing race conditions with request deduplication and sequential processing queues.
+    </p>
+  </div>
+
+  <p-card class="shadow-md">
+    <div class="space-y-4">
+      <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200">Race Conditions</h2>
+      <p class="text-gray-700 dark:text-gray-300">
+        Race conditions occur when multiple operations execute simultaneously, leading to unpredictable results.
+        RxJS provides patterns to prevent these issues.
+      </p>
+      <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg">
+        <h3 class="font-semibold text-red-900 dark:text-red-200 mb-2">Common Scenarios:</h3>
+        <ul class="list-disc list-inside space-y-1 text-red-800 dark:text-red-300">
+          <li>Rapid button clicks causing duplicate requests</li>
+          <li>Multiple components requesting same data</li>
+          <li>Sequential operations executed out of order</li>
+          <li>Concurrent updates causing data inconsistency</li>
+        </ul>
+      </div>
+    </div>
+  </p-card>
+
+  <p-card class="shadow-md">
+    <p-tabs value="0">
+      <p-tablist>
+        <p-tab value="0">❌ Violation</p-tab>
+        <p-tab value="1">✅ Solution</p-tab>
+      </p-tablist>
+      <p-tabpanels>
+        <p-tabpanel value="0">
+          <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>{{ violationCode }}</code></pre>
+        </p-tabpanel>
+        <p-tabpanel value="1">
+          <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>{{ solutionCode }}</code></pre>
+        </p-tabpanel>
+      </p-tabpanels>
+    </p-tabs>
+  </p-card>
+
+  <p-card class="shadow-md">
+    <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">Live Demo</h2>
+    
+    <div class="space-y-6">
+      <div class="border-2 border-red-200 dark:border-red-800 rounded-lg p-4">
+        <h3 class="text-lg font-semibold text-red-800 dark:text-red-200 mb-4">Race Condition (3 simultaneous requests)</h3>
+        <p-button
+          label="Trigger Race Condition"
+          icon="pi pi-exclamation-triangle"
+          (click)="testRaceCondition()"
+          severity="danger"
+          class="mb-4"
+        ></p-button>
+        <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded">
+          <ul class="list-disc list-inside">
+            @for (result of raceConditionResults(); track $index) {
+              <li>{{ result }}</li>
+            }
+          </ul>
+        </div>
+      </div>
+
+      <div class="border-2 border-green-200 dark:border-green-800 rounded-lg p-4">
+        <h3 class="text-lg font-semibold text-green-800 dark:text-green-200 mb-4">Deduplication (Same request 3 times)</h3>
+        <p-button
+          label="Test Deduplication"
+          icon="pi pi-check"
+          (click)="testDeduplication()"
+          severity="success"
+          class="mb-4"
+        ></p-button>
+        <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded">
+          <ul class="list-disc list-inside">
+            @for (result of deduplicatedResults(); track $index) {
+              <li>{{ result }}</li>
+            }
+          </ul>
+          <p class="text-sm text-green-700 dark:text-green-300 mt-2">
+            Notice: Only 1 actual request made, but 3 subscribers get the result
+          </p>
+        </div>
+      </div>
+
+      <div class="border-2 border-blue-200 dark:border-blue-800 rounded-lg p-4">
+        <h3 class="text-lg font-semibold text-blue-800 dark:text-blue-200 mb-4">Sequential Queue (3 tasks)</h3>
+        <p-button
+          label="Test Queue"
+          icon="pi pi-list"
+          (click)="testQueue()"
+          class="mb-4"
+        ></p-button>
+        <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded">
+          <ul class="list-disc list-inside">
+            @for (result of queuedResults(); track $index) {
+              <li>{{ result }}</li>
+            }
+          </ul>
+          <p class="text-sm text-blue-700 dark:text-blue-300 mt-2">
+            Notice: Tasks execute one after another, maintaining order
+          </p>
+        </div>
+      </div>
+    </div>
+  </p-card>
+
+  <p-card class="shadow-md">
+    <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">Key Takeaways</h2>
+    <ul class="space-y-2 text-gray-700 dark:text-gray-300">
+      <li class="flex items-start">
+        <span class="text-green-500 mr-2">✓</span>
+        <span>Use request deduplication to prevent duplicate API calls</span>
+      </li>
+      <li class="flex items-start">
+        <span class="text-green-500 mr-2">✓</span>
+        <span>Use sequential queues (concatMap) when order matters</span>
+      </li>
+      <li class="flex items-start">
+        <span class="text-green-500 mr-2">✓</span>
+        <span>Combine with shareReplay to share results across subscribers</span>
+      </li>
+      <li class="flex items-start">
+        <span class="text-green-500 mr-2">✓</span>
+        <span>Use exhaustMap to ignore new requests while one is in progress</span>
+      </li>
+    </ul>
+  </p-card>
+</div>
+

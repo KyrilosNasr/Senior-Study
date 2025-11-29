@@ -1,0 +1,121 @@
+<div class="max-w-7xl mx-auto space-y-6">
+  <!-- Header -->
+  <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+    <h1 class="text-3xl font-bold text-gray-800 dark:text-gray-200 mb-2">Custom Operators</h1>
+    <p class="text-gray-600 dark:text-gray-400">
+      Building reusable RxJS operators for common patterns like retry logic, logging, and cleanup.
+    </p>
+  </div>
+
+  <!-- Explanation -->
+  <p-card class="shadow-md">
+    <div class="space-y-4">
+      <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200">What are Custom Operators?</h2>
+      <p class="text-gray-700 dark:text-gray-300">
+        Custom operators are reusable functions that compose existing RxJS operators to create new functionality.
+        They encapsulate common patterns like retry logic, logging, and cleanup strategies.
+      </p>
+      <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg">
+        <h3 class="font-semibold text-blue-900 dark:text-blue-200 mb-2">Key Benefits:</h3>
+        <ul class="list-disc list-inside space-y-1 text-blue-800 dark:text-blue-300">
+          <li>Reusable logic across the application</li>
+          <li>Testable in isolation</li>
+          <li>Consistent error handling and retry strategies</li>
+          <li>Easier to maintain and update</li>
+        </ul>
+      </div>
+    </div>
+  </p-card>
+
+  <!-- Code Examples -->
+  <p-card class="shadow-md">
+    <p-tabs value="0">
+      <p-tablist>
+        <p-tab value="0">❌ Violation</p-tab>
+        <p-tab value="1">✅ Solution</p-tab>
+      </p-tablist>
+      <p-tabpanels>
+        <p-tabpanel value="0">
+          <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>{{ violationCode }}</code></pre>
+        </p-tabpanel>
+        <p-tabpanel value="1">
+          <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>{{ solutionCode }}</code></pre>
+        </p-tabpanel>
+      </p-tabpanels>
+    </p-tabs>
+  </p-card>
+
+  <!-- Live Demo -->
+  <p-card class="shadow-md">
+    <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">Live Demo</h2>
+    <p class="text-gray-700 dark:text-gray-300 mb-6">
+      Test the custom operators: retry with exponential backoff and contextual logging.
+    </p>
+
+    <div class="space-y-6">
+      <!-- Retry Demo -->
+      <div class="border-2 border-gray-200 dark:border-gray-700 rounded-lg p-4">
+        <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">Retry with Exponential Backoff</h3>
+        <p-button
+          label="Test Retry (Will fail 2 times, then succeed)"
+          icon="pi pi-refresh"
+          (click)="testRetry()"
+          class="mb-4"
+        ></p-button>
+        
+        @if (successMessage()) {
+          <p-message severity="success" [text]="successMessage()"></p-message>
+        }
+        @if (errorMessage()) {
+          <p-message severity="error" [text]="errorMessage()"></p-message>
+        }
+      </div>
+
+      <!-- Logging Demo -->
+      <div class="border-2 border-gray-200 dark:border-gray-700 rounded-lg p-4">
+        <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">Contextual Logging</h3>
+        <p-button
+          label="Test Logging"
+          icon="pi pi-info-circle"
+          (click)="testLogging()"
+          class="mb-4"
+        ></p-button>
+        
+        @if (retryLogs().length > 0) {
+          <div class="bg-gray-100 dark:bg-gray-700 p-4 rounded">
+            <h4 class="font-semibold mb-2">Logs:</h4>
+            <ul class="list-disc list-inside space-y-1">
+              @for (log of retryLogs(); track $index) {
+                <li class="text-sm">{{ log }}</li>
+              }
+            </ul>
+          </div>
+        }
+      </div>
+    </div>
+  </p-card>
+
+  <!-- Key Takeaways -->
+  <p-card class="shadow-md">
+    <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">Key Takeaways</h2>
+    <ul class="space-y-2 text-gray-700 dark:text-gray-300">
+      <li class="flex items-start">
+        <span class="text-green-500 mr-2">✓</span>
+        <span>Create custom operators for repeated patterns</span>
+      </li>
+      <li class="flex items-start">
+        <span class="text-green-500 mr-2">✓</span>
+        <span>Use pipe() and existing operators to compose new functionality</span>
+      </li>
+      <li class="flex items-start">
+        <span class="text-green-500 mr-2">✓</span>
+        <span>Make operators configurable with parameters</span>
+      </li>
+      <li class="flex items-start">
+        <span class="text-green-500 mr-2">✓</span>
+        <span>Test custom operators in isolation</span>
+      </li>
+    </ul>
+  </p-card>
+</div>
+
