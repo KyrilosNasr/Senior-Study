@@ -1,71 +1,92 @@
 import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule, RouterOutlet } from '@angular/router';
-import { Drawer } from 'primeng/drawer';
+import { Router, RouterModule, RouterOutlet } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
-import { MenuModule } from 'primeng/menu';
-import { MenuItem } from 'primeng/api';
+import { TreeNode } from 'primeng/api';
+import { SidebarComponent, SidebarConfig } from '../../shared/components/sidebar/sidebar.component';
 
 @Component({
   selector: 'app-oop-layout',
   standalone: true,
-  imports: [CommonModule, RouterModule, RouterOutlet, Drawer, ButtonModule, MenuModule],
+  imports: [CommonModule, RouterModule, RouterOutlet, ButtonModule, SidebarComponent],
   templateUrl: './oop-layout.component.html',
   styleUrl: './oop-layout.component.scss'
 })
 export class OopLayoutComponent {
   sidebarVisible = signal(false);
   
-  menuItems: MenuItem[] = [
+  constructor(private router: Router) {}
+
+  sidebarConfig: SidebarConfig = {
+    title: 'OOP',
+    subtitle: 'Object-Oriented Programming',
+    headerText: 'OOP Concepts',
+    gradientFrom: 'from-emerald-600',
+    gradientTo: 'to-teal-600 dark:from-emerald-400 dark:to-teal-400'
+  };
+
+  treeNodes: TreeNode[] = [
     {
       label: 'OOP Concepts',
-      items: [
+      expanded: true,
+      children: [
         {
           label: 'Encapsulation',
           icon: 'pi pi-circle',
-          routerLink: '/oop/encapsulation'
+          data: '/oop/encapsulation',
+          leaf: true
         },
         {
           label: 'Inheritance',
           icon: 'pi pi-circle',
-          routerLink: '/oop/inheritance'
+          data: '/oop/inheritance',
+          leaf: true
         },
         {
           label: 'Polymorphism',
           icon: 'pi pi-circle',
-          routerLink: '/oop/polymorphism'
+          data: '/oop/polymorphism',
+          leaf: true
         },
         {
           label: 'Abstraction',
           icon: 'pi pi-circle',
-          routerLink: '/oop/abstraction'
+          data: '/oop/abstraction',
+          leaf: true
         }
       ]
     },
     {
-      separator: true
-    },
-    {
       label: 'Switch Topic',
-      items: [
+      expanded: false,
+      children: [
         {
           label: 'SOLID Principles',
           icon: 'pi pi-arrow-right',
-          routerLink: '/solid/srp'
+          data: '/solid/srp',
+          leaf: true
         },
         {
           label: 'Advanced TypeScript',
           icon: 'pi pi-arrow-right',
-          routerLink: '/typescript/advanced-types'
+          data: '/typescript/advanced-types',
+          leaf: true
         },
         {
           label: 'RxJS Patterns',
           icon: 'pi pi-arrow-right',
-          routerLink: '/rxjs/creation-operators'
+          data: '/rxjs/creation-operators',
+          leaf: true
         }
       ]
     }
   ];
+
+  onNodeSelect(event: any): void {
+    if (event.node.data) {
+      this.router.navigate([event.node.data]);
+    }
+  }
 
   toggleSidebar(): void {
     this.sidebarVisible.update(v => !v);

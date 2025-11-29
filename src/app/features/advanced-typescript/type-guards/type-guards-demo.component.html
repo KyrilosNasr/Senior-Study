@@ -1,23 +1,23 @@
-<div class="max-w-7xl mx-auto space-y-6">
+<div class="max-w-7xl mx-auto space-y-8">
   <!-- Header -->
-  <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
-    <h1 class="text-3xl font-bold text-gray-800 dark:text-gray-200 mb-2">Type Guards & Type Predicates</h1>
-    <p class="text-gray-600 dark:text-gray-400">
+  <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8">
+    <h1 class="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-3">Type Guards & Type Predicates</h1>
+    <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
       Narrow types at runtime and enable type-safe code with type guards and predicates.
     </p>
   </div>
 
   <!-- Explanation -->
-  <p-card class="shadow-md">
+  <p-card class="shadow-lg">
     <div class="space-y-4">
-      <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200">What are Type Guards?</h2>
-      <p class="text-gray-700 dark:text-gray-300">
+      <h2 class="text-3xl font-semibold text-gray-900 dark:text-gray-100 mb-3">What are Type Guards?</h2>
+      <p class="text-base text-gray-700 dark:text-gray-300 leading-relaxed">
         Type guards are functions that help TypeScript narrow down types at runtime. They use type predicates
         (value is Type) to tell the compiler that a value is of a specific type after a runtime check.
       </p>
-      <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg">
-        <h3 class="font-semibold text-blue-900 dark:text-blue-200 mb-2">Key Concepts:</h3>
-        <ul class="list-disc list-inside space-y-1 text-blue-800 dark:text-blue-300">
+      <div class="bg-blue-50 dark:bg-blue-900/30 p-5 rounded-lg border border-blue-200 dark:border-blue-800">
+        <h3 class="text-lg font-semibold text-blue-900 dark:text-blue-100 mb-3">Key Concepts:</h3>
+        <ul class="list-disc list-inside space-y-2 text-base text-blue-800 dark:text-blue-200">
           <li><strong>Type Guards:</strong> Functions that narrow types using <code>value is Type</code> syntax</li>
           <li><strong>Type Predicates:</strong> Return type annotations that tell TypeScript about type narrowing</li>
           <li><strong>Discriminated Unions:</strong> Union types with a common property used for type narrowing</li>
@@ -27,7 +27,7 @@
   </p-card>
 
   <!-- Code Examples -->
-  <p-card class="shadow-md">
+  <p-card class="shadow-lg">
     <p-tabs value="0">
       <p-tablist>
         <p-tab value="0">Type Guards</p-tab>
@@ -36,27 +36,27 @@
       </p-tablist>
       <p-tabpanels>
         <p-tabpanel value="0">
-          <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>{{ typeGuardsCode }}</code></pre>
+          <pre class="overflow-x-auto"><code>{{ typeGuardsCode }}</code></pre>
         </p-tabpanel>
         <p-tabpanel value="1">
-          <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>{{ discriminatedUnionsCode }}</code></pre>
+          <pre class="overflow-x-auto"><code>{{ discriminatedUnionsCode }}</code></pre>
         </p-tabpanel>
         <p-tabpanel value="2">
-          <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>{{ resultPatternCode }}</code></pre>
+          <pre class="overflow-x-auto"><code>{{ resultPatternCode }}</code></pre>
         </p-tabpanel>
       </p-tabpanels>
     </p-tabs>
   </p-card>
 
   <!-- Live Demo -->
-  <p-card class="shadow-md">
-    <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">Live Demo</h2>
-    <p class="text-gray-700 dark:text-gray-300 mb-6">
+  <p-card class="shadow-lg">
+    <h2 class="text-3xl font-semibold text-gray-900 dark:text-gray-100 mb-3 mb-4">Live Demo</h2>
+    <p class="text-base text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
       Test type guards and type predicates in action.
     </p>
 
     <div class="space-y-4">
-      <div class="flex gap-4 flex-wrap">
+      <div class="flex gap-5 flex-wrap">
         <p-button
           label="Test Type Guards"
           icon="pi pi-shield"
@@ -75,7 +75,7 @@
       </div>
 
       @if (result()) {
-        <div class="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg">
+        <div class="bg-gray-100 dark:bg-gray-700 p-5 rounded-lg">
           <pre class="text-sm text-gray-800 dark:text-gray-200 whitespace-pre-wrap">{{ result() }}</pre>
         </div>
       }
@@ -83,12 +83,12 @@
   </p-card>
 
   <!-- Key Takeaways -->
-  <p-card class="shadow-md">
-    <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">Key Takeaways</h2>
-    <ul class="space-y-2 text-gray-700 dark:text-gray-300">
+  <p-card class="shadow-lg">
+    <h2 class="text-3xl font-semibold text-gray-900 dark:text-gray-100 mb-3 mb-4">Key Takeaways</h2>
+    <ul class="space-y-2 text-base text-gray-700 dark:text-gray-300 leading-relaxed">
       <li class="flex items-start">
         <span class="text-green-500 mr-2">✓</span>
-        <span>Type guards use the <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">value is Type</code> return type annotation</span>
+        <span>Type guards use the <code>value is Type</code> return type annotation</span>
       </li>
       <li class="flex items-start">
         <span class="text-green-500 mr-2">✓</span>

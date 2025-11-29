@@ -1,31 +1,31 @@
-<div class="max-w-7xl mx-auto space-y-6">
+<div class="max-w-7xl mx-auto space-y-8">
   <!-- Header -->
-  <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
-    <h1 class="text-3xl font-bold text-gray-800 dark:text-gray-200 mb-2">Part 7: Multicasting Operators</h1>
-    <p class="text-gray-600 dark:text-gray-400">
-      Performance optimization: <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">share()</code> and 
-      <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">shareReplay()</code>
+      <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8">
+    <h1 class="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-3">Part 7: Multicasting Operators</h1>
+    <p class="text-lg text-gray-700 dark:text-gray-300">
+      Performance optimization: <code>share()</code> and 
+      <code>shareReplay()</code>
     </p>
   </div>
 
   <!-- Explanation -->
-  <p-card class="shadow-md">
+  <p-card class="shadow-lg">
     <div class="space-y-4">
-      <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200">Multicasting Operators</h2>
-      <p class="text-gray-700 dark:text-gray-300">
+      <h2 class="text-3xl font-semibold text-gray-900 dark:text-gray-100 mb-3">Multicasting Operators</h2>
+      <p class="text-base text-gray-700 dark:text-gray-300 leading-relaxed">
         Multicasting operators share observable execution among multiple subscribers, preventing duplicate
         HTTP calls and improving performance. Critical for production applications.
       </p>
-      <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg">
-        <h3 class="font-semibold text-blue-900 dark:text-blue-200 mb-2">Key Operators:</h3>
-        <ul class="list-disc list-inside space-y-1 text-blue-800 dark:text-blue-300">
+      <div class="bg-blue-50 dark:bg-blue-900/30 p-5 rounded-lg border border-blue-200 dark:border-blue-800">
+        <h3 class="text-lg font-semibold text-blue-900 dark:text-blue-100 mb-3">Key Operators:</h3>
+        <ul class="list-disc list-inside space-y-2 text-base text-blue-800 dark:text-blue-200">
           <li><strong>share():</strong> Hot observable, no replay - Multiple subscribers share execution</li>
           <li><strong>shareReplay():</strong> Replays last n values to new subscribers - Perfect for caching</li>
         </ul>
       </div>
-      <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg">
-        <h3 class="font-semibold text-red-900 dark:text-red-200 mb-2">⚠️ Common Mistake:</h3>
-        <p class="text-red-800 dark:text-red-300">
+      <div class="bg-red-50 dark:bg-red-900/30 p-5 rounded-lg border border-red-200 dark:border-red-800">
+        <h3 class="text-lg font-semibold text-red-900 dark:text-red-100 mb-3">⚠️ Common Mistake:</h3>
+        <p class="text-base text-red-800 dark:text-red-200 leading-relaxed">
           Without sharing, each subscription to an HTTP observable creates a new HTTP request.
           This can cause performance issues and unnecessary server load.
         </p>
@@ -34,7 +34,7 @@
   </p-card>
 
   <!-- Code Examples -->
-  <p-card class="shadow-md">
+  <p-card class="shadow-lg">
     <p-tabs value="0">
       <p-tablist>
         <p-tab value="0">❌ Violation</p-tab>
@@ -42,19 +42,19 @@
       </p-tablist>
       <p-tabpanels>
         <p-tabpanel value="0">
-          <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>{{ violationCode }}</code></pre>
+          <pre class="overflow-x-auto"><code>{{ violationCode }}</code></pre>
         </p-tabpanel>
         <p-tabpanel value="1">
-          <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>{{ solutionCode }}</code></pre>
+          <pre class="overflow-x-auto"><code>{{ solutionCode }}</code></pre>
         </p-tabpanel>
       </p-tabpanels>
     </p-tabs>
   </p-card>
 
   <!-- Live Demo -->
-  <p-card class="shadow-md">
-    <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">Live Demo</h2>
-    <p class="text-gray-700 dark:text-gray-300 mb-6">
+  <p-card class="shadow-lg">
+    <h2 class="text-3xl font-semibold text-gray-900 dark:text-gray-100 mb-4">Live Demo</h2>
+    <p class="text-base text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
       Compare unshared vs shared observables. Notice the difference in request count.
     </p>
     
@@ -148,20 +148,20 @@
   </p-card>
 
   <!-- Key Takeaways -->
-  <p-card class="shadow-md">
-    <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">Key Takeaways</h2>
-    <ul class="space-y-2 text-gray-700 dark:text-gray-300">
+  <p-card class="shadow-lg">
+    <h2 class="text-3xl font-semibold text-gray-900 dark:text-gray-100 mb-5">Key Takeaways</h2>
+    <ul class="space-y-3 text-base text-gray-700 dark:text-gray-300">
       <li class="flex items-start">
         <span class="text-green-500 mr-2">✓</span>
-        <span>Always use <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">shareReplay()</code> for HTTP observables that multiple components might subscribe to</span>
+        <span>Always use <code>shareReplay()</code> for HTTP observables that multiple components might subscribe to</span>
       </li>
       <li class="flex items-start">
         <span class="text-green-500 mr-2">✓</span>
-        <span>Use <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">shareReplay({{ '{' }} bufferSize: 1, refCount: false {{ '}' }})</code> for configuration that should stay cached</span>
+        <span>Use <code>shareReplay({{ '{' }} bufferSize: 1, refCount: false {{ '}' }})</code> for configuration that should stay cached</span>
       </li>
       <li class="flex items-start">
         <span class="text-green-500 mr-2">✓</span>
-        <span>Use <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">share()</code> for real-time data where caching isn't needed</span>
+        <span>Use <code>share()</code> for real-time data where caching isn't needed</span>
       </li>
       <li class="flex items-start">
         <span class="text-green-500 mr-2">✓</span>

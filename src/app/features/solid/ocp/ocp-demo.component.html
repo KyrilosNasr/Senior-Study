@@ -1,22 +1,22 @@
-<div class="max-w-7xl mx-auto space-y-6">
+<div class="max-w-7xl mx-auto space-y-8">
   <!-- Header -->
-  <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
-    <h1 class="text-3xl font-bold text-gray-800 dark:text-gray-200 mb-2">Open/Closed Principle (OCP)</h1>
-    <p class="text-gray-600 dark:text-gray-400">
+  <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8">
+    <h1 class="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-3">Open/Closed Principle (OCP)</h1>
+    <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
       Software entities should be open for extension but closed for modification.
     </p>
   </div>
 
   <!-- Explanation -->
-  <p-card class="shadow-md">
+  <p-card class="shadow-lg">
     <div class="space-y-4">
-      <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200">What is OCP?</h2>
-      <p class="text-gray-700 dark:text-gray-300">
+      <h2 class="text-3xl font-semibold text-gray-900 dark:text-gray-100 mb-3">What is OCP?</h2>
+      <p class="text-base text-gray-700 dark:text-gray-300 leading-relaxed">
         The Open/Closed Principle states that classes should be open for extension but closed for modification. 
         This means you should be able to add new functionality without changing existing code. 
         This is typically achieved through interfaces, abstract classes, and polymorphism.
       </p>
-      <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg">
+      <div class="bg-green-50 dark:bg-green-900/20 p-5 rounded-lg">
         <h3 class="font-semibold text-green-900 dark:text-green-200 mb-2">Key Benefits:</h3>
         <ul class="list-disc list-inside space-y-1 text-green-800 dark:text-green-300">
           <li>Add new features without breaking existing code</li>
@@ -29,7 +29,7 @@
   </p-card>
 
   <!-- Code Examples -->
-  <p-card class="shadow-md">
+  <p-card class="shadow-lg">
     <p-tabs value="0">
       <p-tablist>
         <p-tab value="0">❌ Violation</p-tab>
@@ -37,26 +37,26 @@
       </p-tablist>
       <p-tabpanels>
         <p-tabpanel value="0">
-          <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>{{ violationCode }}</code></pre>
+          <pre class="overflow-x-auto"><code>{{ violationCode }}</code></pre>
         </p-tabpanel>
         <p-tabpanel value="1">
-          <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>{{ solutionCode }}</code></pre>
+          <pre class="overflow-x-auto"><code>{{ solutionCode }}</code></pre>
         </p-tabpanel>
       </p-tabpanels>
     </p-tabs>
   </p-card>
 
   <!-- Live Demo -->
-  <p-card class="shadow-md">
-    <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">Live Demo</h2>
-    <p class="text-gray-700 dark:text-gray-300 mb-6">
+  <p-card class="shadow-lg">
+    <h2 class="text-3xl font-semibold text-gray-900 dark:text-gray-100 mb-3 mb-4">Live Demo</h2>
+    <p class="text-base text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
       Select a payment method and process a payment. New payment methods can be added without modifying existing code.
     </p>
 
     <div class="space-y-4">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
         <div>
-          <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Payment Method</label>
+          <label class="block text-sm font-medium text-base text-gray-700 dark:text-gray-300 leading-relaxed mb-2">Payment Method</label>
           <p-select
             [options]="paymentMethods"
             [(ngModel)]="selectedMethod"
@@ -66,7 +66,7 @@
           ></p-select>
         </div>
         <div>
-          <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Amount</label>
+          <label class="block text-sm font-medium text-base text-gray-700 dark:text-gray-300 leading-relaxed mb-2">Amount</label>
           <p-inputNumber
             [(ngModel)]="amount"
             [min]="1"
@@ -77,7 +77,7 @@
           ></p-inputNumber>
         </div>
         <div>
-          <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Currency</label>
+          <label class="block text-sm font-medium text-base text-gray-700 dark:text-gray-300 leading-relaxed mb-2">Currency</label>
           <p-select
             [options]="[{label: 'USD', value: 'USD'}, {label: 'EUR', value: 'EUR'}]"
             [(ngModel)]="currency"
@@ -95,9 +95,9 @@
       ></p-button>
 
       @if (paymentResult(); as result) {
-        <div class="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg">
+        <div class="bg-gray-100 dark:bg-gray-700 p-5 rounded-lg">
           <h3 class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Payment Result:</h3>
-          <p class="text-sm text-gray-700 dark:text-gray-300">
+          <p class="text-sm text-base text-gray-700 dark:text-gray-300 leading-relaxed">
             <strong>ID:</strong> {{ result.id }}<br>
             <strong>Amount:</strong> {{ result.amount }} {{ result.currency }}<br>
             <strong>Status:</strong> {{ result.status }}<br>
@@ -109,9 +109,9 @@
   </p-card>
 
   <!-- Key Takeaways -->
-  <p-card class="shadow-md">
-    <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">Key Takeaways</h2>
-    <ul class="space-y-2 text-gray-700 dark:text-gray-300">
+  <p-card class="shadow-lg">
+    <h2 class="text-3xl font-semibold text-gray-900 dark:text-gray-100 mb-3 mb-4">Key Takeaways</h2>
+    <ul class="space-y-2 text-base text-gray-700 dark:text-gray-300 leading-relaxed">
       <li class="flex items-start">
         <span class="text-green-500 mr-2">✓</span>
         <span>Use interfaces and abstractions to define contracts</span>

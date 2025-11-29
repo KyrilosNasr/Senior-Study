@@ -1,23 +1,23 @@
-<div class="max-w-7xl mx-auto space-y-6">
+<div class="max-w-7xl mx-auto space-y-8">
   <!-- Header -->
-  <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
-    <h1 class="text-3xl font-bold text-gray-800 dark:text-gray-200 mb-2">TypeScript 5.x Features</h1>
-    <p class="text-gray-600 dark:text-gray-400">
+  <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8">
+    <h1 class="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-3">TypeScript 5.x Features</h1>
+    <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
       New features in TypeScript 5.x: const type parameters, satisfies operator, and more.
     </p>
   </div>
 
   <!-- Explanation -->
-  <p-card class="shadow-md">
+  <p-card class="shadow-lg">
     <div class="space-y-4">
-      <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200">What's New in TypeScript 5.x?</h2>
-      <p class="text-gray-700 dark:text-gray-300">
+      <h2 class="text-3xl font-semibold text-gray-900 dark:text-gray-100 mb-3">What's New in TypeScript 5.x?</h2>
+      <p class="text-base text-gray-700 dark:text-gray-300 leading-relaxed">
         TypeScript 5.x introduces powerful new features that improve type safety and developer experience,
         including const type parameters and the satisfies operator.
       </p>
-      <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg">
-        <h3 class="font-semibold text-blue-900 dark:text-blue-200 mb-2">Key Features:</h3>
-        <ul class="list-disc list-inside space-y-1 text-blue-800 dark:text-blue-300">
+      <div class="bg-blue-50 dark:bg-blue-900/30 p-5 rounded-lg border border-blue-200 dark:border-blue-800">
+        <h3 class="text-lg font-semibold text-blue-900 dark:text-blue-100 mb-3">Key Features:</h3>
+        <ul class="list-disc list-inside space-y-2 text-base text-blue-800 dark:text-blue-200">
           <li><strong>Const Type Parameters:</strong> Preserve literal types in generic functions</li>
           <li><strong>Satisfies Operator:</strong> Validate types while preserving literal types</li>
           <li><strong>Better Decorator Support:</strong> Improved decorator metadata and type checking</li>
@@ -27,7 +27,7 @@
   </p-card>
 
   <!-- Code Examples -->
-  <p-card class="shadow-md">
+  <p-card class="shadow-lg">
     <p-tabs value="0">
       <p-tablist>
         <p-tab value="0">Const Type Parameters</p-tab>
@@ -36,27 +36,27 @@
       </p-tablist>
       <p-tabpanels>
         <p-tabpanel value="0">
-          <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>{{ constTypeParamsCode }}</code></pre>
+          <pre class="overflow-x-auto"><code>{{ constTypeParamsCode }}</code></pre>
         </p-tabpanel>
         <p-tabpanel value="1">
-          <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>{{ satisfiesOperatorCode }}</code></pre>
+          <pre class="overflow-x-auto"><code>{{ satisfiesOperatorCode }}</code></pre>
         </p-tabpanel>
         <p-tabpanel value="2">
-          <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>{{ decoratorMetadataCode }}</code></pre>
+          <pre class="overflow-x-auto"><code>{{ decoratorMetadataCode }}</code></pre>
         </p-tabpanel>
       </p-tabpanels>
     </p-tabs>
   </p-card>
 
   <!-- Live Demo -->
-  <p-card class="shadow-md">
-    <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">Live Demo</h2>
-    <p class="text-gray-700 dark:text-gray-300 mb-6">
+  <p-card class="shadow-lg">
+    <h2 class="text-3xl font-semibold text-gray-900 dark:text-gray-100 mb-3 mb-4">Live Demo</h2>
+    <p class="text-base text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
       Test TypeScript 5.x features in action.
     </p>
 
     <div class="space-y-4">
-      <div class="flex gap-4 flex-wrap">
+      <div class="flex gap-5 flex-wrap">
         <p-button
           label="Test Const Type Params"
           icon="pi pi-bolt"
@@ -70,7 +70,7 @@
       </div>
 
       @if (result()) {
-        <div class="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg">
+        <div class="bg-gray-100 dark:bg-gray-700 p-5 rounded-lg">
           <pre class="text-sm text-gray-800 dark:text-gray-200 whitespace-pre-wrap">{{ result() }}</pre>
         </div>
       }
@@ -78,16 +78,16 @@
   </p-card>
 
   <!-- Key Takeaways -->
-  <p-card class="shadow-md">
-    <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">Key Takeaways</h2>
-    <ul class="space-y-2 text-gray-700 dark:text-gray-300">
+  <p-card class="shadow-lg">
+    <h2 class="text-3xl font-semibold text-gray-900 dark:text-gray-100 mb-3 mb-4">Key Takeaways</h2>
+    <ul class="space-y-2 text-base text-gray-700 dark:text-gray-300 leading-relaxed">
       <li class="flex items-start">
         <span class="text-green-500 mr-2">✓</span>
         <span>Const type parameters preserve literal types in generic functions</span>
       </li>
       <li class="flex items-start">
         <span class="text-green-500 mr-2">✓</span>
-        <span>The <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">satisfies</code> operator validates types while preserving literal types</span>
+        <span>The <code>satisfies</code> operator validates types while preserving literal types</span>
       </li>
       <li class="flex items-start">
         <span class="text-green-500 mr-2">✓</span>

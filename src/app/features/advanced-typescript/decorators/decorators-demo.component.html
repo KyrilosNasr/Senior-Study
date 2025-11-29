@@ -1,23 +1,23 @@
-<div class="max-w-7xl mx-auto space-y-6">
+<div class="max-w-7xl mx-auto space-y-8">
   <!-- Header -->
-  <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
-    <h1 class="text-3xl font-bold text-gray-800 dark:text-gray-200 mb-2">Decorators & Metadata Reflection</h1>
-    <p class="text-gray-600 dark:text-gray-400">
+  <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8">
+    <h1 class="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-3">Decorators & Metadata Reflection</h1>
+    <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
       Learn how decorators work and how to use metadata reflection in TypeScript.
     </p>
   </div>
 
   <!-- Explanation -->
-  <p-card class="shadow-md">
+  <p-card class="shadow-lg">
     <div class="space-y-4">
-      <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200">What are Decorators?</h2>
-      <p class="text-gray-700 dark:text-gray-300">
+      <h2 class="text-3xl font-semibold text-gray-900 dark:text-gray-100 mb-3">What are Decorators?</h2>
+      <p class="text-base text-gray-700 dark:text-gray-300 leading-relaxed">
         Decorators are a special kind of declaration that can be attached to classes, methods, properties,
         and parameters. They use the form <code>@expression</code> where expression evaluates to a function.
       </p>
-      <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg">
-        <h3 class="font-semibold text-blue-900 dark:text-blue-200 mb-2">Types of Decorators:</h3>
-        <ul class="list-disc list-inside space-y-1 text-blue-800 dark:text-blue-300">
+      <div class="bg-blue-50 dark:bg-blue-900/30 p-5 rounded-lg border border-blue-200 dark:border-blue-800">
+        <h3 class="text-lg font-semibold text-blue-900 dark:text-blue-100 mb-3">Types of Decorators:</h3>
+        <ul class="list-disc list-inside space-y-2 text-base text-blue-800 dark:text-blue-200">
           <li><strong>Class Decorators:</strong> Applied to class declarations</li>
           <li><strong>Method Decorators:</strong> Applied to method declarations</li>
           <li><strong>Property Decorators:</strong> Applied to property declarations</li>
@@ -28,7 +28,7 @@
   </p-card>
 
   <!-- Code Examples -->
-  <p-card class="shadow-md">
+  <p-card class="shadow-lg">
     <p-tabs value="0">
       <p-tablist>
         <p-tab value="0">Class Decorator</p-tab>
@@ -38,25 +38,25 @@
       </p-tablist>
       <p-tabpanels>
         <p-tabpanel value="0">
-          <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>{{ classDecoratorCode }}</code></pre>
+          <pre class="overflow-x-auto"><code>{{ classDecoratorCode }}</code></pre>
         </p-tabpanel>
         <p-tabpanel value="1">
-          <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>{{ methodDecoratorCode }}</code></pre>
+          <pre class="overflow-x-auto"><code>{{ methodDecoratorCode }}</code></pre>
         </p-tabpanel>
         <p-tabpanel value="2">
-          <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>{{ propertyDecoratorCode }}</code></pre>
+          <pre class="overflow-x-auto"><code>{{ propertyDecoratorCode }}</code></pre>
         </p-tabpanel>
         <p-tabpanel value="3">
-          <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>{{ decoratorFactoryCode }}</code></pre>
+          <pre class="overflow-x-auto"><code>{{ decoratorFactoryCode }}</code></pre>
         </p-tabpanel>
       </p-tabpanels>
     </p-tabs>
   </p-card>
 
   <!-- Live Demo -->
-  <p-card class="shadow-md">
-    <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">Live Demo</h2>
-    <p class="text-gray-700 dark:text-gray-300 mb-6">
+  <p-card class="shadow-lg">
+    <h2 class="text-3xl font-semibold text-gray-900 dark:text-gray-100 mb-3 mb-4">Live Demo</h2>
+    <p class="text-base text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
       Test decorators in action. Check the browser console for decorator output.
     </p>
 
@@ -68,7 +68,7 @@
       ></p-button>
 
       @if (result()) {
-        <div class="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg">
+        <div class="bg-gray-100 dark:bg-gray-700 p-5 rounded-lg">
           <pre class="text-sm text-gray-800 dark:text-gray-200 whitespace-pre-wrap">{{ result() }}</pre>
         </div>
       }
@@ -76,9 +76,9 @@
   </p-card>
 
   <!-- Key Takeaways -->
-  <p-card class="shadow-md">
-    <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">Key Takeaways</h2>
-    <ul class="space-y-2 text-gray-700 dark:text-gray-300">
+  <p-card class="shadow-lg">
+    <h2 class="text-3xl font-semibold text-gray-900 dark:text-gray-100 mb-3 mb-4">Key Takeaways</h2>
+    <ul class="space-y-2 text-base text-gray-700 dark:text-gray-300 leading-relaxed">
       <li class="flex items-start">
         <span class="text-green-500 mr-2">✓</span>
         <span>Decorators are functions that modify classes, methods, properties, or parameters</span>

@@ -1,19 +1,19 @@
-<div class="max-w-7xl mx-auto space-y-6">
-  <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
-    <h1 class="text-3xl font-bold text-gray-800 dark:text-gray-200 mb-2">Race Condition Prevention</h1>
-    <p class="text-gray-600 dark:text-gray-400">
+<div class="max-w-7xl mx-auto space-y-8">
+  <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8">
+    <h1 class="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-3">Race Condition Prevention</h1>
+    <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
       Preventing race conditions with request deduplication and sequential processing queues.
     </p>
   </div>
 
-  <p-card class="shadow-md">
+  <p-card class="shadow-lg">
     <div class="space-y-4">
-      <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200">Race Conditions</h2>
-      <p class="text-gray-700 dark:text-gray-300">
+      <h2 class="text-3xl font-semibold text-gray-900 dark:text-gray-100 mb-3">Race Conditions</h2>
+      <p class="text-base text-gray-700 dark:text-gray-300 leading-relaxed">
         Race conditions occur when multiple operations execute simultaneously, leading to unpredictable results.
         RxJS provides patterns to prevent these issues.
       </p>
-      <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg">
+      <div class="bg-red-50 dark:bg-red-900/30 p-5 rounded-lg border border-red-200 dark:border-red-800">
         <h3 class="font-semibold text-red-900 dark:text-red-200 mb-2">Common Scenarios:</h3>
         <ul class="list-disc list-inside space-y-1 text-red-800 dark:text-red-300">
           <li>Rapid button clicks causing duplicate requests</li>
@@ -25,7 +25,7 @@
     </div>
   </p-card>
 
-  <p-card class="shadow-md">
+  <p-card class="shadow-lg">
     <p-tabs value="0">
       <p-tablist>
         <p-tab value="0">❌ Violation</p-tab>
@@ -33,20 +33,20 @@
       </p-tablist>
       <p-tabpanels>
         <p-tabpanel value="0">
-          <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>{{ violationCode }}</code></pre>
+          <pre class="overflow-x-auto"><code>{{ violationCode }}</code></pre>
         </p-tabpanel>
         <p-tabpanel value="1">
-          <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>{{ solutionCode }}</code></pre>
+          <pre class="overflow-x-auto"><code>{{ solutionCode }}</code></pre>
         </p-tabpanel>
       </p-tabpanels>
     </p-tabs>
   </p-card>
 
-  <p-card class="shadow-md">
-    <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">Live Demo</h2>
+  <p-card class="shadow-lg">
+    <h2 class="text-3xl font-semibold text-gray-900 dark:text-gray-100 mb-3 mb-4">Live Demo</h2>
     
-    <div class="space-y-6">
-      <div class="border-2 border-red-200 dark:border-red-800 rounded-lg p-4">
+    <div class="space-y-8">
+      <div class="border-2 border-red-200 dark:border-red-800 rounded-lg p-5">
         <h3 class="text-lg font-semibold text-red-800 dark:text-red-200 mb-4">Race Condition (3 simultaneous requests)</h3>
         <p-button
           label="Trigger Race Condition"
@@ -55,7 +55,7 @@
           severity="danger"
           class="mb-4"
         ></p-button>
-        <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded">
+        <div class="bg-red-50 dark:bg-red-900/20 p-5 rounded">
           <ul class="list-disc list-inside">
             @for (result of raceConditionResults(); track $index) {
               <li>{{ result }}</li>
@@ -64,7 +64,7 @@
         </div>
       </div>
 
-      <div class="border-2 border-green-200 dark:border-green-800 rounded-lg p-4">
+      <div class="border-2 border-green-200 dark:border-green-800 rounded-lg p-5">
         <h3 class="text-lg font-semibold text-green-800 dark:text-green-200 mb-4">Deduplication (Same request 3 times)</h3>
         <p-button
           label="Test Deduplication"
@@ -73,7 +73,7 @@
           severity="success"
           class="mb-4"
         ></p-button>
-        <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded">
+        <div class="bg-green-50 dark:bg-green-900/20 p-5 rounded">
           <ul class="list-disc list-inside">
             @for (result of deduplicatedResults(); track $index) {
               <li>{{ result }}</li>
@@ -85,7 +85,7 @@
         </div>
       </div>
 
-      <div class="border-2 border-blue-200 dark:border-blue-800 rounded-lg p-4">
+      <div class="border-2 border-blue-200 dark:border-blue-800 rounded-lg p-5">
         <h3 class="text-lg font-semibold text-blue-800 dark:text-blue-200 mb-4">Sequential Queue (3 tasks)</h3>
         <p-button
           label="Test Queue"
@@ -93,7 +93,7 @@
           (click)="testQueue()"
           class="mb-4"
         ></p-button>
-        <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded">
+        <div class="bg-blue-50 dark:bg-blue-900/20 p-5 rounded">
           <ul class="list-disc list-inside">
             @for (result of queuedResults(); track $index) {
               <li>{{ result }}</li>
@@ -107,9 +107,9 @@
     </div>
   </p-card>
 
-  <p-card class="shadow-md">
-    <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">Key Takeaways</h2>
-    <ul class="space-y-2 text-gray-700 dark:text-gray-300">
+  <p-card class="shadow-lg">
+    <h2 class="text-3xl font-semibold text-gray-900 dark:text-gray-100 mb-3 mb-4">Key Takeaways</h2>
+    <ul class="space-y-2 text-base text-gray-700 dark:text-gray-300 leading-relaxed">
       <li class="flex items-start">
         <span class="text-green-500 mr-2">✓</span>
         <span>Use request deduplication to prevent duplicate API calls</span>

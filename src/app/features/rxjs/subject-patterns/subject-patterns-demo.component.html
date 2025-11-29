@@ -1,20 +1,20 @@
-<div class="max-w-7xl mx-auto space-y-6">
-  <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
-    <h1 class="text-3xl font-bold text-gray-800 dark:text-gray-200 mb-2">Subject Patterns</h1>
-    <p class="text-gray-600 dark:text-gray-400">
+<div class="max-w-7xl mx-auto space-y-8">
+  <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8">
+    <h1 class="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-3">Subject Patterns</h1>
+    <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
       Using BehaviorSubject, ReplaySubject, and AsyncSubject for state management and caching.
     </p>
   </div>
 
-  <p-card class="shadow-md">
+  <p-card class="shadow-lg">
     <div class="space-y-4">
-      <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200">Subject Types</h2>
-      <p class="text-gray-700 dark:text-gray-300">
+      <h2 class="text-3xl font-semibold text-gray-900 dark:text-gray-100 mb-3">Subject Types</h2>
+      <p class="text-base text-gray-700 dark:text-gray-300 leading-relaxed">
         Subjects are special observables that can both emit values and be subscribed to. Different types serve different purposes.
       </p>
-      <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg">
-        <h3 class="font-semibold text-blue-900 dark:text-blue-200 mb-2">Subject Types:</h3>
-        <ul class="list-disc list-inside space-y-1 text-blue-800 dark:text-blue-300">
+      <div class="bg-blue-50 dark:bg-blue-900/30 p-5 rounded-lg border border-blue-200 dark:border-blue-800">
+        <h3 class="text-lg font-semibold text-blue-900 dark:text-blue-100 mb-3">Subject Types:</h3>
+        <ul class="list-disc list-inside space-y-2 text-base text-blue-800 dark:text-blue-200">
           <li><strong>BehaviorSubject:</strong> Emits current value to new subscribers</li>
           <li><strong>ReplaySubject:</strong> Replays last N values to new subscribers</li>
           <li><strong>AsyncSubject:</strong> Emits only last value when completed</li>
@@ -23,7 +23,7 @@
     </div>
   </p-card>
 
-  <p-card class="shadow-md">
+  <p-card class="shadow-lg">
     <p-tabs value="0">
       <p-tablist>
         <p-tab value="0">❌ Violation</p-tab>
@@ -31,20 +31,20 @@
       </p-tablist>
       <p-tabpanels>
         <p-tabpanel value="0">
-          <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>{{ violationCode }}</code></pre>
+          <pre class="overflow-x-auto"><code>{{ violationCode }}</code></pre>
         </p-tabpanel>
         <p-tabpanel value="1">
-          <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>{{ solutionCode }}</code></pre>
+          <pre class="overflow-x-auto"><code>{{ solutionCode }}</code></pre>
         </p-tabpanel>
       </p-tabpanels>
     </p-tabs>
   </p-card>
 
-  <p-card class="shadow-md">
-    <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">Live Demo</h2>
+  <p-card class="shadow-lg">
+    <h2 class="text-3xl font-semibold text-gray-900 dark:text-gray-100 mb-3 mb-4">Live Demo</h2>
     
-    <div class="space-y-6">
-      <div class="border-2 border-gray-200 dark:border-gray-700 rounded-lg p-4">
+    <div class="space-y-8">
+      <div class="border-2 border-gray-200 dark:border-gray-700 rounded-lg p-5">
         <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">BehaviorSubject (State)</h3>
         <div class="mb-4">
           <input
@@ -60,12 +60,12 @@
             (click)="updateState()"
           ></p-button>
         </div>
-        <div class="bg-gray-100 dark:bg-gray-700 p-4 rounded">
+        <div class="bg-gray-100 dark:bg-gray-700 p-5 rounded">
           <p><strong>Current State:</strong> {{ currentState() }}</p>
         </div>
       </div>
 
-      <div class="border-2 border-gray-200 dark:border-gray-700 rounded-lg p-4">
+      <div class="border-2 border-gray-200 dark:border-gray-700 rounded-lg p-5">
         <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">ReplaySubject (Cache)</h3>
         <div class="mb-4">
           <input
@@ -81,7 +81,7 @@
             (click)="addToCache()"
           ></p-button>
         </div>
-        <div class="bg-gray-100 dark:bg-gray-700 p-4 rounded">
+        <div class="bg-gray-100 dark:bg-gray-700 p-5 rounded">
           <p class="font-semibold mb-2">Cached Values (last 3):</p>
           <ul class="list-disc list-inside">
             @for (value of cachedValues().slice(-3); track $index) {
@@ -91,7 +91,7 @@
         </div>
       </div>
 
-      <div class="border-2 border-gray-200 dark:border-gray-700 rounded-lg p-4">
+      <div class="border-2 border-gray-200 dark:border-gray-700 rounded-lg p-5">
         <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">AsyncSubject (Initialization)</h3>
         <p-button
           label="Initialize"
@@ -101,7 +101,7 @@
           class="mb-4"
         ></p-button>
         @if (initialized()) {
-          <div class="bg-gray-100 dark:bg-gray-700 p-4 rounded">
+          <div class="bg-gray-100 dark:bg-gray-700 p-5 rounded">
             <p><strong>Initialized:</strong> {{ initValue() }}</p>
           </div>
         }
@@ -109,9 +109,9 @@
     </div>
   </p-card>
 
-  <p-card class="shadow-md">
-    <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">Key Takeaways</h2>
-    <ul class="space-y-2 text-gray-700 dark:text-gray-300">
+  <p-card class="shadow-lg">
+    <h2 class="text-3xl font-semibold text-gray-900 dark:text-gray-100 mb-3 mb-4">Key Takeaways</h2>
+    <ul class="space-y-2 text-base text-gray-700 dark:text-gray-300 leading-relaxed">
       <li class="flex items-start">
         <span class="text-green-500 mr-2">✓</span>
         <span>Use BehaviorSubject for current state that new subscribers need</span>

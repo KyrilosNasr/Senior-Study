@@ -1,0 +1,23 @@
+<!-- Mobile Sidebar -->
+<p-drawer [visible]="sidebarVisible()" (visibleChange)="sidebarVisible.set($event)" position="left"
+  [header]="config.headerText" [closeOnEscape]="true" styleClass="w-64 lg:hidden">
+  <div class="p-5 overflow-y-auto max-h-[calc(100vh-4rem)]">
+    <p-tree [value]="treeNodes" (onNodeSelect)="onNodeSelect($event)" selectionMode="single"
+      [style]="{ width: '100%', border: 'none' }" styleClass="w-full border-none modern-tree"></p-tree>
+  </div>
+</p-drawer>
+
+<!-- Desktop Sidebar -->
+<aside
+  class="hidden lg:block w-72 bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 shadow-xl border-r border-gray-200 dark:border-gray-700 flex flex-col h-screen z-40">
+  <div class="p-6 flex-shrink-0 border-b border-gray-200 dark:border-gray-700">
+    <h1 class="text-3xl font-bold bg-gradient-to-r bg-clip-text text-transparent"
+      [class]="config.gradientFrom + ' ' + config.gradientTo">{{ config.title }}</h1>
+    <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">{{ config.subtitle }}</p>
+  </div>
+  <div
+    class="flex-1 overflow-y-scroll px-3 py-4 scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-600 scrollbar-track-transparent min-h-0">
+    <p-tree [value]="treeNodes" (onNodeSelect)="onNodeSelect($event)" selectionMode="single"
+      [style]="{ width: '100%', border: 'none' }" styleClass="w-full border-none modern-tree"></p-tree>
+  </div>
+</aside>

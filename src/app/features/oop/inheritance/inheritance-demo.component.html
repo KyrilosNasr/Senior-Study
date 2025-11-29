@@ -1,24 +1,24 @@
-<div class="max-w-7xl mx-auto space-y-6">
+<div class="max-w-7xl mx-auto space-y-8">
   <!-- Header -->
-  <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
-    <h1 class="text-3xl font-bold text-gray-800 dark:text-gray-200 mb-2">Inheritance</h1>
-    <p class="text-gray-600 dark:text-gray-400">
+  <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8">
+    <h1 class="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-3">Inheritance</h1>
+    <p class="text-lg text-gray-700 dark:text-gray-300">
       A mechanism where a new class is derived from an existing class, inheriting its properties and methods.
     </p>
   </div>
 
   <!-- Explanation -->
-  <p-card class="shadow-md">
+  <p-card class="shadow-lg">
     <div class="space-y-4">
-      <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200">What is Inheritance?</h2>
-      <p class="text-gray-700 dark:text-gray-300">
+      <h2 class="text-3xl font-semibold text-gray-900 dark:text-gray-100 mb-3">What is Inheritance?</h2>
+      <p class="text-base text-gray-700 dark:text-gray-300 leading-relaxed">
         Inheritance allows a class (child/subclass) to inherit properties and methods from another class (parent/superclass). 
         This promotes code reuse and establishes an "is-a" relationship. The child class can extend or override 
         the parent's functionality while maintaining the base structure.
       </p>
-      <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg">
-        <h3 class="font-semibold text-purple-900 dark:text-purple-200 mb-2">Key Benefits:</h3>
-        <ul class="list-disc list-inside space-y-1 text-purple-800 dark:text-purple-300">
+      <div class="bg-purple-50 dark:bg-purple-900/30 p-5 rounded-lg border border-purple-200 dark:border-purple-800">
+        <h3 class="text-lg font-semibold text-purple-900 dark:text-purple-100 mb-3">Key Benefits:</h3>
+        <ul class="list-disc list-inside space-y-2 text-base text-purple-800 dark:text-purple-200">
           <li>Code reuse and reduction of duplication</li>
           <li>Establishes hierarchical relationships</li>
           <li>Easier maintenance and updates</li>
@@ -29,7 +29,7 @@
   </p-card>
 
   <!-- Code Examples -->
-  <p-card class="shadow-md">
+  <p-card class="shadow-lg">
     <p-tabs value="0">
       <p-tablist>
         <p-tab value="0">❌ Violation</p-tab>
@@ -37,24 +37,24 @@
       </p-tablist>
       <p-tabpanels>
         <p-tabpanel value="0">
-          <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>{{ violationCode }}</code></pre>
+          <pre class="overflow-x-auto"><code>{{ violationCode }}</code></pre>
         </p-tabpanel>
         <p-tabpanel value="1">
-          <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>{{ solutionCode }}</code></pre>
+          <pre class="overflow-x-auto"><code>{{ solutionCode }}</code></pre>
         </p-tabpanel>
       </p-tabpanels>
     </p-tabs>
   </p-card>
 
   <!-- Live Demo -->
-  <p-card class="shadow-md">
-    <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">Live Demo</h2>
+  <p-card class="shadow-lg">
+    <h2 class="text-3xl font-semibold text-gray-900 dark:text-gray-100 mb-4">Live Demo</h2>
     <p class="text-gray-700 dark:text-gray-300 mb-6">
       Create different types of vehicles. Notice how they all inherit common properties (brand, model, year) 
       from the Vehicle base class, but each has its own specific characteristics.
     </p>
 
-    <div class="space-y-6">
+    <div class="space-y-8">
       <!-- Create Vehicle -->
       <div class="border-2 border-gray-200 dark:border-gray-700 rounded-lg p-4">
         <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">Create Vehicle</h3>
@@ -161,7 +161,7 @@
 
           @if (selectedVehicle(); as vehicle) {
             <div class="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
-              <h4 class="font-semibold text-blue-900 dark:text-blue-200 mb-2">Selected Vehicle:</h4>
+              <h4 class="text-lg font-semibold text-blue-900 dark:text-blue-100 mb-3">Selected Vehicle:</h4>
               <p class="text-sm text-blue-800 dark:text-blue-300 mb-2">
                 <strong>Info:</strong> {{ vehicle.getInfo() }}<br>
                 <strong>Start:</strong> {{ vehicle.start() }}<br>
@@ -175,9 +175,9 @@
   </p-card>
 
   <!-- Key Takeaways -->
-  <p-card class="shadow-md">
-    <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">Key Takeaways</h2>
-    <ul class="space-y-2 text-gray-700 dark:text-gray-300">
+  <p-card class="shadow-lg">
+    <h2 class="text-3xl font-semibold text-gray-900 dark:text-gray-100 mb-5">Key Takeaways</h2>
+    <ul class="space-y-3 text-base text-gray-700 dark:text-gray-300">
       <li class="flex items-start">
         <span class="text-green-500 mr-2">✓</span>
         <span>Use inheritance to establish "is-a" relationships</span>

@@ -1,144 +1,176 @@
 import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule, RouterOutlet } from '@angular/router';
-import { Drawer } from 'primeng/drawer';
+import { Router, RouterModule, RouterOutlet } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
-import { MenuModule } from 'primeng/menu';
-import { MenuItem } from 'primeng/api';
+import { TreeNode } from 'primeng/api';
+import { SidebarComponent, SidebarConfig } from '../../shared/components/sidebar/sidebar.component';
 
 @Component({
   selector: 'app-rxjs-layout',
   standalone: true,
-  imports: [CommonModule, RouterModule, RouterOutlet, Drawer, ButtonModule, MenuModule],
+  imports: [CommonModule, RouterModule, RouterOutlet, ButtonModule, SidebarComponent],
   templateUrl: './rxjs-layout.component.html',
   styleUrl: './rxjs-layout.component.scss'
 })
 export class RxjsLayoutComponent {
   sidebarVisible = signal(false);
   
-  menuItems: MenuItem[] = [
+  constructor(private router: Router) {}
+
+  sidebarConfig: SidebarConfig = {
+    title: 'RxJS',
+    subtitle: 'Reactive Programming',
+    headerText: 'RxJS Patterns',
+    gradientFrom: 'from-blue-600',
+    gradientTo: 'to-purple-600 dark:from-blue-400 dark:to-purple-400'
+  };
+
+  treeNodes: TreeNode[] = [
     {
       label: 'Part 1-7: Foundational Operators',
-      items: [
+      expanded: true,
+      children: [
         {
           label: 'Part 1: Creation Operators',
           icon: 'pi pi-circle',
-          routerLink: '/rxjs/creation-operators'
+          data: '/rxjs/creation-operators',
+          leaf: true
         },
         {
           label: 'Part 2: Transformation Operators',
           icon: 'pi pi-circle',
-          routerLink: '/rxjs/transformation-operators'
+          data: '/rxjs/transformation-operators',
+          leaf: true
         },
         {
           label: 'Part 3: Filtering Operators',
           icon: 'pi pi-circle',
-          routerLink: '/rxjs/filtering-operators'
+          data: '/rxjs/filtering-operators',
+          leaf: true
         },
         {
           label: 'Part 4: Combination Operators',
           icon: 'pi pi-circle',
-          routerLink: '/rxjs/combination-operators'
+          data: '/rxjs/combination-operators',
+          leaf: true
         },
         {
           label: 'Part 5: Error Handling',
           icon: 'pi pi-circle',
-          routerLink: '/rxjs/error-handling'
+          data: '/rxjs/error-handling',
+          leaf: true
         },
         {
           label: 'Part 6: Utility Operators',
           icon: 'pi pi-circle',
-          routerLink: '/rxjs/utility-operators'
+          data: '/rxjs/utility-operators',
+          leaf: true
         },
         {
           label: 'Part 7: Multicasting Operators',
           icon: 'pi pi-circle',
-          routerLink: '/rxjs/multicasting-operators'
+          data: '/rxjs/multicasting-operators',
+          leaf: true
         }
       ]
     },
     {
-      separator: true
-    },
-    {
       label: 'Advanced Patterns',
-      items: [
+      expanded: true,
+      children: [
         {
           label: 'Custom Operators',
           icon: 'pi pi-circle',
-          routerLink: '/rxjs/custom-operators'
+          data: '/rxjs/custom-operators',
+          leaf: true
         },
         {
           label: 'Higher-Order Observables',
           icon: 'pi pi-circle',
-          routerLink: '/rxjs/higher-order-observables'
+          data: '/rxjs/higher-order-observables',
+          leaf: true
         },
         {
           label: 'Subject Patterns',
           icon: 'pi pi-circle',
-          routerLink: '/rxjs/subject-patterns'
+          data: '/rxjs/subject-patterns',
+          leaf: true
         },
         {
           label: 'Memory Leak Prevention',
           icon: 'pi pi-circle',
-          routerLink: '/rxjs/memory-leak-prevention'
+          data: '/rxjs/memory-leak-prevention',
+          leaf: true
         },
         {
           label: 'Backpressure',
           icon: 'pi pi-circle',
-          routerLink: '/rxjs/backpressure'
+          data: '/rxjs/backpressure',
+          leaf: true
         },
         {
           label: 'Route Guards',
           icon: 'pi pi-circle',
-          routerLink: '/rxjs/route-guards'
+          data: '/rxjs/route-guards',
+          leaf: true
         },
         {
           label: 'Reactive Forms',
           icon: 'pi pi-circle',
-          routerLink: '/rxjs/reactive-forms'
+          data: '/rxjs/reactive-forms',
+          leaf: true
         },
         {
           label: 'WebSockets',
           icon: 'pi pi-circle',
-          routerLink: '/rxjs/websockets'
+          data: '/rxjs/websockets',
+          leaf: true
         },
         {
           label: 'Advanced Caching',
           icon: 'pi pi-circle',
-          routerLink: '/rxjs/advanced-caching'
+          data: '/rxjs/advanced-caching',
+          leaf: true
         },
         {
           label: 'Race Conditions',
           icon: 'pi pi-circle',
-          routerLink: '/rxjs/race-conditions'
+          data: '/rxjs/race-conditions',
+          leaf: true
         }
       ]
     },
     {
-      separator: true
-    },
-    {
       label: 'Switch Topic',
-      items: [
+      expanded: false,
+      children: [
         {
           label: 'OOP Concepts',
           icon: 'pi pi-arrow-right',
-          routerLink: '/oop/encapsulation'
+          data: '/oop/encapsulation',
+          leaf: true
         },
         {
           label: 'SOLID Principles',
           icon: 'pi pi-arrow-right',
-          routerLink: '/solid/srp'
+          data: '/solid/srp',
+          leaf: true
         },
         {
           label: 'Advanced TypeScript',
           icon: 'pi pi-arrow-right',
-          routerLink: '/typescript/advanced-types'
+          data: '/typescript/advanced-types',
+          leaf: true
         }
       ]
     }
   ];
+
+  onNodeSelect(event: any): void {
+    if (event.node.data) {
+      this.router.navigate([event.node.data]);
+    }
+  }
 
   toggleSidebar(): void {
     this.sidebarVisible.update(v => !v);

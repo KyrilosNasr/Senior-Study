@@ -1,19 +1,19 @@
-<div class="max-w-7xl mx-auto space-y-6">
-  <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
-    <h1 class="text-3xl font-bold text-gray-800 dark:text-gray-200 mb-2">Memory Leak Prevention</h1>
-    <p class="text-gray-600 dark:text-gray-400">
+<div class="max-w-7xl mx-auto space-y-8">
+  <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8">
+    <h1 class="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-3">Memory Leak Prevention</h1>
+    <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
       Properly managing subscriptions to prevent memory leaks in Angular applications.
     </p>
   </div>
 
-  <p-card class="shadow-md">
+  <p-card class="shadow-lg">
     <div class="space-y-4">
-      <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200">Why Memory Leaks Matter</h2>
-      <p class="text-gray-700 dark:text-gray-300">
+      <h2 class="text-3xl font-semibold text-gray-900 dark:text-gray-100 mb-3">Why Memory Leaks Matter</h2>
+      <p class="text-base text-gray-700 dark:text-gray-300 leading-relaxed">
         Subscriptions that aren't cleaned up continue to run after components are destroyed, causing memory leaks,
         performance issues, and unexpected behavior.
       </p>
-      <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg">
+      <div class="bg-red-50 dark:bg-red-900/30 p-5 rounded-lg border border-red-200 dark:border-red-800">
         <h3 class="font-semibold text-red-900 dark:text-red-200 mb-2">Common Causes:</h3>
         <ul class="list-disc list-inside space-y-1 text-red-800 dark:text-red-300">
           <li>Subscriptions without cleanup</li>
@@ -25,7 +25,7 @@
     </div>
   </p-card>
 
-  <p-card class="shadow-md">
+  <p-card class="shadow-lg">
     <p-tabs value="0">
       <p-tablist>
         <p-tab value="0">❌ Violation</p-tab>
@@ -33,23 +33,23 @@
       </p-tablist>
       <p-tabpanels>
         <p-tabpanel value="0">
-          <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>{{ violationCode }}</code></pre>
+          <pre class="overflow-x-auto"><code>{{ violationCode }}</code></pre>
         </p-tabpanel>
         <p-tabpanel value="1">
-          <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>{{ solutionCode }}</code></pre>
+          <pre class="overflow-x-auto"><code>{{ solutionCode }}</code></pre>
         </p-tabpanel>
       </p-tabpanels>
     </p-tabs>
   </p-card>
 
-  <p-card class="shadow-md">
-    <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">Live Demo</h2>
-    <p class="text-gray-700 dark:text-gray-300 mb-6">
+  <p-card class="shadow-lg">
+    <h2 class="text-3xl font-semibold text-gray-900 dark:text-gray-100 mb-3 mb-4">Live Demo</h2>
+    <p class="text-base text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
       Compare leaky vs safe subscriptions. The leaky one continues even after component destruction simulation.
     </p>
     
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <div class="border-2 border-red-200 dark:border-red-800 rounded-lg p-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div class="border-2 border-red-200 dark:border-red-800 rounded-lg p-5">
         <h3 class="text-lg font-semibold text-red-800 dark:text-red-200 mb-4">❌ Leaky Subscription</h3>
         <div class="mb-4">
           <p-button
@@ -68,13 +68,13 @@
             severity="danger"
           ></p-button>
         </div>
-        <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded">
+        <div class="bg-red-50 dark:bg-red-900/20 p-5 rounded">
           <p class="text-2xl font-bold">{{ leakyCount() }}</p>
           <p class="text-sm text-red-700 dark:text-red-300">Continues after destruction!</p>
         </div>
       </div>
 
-      <div class="border-2 border-green-200 dark:border-green-800 rounded-lg p-4">
+      <div class="border-2 border-green-200 dark:border-green-800 rounded-lg p-5">
         <h3 class="text-lg font-semibold text-green-800 dark:text-green-200 mb-4">✅ Safe Subscription</h3>
         <div class="mb-4">
           <p-button
@@ -93,7 +93,7 @@
             severity="success"
           ></p-button>
         </div>
-        <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded">
+        <div class="bg-green-50 dark:bg-green-900/20 p-5 rounded">
           <p class="text-2xl font-bold">{{ safeCount() }}</p>
           <p class="text-sm text-green-700 dark:text-green-300">Auto-cleanup on destroy</p>
         </div>
@@ -101,9 +101,9 @@
     </div>
   </p-card>
 
-  <p-card class="shadow-md">
-    <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">Key Takeaways</h2>
-    <ul class="space-y-2 text-gray-700 dark:text-gray-300">
+  <p-card class="shadow-lg">
+    <h2 class="text-3xl font-semibold text-gray-900 dark:text-gray-100 mb-3 mb-4">Key Takeaways</h2>
+    <ul class="space-y-2 text-base text-gray-700 dark:text-gray-300 leading-relaxed">
       <li class="flex items-start">
         <span class="text-green-500 mr-2">✓</span>
         <span>Always unsubscribe or use takeUntilDestroyed/takeUntil</span>
