@@ -1,0 +1,115 @@
+<div class="max-w-7xl mx-auto space-y-6">
+  <!-- Header -->
+  <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+    <h1 class="text-3xl font-bold text-gray-800 dark:text-gray-200 mb-2">Advanced Function Types</h1>
+    <p class="text-gray-600 dark:text-gray-400">
+      Function overloads, rest parameters, and advanced function type patterns.
+    </p>
+  </div>
+
+  <!-- Explanation -->
+  <p-card class="shadow-md">
+    <div class="space-y-4">
+      <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200">What are Advanced Function Types?</h2>
+      <p class="text-gray-700 dark:text-gray-300">
+        Advanced function types enable powerful patterns like overloads, rest parameters, and higher-order functions
+        with full type safety.
+      </p>
+      <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg">
+        <h3 class="font-semibold text-blue-900 dark:text-blue-200 mb-2">Key Concepts:</h3>
+        <ul class="list-disc list-inside space-y-1 text-blue-800 dark:text-blue-300">
+          <li><strong>Function Overloads:</strong> Multiple signatures for one function implementation</li>
+          <li><strong>Rest Parameters:</strong> Variable number of arguments with type safety</li>
+          <li><strong>Function Types:</strong> Type aliases for function signatures</li>
+          <li><strong>Higher-Order Functions:</strong> Functions that take or return functions</li>
+        </ul>
+      </div>
+    </div>
+  </p-card>
+
+  <!-- Code Examples -->
+  <p-card class="shadow-md">
+    <p-tabs value="0">
+      <p-tablist>
+        <p-tab value="0">Overloads</p-tab>
+        <p-tab value="1">Rest Parameters</p-tab>
+        <p-tab value="2">Function Types</p-tab>
+        <p-tab value="3">Higher-Order Functions</p-tab>
+      </p-tablist>
+      <p-tabpanels>
+        <p-tabpanel value="0">
+          <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>{{ overloadsCode }}</code></pre>
+        </p-tabpanel>
+        <p-tabpanel value="1">
+          <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>{{ restParametersCode }}</code></pre>
+        </p-tabpanel>
+        <p-tabpanel value="2">
+          <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>{{ functionTypesCode }}</code></pre>
+        </p-tabpanel>
+        <p-tabpanel value="3">
+          <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>{{ higherOrderFunctionsCode }}</code></pre>
+        </p-tabpanel>
+      </p-tabpanels>
+    </p-tabs>
+  </p-card>
+
+  <!-- Live Demo -->
+  <p-card class="shadow-md">
+    <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">Live Demo</h2>
+    <p class="text-gray-700 dark:text-gray-300 mb-6">
+      Test advanced function types in action.
+    </p>
+
+    <div class="space-y-4">
+      <div class="flex gap-4 flex-wrap">
+        <p-button
+          label="Test Overloads"
+          icon="pi pi-function"
+          (click)="testOverloads()"
+        ></p-button>
+        <p-button
+          label="Test Rest Parameters"
+          icon="pi pi-list"
+          (click)="testRestParameters()"
+        ></p-button>
+        <p-button
+          label="Test Function Types"
+          icon="pi pi-code"
+          (click)="testFunctionTypes()"
+        ></p-button>
+      </div>
+
+      @if (result()) {
+        <div class="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg">
+          <pre class="text-sm text-gray-800 dark:text-gray-200 whitespace-pre-wrap">{{ result() }}</pre>
+        </div>
+      }
+    </div>
+  </p-card>
+
+  <!-- Key Takeaways -->
+  <p-card class="shadow-md">
+    <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">Key Takeaways</h2>
+    <ul class="space-y-2 text-gray-700 dark:text-gray-300">
+      <li class="flex items-start">
+        <span class="text-green-500 mr-2">✓</span>
+        <span>Function overloads provide type-safe multiple signatures</span>
+      </li>
+      <li class="flex items-start">
+        <span class="text-green-500 mr-2">✓</span>
+        <span>Rest parameters enable variable arguments with type safety</span>
+      </li>
+      <li class="flex items-start">
+        <span class="text-green-500 mr-2">✓</span>
+        <span>Function type aliases improve code readability and reusability</span>
+      </li>
+      <li class="flex items-start">
+        <span class="text-green-500 mr-2">✓</span>
+        <span>Higher-order functions enable powerful functional programming patterns</span>
+      </li>
+    </ul>
+  </p-card>
+</div>
+
+
+

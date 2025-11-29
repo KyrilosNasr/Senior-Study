@@ -1,0 +1,113 @@
+<div class="max-w-7xl mx-auto space-y-6">
+  <!-- Header -->
+  <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+    <h1 class="text-3xl font-bold text-gray-800 dark:text-gray-200 mb-2">Module Augmentation & Declaration Merging</h1>
+    <p class="text-gray-600 dark:text-gray-400">
+      Extend existing types and modules without modifying their source code.
+    </p>
+  </div>
+
+  <!-- Explanation -->
+  <p-card class="shadow-md">
+    <div class="space-y-4">
+      <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200">What is Module Augmentation?</h2>
+      <p class="text-gray-700 dark:text-gray-300">
+        Module augmentation and declaration merging allow you to extend existing types, interfaces, and modules
+        without modifying their original source code. This is especially useful for extending third-party libraries.
+      </p>
+      <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg">
+        <h3 class="font-semibold text-blue-900 dark:text-blue-200 mb-2">Key Concepts:</h3>
+        <ul class="list-disc list-inside space-y-1 text-blue-800 dark:text-blue-300">
+          <li><strong>Module Augmentation:</strong> Extend types from external modules</li>
+          <li><strong>Declaration Merging:</strong> Merge multiple declarations of the same name</li>
+          <li><strong>Global Augmentation:</strong> Extend global types like Array, Window, etc.</li>
+          <li><strong>Namespace Merging:</strong> Merge namespaces with interfaces/classes</li>
+        </ul>
+      </div>
+    </div>
+  </p-card>
+
+  <!-- Code Examples -->
+  <p-card class="shadow-md">
+    <p-tabs value="0">
+      <p-tablist>
+        <p-tab value="0">Module Augmentation</p-tab>
+        <p-tab value="1">Declaration Merging</p-tab>
+        <p-tab value="2">Global Augmentation</p-tab>
+        <p-tab value="3">Third-Party Extension</p-tab>
+      </p-tablist>
+      <p-tabpanels>
+        <p-tabpanel value="0">
+          <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>{{ moduleAugmentationCode }}</code></pre>
+        </p-tabpanel>
+        <p-tabpanel value="1">
+          <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>{{ declarationMergingCode }}</code></pre>
+        </p-tabpanel>
+        <p-tabpanel value="2">
+          <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>{{ globalAugmentationCode }}</code></pre>
+        </p-tabpanel>
+        <p-tabpanel value="3">
+          <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>{{ thirdPartyAugmentationCode }}</code></pre>
+        </p-tabpanel>
+      </p-tabpanels>
+    </p-tabs>
+  </p-card>
+
+  <!-- Live Demo -->
+  <p-card class="shadow-md">
+    <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">Live Demo</h2>
+    <p class="text-gray-700 dark:text-gray-300 mb-6">
+      Test module augmentation and declaration merging.
+    </p>
+
+    <div class="space-y-4">
+      <div class="flex gap-4 flex-wrap">
+        <p-button
+          label="Test Declaration Merging"
+          icon="pi pi-puzzle"
+          (click)="testDeclarationMerging()"
+        ></p-button>
+        <p-button
+          label="Test Namespace Merging"
+          icon="pi pi-sitemap"
+          (click)="testNamespaceMerging()"
+        ></p-button>
+        <p-button
+          label="Test Global Augmentation"
+          icon="pi pi-globe"
+          (click)="testGlobalAugmentation()"
+        ></p-button>
+      </div>
+
+      @if (result()) {
+        <div class="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg">
+          <pre class="text-sm text-gray-800 dark:text-gray-200 whitespace-pre-wrap">{{ result() }}</pre>
+        </div>
+      }
+    </div>
+  </p-card>
+
+  <!-- Key Takeaways -->
+  <p-card class="shadow-md">
+    <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">Key Takeaways</h2>
+    <ul class="space-y-2 text-gray-700 dark:text-gray-300">
+      <li class="flex items-start">
+        <span class="text-green-500 mr-2">✓</span>
+        <span>Module augmentation extends types from external modules without modifying source</span>
+      </li>
+      <li class="flex items-start">
+        <span class="text-green-500 mr-2">✓</span>
+        <span>Declaration merging combines multiple declarations of the same name</span>
+      </li>
+      <li class="flex items-start">
+        <span class="text-green-500 mr-2">✓</span>
+        <span>Global augmentation extends built-in types like Array, Window, etc.</span>
+      </li>
+      <li class="flex items-start">
+        <span class="text-green-500 mr-2">✓</span>
+        <span>Essential for extending third-party libraries with type safety</span>
+      </li>
+    </ul>
+  </p-card>
+</div>
+

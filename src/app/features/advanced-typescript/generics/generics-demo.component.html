@@ -1,0 +1,109 @@
+<div class="max-w-7xl mx-auto space-y-6">
+  <!-- Header -->
+  <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+    <h1 class="text-3xl font-bold text-gray-800 dark:text-gray-200 mb-2">Generics: Constraints, Default Types & Variance</h1>
+    <p class="text-gray-600 dark:text-gray-400">
+      Advanced generic programming with constraints, default types, and understanding variance.
+    </p>
+  </div>
+
+  <!-- Explanation -->
+  <p-card class="shadow-md">
+    <div class="space-y-4">
+      <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200">What are Advanced Generics?</h2>
+      <p class="text-gray-700 dark:text-gray-300">
+        Advanced generics allow you to create reusable, type-safe code with constraints, default types,
+        and understanding how variance affects type relationships.
+      </p>
+      <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg">
+        <h3 class="font-semibold text-blue-900 dark:text-blue-200 mb-2">Key Concepts:</h3>
+        <ul class="list-disc list-inside space-y-1 text-blue-800 dark:text-blue-300">
+          <li><strong>Constraints:</strong> Limit generic types using <code>extends</code> keyword</li>
+          <li><strong>Default Types:</strong> Provide default type parameters for generics</li>
+          <li><strong>Variance:</strong> How subtyping works with generics (covariant, contravariant, invariant)</li>
+        </ul>
+      </div>
+    </div>
+  </p-card>
+
+  <!-- Code Examples -->
+  <p-card class="shadow-md">
+    <p-tabs value="0">
+      <p-tablist>
+        <p-tab value="0">Constraints</p-tab>
+        <p-tab value="1">Default Types</p-tab>
+        <p-tab value="2">Variance</p-tab>
+        <p-tab value="3">Practical Example</p-tab>
+      </p-tablist>
+      <p-tabpanels>
+        <p-tabpanel value="0">
+          <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>{{ constraintsCode }}</code></pre>
+        </p-tabpanel>
+        <p-tabpanel value="1">
+          <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>{{ defaultTypesCode }}</code></pre>
+        </p-tabpanel>
+        <p-tabpanel value="2">
+          <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>{{ varianceCode }}</code></pre>
+        </p-tabpanel>
+        <p-tabpanel value="3">
+          <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>{{ practicalExampleCode }}</code></pre>
+        </p-tabpanel>
+      </p-tabpanels>
+    </p-tabs>
+  </p-card>
+
+  <!-- Live Demo -->
+  <p-card class="shadow-md">
+    <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">Live Demo</h2>
+    <p class="text-gray-700 dark:text-gray-300 mb-6">
+      Test generic constraints and repository pattern.
+    </p>
+
+    <div class="space-y-4">
+      <div class="flex gap-4 flex-wrap">
+        <p-button
+          label="Test Constraints"
+          icon="pi pi-lock"
+          (click)="testConstraints()"
+        ></p-button>
+        <p-button
+          label="Test Repository"
+          icon="pi pi-database"
+          (click)="testRepository()"
+        ></p-button>
+      </div>
+
+      @if (result()) {
+        <div class="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg">
+          <pre class="text-sm text-gray-800 dark:text-gray-200 whitespace-pre-wrap">{{ result() }}</pre>
+        </div>
+      }
+    </div>
+  </p-card>
+
+  <!-- Key Takeaways -->
+  <p-card class="shadow-md">
+    <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">Key Takeaways</h2>
+    <ul class="space-y-2 text-gray-700 dark:text-gray-300">
+      <li class="flex items-start">
+        <span class="text-green-500 mr-2">✓</span>
+        <span>Use <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">extends</code> to constrain generic types</span>
+      </li>
+      <li class="flex items-start">
+        <span class="text-green-500 mr-2">✓</span>
+        <span>Default type parameters make generics more convenient</span>
+      </li>
+      <li class="flex items-start">
+        <span class="text-green-500 mr-2">✓</span>
+        <span>Understanding variance helps with type safety and flexibility</span>
+      </li>
+      <li class="flex items-start">
+        <span class="text-green-500 mr-2">✓</span>
+        <span>Generics enable powerful patterns like Repository and Factory</span>
+      </li>
+    </ul>
+  </p-card>
+</div>
+
+
+

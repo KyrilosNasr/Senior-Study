@@ -13,5 +13,9 @@ export const routes: Routes = [
   {
     path: 'oop',
     loadChildren: () => import('./features/oop/oop.routes').then(m => m.oopRoutes)
+  },
+  {
+    path: 'typescript',
+    loadChildren: () => import('./features/advanced-typescript/typescript.routes').then(m => m.typescriptRoutes)
   }
 ];

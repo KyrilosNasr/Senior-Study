@@ -52,6 +52,11 @@ export class OopLayoutComponent {
           label: 'SOLID Principles',
           icon: 'pi pi-arrow-right',
           routerLink: '/solid/srp'
+        },
+        {
+          label: 'Advanced TypeScript',
+          icon: 'pi pi-arrow-right',
+          routerLink: '/typescript/advanced-types'
         }
       ]
     }

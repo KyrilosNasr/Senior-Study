@@ -57,6 +57,11 @@ export class SolidLayoutComponent {
           label: 'OOP Concepts',
           icon: 'pi pi-arrow-right',
           routerLink: '/oop/encapsulation'
+        },
+        {
+          label: 'Advanced TypeScript',
+          icon: 'pi pi-arrow-right',
+          routerLink: '/typescript/advanced-types'
         }
       ]
     }
