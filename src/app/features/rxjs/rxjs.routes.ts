@@ -9,8 +9,36 @@ export const rxjsRoutes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'custom-operators',
+        redirectTo: 'creation-operators',
         pathMatch: 'full'
+      },
+      {
+        path: 'creation-operators',
+        loadComponent: () => import('./creation-operators/creation-operators-demo.component').then(m => m.CreationOperatorsDemoComponent)
+      },
+      {
+        path: 'transformation-operators',
+        loadComponent: () => import('./transformation-operators/transformation-operators-demo.component').then(m => m.TransformationOperatorsDemoComponent)
+      },
+      {
+        path: 'filtering-operators',
+        loadComponent: () => import('./filtering-operators/filtering-operators-demo.component').then(m => m.FilteringOperatorsDemoComponent)
+      },
+      {
+        path: 'combination-operators',
+        loadComponent: () => import('./combination-operators/combination-operators-demo.component').then(m => m.CombinationOperatorsDemoComponent)
+      },
+      {
+        path: 'error-handling',
+        loadComponent: () => import('./error-handling/error-handling-demo.component').then(m => m.ErrorHandlingDemoComponent)
+      },
+      {
+        path: 'utility-operators',
+        loadComponent: () => import('./utility-operators/utility-operators-demo.component').then(m => m.UtilityOperatorsDemoComponent)
+      },
+      {
+        path: 'multicasting-operators',
+        loadComponent: () => import('./multicasting-operators/multicasting-operators-demo.component').then(m => m.MulticastingOperatorsDemoComponent)
       },
       {
         path: 'custom-operators',

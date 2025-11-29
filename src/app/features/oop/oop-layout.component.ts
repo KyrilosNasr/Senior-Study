@@ -61,7 +61,7 @@ export class OopLayoutComponent {
         {
           label: 'RxJS Patterns',
           icon: 'pi pi-arrow-right',
-          routerLink: '/rxjs/custom-operators'
+          routerLink: '/rxjs/creation-operators'
         }
       ]
     }

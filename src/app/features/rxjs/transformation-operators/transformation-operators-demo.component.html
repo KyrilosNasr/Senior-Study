@@ -1,0 +1,193 @@
+<div class="max-w-7xl mx-auto space-y-6">
+  <!-- Header -->
+  <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+    <h1 class="text-3xl font-bold text-gray-800 dark:text-gray-200 mb-2">Part 2: Transformation Operators</h1>
+    <p class="text-gray-600 dark:text-gray-400">
+      Understanding flattening operators: <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">map()</code>, 
+      <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">switchMap()</code>, 
+      <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">mergeMap()</code>, 
+      <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">concatMap()</code>, 
+      <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">exhaustMap()</code>
+    </p>
+  </div>
+
+  <!-- Explanation -->
+  <p-card class="shadow-md">
+    <div class="space-y-4">
+      <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200">Transformation Operators</h2>
+      <p class="text-gray-700 dark:text-gray-300">
+        Transformation operators modify values emitted by observables. Flattening operators (switchMap, mergeMap, etc.)
+        are critical for handling async operations and preventing race conditions.
+      </p>
+      <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg">
+        <h3 class="font-semibold text-blue-900 dark:text-blue-200 mb-2">Operator Selection:</h3>
+        <ul class="list-disc list-inside space-y-1 text-blue-800 dark:text-blue-300">
+          <li><strong>map():</strong> Simple 1-to-1 transformation</li>
+          <li><strong>switchMap():</strong> Cancels previous inner observable (search, typeahead)</li>
+          <li><strong>mergeMap():</strong> Maintains all inner observables concurrently (parallel operations)</li>
+          <li><strong>concatMap():</strong> Queues inner observables sequentially (order matters)</li>
+          <li><strong>exhaustMap():</strong> Ignores new values until current completes (prevent duplicates)</li>
+        </ul>
+      </div>
+    </div>
+  </p-card>
+
+  <!-- Code Examples -->
+  <p-card class="shadow-md">
+    <p-tabs value="0">
+      <p-tablist>
+        <p-tab value="0">❌ Violation</p-tab>
+        <p-tab value="1">✅ Solution</p-tab>
+      </p-tablist>
+      <p-tabpanels>
+        <p-tabpanel value="0">
+          <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>{{ violationCode }}</code></pre>
+        </p-tabpanel>
+        <p-tabpanel value="1">
+          <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>{{ solutionCode }}</code></pre>
+        </p-tabpanel>
+      </p-tabpanels>
+    </p-tabs>
+  </p-card>
+
+  <!-- Live Demo -->
+  <p-card class="shadow-md">
+    <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">Live Demo</h2>
+    <p class="text-gray-700 dark:text-gray-300 mb-6">
+      Test each operator to see how they handle multiple emissions differently.
+    </p>
+    
+    <div class="space-y-6">
+      <!-- map() Demo -->
+      <div class="border-2 border-gray-200 dark:border-gray-700 rounded-lg p-4">
+        <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">map() - Simple Transformation</h3>
+        <p-button
+          label="Test map()"
+          icon="pi pi-play"
+          (click)="testMap()"
+          class="mb-4"
+        ></p-button>
+        @if (mapResult()) {
+          <div class="bg-gray-100 dark:bg-gray-700 p-4 rounded">
+            <p class="text-sm">{{ mapResult() }}</p>
+          </div>
+        }
+      </div>
+
+      <!-- switchMap() Demo -->
+      <div class="border-2 border-green-200 dark:border-green-800 rounded-lg p-4">
+        <h3 class="text-lg font-semibold text-green-800 dark:text-green-200 mb-4">switchMap() - Cancels Previous</h3>
+        <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">
+          Simulates rapid search queries. Notice how only the latest result is shown.
+        </p>
+        <p-button
+          label="Test switchMap() (Rapid Queries)"
+          icon="pi pi-search"
+          (click)="testSwitchMap()"
+          severity="success"
+          class="mb-4"
+        ></p-button>
+        @if (switchMapResult()) {
+          <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded mb-2">
+            <p class="text-sm font-semibold">{{ switchMapResult() }}</p>
+          </div>
+        }
+        @if (requestLogs().length > 0) {
+          <div class="bg-gray-100 dark:bg-gray-700 p-4 rounded max-h-32 overflow-y-auto">
+            <p class="text-xs font-semibold mb-2">Request Log:</p>
+            <ul class="list-disc list-inside text-xs space-y-1">
+              @for (log of requestLogs(); track $index) {
+                <li>{{ log }}</li>
+              }
+            </ul>
+          </div>
+        }
+      </div>
+
+      <!-- mergeMap() Demo -->
+      <div class="border-2 border-blue-200 dark:border-blue-800 rounded-lg p-4">
+        <h3 class="text-lg font-semibold text-blue-800 dark:text-blue-200 mb-4">mergeMap() - Parallel Execution</h3>
+        <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">
+          Simulates parallel file uploads. All requests execute concurrently.
+        </p>
+        <p-button
+          label="Test mergeMap() (Parallel)"
+          icon="pi pi-upload"
+          (click)="testMergeMap()"
+          class="mb-4"
+        ></p-button>
+        @if (mergeMapResult()) {
+          <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded">
+            <p class="text-sm">{{ mergeMapResult() }}</p>
+          </div>
+        }
+      </div>
+
+      <!-- concatMap() Demo -->
+      <div class="border-2 border-purple-200 dark:border-purple-800 rounded-lg p-4">
+        <h3 class="text-lg font-semibold text-purple-800 dark:text-purple-200 mb-4">concatMap() - Sequential Execution</h3>
+        <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">
+          Simulates sequential actions. Each action waits for the previous to complete.
+        </p>
+        <p-button
+          label="Test concatMap() (Sequential)"
+          icon="pi pi-list"
+          (click)="testConcatMap()"
+          class="mb-4"
+        ></p-button>
+        @if (concatMapResult()) {
+          <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded">
+            <p class="text-sm">{{ concatMapResult() }}</p>
+          </div>
+        }
+      </div>
+
+      <!-- exhaustMap() Demo -->
+      <div class="border-2 border-orange-200 dark:border-orange-800 rounded-lg p-4">
+        <h3 class="text-lg font-semibold text-orange-800 dark:text-orange-200 mb-4">exhaustMap() - Ignore While Busy</h3>
+        <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">
+          Simulates rapid save clicks. Only the first click is processed, others are ignored.
+        </p>
+        <p-button
+          label="Test exhaustMap() (Save Button)"
+          icon="pi pi-save"
+          (click)="testExhaustMap()"
+          class="mb-4"
+        ></p-button>
+        @if (exhaustMapResult()) {
+          <div class="bg-orange-50 dark:bg-orange-900/20 p-4 rounded">
+            <p class="text-sm">{{ exhaustMapResult() }}</p>
+          </div>
+        }
+      </div>
+    </div>
+  </p-card>
+
+  <!-- Key Takeaways -->
+  <p-card class="shadow-md">
+    <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">Key Takeaways</h2>
+    <ul class="space-y-2 text-gray-700 dark:text-gray-300">
+      <li class="flex items-start">
+        <span class="text-green-500 mr-2">✓</span>
+        <span>Use <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">switchMap()</code> for search/typeahead - cancels previous requests</span>
+      </li>
+      <li class="flex items-start">
+        <span class="text-green-500 mr-2">✓</span>
+        <span>Use <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">mergeMap()</code> for parallel independent operations (uploads, analytics)</span>
+      </li>
+      <li class="flex items-start">
+        <span class="text-green-500 mr-2">✓</span>
+        <span>Use <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">concatMap()</code> when order matters (sequential updates, transactions)</span>
+      </li>
+      <li class="flex items-start">
+        <span class="text-green-500 mr-2">✓</span>
+        <span>Use <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">exhaustMap()</code> to prevent duplicate submissions (save button, login)</span>
+      </li>
+      <li class="flex items-start">
+        <span class="text-red-500 mr-2">✗</span>
+        <span>Never use <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">mergeMap()</code> for search - causes race conditions!</span>
+      </li>
+    </ul>
+  </p-card>
+</div>
+

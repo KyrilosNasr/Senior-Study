@@ -1,0 +1,177 @@
+<div class="max-w-7xl mx-auto space-y-6">
+  <!-- Header -->
+  <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+    <h1 class="text-3xl font-bold text-gray-800 dark:text-gray-200 mb-2">Part 7: Multicasting Operators</h1>
+    <p class="text-gray-600 dark:text-gray-400">
+      Performance optimization: <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">share()</code> and 
+      <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">shareReplay()</code>
+    </p>
+  </div>
+
+  <!-- Explanation -->
+  <p-card class="shadow-md">
+    <div class="space-y-4">
+      <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200">Multicasting Operators</h2>
+      <p class="text-gray-700 dark:text-gray-300">
+        Multicasting operators share observable execution among multiple subscribers, preventing duplicate
+        HTTP calls and improving performance. Critical for production applications.
+      </p>
+      <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg">
+        <h3 class="font-semibold text-blue-900 dark:text-blue-200 mb-2">Key Operators:</h3>
+        <ul class="list-disc list-inside space-y-1 text-blue-800 dark:text-blue-300">
+          <li><strong>share():</strong> Hot observable, no replay - Multiple subscribers share execution</li>
+          <li><strong>shareReplay():</strong> Replays last n values to new subscribers - Perfect for caching</li>
+        </ul>
+      </div>
+      <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg">
+        <h3 class="font-semibold text-red-900 dark:text-red-200 mb-2">⚠️ Common Mistake:</h3>
+        <p class="text-red-800 dark:text-red-300">
+          Without sharing, each subscription to an HTTP observable creates a new HTTP request.
+          This can cause performance issues and unnecessary server load.
+        </p>
+      </div>
+    </div>
+  </p-card>
+
+  <!-- Code Examples -->
+  <p-card class="shadow-md">
+    <p-tabs value="0">
+      <p-tablist>
+        <p-tab value="0">❌ Violation</p-tab>
+        <p-tab value="1">✅ Solution</p-tab>
+      </p-tablist>
+      <p-tabpanels>
+        <p-tabpanel value="0">
+          <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>{{ violationCode }}</code></pre>
+        </p-tabpanel>
+        <p-tabpanel value="1">
+          <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>{{ solutionCode }}</code></pre>
+        </p-tabpanel>
+      </p-tabpanels>
+    </p-tabs>
+  </p-card>
+
+  <!-- Live Demo -->
+  <p-card class="shadow-md">
+    <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">Live Demo</h2>
+    <p class="text-gray-700 dark:text-gray-300 mb-6">
+      Compare unshared vs shared observables. Notice the difference in request count.
+    </p>
+    
+    <div class="space-y-6">
+      <!-- Unshared Demo -->
+      <div class="border-2 border-red-200 dark:border-red-800 rounded-lg p-4">
+        <h3 class="text-lg font-semibold text-red-800 dark:text-red-200 mb-4">❌ Unshared Observable</h3>
+        <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">
+          Each subscription creates a new request. 3 subscriptions = 3 requests!
+        </p>
+        <p-button
+          label="Test Unshared (3 subscriptions)"
+          icon="pi pi-times-circle"
+          (click)="testUnshared()"
+          severity="danger"
+          class="mb-4"
+        ></p-button>
+        @if (unsharedRequests() > 0) {
+          <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded mb-2">
+            <p class="text-sm font-semibold">Total Requests: {{ unsharedRequests() }}</p>
+            <p class="text-xs text-red-700 dark:text-red-300">⚠️ Multiple HTTP calls!</p>
+          </div>
+        }
+        @if (unsharedResults().length > 0) {
+          <div class="bg-gray-100 dark:bg-gray-700 p-4 rounded">
+            <ul class="list-disc list-inside text-xs space-y-1">
+              @for (result of unsharedResults(); track $index) {
+                <li>{{ result }}</li>
+              }
+            </ul>
+          </div>
+        }
+      </div>
+
+      <!-- Shared Demo -->
+      <div class="border-2 border-green-200 dark:border-green-800 rounded-lg p-4">
+        <h3 class="text-lg font-semibold text-green-800 dark:text-green-200 mb-4">✅ Shared Observable</h3>
+        <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">
+          Multiple subscriptions share execution. 3 subscriptions = 1 request!
+        </p>
+        <p-button
+          label="Test share() (3 subscriptions)"
+          icon="pi pi-check-circle"
+          (click)="testShared()"
+          severity="success"
+          class="mb-4"
+        ></p-button>
+        @if (sharedRequests() > 0) {
+          <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded mb-2">
+            <p class="text-sm font-semibold">Total Requests: {{ sharedRequests() }}</p>
+            <p class="text-xs text-green-700 dark:text-green-300">✅ Single HTTP call shared!</p>
+          </div>
+        }
+        @if (sharedResults().length > 0) {
+          <div class="bg-gray-100 dark:bg-gray-700 p-4 rounded">
+            <ul class="list-disc list-inside text-xs space-y-1">
+              @for (result of sharedResults(); track $index) {
+                <li>{{ result }}</li>
+              }
+            </ul>
+          </div>
+        }
+      </div>
+
+      <!-- ShareReplay Demo -->
+      <div class="border-2 border-blue-200 dark:border-blue-800 rounded-lg p-4">
+        <h3 class="text-lg font-semibold text-blue-800 dark:text-blue-200 mb-4">✅ shareReplay() - Cached</h3>
+        <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">
+          First subscription makes request, subsequent subscriptions use cached result.
+        </p>
+        <p-button
+          label="Test shareReplay() (Caching)"
+          icon="pi pi-database"
+          (click)="testShareReplay()"
+          class="mb-4"
+        ></p-button>
+        @if (shareReplayResults().length > 0) {
+          <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded mb-2">
+            @if (cacheHit()) {
+              <p class="text-xs text-blue-700 dark:text-blue-300 mb-2">✅ Cache hit - no additional requests!</p>
+            }
+            <ul class="list-disc list-inside text-xs space-y-1">
+              @for (result of shareReplayResults(); track $index) {
+                <li>{{ result }}</li>
+              }
+            </ul>
+          </div>
+        }
+      </div>
+    </div>
+  </p-card>
+
+  <!-- Key Takeaways -->
+  <p-card class="shadow-md">
+    <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">Key Takeaways</h2>
+    <ul class="space-y-2 text-gray-700 dark:text-gray-300">
+      <li class="flex items-start">
+        <span class="text-green-500 mr-2">✓</span>
+        <span>Always use <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">shareReplay()</code> for HTTP observables that multiple components might subscribe to</span>
+      </li>
+      <li class="flex items-start">
+        <span class="text-green-500 mr-2">✓</span>
+        <span>Use <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">shareReplay({{ '{' }} bufferSize: 1, refCount: false {{ '}' }})</code> for configuration that should stay cached</span>
+      </li>
+      <li class="flex items-start">
+        <span class="text-green-500 mr-2">✓</span>
+        <span>Use <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">share()</code> for real-time data where caching isn't needed</span>
+      </li>
+      <li class="flex items-start">
+        <span class="text-green-500 mr-2">✓</span>
+        <span>Without sharing, each subscription = new HTTP call - major performance issue!</span>
+      </li>
+      <li class="flex items-start">
+        <span class="text-red-500 mr-2">✗</span>
+        <span>Never expose HTTP observables without sharing - causes duplicate requests</span>
+      </li>
+    </ul>
+  </p-card>
+</div>
+

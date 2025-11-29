@@ -1,0 +1,170 @@
+<div class="max-w-7xl mx-auto space-y-6">
+  <!-- Header -->
+  <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+    <h1 class="text-3xl font-bold text-gray-800 dark:text-gray-200 mb-2">Part 5: Error Handling & Retry</h1>
+    <p class="text-gray-600 dark:text-gray-400">
+      Handling errors gracefully: <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">catchError()</code>, 
+      <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">retry()</code>, 
+      <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">retryWhen()</code>
+    </p>
+  </div>
+
+  <!-- Explanation -->
+  <p-card class="shadow-md">
+    <div class="space-y-4">
+      <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200">Error Handling Operators</h2>
+      <p class="text-gray-700 dark:text-gray-300">
+        Error handling operators allow you to recover from errors, retry failed operations, and provide
+        graceful degradation for better user experience.
+      </p>
+      <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg">
+        <h3 class="font-semibold text-blue-900 dark:text-blue-200 mb-2">Key Operators:</h3>
+        <ul class="list-disc list-inside space-y-1 text-blue-800 dark:text-blue-300">
+          <li><strong>catchError():</strong> Handle errors without terminating stream - Return fallback values</li>
+          <li><strong>retry(n):</strong> Retry n times on error - Simple retry logic</li>
+          <li><strong>retryWhen():</strong> Custom retry logic with conditions - Advanced retry strategies</li>
+        </ul>
+      </div>
+    </div>
+  </p-card>
+
+  <!-- Code Examples -->
+  <p-card class="shadow-md">
+    <p-tabs value="0">
+      <p-tablist>
+        <p-tab value="0">❌ Violation</p-tab>
+        <p-tab value="1">✅ Solution</p-tab>
+      </p-tablist>
+      <p-tabpanels>
+        <p-tabpanel value="0">
+          <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>{{ violationCode }}</code></pre>
+        </p-tabpanel>
+        <p-tabpanel value="1">
+          <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>{{ solutionCode }}</code></pre>
+        </p-tabpanel>
+      </p-tabpanels>
+    </p-tabs>
+  </p-card>
+
+  <!-- Live Demo -->
+  <p-card class="shadow-md">
+    <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">Live Demo</h2>
+    
+    <div class="space-y-6">
+      <!-- catchError() Demo -->
+      <div class="border-2 border-green-200 dark:border-green-800 rounded-lg p-4">
+        <h3 class="text-lg font-semibold text-green-800 dark:text-green-200 mb-4">catchError() - Error Recovery</h3>
+        <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">
+          Simulates a failed request that recovers with fallback data.
+        </p>
+        <p-button
+          label="Test catchError()"
+          icon="pi pi-shield"
+          (click)="testCatchError()"
+          severity="success"
+          class="mb-4"
+        ></p-button>
+        @if (catchErrorResult()) {
+          <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded">
+            <p class="text-sm">{{ catchErrorResult() }}</p>
+          </div>
+        }
+      </div>
+
+      <!-- retry() Demo -->
+      <div class="border-2 border-blue-200 dark:border-blue-800 rounded-lg p-4">
+        <h3 class="text-lg font-semibold text-blue-800 dark:text-blue-200 mb-4">retry(n) - Simple Retry</h3>
+        <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">
+          Retries failed request 3 times before giving up.
+        </p>
+        <p-button
+          label="Test retry(3)"
+          icon="pi pi-refresh"
+          (click)="testRetry()"
+          class="mb-4"
+        ></p-button>
+        @if (retryResult()) {
+          <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded mb-2">
+            <p class="text-sm font-semibold">{{ retryResult() }}</p>
+          </div>
+        }
+        @if (errorLogs().length > 0) {
+          <div class="bg-gray-100 dark:bg-gray-700 p-4 rounded">
+            <p class="text-xs font-semibold mb-2">Retry Log:</p>
+            <ul class="list-disc list-inside text-xs space-y-1">
+              @for (log of errorLogs(); track $index) {
+                <li>{{ log }}</li>
+              }
+            </ul>
+          </div>
+        }
+      </div>
+
+      <!-- retryWhen() Demo -->
+      <div class="border-2 border-purple-200 dark:border-purple-800 rounded-lg p-4">
+        <h3 class="text-lg font-semibold text-purple-800 dark:text-purple-200 mb-4">retryWhen() - Custom Retry Logic</h3>
+        <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">
+          Custom retry with delay and logging.
+        </p>
+        <p-button
+          label="Test retryWhen()"
+          icon="pi pi-cog"
+          (click)="testRetryWhen()"
+          class="mb-4"
+        ></p-button>
+        @if (retryWhenResult()) {
+          <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded">
+            <p class="text-sm">{{ retryWhenResult() }}</p>
+          </div>
+        }
+      </div>
+
+      <!-- retryWithBackoff() Demo -->
+      <div class="border-2 border-orange-200 dark:border-orange-800 rounded-lg p-4">
+        <h3 class="text-lg font-semibold text-orange-800 dark:text-orange-200 mb-4">retryWithBackoff() - Exponential Backoff</h3>
+        <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">
+          Retries with exponentially increasing delays (500ms, 1000ms, 2000ms).
+        </p>
+        <p-button
+          label="Test retryWithBackoff()"
+          icon="pi pi-bolt"
+          (click)="testRetryWithBackoff()"
+          class="mb-4"
+        ></p-button>
+        @if (retryBackoffResult()) {
+          <div class="bg-orange-50 dark:bg-orange-900/20 p-4 rounded">
+            <p class="text-sm">{{ retryBackoffResult() }}</p>
+          </div>
+        }
+      </div>
+    </div>
+  </p-card>
+
+  <!-- Key Takeaways -->
+  <p-card class="shadow-md">
+    <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">Key Takeaways</h2>
+    <ul class="space-y-2 text-gray-700 dark:text-gray-300">
+      <li class="flex items-start">
+        <span class="text-green-500 mr-2">✓</span>
+        <span>Always use <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">catchError()</code> to handle errors gracefully - never let errors crash the app</span>
+      </li>
+      <li class="flex items-start">
+        <span class="text-green-500 mr-2">✓</span>
+        <span>Use <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">retry()</code> for simple retry logic with fixed attempts</span>
+      </li>
+      <li class="flex items-start">
+        <span class="text-green-500 mr-2">✓</span>
+        <span>Use <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">retryWhen()</code> for custom retry logic with conditions and delays</span>
+      </li>
+      <li class="flex items-start">
+        <span class="text-green-500 mr-2">✓</span>
+        <span>Implement exponential backoff for production - reduces server load</span>
+      </li>
+      <li class="flex items-start">
+        <span class="text-green-500 mr-2">✓</span>
+        <span>Don't retry on 4xx errors (client errors) - only retry on 5xx (server errors)</span>
+      </li>
+    </ul>
+  </p-card>
+</div>
+

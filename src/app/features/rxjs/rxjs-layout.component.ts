@@ -18,7 +18,50 @@ export class RxjsLayoutComponent {
   
   menuItems: MenuItem[] = [
     {
-      label: 'RxJS Advanced Patterns',
+      label: 'Part 1-7: Foundational Operators',
+      items: [
+        {
+          label: 'Part 1: Creation Operators',
+          icon: 'pi pi-circle',
+          routerLink: '/rxjs/creation-operators'
+        },
+        {
+          label: 'Part 2: Transformation Operators',
+          icon: 'pi pi-circle',
+          routerLink: '/rxjs/transformation-operators'
+        },
+        {
+          label: 'Part 3: Filtering Operators',
+          icon: 'pi pi-circle',
+          routerLink: '/rxjs/filtering-operators'
+        },
+        {
+          label: 'Part 4: Combination Operators',
+          icon: 'pi pi-circle',
+          routerLink: '/rxjs/combination-operators'
+        },
+        {
+          label: 'Part 5: Error Handling',
+          icon: 'pi pi-circle',
+          routerLink: '/rxjs/error-handling'
+        },
+        {
+          label: 'Part 6: Utility Operators',
+          icon: 'pi pi-circle',
+          routerLink: '/rxjs/utility-operators'
+        },
+        {
+          label: 'Part 7: Multicasting Operators',
+          icon: 'pi pi-circle',
+          routerLink: '/rxjs/multicasting-operators'
+        }
+      ]
+    },
+    {
+      separator: true
+    },
+    {
+      label: 'Advanced Patterns',
       items: [
         {
           label: 'Custom Operators',

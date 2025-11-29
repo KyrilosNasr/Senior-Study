@@ -1,0 +1,173 @@
+<div class="max-w-7xl mx-auto space-y-6">
+  <!-- Header -->
+  <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+    <h1 class="text-3xl font-bold text-gray-800 dark:text-gray-200 mb-2">Part 6: Utility Operators</h1>
+    <p class="text-gray-600 dark:text-gray-400">
+      Side effects and utilities: <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">tap()</code>, 
+      <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">finalize()</code>, 
+      <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">delay()</code>, 
+      <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">timeout()</code>
+    </p>
+  </div>
+
+  <!-- Explanation -->
+  <p-card class="shadow-md">
+    <div class="space-y-4">
+      <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200">Utility Operators</h2>
+      <p class="text-gray-700 dark:text-gray-300">
+        Utility operators provide side effects, cleanup, and timing control without modifying the observable stream.
+        They're essential for logging, loading states, and resource cleanup.
+      </p>
+      <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg">
+        <h3 class="font-semibold text-blue-900 dark:text-blue-200 mb-2">Key Operators:</h3>
+        <ul class="list-disc list-inside space-y-1 text-blue-800 dark:text-blue-300">
+          <li><strong>tap():</strong> Side effects without modifying stream - Logging, debugging</li>
+          <li><strong>finalize():</strong> Cleanup logic that always executes - Hide loaders, cleanup</li>
+          <li><strong>delay():</strong> Delay emissions by specified time - Testing, animations</li>
+          <li><strong>timeout():</strong> Error if doesn't complete in time - Prevent hanging requests</li>
+        </ul>
+      </div>
+    </div>
+  </p-card>
+
+  <!-- Code Examples -->
+  <p-card class="shadow-md">
+    <p-tabs value="0">
+      <p-tablist>
+        <p-tab value="0">❌ Violation</p-tab>
+        <p-tab value="1">✅ Solution</p-tab>
+      </p-tablist>
+      <p-tabpanels>
+        <p-tabpanel value="0">
+          <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>{{ violationCode }}</code></pre>
+        </p-tabpanel>
+        <p-tabpanel value="1">
+          <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>{{ solutionCode }}</code></pre>
+        </p-tabpanel>
+      </p-tabpanels>
+    </p-tabs>
+  </p-card>
+
+  <!-- Live Demo -->
+  <p-card class="shadow-md">
+    <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">Live Demo</h2>
+    
+    <div class="space-y-6">
+      <!-- tap() Demo -->
+      <div class="border-2 border-gray-200 dark:border-gray-700 rounded-lg p-4">
+        <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">tap() - Side Effects</h3>
+        <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">
+          Logs values without modifying the stream. Check the logs below.
+        </p>
+        <p-button
+          label="Test tap()"
+          icon="pi pi-info-circle"
+          (click)="testTap()"
+          class="mb-4"
+        ></p-button>
+        @if (tapLogs().length > 0) {
+          <div class="bg-gray-100 dark:bg-gray-700 p-4 rounded">
+            <p class="text-xs font-semibold mb-2">Tap Logs:</p>
+            <ul class="list-disc list-inside text-xs space-y-1">
+              @for (log of tapLogs(); track $index) {
+                <li>{{ log }}</li>
+              }
+            </ul>
+          </div>
+        }
+      </div>
+
+      <!-- finalize() Demo -->
+      <div class="border-2 border-green-200 dark:border-green-800 rounded-lg p-4">
+        <h3 class="text-lg font-semibold text-green-800 dark:text-green-200 mb-4">finalize() - Cleanup</h3>
+        <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">
+          Ensures cleanup code always runs, even on error or completion.
+        </p>
+        <p-button
+          label="Test finalize()"
+          icon="pi pi-check"
+          (click)="testFinalize()"
+          severity="success"
+          class="mb-4"
+        ></p-button>
+        @if (isLoading()) {
+          <div class="bg-yellow-50 dark:bg-yellow-900/20 p-4 rounded mb-2">
+            <p class="text-sm">Loading...</p>
+          </div>
+        }
+        @if (finalizeResult()) {
+          <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded">
+            <p class="text-sm">{{ finalizeResult() }}</p>
+          </div>
+        }
+      </div>
+
+      <!-- delay() Demo -->
+      <div class="border-2 border-blue-200 dark:border-blue-800 rounded-lg p-4">
+        <h3 class="text-lg font-semibold text-blue-800 dark:text-blue-200 mb-4">delay() - Delay Emissions</h3>
+        <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">
+          Delays emissions by 2 seconds.
+        </p>
+        <p-button
+          label="Test delay(2000ms)"
+          icon="pi pi-clock"
+          (click)="testDelay()"
+          class="mb-4"
+        ></p-button>
+        @if (delayResult()) {
+          <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded">
+            <p class="text-sm">{{ delayResult() }}</p>
+          </div>
+        }
+      </div>
+
+      <!-- timeout() Demo -->
+      <div class="border-2 border-red-200 dark:border-red-800 rounded-lg p-4">
+        <h3 class="text-lg font-semibold text-red-800 dark:text-red-200 mb-4">timeout() - Request Timeout</h3>
+        <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">
+          Simulates a slow request that times out after 2 seconds.
+        </p>
+        <p-button
+          label="Test timeout(2000ms)"
+          icon="pi pi-exclamation-triangle"
+          (click)="testTimeout()"
+          severity="danger"
+          class="mb-4"
+        ></p-button>
+        @if (timeoutResult()) {
+          <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded">
+            <p class="text-sm">{{ timeoutResult() }}</p>
+          </div>
+        }
+      </div>
+    </div>
+  </p-card>
+
+  <!-- Key Takeaways -->
+  <p-card class="shadow-md">
+    <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">Key Takeaways</h2>
+    <ul class="space-y-2 text-gray-700 dark:text-gray-300">
+      <li class="flex items-start">
+        <span class="text-green-500 mr-2">✓</span>
+        <span>Use <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">tap()</code> for side effects (logging, debugging) without modifying the stream</span>
+      </li>
+      <li class="flex items-start">
+        <span class="text-green-500 mr-2">✓</span>
+        <span>Always use <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">finalize()</code> for cleanup (hide loaders, close connections) - it always executes</span>
+      </li>
+      <li class="flex items-start">
+        <span class="text-green-500 mr-2">✓</span>
+        <span>Use <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">timeout()</code> to prevent hanging requests - improves UX</span>
+      </li>
+      <li class="flex items-start">
+        <span class="text-green-500 mr-2">✓</span>
+        <span>Use <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">delay()</code> for testing, animations, or rate limiting</span>
+      </li>
+      <li class="flex items-start">
+        <span class="text-red-500 mr-2">✗</span>
+        <span>Never put side effects in subscribe() - use tap() instead for better composition</span>
+      </li>
+    </ul>
+  </p-card>
+</div>
+

@@ -1,0 +1,196 @@
+<div class="max-w-7xl mx-auto space-y-6">
+  <!-- Header -->
+  <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+    <h1 class="text-3xl font-bold text-gray-800 dark:text-gray-200 mb-2">Part 3: Filtering Operators</h1>
+    <p class="text-gray-600 dark:text-gray-400">
+      Controlling emissions: <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">filter()</code>, 
+      <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">take()</code>, 
+      <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">takeUntil()</code>, 
+      <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">takeWhile()</code>, 
+      <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">distinctUntilChanged()</code>
+    </p>
+  </div>
+
+  <!-- Explanation -->
+  <p-card class="shadow-md">
+    <div class="space-y-4">
+      <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200">Filtering Operators</h2>
+      <p class="text-gray-700 dark:text-gray-300">
+        Filtering operators control which values are emitted and when observables complete. They're essential
+        for memory leak prevention and efficient data processing.
+      </p>
+      <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg">
+        <h3 class="font-semibold text-blue-900 dark:text-blue-200 mb-2">Key Operators:</h3>
+        <ul class="list-disc list-inside space-y-1 text-blue-800 dark:text-blue-300">
+          <li><strong>filter():</strong> Conditional emission based on predicate</li>
+          <li><strong>take(n):</strong> First n values then complete</li>
+          <li><strong>takeUntil():</strong> Complete when notifier emits (memory leak prevention)</li>
+          <li><strong>takeWhile():</strong> Complete when condition fails</li>
+          <li><strong>distinctUntilChanged():</strong> Only emit when value changes</li>
+        </ul>
+      </div>
+    </div>
+  </p-card>
+
+  <!-- Code Examples -->
+  <p-card class="shadow-md">
+    <p-tabs value="0">
+      <p-tablist>
+        <p-tab value="0">❌ Violation</p-tab>
+        <p-tab value="1">✅ Solution</p-tab>
+      </p-tablist>
+      <p-tabpanels>
+        <p-tabpanel value="0">
+          <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>{{ violationCode }}</code></pre>
+        </p-tabpanel>
+        <p-tabpanel value="1">
+          <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>{{ solutionCode }}</code></pre>
+        </p-tabpanel>
+      </p-tabpanels>
+    </p-tabs>
+  </p-card>
+
+  <!-- Live Demo -->
+  <p-card class="shadow-md">
+    <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">Live Demo</h2>
+    
+    <div class="space-y-6">
+      <!-- filter() Demo -->
+      <div class="border-2 border-gray-200 dark:border-gray-700 rounded-lg p-4">
+        <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">filter() - Conditional Emission</h3>
+        <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">
+          Emits only even numbers greater than 5.
+        </p>
+        <p-button
+          label="Test filter()"
+          icon="pi pi-filter"
+          (click)="testFilter()"
+          class="mb-4"
+        ></p-button>
+        @if (filterResult().length > 0) {
+          <div class="bg-gray-100 dark:bg-gray-700 p-4 rounded">
+            <p class="text-sm font-semibold mb-2">Filtered Values:</p>
+            <p class="text-sm">{{ filterResult().join(', ') }}</p>
+          </div>
+        }
+      </div>
+
+      <!-- take() Demo -->
+      <div class="border-2 border-gray-200 dark:border-gray-700 rounded-lg p-4">
+        <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">take(n) - First N Values</h3>
+        <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">
+          Takes only the first 5 values, then completes.
+        </p>
+        <p-button
+          label="Test take(5)"
+          icon="pi pi-list"
+          (click)="testTake()"
+          class="mb-4"
+        ></p-button>
+        @if (takeResult().length > 0) {
+          <div class="bg-gray-100 dark:bg-gray-700 p-4 rounded">
+            <p class="text-sm font-semibold mb-2">First 5 Values:</p>
+            <p class="text-sm">{{ takeResult().join(', ') }}</p>
+          </div>
+        }
+      </div>
+
+      <!-- takeUntil() Demo -->
+      <div class="border-2 border-green-200 dark:border-green-800 rounded-lg p-4">
+        <h3 class="text-lg font-semibold text-green-800 dark:text-green-200 mb-4">takeUntil() - Memory Leak Prevention</h3>
+        <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">
+          Streams values until destroyed. Auto-stops after 3 seconds (simulating component destroy).
+        </p>
+        <p-button
+          label="Test takeUntil()"
+          icon="pi pi-shield"
+          (click)="testTakeUntil()"
+          [disabled]="isStreaming()"
+          severity="success"
+          class="mb-4"
+        ></p-button>
+        @if (isStreaming()) {
+          <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded mb-2">
+            <p class="text-sm font-semibold">Streaming... Count: {{ streamCount() }}</p>
+            <p class="text-xs text-gray-600 dark:text-gray-400">Will auto-stop after 3 seconds</p>
+          </div>
+        }
+        @if (takeUntilResult().length > 0 && !isStreaming()) {
+          <div class="bg-gray-100 dark:bg-gray-700 p-4 rounded">
+            <p class="text-sm font-semibold mb-2">Streamed Values (stopped):</p>
+            <p class="text-sm">{{ takeUntilResult().slice(-10).join(', ') }}...</p>
+          </div>
+        }
+      </div>
+
+      <!-- takeWhile() Demo -->
+      <div class="border-2 border-gray-200 dark:border-gray-700 rounded-lg p-4">
+        <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">takeWhile() - Conditional Completion</h3>
+        <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">
+          Emits values while condition is true (stops when value >= 10).
+        </p>
+        <p-button
+          label="Test takeWhile()"
+          icon="pi pi-check-circle"
+          (click)="testTakeWhile()"
+          class="mb-4"
+        ></p-button>
+        @if (takeWhileResult().length > 0) {
+          <div class="bg-gray-100 dark:bg-gray-700 p-4 rounded">
+            <p class="text-sm font-semibold mb-2">Values (stopped at 10):</p>
+            <p class="text-sm">{{ takeWhileResult().join(', ') }}</p>
+          </div>
+        }
+      </div>
+
+      <!-- distinctUntilChanged() Demo -->
+      <div class="border-2 border-blue-200 dark:border-blue-800 rounded-lg p-4">
+        <h3 class="text-lg font-semibold text-blue-800 dark:text-blue-200 mb-4">distinctUntilChanged() - Remove Duplicates</h3>
+        <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">
+          Emits only when value changes. Prevents duplicate API calls.
+        </p>
+        <p-button
+          label="Test distinctUntilChanged()"
+          icon="pi pi-ban"
+          (click)="testDistinctUntilChanged()"
+          class="mb-4"
+        ></p-button>
+        @if (distinctResult().length > 0) {
+          <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded">
+            <p class="text-sm font-semibold mb-2">Distinct Values:</p>
+            <p class="text-sm">Input: a, a, b, b, b, c, a, a</p>
+            <p class="text-sm">Output: {{ distinctResult().join(', ') }}</p>
+          </div>
+        }
+      </div>
+    </div>
+  </p-card>
+
+  <!-- Key Takeaways -->
+  <p-card class="shadow-md">
+    <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">Key Takeaways</h2>
+    <ul class="space-y-2 text-gray-700 dark:text-gray-300">
+      <li class="flex items-start">
+        <span class="text-green-500 mr-2">✓</span>
+        <span>Always use <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">takeUntil()</code> or <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">takeUntilDestroyed()</code> to prevent memory leaks</span>
+      </li>
+      <li class="flex items-start">
+        <span class="text-green-500 mr-2">✓</span>
+        <span>Use <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">distinctUntilChanged()</code> with form valueChanges to prevent duplicate API calls</span>
+      </li>
+      <li class="flex items-start">
+        <span class="text-green-500 mr-2">✓</span>
+        <span>Use <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">take(n)</code> to limit emissions and ensure completion</span>
+      </li>
+      <li class="flex items-start">
+        <span class="text-green-500 mr-2">✓</span>
+        <span>Use <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">filter()</code> to conditionally process values</span>
+      </li>
+      <li class="flex items-start">
+        <span class="text-red-500 mr-2">✗</span>
+        <span>Never forget cleanup - unsubscribed observables cause memory leaks!</span>
+      </li>
+    </ul>
+  </p-card>
+</div>
+
