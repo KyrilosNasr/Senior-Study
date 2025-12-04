@@ -9,11 +9,10 @@
 
 <!-- Desktop Sidebar -->
 <aside
-  class="hidden lg:block w-72 bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 shadow-xl border-r border-gray-200 dark:border-gray-700 flex flex-col h-screen z-40">
-  <div class="p-6 flex-shrink-0 border-b border-gray-200 dark:border-gray-700">
-    <h1 class="text-3xl font-bold bg-gradient-to-r bg-clip-text text-transparent"
-      [class]="config.gradientFrom + ' ' + config.gradientTo">{{ config.title }}</h1>
-    <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">{{ config.subtitle }}</p>
+  [class]="'hidden lg:block w-72 shadow-xl border-r border-gray-200 dark:border-gray-700 flex flex-col h-screen z-40 ' + sidebarGradient()">
+  <div class="p-6 flex-shrink-0 border-b border-gray-200/50 dark:border-gray-700/50">
+    <h1 [class]="'text-3xl font-bold ' + titleGradient()">{{ config.title }}</h1>
+    <p class="text-xs text-gray-700 dark:text-gray-300 mt-1 font-medium">{{ config.subtitle }}</p>
   </div>
   <div
     class="flex-1 overflow-y-scroll px-3 py-4 scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-600 scrollbar-track-transparent min-h-0">

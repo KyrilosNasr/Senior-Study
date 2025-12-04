@@ -4,6 +4,7 @@ export default {
   content: [
     './src/**/*.{html,ts}',
   ],
+  darkMode: 'class',
   theme: {
     extend: {
       typography: {
@@ -32,6 +33,16 @@ export default {
         '18': '4.5rem',
         '22': '5.5rem',
         '26': '6.5rem',
+      },
+      colors: {
+        accent: {
+          DEFAULT: 'var(--accent-color)',
+          light: 'var(--accent-color-light)',
+          dark: 'var(--accent-color-dark)',
+        },
+      },
+      backgroundImage: {
+        'gradient-accent': 'linear-gradient(var(--gradient-direction, 135deg), var(--accent-gradient-from), var(--accent-gradient-to))',
       },
     },
   },

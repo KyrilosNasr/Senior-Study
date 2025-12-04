@@ -1,21 +1,28 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, inject, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule, RouterOutlet } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { TreeNode } from 'primeng/api';
 import { SidebarComponent, SidebarConfig } from '../../shared/components/sidebar/sidebar.component';
+import { ThemeService } from '../../core/services/theme.service';
+import { ThemeToggleComponent } from '../../shared/components/theme-toggle/theme-toggle.component';
 
 @Component({
   selector: 'app-oop-layout',
   standalone: true,
-  imports: [CommonModule, RouterModule, RouterOutlet, ButtonModule, SidebarComponent],
+  imports: [CommonModule, RouterModule, RouterOutlet, ButtonModule, SidebarComponent, ThemeToggleComponent],
   templateUrl: './oop-layout.component.html',
   styleUrl: './oop-layout.component.scss'
 })
 export class OopLayoutComponent {
+  private readonly router = inject(Router);
+  private readonly themeService = inject(ThemeService);
+
   sidebarVisible = signal(false);
-  
-  constructor(private router: Router) {}
+
+  readonly contentGradient = computed(() => {
+    return this.themeService.getGradientClasses('to-br', 'subtle');
+  });
 
   sidebarConfig: SidebarConfig = {
     title: 'OOP',

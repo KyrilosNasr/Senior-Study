@@ -1,0 +1,47 @@
+<div class="flex items-center gap-2 relative">
+  <!-- Theme Mode Toggle -->
+  <button
+    type="button"
+    (click)="toggleMode()"
+    class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-500"
+    [title]="themeMode() === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'"
+    [attr.aria-label]="themeMode() === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'"
+  >
+    @if (themeMode() === 'dark') {
+      <i class="fas fa-sun text-yellow-500 text-lg"></i>
+    } @else {
+      <i class="fas fa-moon text-gray-700 dark:text-gray-300 text-lg"></i>
+    }
+  </button>
+
+  <!-- Accent Color Picker Button -->
+  <button
+    type="button"
+    (click)="toggleColorPicker()"
+    class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-500"
+    title="Change Accent Color"
+    aria-label="Change Accent Color"
+    [attr.aria-expanded]="colorPickerOpen()"
+  >
+    <i class="fas fa-palette text-gray-700 dark:text-gray-300 text-lg"></i>
+  </button>
+
+  <!-- Color Picker Dropdown -->
+  @if (colorPickerOpen()) {
+    <div class="absolute right-0 top-full mt-2 bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 p-3 min-w-[200px] z-50">
+      <h3 class="text-sm font-semibold text-gray-900 dark:text-gray-100 mb-3">Accent Color</h3>
+      <div class="grid grid-cols-5 gap-2">
+        @for (color of accentColors; track color) {
+          <button
+            type="button"
+            (click)="selectAccentColor(color)"
+            [class]="'w-10 h-10 rounded-full transition-all duration-200 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 ' + getColorClasses(color) + (isSelected(color) ? ' ring-2 ring-gray-900 dark:ring-gray-100 ring-offset-2' : '')"
+            [attr.aria-label]="'Select ' + getColorName(color) + ' accent color'"
+            [title]="getColorName(color)"
+          ></button>
+        }
+      </div>
+    </div>
+  }
+</div>
+
