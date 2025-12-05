@@ -1,101 +1,180 @@
-<div class="max-w-7xl mx-auto space-y-8">
-  <!-- Header -->
-  <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8">
-    <h1 class="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-3">Decorators & Metadata Reflection</h1>
-    <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-      Learn how decorators work and how to use metadata reflection in TypeScript.
-    </p>
+<div class="container-responsive space-y-responsive">
+  <!-- Hero Header -->
+  <div class="card-modern padding-responsive hover-lift slide-in-up">
+    <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+      <div class="flex-1">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br from-blue-600 to-cyan-600 flex items-center justify-center shadow-lg">
+            <i class="fas fa-star text-white text-xl sm:text-2xl"></i>
+          </div>
+          <div>
+            <span class="badge-modern text-xs sm:text-sm">TypeScript</span>
+          </div>
+        </div>
+        <h1 class="heading-responsive text-gradient mb-4">
+          Decorators & Metadata Reflection
+        </h1>
+        <p class="text-responsive text-gray-700 dark:text-gray-300">
+          Learn how decorators work and how to use metadata reflection in TypeScript.
+        </p>
+      </div>
+      <div class="hidden lg:block">
+        <div class="w-32 h-32 rounded-2xl bg-gradient-to-br from-blue-600/20 to-cyan-600/20 flex items-center justify-center">
+          <i class="fas fa-star text-6xl text-blue-600"></i>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- Explanation -->
-  <p-card class="shadow-lg">
-    <div class="space-y-4">
-      <h2 class="text-3xl font-semibold text-gray-900 dark:text-gray-100 mb-3">What are Decorators?</h2>
-      <p class="text-base text-gray-700 dark:text-gray-300 leading-relaxed">
+  <p-card class="card-modern hover-lift slide-in-up">
+    <div class="padding-responsive space-y-6">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+          <i class="fas fa-lightbulb text-white"></i>
+        </div>
+        <h2 class="subheading-responsive text-gray-900 dark:text-gray-100">What are Decorators?</h2>
+      </div>
+      
+      <p class="text-responsive text-gray-700 dark:text-gray-300 leading-relaxed">
         Decorators are a special kind of declaration that can be attached to classes, methods, properties,
         and parameters. They use the form <code>@expression</code> where expression evaluates to a function.
       </p>
-      <div class="bg-blue-50 dark:bg-blue-900/30 p-5 rounded-lg border border-blue-200 dark:border-blue-800">
-        <h3 class="text-lg font-semibold text-blue-900 dark:text-blue-100 mb-3">Types of Decorators:</h3>
-        <ul class="list-disc list-inside space-y-2 text-base text-blue-800 dark:text-blue-200">
-          <li><strong>Class Decorators:</strong> Applied to class declarations</li>
-          <li><strong>Method Decorators:</strong> Applied to method declarations</li>
-          <li><strong>Property Decorators:</strong> Applied to property declarations</li>
-          <li><strong>Parameter Decorators:</strong> Applied to parameter declarations</li>
+      
+      <div class="glass rounded-xl p-6 border-l-4 border-accent">
+        <div class="flex items-center gap-3 mb-4">
+          <i class="fas fa-star text-accent text-xl"></i>
+          <h3 class="text-lg sm:text-xl font-semibold text-gray-900 dark:text-gray-100">Types of Decorators</h3>
+        </div>
+        <ul class="list-modern">
+          <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+            <strong>Class Decorators:</strong> Applied to class declarations
+          </li>
+          <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+            <strong>Method Decorators:</strong> Applied to method declarations
+          </li>
+          <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+            <strong>Property Decorators:</strong> Applied to property declarations
+          </li>
+          <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+            <strong>Parameter Decorators:</strong> Applied to parameter declarations
+          </li>
         </ul>
       </div>
     </div>
   </p-card>
 
   <!-- Code Examples -->
-  <p-card class="shadow-lg">
-    <p-tabs value="0">
-      <p-tablist>
-        <p-tab value="0">Class Decorator</p-tab>
-        <p-tab value="1">Method Decorator</p-tab>
-        <p-tab value="2">Property Decorator</p-tab>
-        <p-tab value="3">Decorator Factory</p-tab>
-      </p-tablist>
-      <p-tabpanels>
-        <p-tabpanel value="0">
-          <pre class="overflow-x-auto"><code>{{ classDecoratorCode }}</code></pre>
-        </p-tabpanel>
-        <p-tabpanel value="1">
-          <pre class="overflow-x-auto"><code>{{ methodDecoratorCode }}</code></pre>
-        </p-tabpanel>
-        <p-tabpanel value="2">
-          <pre class="overflow-x-auto"><code>{{ propertyDecoratorCode }}</code></pre>
-        </p-tabpanel>
-        <p-tabpanel value="3">
-          <pre class="overflow-x-auto"><code>{{ decoratorFactoryCode }}</code></pre>
-        </p-tabpanel>
-      </p-tabpanels>
-    </p-tabs>
+  <p-card class="card-modern hover-lift slide-in-up">
+    <div class="padding-responsive">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-green-500 to-teal-600 flex items-center justify-center">
+          <i class="fas fa-code text-white"></i>
+        </div>
+        <h2 class="subheading-responsive text-gray-900 dark:text-gray-100">Code Examples</h2>
+      </div>
+      
+      <p-tabs value="0">
+        <p-tablist class="flex flex-wrap gap-2 mb-6">
+          <p-tab value="0" class="flex items-center gap-2">
+            <i class="fas fa-cube text-blue-500"></i>
+            <span class="text-sm sm:text-base font-semibold">Class Decorator</span>
+          </p-tab>
+          <p-tab value="1" class="flex items-center gap-2">
+            <i class="fas fa-function text-purple-500"></i>
+            <span class="text-sm sm:text-base font-semibold">Method Decorator</span>
+          </p-tab>
+          <p-tab value="2" class="flex items-center gap-2">
+            <i class="fas fa-tag text-cyan-500"></i>
+            <span class="text-sm sm:text-base font-semibold">Property Decorator</span>
+          </p-tab>
+          <p-tab value="3" class="flex items-center gap-2">
+            <i class="fas fa-industry text-green-500"></i>
+            <span class="text-sm sm:text-base font-semibold">Decorator Factory</span>
+          </p-tab>
+        </p-tablist>
+        <p-tabpanels>
+          <p-tabpanel value="0">
+            <div class="code-block-modern">
+              <pre class="overflow-x-auto text-sm sm:text-base"><code>{{ classDecoratorCode }}</code></pre>
+            </div>
+          </p-tabpanel>
+          <p-tabpanel value="1">
+            <div class="code-block-modern">
+              <pre class="overflow-x-auto text-sm sm:text-base"><code>{{ methodDecoratorCode }}</code></pre>
+            </div>
+          </p-tabpanel>
+          <p-tabpanel value="2">
+            <div class="code-block-modern">
+              <pre class="overflow-x-auto text-sm sm:text-base"><code>{{ propertyDecoratorCode }}</code></pre>
+            </div>
+          </p-tabpanel>
+          <p-tabpanel value="3">
+            <div class="code-block-modern">
+              <pre class="overflow-x-auto text-sm sm:text-base"><code>{{ decoratorFactoryCode }}</code></pre>
+            </div>
+          </p-tabpanel>
+        </p-tabpanels>
+      </p-tabs>
+    </div>
   </p-card>
 
-  <!-- Live Demo -->
-  <p-card class="shadow-lg">
-    <h2 class="text-3xl font-semibold text-gray-900 dark:text-gray-100 mb-3 mb-4">Live Demo</h2>
-    <p class="text-base text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
-      Test decorators in action. Check the browser console for decorator output.
-    </p>
-
-    <div class="space-y-4">
-      <p-button
-        label="Test Decorators"
-        icon="pi pi-star"
-        (click)="testDecorators()"
-      ></p-button>
-
-      @if (result()) {
-        <div class="bg-gray-100 dark:bg-gray-700 p-5 rounded-lg">
-          <pre class="text-sm text-gray-800 dark:text-gray-200 whitespace-pre-wrap">{{ result() }}</pre>
+  <!-- Interactive Demo -->
+  <p-card class="card-modern hover-lift slide-in-up">
+    <div class="padding-responsive">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center">
+          <i class="fas fa-play-circle text-white"></i>
         </div>
-      }
+        <h2 class="subheading-responsive text-gray-900 dark:text-gray-100">Interactive Demo</h2>
+      </div>
+      
+      <p class="text-responsive text-gray-700 dark:text-gray-300 mb-8">
+        Test decorators in action. Check the browser console for decorator output.
+      </p>
+
+      <div class="space-y-6">
+        <p-button
+          label="Test Decorators"
+          icon="pi pi-star"
+          (click)="testDecorators()"
+          class="btn-modern"
+        ></p-button>
+
+        @if (result()) {
+          <div class="glass rounded-xl p-6 fade-in">
+            <pre class="text-sm sm:text-base text-gray-800 dark:text-gray-200 whitespace-pre-wrap">{{ result() }}</pre>
+          </div>
+        }
+      </div>
     </div>
   </p-card>
 
   <!-- Key Takeaways -->
-  <p-card class="shadow-lg">
-    <h2 class="text-3xl font-semibold text-gray-900 dark:text-gray-100 mb-3 mb-4">Key Takeaways</h2>
-    <ul class="space-y-2 text-base text-gray-700 dark:text-gray-300 leading-relaxed">
-      <li class="flex items-start">
-        <span class="text-green-500 mr-2">✓</span>
-        <span>Decorators are functions that modify classes, methods, properties, or parameters</span>
-      </li>
-      <li class="flex items-start">
-        <span class="text-green-500 mr-2">✓</span>
-        <span>Decorator factories return decorator functions and accept parameters</span>
-      </li>
-      <li class="flex items-start">
-        <span class="text-green-500 mr-2">✓</span>
-        <span>Enable powerful patterns like dependency injection, logging, and validation</span>
-      </li>
-      <li class="flex items-start">
-        <span class="text-green-500 mr-2">✓</span>
-        <span>Angular uses decorators extensively (@Component, @Injectable, etc.)</span>
-      </li>
-    </ul>
+  <p-card class="card-modern hover-lift slide-in-up">
+    <div class="padding-responsive">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-teal-500 to-cyan-600 flex items-center justify-center">
+          <i class="fas fa-graduation-cap text-white"></i>
+        </div>
+        <h2 class="subheading-responsive text-gray-900 dark:text-gray-100">Key Takeaways</h2>
+      </div>
+      
+      <ul class="list-modern">
+        <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+          Decorators are functions that modify classes, methods, properties, or parameters
+        </li>
+        <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+          Decorator factories return decorator functions and accept parameters
+        </li>
+        <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+          Enable powerful patterns like dependency injection, logging, and validation
+        </li>
+        <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+          Angular uses decorators extensively (@Component, @Injectable, etc.)
+        </li>
+      </ul>
+    </div>
   </p-card>
 </div>
 

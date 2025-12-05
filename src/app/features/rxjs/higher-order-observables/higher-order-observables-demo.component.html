@@ -1,111 +1,192 @@
-<div class="max-w-7xl mx-auto space-y-8">
-  <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8">
-    <h1 class="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-3">Higher-Order Observables</h1>
-    <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-      Managing observables that emit other observables using flattening operators.
-    </p>
+<div class="container-responsive space-y-responsive">
+  <!-- Hero Header -->
+  <div class="card-modern padding-responsive hover-lift slide-in-up">
+    <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+      <div class="flex-1">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center shadow-lg">
+            <i class="fas fa-layer-group text-white text-xl sm:text-2xl"></i>
+          </div>
+          <div class="flex-1">
+            <span class="badge-modern text-xs sm:text-sm">RxJS</span>
+            <h2 class="heading-responsive text-gradient">Higher-Order Observables</h2>
+          </div>
+          <div class="flex items-center gap-2">
+            <i class="fas fa-star text-accent text-xl"></i>
+            <i class="fas fa-star text-accent text-xl"></i>
+            <i class="fas fa-star text-accent text-xl"></i>
+
+          </div>
+          <div>
+            <span class="badge-modern text-xs sm:text-sm">RxJS Patterns</span>
+          </div>
+        </div>
+        <h1 class="heading-responsive text-gradient mb-4">
+          Higher-Order Observables
+        </h1>
+        <p class="text-responsive text-gray-700 dark:text-gray-300">
+          Managing observables that emit other observables using flattening operators.
+        </p>
+      </div>
+      <div class="hidden lg:block">
+        <div class="w-32 h-32 rounded-2xl bg-gradient-to-br from-purple-500/20 to-pink-600/20 flex items-center justify-center">
+          <i class="fas fa-layer-group text-6xl text-purple-500"></i>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <p-card class="shadow-lg">
-    <div class="space-y-4">
-      <h2 class="text-3xl font-semibold text-gray-900 dark:text-gray-100 mb-3">What are Higher-Order Observables?</h2>
-      <p class="text-base text-gray-700 dark:text-gray-300 leading-relaxed">
+  <!-- Explanation -->
+  <p-card class="card-modern hover-lift slide-in-up">
+    <div class="padding-responsive space-y-6">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+          <i class="fas fa-lightbulb text-white"></i>
+        </div>
+        <h2 class="subheading-responsive text-gray-900 dark:text-gray-100">What are Higher-Order Observables?</h2>
+      </div>
+      
+      <p class="text-responsive text-gray-700 dark:text-gray-300 leading-relaxed">
         Higher-order observables are observables that emit other observables. Flattening operators like switchMap,
         mergeMap, concatMap, and exhaustMap handle these nested observables.
       </p>
-      <div class="bg-blue-50 dark:bg-blue-900/30 p-5 rounded-lg border border-blue-200 dark:border-blue-800">
-        <h3 class="text-lg font-semibold text-blue-900 dark:text-blue-100 mb-3">Key Patterns:</h3>
-        <ul class="list-disc list-inside space-y-2 text-base text-blue-800 dark:text-blue-200">
-          <li>Polling: Repeated data fetching at intervals</li>
-          <li>Sequential chains: Dependent API calls</li>
-          <li>Parallel requests: Independent operations</li>
-          <li>Cancellation: SwitchMap cancels previous requests</li>
+      
+      <div class="glass rounded-xl p-6 border-l-4 border-accent">
+        <div class="flex items-center gap-3 mb-4">
+          <i class="fas fa-star text-accent text-xl"></i>
+          <h3 class="text-lg sm:text-xl font-semibold text-gray-900 dark:text-gray-100">Key Patterns</h3>
+        </div>
+        <ul class="list-modern">
+          <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+            Polling: Repeated data fetching at intervals
+          </li>
+          <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+            Sequential chains: Dependent API calls
+          </li>
+          <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+            Parallel requests: Independent operations
+          </li>
+          <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+            Cancellation: SwitchMap cancels previous requests
+          </li>
         </ul>
       </div>
     </div>
   </p-card>
 
-  <p-card class="shadow-lg">
-    <p-tabs value="0">
-      <p-tablist>
-        <p-tab value="0">❌ Violation</p-tab>
-        <p-tab value="1">✅ Solution</p-tab>
-      </p-tablist>
-      <p-tabpanels>
-        <p-tabpanel value="0">
-          <pre class="overflow-x-auto"><code>{{ violationCode }}</code></pre>
-        </p-tabpanel>
-        <p-tabpanel value="1">
-          <pre class="overflow-x-auto"><code>{{ solutionCode }}</code></pre>
-        </p-tabpanel>
-      </p-tabpanels>
-    </p-tabs>
+  <!-- Code Examples -->
+  <p-card class="card-modern hover-lift slide-in-up">
+    <div class="padding-responsive">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-green-500 to-teal-600 flex items-center justify-center">
+          <i class="fas fa-code text-white"></i>
+        </div>
+        <h2 class="subheading-responsive text-gray-900 dark:text-gray-100">Code Examples</h2>
+      </div>
+      
+      <p-tabs value="0">
+        <p-tablist class="flex flex-wrap gap-2 mb-6">
+          <p-tab value="0" class="flex items-center gap-2">
+            <i class="fas fa-times-circle text-red-500"></i>
+            <span class="text-sm sm:text-base font-semibold">Violation</span>
+          </p-tab>
+          <p-tab value="1" class="flex items-center gap-2">
+            <i class="fas fa-check-circle text-green-500"></i>
+            <span class="text-sm sm:text-base font-semibold">Solution</span>
+          </p-tab>
+        </p-tablist>
+        <p-tabpanels>
+          <p-tabpanel value="0">
+            <div class="code-block-modern">
+              <pre class="overflow-x-auto text-sm sm:text-base"><code>{{ violationCode }}</code></pre>
+            </div>
+          </p-tabpanel>
+          <p-tabpanel value="1">
+            <div class="code-block-modern">
+              <pre class="overflow-x-auto text-sm sm:text-base"><code>{{ solutionCode }}</code></pre>
+            </div>
+          </p-tabpanel>
+        </p-tabpanels>
+      </p-tabs>
+    </div>
   </p-card>
 
-  <p-card class="shadow-lg">
-    <h2 class="text-3xl font-semibold text-gray-900 dark:text-gray-100 mb-3 mb-4">Live Demo</h2>
-    
-    <div class="space-y-8">
-      <div class="border-2 border-gray-200 dark:border-gray-700 rounded-lg p-5">
-        <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">Polling Pattern</h3>
-        <p-button
-          label="Start Polling"
-          icon="pi pi-play"
-          (click)="startPolling()"
-          [disabled]="isPolling()"
-          class="mb-4"
-        ></p-button>
-        
-        @if (pollingData().length > 0) {
-          <div class="bg-gray-100 dark:bg-gray-700 p-5 rounded">
-            <h4 class="font-semibold mb-2">Polled Data:</h4>
-            <ul class="list-disc list-inside space-y-1 text-sm">
-              @for (item of pollingData(); track $index) {
-                <li>{{ item | json }}</li>
-              }
-            </ul>
-          </div>
-        }
+  <!-- Live Demo -->
+  <p-card class="card-modern hover-lift slide-in-up">
+    <div class="padding-responsive">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center">
+          <i class="fas fa-play-circle text-white"></i>
+        </div>
+        <h2 class="subheading-responsive text-gray-900 dark:text-gray-100">Interactive Demo</h2>
       </div>
+      
+      <div class="space-y-8">
+        <div class="border-2 border-gray-200 dark:border-gray-700 rounded-lg p-5">
+          <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">Polling Pattern</h3>
+          <p-button
+            label="Start Polling"
+            icon="pi pi-play"
+            (click)="startPolling()"
+            [disabled]="isPolling()"
+            class="mb-4"
+          ></p-button>
+          
+          @if (pollingData().length > 0) {
+            <div class="bg-gray-100 dark:bg-gray-700 p-5 rounded">
+              <h4 class="font-semibold mb-2">Polled Data:</h4>
+              <ul class="list-disc list-inside space-y-1 text-sm">
+                @for (item of pollingData(); track $index) {
+                  <li>{{ item | json }}</li>
+                }
+              </ul>
+            </div>
+          }
+        </div>
 
-      <div class="border-2 border-gray-200 dark:border-gray-700 rounded-lg p-5">
-        <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">Sequential Request Chain</h3>
-        <p-button
-          label="Load User Data (Sequential)"
-          icon="pi pi-download"
-          (click)="testSequential()"
-          class="mb-4"
-        ></p-button>
-        
-        @if (sequentialData(); as data) {
-          <div class="bg-gray-100 dark:bg-gray-700 p-5 rounded">
-            <pre class="text-sm">{{ data | json }}</pre>
-          </div>
-        }
+        <div class="border-2 border-gray-200 dark:border-gray-700 rounded-lg p-5">
+          <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">Sequential Request Chain</h3>
+          <p-button
+            label="Load User Data (Sequential)"
+            icon="pi pi-download"
+            (click)="testSequential()"
+            class="mb-4"
+          ></p-button>
+          
+          @if (sequentialData(); as data) {
+            <div class="bg-gray-100 dark:bg-gray-700 p-5 rounded">
+              <pre class="text-sm">{{ data | json }}</pre>
+            </div>
+          }
+        </div>
       </div>
     </div>
   </p-card>
 
-  <p-card class="shadow-lg">
-    <h2 class="text-3xl font-semibold text-gray-900 dark:text-gray-100 mb-3 mb-4">Key Takeaways</h2>
-    <ul class="space-y-2 text-base text-gray-700 dark:text-gray-300 leading-relaxed">
-      <li class="flex items-start">
-        <span class="text-green-500 mr-2">✓</span>
-        <span>Use switchMap for cancellable operations (search, typeahead)</span>
-      </li>
-      <li class="flex items-start">
-        <span class="text-green-500 mr-2">✓</span>
-        <span>Use concatMap when order matters (sequential operations)</span>
-      </li>
-      <li class="flex items-start">
-        <span class="text-green-500 mr-2">✓</span>
-        <span>Use mergeMap for parallel independent operations</span>
-      </li>
-      <li class="flex items-start">
-        <span class="text-green-500 mr-2">✓</span>
-        <span>Avoid nested subscriptions - use flattening operators</span>
-      </li>
-    </ul>
+  <!-- Key Takeaways -->
+  <p-card class="card-modern hover-lift slide-in-up">
+    <div class="padding-responsive">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-teal-500 to-cyan-600 flex items-center justify-center">
+          <i class="fas fa-graduation-cap text-white"></i>
+        </div>
+        <h2 class="subheading-responsive text-gray-900 dark:text-gray-100">Key Takeaways</h2>
+      </div>
+      
+      <ul class="list-modern">
+        <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+          Use switchMap for cancellable operations (search, typeahead)
+        </li>
+        <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+          Use concatMap when order matters (sequential operations)
+        </li>
+        <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+          Use mergeMap for parallel independent operations
+        </li>
+        <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+          Avoid nested subscriptions - use flattening operators
+        </li>
+      </ul>
+    </div>
   </p-card>
 </div>
-

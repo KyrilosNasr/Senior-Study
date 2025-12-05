@@ -1,4 +1,4 @@
-import { Component, signal, inject, computed } from '@angular/core';
+import { Component, signal, inject, computed, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule, RouterOutlet } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
@@ -6,22 +6,32 @@ import { TreeNode } from 'primeng/api';
 import { SidebarComponent, SidebarConfig } from '../../shared/components/sidebar/sidebar.component';
 import { ThemeService } from '../../core/services/theme.service';
 import { ThemeToggleComponent } from '../../shared/components/theme-toggle/theme-toggle.component';
+import { getIconForLabel } from '../../shared/config/icon-mapping.config';
 
 @Component({
   selector: 'app-oop-layout',
   standalone: true,
   imports: [CommonModule, RouterModule, RouterOutlet, ButtonModule, SidebarComponent, ThemeToggleComponent],
   templateUrl: './oop-layout.component.html',
-  styleUrl: './oop-layout.component.scss'
+  styleUrl: './oop-layout.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class OopLayoutComponent {
   private readonly router = inject(Router);
   private readonly themeService = inject(ThemeService);
 
+  @ViewChild(SidebarComponent) sidebarComponent = signal<SidebarComponent | undefined>(undefined);
+
   sidebarVisible = signal(false);
 
   readonly contentGradient = computed(() => {
     return this.themeService.getGradientClasses('to-br', 'subtle');
+  });
+
+  readonly mainContentClass = computed(() => {
+    const sidebar = this.sidebarComponent();
+    if (!sidebar) return 'lg:ml-64';
+    return sidebar.isExpanded() ? 'lg:ml-64' : 'lg:ml-16';
   });
 
   sidebarConfig: SidebarConfig = {
@@ -39,25 +49,25 @@ export class OopLayoutComponent {
       children: [
         {
           label: 'Encapsulation',
-          icon: 'pi pi-circle',
+          icon: getIconForLabel('Encapsulation'),
           data: '/oop/encapsulation',
           leaf: true
         },
         {
           label: 'Inheritance',
-          icon: 'pi pi-circle',
+          icon: getIconForLabel('Inheritance'),
           data: '/oop/inheritance',
           leaf: true
         },
         {
           label: 'Polymorphism',
-          icon: 'pi pi-circle',
+          icon: getIconForLabel('Polymorphism'),
           data: '/oop/polymorphism',
           leaf: true
         },
         {
           label: 'Abstraction',
-          icon: 'pi pi-circle',
+          icon: getIconForLabel('Abstraction'),
           data: '/oop/abstraction',
           leaf: true
         }
@@ -69,19 +79,19 @@ export class OopLayoutComponent {
       children: [
         {
           label: 'SOLID Principles',
-          icon: 'pi pi-arrow-right',
+          icon: getIconForLabel('SOLID Principles'),
           data: '/solid/srp',
           leaf: true
         },
         {
           label: 'Advanced TypeScript',
-          icon: 'pi pi-arrow-right',
+          icon: getIconForLabel('Advanced TypeScript'),
           data: '/typescript/advanced-types',
           leaf: true
         },
         {
           label: 'RxJS Patterns',
-          icon: 'pi pi-arrow-right',
+          icon: getIconForLabel('RxJS Patterns'),
           data: '/rxjs/creation-operators',
           leaf: true
         }

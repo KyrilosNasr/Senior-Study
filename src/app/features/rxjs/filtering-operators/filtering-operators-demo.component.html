@@ -1,201 +1,263 @@
-<div class="max-w-7xl mx-auto space-y-8">
-  <!-- Header -->
-  <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8">
-    <h1 class="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-3">Part 3: Filtering Operators</h1>
-    <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-      Controlling emissions: <code>filter()</code>, 
-      <code>take()</code>, 
-      <code>takeUntil()</code>, 
-      <code>takeWhile()</code>, 
-      <code>distinctUntilChanged()</code>
-    </p>
+<div class="container-responsive space-y-responsive">
+  <!-- Hero Header -->
+  <div class="card-modern padding-responsive hover-lift slide-in-up">
+    <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+      <div class="flex-1">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center shadow-lg">
+            <i class="fas fa-filter text-white text-xl sm:text-2xl"></i>
+          </div>
+          <div>
+            <span class="badge-modern text-xs sm:text-sm">RxJS Operators</span>
+          </div>
+        </div>
+        <h1 class="heading-responsive text-gradient mb-4">
+          Filtering Operators
+        </h1>
+        <p class="text-responsive text-gray-700 dark:text-gray-300">
+          Controlling emissions: <code>filter()</code>, 
+          <code>take()</code>, 
+          <code>takeUntil()</code>, 
+          <code>takeWhile()</code>, 
+          <code>distinctUntilChanged()</code>
+        </p>
+      </div>
+      <div class="hidden lg:block">
+        <div class="w-32 h-32 rounded-2xl bg-gradient-to-br from-purple-500/20 to-pink-600/20 flex items-center justify-center">
+          <i class="fas fa-filter text-6xl text-purple-500"></i>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- Explanation -->
-  <p-card class="shadow-lg">
-    <div class="space-y-4">
-      <h2 class="text-3xl font-semibold text-gray-900 dark:text-gray-100 mb-3">Filtering Operators</h2>
-      <p class="text-base text-gray-700 dark:text-gray-300 leading-relaxed">
+  <p-card class="card-modern hover-lift slide-in-up">
+    <div class="padding-responsive space-y-6">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+          <i class="fas fa-lightbulb text-white"></i>
+        </div>
+        <h2 class="subheading-responsive text-gray-900 dark:text-gray-100">What are Filtering Operators?</h2>
+      </div>
+      
+      <p class="text-responsive text-gray-700 dark:text-gray-300 leading-relaxed">
         Filtering operators control which values are emitted and when observables complete. They're essential
         for memory leak prevention and efficient data processing.
       </p>
-      <div class="bg-blue-50 dark:bg-blue-900/30 p-5 rounded-lg border border-blue-200 dark:border-blue-800">
-        <h3 class="text-lg font-semibold text-blue-900 dark:text-blue-100 mb-3">Key Operators:</h3>
-        <ul class="list-disc list-inside space-y-2 text-base text-blue-800 dark:text-blue-200">
-          <li><strong>filter():</strong> Conditional emission based on predicate</li>
-          <li><strong>take(n):</strong> First n values then complete</li>
-          <li><strong>takeUntil():</strong> Complete when notifier emits (memory leak prevention)</li>
-          <li><strong>takeWhile():</strong> Complete when condition fails</li>
-          <li><strong>distinctUntilChanged():</strong> Only emit when value changes</li>
+      
+      <div class="glass rounded-xl p-6 border-l-4 border-accent">
+        <div class="flex items-center gap-3 mb-4">
+          <i class="fas fa-star text-accent text-xl"></i>
+          <h3 class="text-lg sm:text-xl font-semibold text-gray-900 dark:text-gray-100">Key Operators</h3>
+        </div>
+        <ul class="list-modern">
+          <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+            <strong>filter():</strong> Conditional emission based on predicate
+          </li>
+          <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+            <strong>take(n):</strong> First n values then complete
+          </li>
+          <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+            <strong>takeUntil():</strong> Complete when notifier emits (memory leak prevention)
+          </li>
+          <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+            <strong>takeWhile():</strong> Complete when condition fails
+          </li>
+          <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+            <strong>distinctUntilChanged():</strong> Only emit when value changes
+          </li>
         </ul>
       </div>
     </div>
   </p-card>
 
   <!-- Code Examples -->
-  <p-card class="shadow-lg">
-    <p-tabs value="0">
-      <p-tablist>
-        <p-tab value="0">❌ Violation</p-tab>
-        <p-tab value="1">✅ Solution</p-tab>
-      </p-tablist>
-      <p-tabpanels>
-        <p-tabpanel value="0">
-          <pre class="overflow-x-auto"><code>{{ violationCode }}</code></pre>
-        </p-tabpanel>
-        <p-tabpanel value="1">
-          <pre class="overflow-x-auto"><code>{{ solutionCode }}</code></pre>
-        </p-tabpanel>
-      </p-tabpanels>
-    </p-tabs>
+  <p-card class="card-modern hover-lift slide-in-up">
+    <div class="padding-responsive">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-green-500 to-teal-600 flex items-center justify-center">
+          <i class="fas fa-code text-white"></i>
+        </div>
+        <h2 class="subheading-responsive text-gray-900 dark:text-gray-100">Code Examples</h2>
+      </div>
+      
+      <p-tabs value="0">
+        <p-tablist class="flex flex-wrap gap-2 mb-6">
+          <p-tab value="0" class="flex items-center gap-2">
+            <i class="fas fa-times-circle text-red-500"></i>
+            <span class="text-sm sm:text-base font-semibold">Violation</span>
+          </p-tab>
+          <p-tab value="1" class="flex items-center gap-2">
+            <i class="fas fa-check-circle text-green-500"></i>
+            <span class="text-sm sm:text-base font-semibold">Solution</span>
+          </p-tab>
+        </p-tablist>
+        <p-tabpanels>
+          <p-tabpanel value="0">
+            <div class="code-block-modern">
+              <pre class="overflow-x-auto text-sm sm:text-base"><code>{{ violationCode }}</code></pre>
+            </div>
+          </p-tabpanel>
+          <p-tabpanel value="1">
+            <div class="code-block-modern">
+              <pre class="overflow-x-auto text-sm sm:text-base"><code>{{ solutionCode }}</code></pre>
+            </div>
+          </p-tabpanel>
+        </p-tabpanels>
+      </p-tabs>
+    </div>
   </p-card>
 
   <!-- Live Demo -->
-  <p-card class="shadow-lg">
-    <h2 class="text-3xl font-semibold text-gray-900 dark:text-gray-100 mb-3 mb-4">Live Demo</h2>
-    
-    <div class="space-y-8">
-      <!-- filter() Demo -->
-      <div class="border-2 border-gray-200 dark:border-gray-700 rounded-lg p-5">
-        <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">filter() - Conditional Emission</h3>
-        <p class="text-sm text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-2">
-          Emits only even numbers greater than 5.
-        </p>
-        <p-button
-          label="Test filter()"
-          icon="pi pi-filter"
-          (click)="testFilter()"
-          class="mb-4"
-        ></p-button>
-        @if (filterResult().length > 0) {
-          <div class="bg-gray-100 dark:bg-gray-700 p-5 rounded">
-            <p class="text-sm font-semibold mb-2">Filtered Values:</p>
-            <p class="text-sm">{{ filterResult().join(', ') }}</p>
-          </div>
-        }
+  <p-card class="card-modern hover-lift slide-in-up">
+    <div class="padding-responsive">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center">
+          <i class="fas fa-play-circle text-white"></i>
+        </div>
+        <h2 class="subheading-responsive text-gray-900 dark:text-gray-100">Interactive Demo</h2>
       </div>
+      
+      <div class="space-y-8">
+        <!-- filter() Demo -->
+        <div class="border-2 border-gray-200 dark:border-gray-700 rounded-lg p-5">
+          <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">filter() - Conditional Emission</h3>
+          <p class="text-sm text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-2">
+            Emits only even numbers greater than 5.
+          </p>
+          <p-button
+            label="Test filter()"
+            icon="pi pi-filter"
+            (click)="testFilter()"
+            class="mb-4"
+          ></p-button>
+          @if (filterResult().length > 0) {
+            <div class="bg-gray-100 dark:bg-gray-700 p-5 rounded">
+              <p class="text-sm font-semibold mb-2">Filtered Values:</p>
+              <p class="text-sm">{{ filterResult().join(', ') }}</p>
+            </div>
+          }
+        </div>
 
-      <!-- take() Demo -->
-      <div class="border-2 border-gray-200 dark:border-gray-700 rounded-lg p-5">
-        <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">take(n) - First N Values</h3>
-        <p class="text-sm text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-2">
-          Takes only the first 5 values, then completes.
-        </p>
-        <p-button
-          label="Test take(5)"
-          icon="pi pi-list"
-          (click)="testTake()"
-          class="mb-4"
-        ></p-button>
-        @if (takeResult().length > 0) {
-          <div class="bg-gray-100 dark:bg-gray-700 p-5 rounded">
-            <p class="text-sm font-semibold mb-2">First 5 Values:</p>
-            <p class="text-sm">{{ takeResult().join(', ') }}</p>
-          </div>
-        }
-      </div>
+        <!-- take() Demo -->
+        <div class="border-2 border-gray-200 dark:border-gray-700 rounded-lg p-5">
+          <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">take(n) - First N Values</h3>
+          <p class="text-sm text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-2">
+            Takes only the first 5 values, then completes.
+          </p>
+          <p-button
+            label="Test take(5)"
+            icon="pi pi-list"
+            (click)="testTake()"
+            class="mb-4"
+          ></p-button>
+          @if (takeResult().length > 0) {
+            <div class="bg-gray-100 dark:bg-gray-700 p-5 rounded">
+              <p class="text-sm font-semibold mb-2">First 5 Values:</p>
+              <p class="text-sm">{{ takeResult().join(', ') }}</p>
+            </div>
+          }
+        </div>
 
-      <!-- takeUntil() Demo -->
-      <div class="border-2 border-green-200 dark:border-green-800 rounded-lg p-5">
-        <h3 class="text-lg font-semibold text-green-800 dark:text-green-200 mb-4">takeUntil() - Memory Leak Prevention</h3>
-        <p class="text-sm text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-2">
-          Streams values until destroyed. Auto-stops after 3 seconds (simulating component destroy).
-        </p>
-        <p-button
-          label="Test takeUntil()"
-          icon="pi pi-shield"
-          (click)="testTakeUntil()"
-          [disabled]="isStreaming()"
-          severity="success"
-          class="mb-4"
-        ></p-button>
-        @if (isStreaming()) {
-          <div class="bg-green-50 dark:bg-green-900/20 p-5 rounded mb-2">
-            <p class="text-sm font-semibold">Streaming... Count: {{ streamCount() }}</p>
-            <p class="text-xs text-lg text-gray-700 dark:text-gray-300 leading-relaxed">Will auto-stop after 3 seconds</p>
-          </div>
-        }
-        @if (takeUntilResult().length > 0 && !isStreaming()) {
-          <div class="bg-gray-100 dark:bg-gray-700 p-5 rounded">
-            <p class="text-sm font-semibold mb-2">Streamed Values (stopped):</p>
-            <p class="text-sm">{{ takeUntilResult().slice(-10).join(', ') }}...</p>
-          </div>
-        }
-      </div>
+        <!-- takeUntil() Demo -->
+        <div class="border-2 border-green-200 dark:border-green-800 rounded-lg p-5">
+          <h3 class="text-lg font-semibold text-green-800 dark:text-green-200 mb-4">takeUntil() - Memory Leak Prevention</h3>
+          <p class="text-sm text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-2">
+            Streams values until destroyed. Auto-stops after 3 seconds (simulating component destroy).
+          </p>
+          <p-button
+            label="Test takeUntil()"
+            icon="pi pi-shield"
+            (click)="testTakeUntil()"
+            [disabled]="isStreaming()"
+            severity="success"
+            class="mb-4"
+          ></p-button>
+          @if (isStreaming()) {
+            <div class="bg-green-50 dark:bg-green-900/20 p-5 rounded mb-2">
+              <p class="text-sm font-semibold">Streaming... Count: {{ streamCount() }}</p>
+              <p class="text-xs text-lg text-gray-700 dark:text-gray-300 leading-relaxed">Will auto-stop after 3 seconds</p>
+            </div>
+          }
+          @if (takeUntilResult().length > 0 && !isStreaming()) {
+            <div class="bg-gray-100 dark:bg-gray-700 p-5 rounded">
+              <p class="text-sm font-semibold mb-2">Streamed Values (stopped):</p>
+              <p class="text-sm">{{ takeUntilResult().slice(-10).join(', ') }}...</p>
+            </div>
+          }
+        </div>
 
-      <!-- takeWhile() Demo -->
-      <div class="border-2 border-gray-200 dark:border-gray-700 rounded-lg p-5">
-        <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">takeWhile() - Conditional Completion</h3>
-        <p class="text-sm text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-2">
-          Emits values while condition is true (stops when value >= 10).
-        </p>
-        <p-button
-          label="Test takeWhile()"
-          icon="pi pi-check-circle"
-          (click)="testTakeWhile()"
-          class="mb-4"
-        ></p-button>
-        @if (takeWhileResult().length > 0) {
-          <div class="bg-gray-100 dark:bg-gray-700 p-5 rounded">
-            <p class="text-sm font-semibold mb-2">Values (stopped at 10):</p>
-            <p class="text-sm">{{ takeWhileResult().join(', ') }}</p>
-          </div>
-        }
-      </div>
+        <!-- takeWhile() Demo -->
+        <div class="border-2 border-gray-200 dark:border-gray-700 rounded-lg p-5">
+          <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">takeWhile() - Conditional Completion</h3>
+          <p class="text-sm text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-2">
+            Emits values while condition is true (stops when value >= 10).
+          </p>
+          <p-button
+            label="Test takeWhile()"
+            icon="pi pi-check-circle"
+            (click)="testTakeWhile()"
+            class="mb-4"
+          ></p-button>
+          @if (takeWhileResult().length > 0) {
+            <div class="bg-gray-100 dark:bg-gray-700 p-5 rounded">
+              <p class="text-sm font-semibold mb-2">Values (stopped at 10):</p>
+              <p class="text-sm">{{ takeWhileResult().join(', ') }}</p>
+            </div>
+          }
+        </div>
 
-      <!-- distinctUntilChanged() Demo -->
-      <div class="border-2 border-blue-200 dark:border-blue-800 rounded-lg p-5">
-        <h3 class="text-lg font-semibold text-blue-800 dark:text-blue-200 mb-4">distinctUntilChanged() - Remove Duplicates</h3>
-        <p class="text-sm text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-2">
-          Emits only when value changes. Prevents duplicate API calls.
-        </p>
-        <p-button
-          label="Test distinctUntilChanged()"
-          icon="pi pi-ban"
-          (click)="testDistinctUntilChanged()"
-          class="mb-4"
-        ></p-button>
-        @if (distinctResult().length > 0) {
-          <div class="bg-blue-50 dark:bg-blue-900/20 p-5 rounded">
-            <p class="text-sm font-semibold mb-2">Distinct Values:</p>
-            <p class="text-sm">Input: a, a, b, b, b, c, a, a</p>
-            <p class="text-sm">Output: {{ distinctResult().join(', ') }}</p>
-          </div>
-        }
+        <!-- distinctUntilChanged() Demo -->
+        <div class="border-2 border-blue-200 dark:border-blue-800 rounded-lg p-5">
+          <h3 class="text-lg font-semibold text-blue-800 dark:text-blue-200 mb-4">distinctUntilChanged() - Remove Duplicates</h3>
+          <p class="text-sm text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-2">
+            Emits only when value changes. Prevents duplicate API calls.
+          </p>
+          <p-button
+            label="Test distinctUntilChanged()"
+            icon="pi pi-ban"
+            (click)="testDistinctUntilChanged()"
+            class="mb-4"
+          ></p-button>
+          @if (distinctResult().length > 0) {
+            <div class="bg-blue-50 dark:bg-blue-900/20 p-5 rounded">
+              <p class="text-sm font-semibold mb-2">Distinct Values:</p>
+              <p class="text-sm">Input: a, a, b, b, b, c, a, a</p>
+              <p class="text-sm">Output: {{ distinctResult().join(', ') }}</p>
+            </div>
+          }
+        </div>
       </div>
     </div>
   </p-card>
 
   <!-- Key Takeaways -->
-  <p-card class="shadow-lg">
-    <h2 class="text-3xl font-semibold text-gray-900 dark:text-gray-100 mb-3 mb-4">Key Takeaways</h2>
-    <ul class="space-y-2 text-base text-gray-700 dark:text-gray-300 leading-relaxed">
-      <li class="flex items-start">
-        <span class="text-green-500 mr-2">✓</span>
-        <span>Always use <code>takeUntil()</code> or <code>takeUntilDestroyed()</code> to prevent memory leaks</span>
-      </li>
-      <li class="flex items-start">
-        <span class="text-green-500 mr-2">✓</span>
-        <span>Use <code>distinctUntilChanged()</code> with form valueChanges to prevent duplicate API calls</span>
-      </li>
-      <li class="flex items-start">
-        <span class="text-green-500 mr-2">✓</span>
-        <span>Use <code>take(n)</code> to limit emissions and ensure completion</span>
-      </li>
-      <li class="flex items-start">
-        <span class="text-green-500 mr-2">✓</span>
-        <span>Use <code>filter()</code> to conditionally process values</span>
-      </li>
-      <li class="flex items-start">
-        <span class="text-red-500 mr-2">✗</span>
-        <span>Never forget cleanup - unsubscribed observables cause memory leaks!</span>
-      </li>
-    </ul>
+  <p-card class="card-modern hover-lift slide-in-up">
+    <div class="padding-responsive">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-teal-500 to-cyan-600 flex items-center justify-center">
+          <i class="fas fa-graduation-cap text-white"></i>
+        </div>
+        <h2 class="subheading-responsive text-gray-900 dark:text-gray-100">Key Takeaways</h2>
+      </div>
+      
+      <ul class="list-modern">
+        <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+          Always use <code>takeUntil()</code> or <code>takeUntilDestroyed()</code> to prevent memory leaks
+        </li>
+        <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+          Use <code>distinctUntilChanged()</code> with form valueChanges to prevent duplicate API calls
+        </li>
+        <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+          Use <code>take(n)</code> to limit emissions and ensure completion
+        </li>
+        <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+          Use <code>filter()</code> to conditionally process values
+        </li>
+        <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+          Never forget cleanup - unsubscribed observables cause memory leaks!
+        </li>
+      </ul>
+    </div>
   </p-card>
 </div>
-
-
-
-
-
-

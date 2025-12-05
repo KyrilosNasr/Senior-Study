@@ -1,169 +1,281 @@
-<div class="max-w-7xl mx-auto space-y-8">
-  <!-- Header -->
-  <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8">
-    <h1 class="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-3">Encapsulation</h1>
-    <p class="text-lg text-gray-700 dark:text-gray-300">
-      Bundling data and methods that operate on that data within a single unit, and restricting access to internal details.
-    </p>
+<div class="container-responsive space-y-responsive">
+  <!-- Hero Header -->
+  <div class="card-modern padding-responsive hover-lift slide-in-up">
+    <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+      <div class="flex-1">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shadow-lg">
+            <i class="fas fa-lock text-white text-xl sm:text-2xl"></i>
+          </div>
+          <div>
+            <span class="badge-modern text-xs sm:text-sm">OOP Concepts</span>
+          </div>
+        </div>
+        <h1 class="heading-responsive text-gradient mb-4">
+          Encapsulation
+        </h1>
+        <p class="text-responsive text-gray-700 dark:text-gray-300">
+          Bundling data and methods that operate on that data within a single unit, and restricting access to internal details.
+        </p>
+      </div>
+      <div class="hidden lg:block">
+        <div class="w-32 h-32 rounded-2xl bg-gradient-to-br from-blue-500/20 to-indigo-600/20 flex items-center justify-center">
+          <i class="fas fa-shield-alt text-6xl text-blue-500"></i>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- Explanation -->
-  <p-card class="shadow-lg">
-    <div class="space-y-4">
-      <h2 class="text-3xl font-semibold text-gray-900 dark:text-gray-100 mb-3">What is Encapsulation?</h2>
-      <p class="text-base text-gray-700 dark:text-gray-300 leading-relaxed">
+  <p-card class="card-modern hover-lift slide-in-up">
+    <div class="padding-responsive space-y-6">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+          <i class="fas fa-lightbulb text-white"></i>
+        </div>
+        <h2 class="subheading-responsive text-gray-900 dark:text-gray-100">What is Encapsulation?</h2>
+      </div>
+      
+      <p class="text-responsive text-gray-700 dark:text-gray-300 leading-relaxed">
         Encapsulation is the bundling of data (attributes) and methods (functions) that operate on that data 
         into a single unit called a class. It restricts direct access to some of an object's components, 
         which is a means of preventing accidental interference and misuse of the data.
       </p>
-      <div class="bg-blue-50 dark:bg-blue-900/30 p-5 rounded-lg border border-blue-200 dark:border-blue-800">
-        <h3 class="text-lg font-semibold text-blue-900 dark:text-blue-100 mb-3">Key Benefits:</h3>
-        <ul class="list-disc list-inside space-y-2 text-base text-blue-800 dark:text-blue-200">
-          <li>Data protection and validation</li>
-          <li>Controlled access through methods</li>
-          <li>Hides implementation details</li>
-          <li>Easier to maintain and modify</li>
+      
+      <div class="glass rounded-xl p-6 border-l-4 border-accent">
+        <div class="flex items-center gap-3 mb-4">
+          <i class="fas fa-star text-accent text-xl"></i>
+          <h3 class="text-lg sm:text-xl font-semibold text-gray-900 dark:text-gray-100">Key Benefits</h3>
+        </div>
+        <ul class="list-modern">
+          <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+            Data protection and validation
+          </li>
+          <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+            Controlled access through methods
+          </li>
+          <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+            Hides implementation details
+          </li>
+          <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+            Easier to maintain and modify
+          </li>
         </ul>
       </div>
     </div>
   </p-card>
 
   <!-- Code Examples -->
-  <p-card class="shadow-lg">
-    <p-tabs value="0">
-      <p-tablist>
-        <p-tab value="0">❌ Violation</p-tab>
-        <p-tab value="1">✅ Solution</p-tab>
-      </p-tablist>
-      <p-tabpanels>
-        <p-tabpanel value="0">
-          <pre class="overflow-x-auto"><code>{{ violationCode }}</code></pre>
-        </p-tabpanel>
-        <p-tabpanel value="1">
-          <pre class="overflow-x-auto"><code>{{ solutionCode }}</code></pre>
-        </p-tabpanel>
-      </p-tabpanels>
-    </p-tabs>
+  <p-card class="card-modern hover-lift slide-in-up">
+    <div class="padding-responsive">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-green-500 to-teal-600 flex items-center justify-center">
+          <i class="fas fa-code text-white"></i>
+        </div>
+        <h2 class="subheading-responsive text-gray-900 dark:text-gray-100">Code Examples</h2>
+      </div>
+      
+      <p-tabs value="0">
+        <p-tablist class="flex flex-wrap gap-2 mb-6">
+          <p-tab value="0" class="flex items-center gap-2">
+            <i class="fas fa-times-circle text-red-500"></i>
+            <span class="text-sm sm:text-base font-semibold">Violation</span>
+          </p-tab>
+          <p-tab value="1" class="flex items-center gap-2">
+            <i class="fas fa-check-circle text-green-500"></i>
+            <span class="text-sm sm:text-base font-semibold">Solution</span>
+          </p-tab>
+        </p-tablist>
+        <p-tabpanels>
+          <p-tabpanel value="0">
+            <div class="code-block-modern">
+              <pre class="overflow-x-auto text-sm sm:text-base"><code>{{ violationCode }}</code></pre>
+            </div>
+          </p-tabpanel>
+          <p-tabpanel value="1">
+            <div class="code-block-modern">
+              <pre class="overflow-x-auto text-sm sm:text-base"><code>{{ solutionCode }}</code></pre>
+            </div>
+          </p-tabpanel>
+        </p-tabpanels>
+      </p-tabs>
+    </div>
   </p-card>
 
   <!-- Live Demo -->
-  <p-card class="shadow-lg">
-    <h2 class="text-3xl font-semibold text-gray-900 dark:text-gray-100 mb-4">Live Demo</h2>
-    <p class="text-gray-700 dark:text-gray-300 mb-6">
-      Create a bank account and perform transactions. Notice how the balance is protected and can only be modified through controlled methods.
-    </p>
-
-    <div class="space-y-8">
-      <!-- Create Account -->
-      <div class="border-2 border-gray-200 dark:border-gray-700 rounded-lg p-4">
-        <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">Create Account</h3>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-          <div>
-            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Account Number</label>
-            <input
-              pInputText
-              type="text"
-              [(ngModel)]="accountNumber"
-              placeholder="ACC-12345"
-              class="w-full"
-            />
-          </div>
-          <div>
-            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Initial Balance</label>
-            <p-inputNumber
-              [(ngModel)]="initialBalance"
-              [min]="0"
-              [showButtons]="true"
-              class="w-full"
-            ></p-inputNumber>
-          </div>
+  <p-card class="card-modern hover-lift slide-in-up">
+    <div class="padding-responsive">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center">
+          <i class="fas fa-play-circle text-white"></i>
         </div>
-        <p-button
-          label="Create Account"
-          icon="pi pi-plus"
-          (click)="createAccount()"
-          [disabled]="!accountNumber().trim()"
-        ></p-button>
+        <h2 class="subheading-responsive text-gray-900 dark:text-gray-100">Interactive Demo</h2>
       </div>
+      
+      <p class="text-responsive text-gray-700 dark:text-gray-300 mb-8">
+        Create a bank account and perform transactions. Notice how the balance is protected and can only be modified through controlled methods.
+      </p>
 
-      <!-- Account Operations -->
-      @if (account(); as acc) {
-        <div class="border-2 border-green-200 dark:border-green-800 rounded-lg p-4">
-          <h3 class="text-lg font-semibold text-green-800 dark:text-green-200 mb-4">Account Operations</h3>
-          
-          <div class="mb-4 p-4 bg-gray-100 dark:bg-gray-700 rounded">
-            <p class="text-sm text-gray-800 dark:text-gray-200">
-              <strong>Account:</strong> {{ acc.getAccountNumber() }}<br>
-              <strong>Balance:</strong> ${{ acc.getBalance() }}
-            </p>
-          </div>
-
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-            <div>
-              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Deposit Amount</label>
+      <div class="space-y-6">
+        <!-- Create Account -->
+        <div class="glass rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+          <h3 class="text-lg sm:text-xl font-semibold text-gray-800 dark:text-gray-200 mb-4 flex items-center gap-2">
+            <i class="fas fa-user-plus text-accent"></i>
+            Create Account
+          </h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6 mb-4">
+            <div class="space-y-2">
+              <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300">
+                <i class="fas fa-hashtag text-accent mr-2"></i>Account Number
+              </label>
+              <input
+                pInputText
+                type="text"
+                [(ngModel)]="accountNumber"
+                placeholder="ACC-12345"
+                class="input-modern"
+              />
+            </div>
+            <div class="space-y-2">
+              <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300">
+                <i class="fas fa-dollar-sign text-accent mr-2"></i>Initial Balance
+              </label>
               <p-inputNumber
-                [(ngModel)]="depositAmount"
-                [min]="0.01"
+                [(ngModel)]="initialBalance"
+                [min]="0"
                 [showButtons]="true"
                 class="w-full"
               ></p-inputNumber>
-              <p-button
-                label="Deposit"
-                icon="pi pi-arrow-down"
-                severity="success"
-                (click)="deposit()"
-                [disabled]="depositAmount() <= 0"
-                class="mt-2 w-full"
-              ></p-button>
-            </div>
-            <div>
-              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Withdraw Amount</label>
-              <p-inputNumber
-                [(ngModel)]="withdrawAmount"
-                [min]="0.01"
-                [showButtons]="true"
-                class="w-full"
-              ></p-inputNumber>
-              <p-button
-                label="Withdraw"
-                icon="pi pi-arrow-up"
-                severity="danger"
-                (click)="withdraw()"
-                [disabled]="withdrawAmount() <= 0"
-                class="mt-2 w-full"
-              ></p-button>
             </div>
           </div>
+          <p-button
+            label="Create Account"
+            icon="pi pi-plus"
+            (click)="createAccount()"
+            [disabled]="!accountNumber().trim()"
+            class="btn-modern"
+          ></p-button>
         </div>
-      }
 
-      @if (message()) {
-        <p-message [severity]="account() ? 'success' : 'info'" [text]="message()"></p-message>
-      }
+        <!-- Account Operations -->
+        @if (account(); as acc) {
+          <div class="glass rounded-xl p-6 border-l-4 border-green-500">
+            <h3 class="text-lg sm:text-xl font-semibold text-green-800 dark:text-green-200 mb-4 flex items-center gap-2">
+              <i class="fas fa-wallet text-green-500"></i>
+              Account Operations
+            </h3>
+            
+            <div class="mb-6 p-4 bg-gradient-to-r from-green-50 to-teal-50 dark:from-green-900/20 dark:to-teal-900/20 rounded-lg border border-green-200 dark:border-green-800">
+              <div class="flex items-center justify-between flex-wrap gap-4">
+                <div>
+                  <p class="text-xs text-gray-600 dark:text-gray-400 mb-1">Account Number</p>
+                  <p class="text-lg font-bold text-gray-900 dark:text-gray-100">{{ acc.getAccountNumber() }}</p>
+                </div>
+                <div>
+                  <p class="text-xs text-gray-600 dark:text-gray-400 mb-1">Current Balance</p>
+                  <p class="text-2xl font-bold text-green-600 dark:text-green-400">${{ acc.getBalance() }}</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6">
+              <div class="space-y-3">
+                <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300">
+                  <i class="fas fa-arrow-down text-green-500 mr-2"></i>Deposit Amount
+                </label>
+                <p-inputNumber
+                  [(ngModel)]="depositAmount"
+                  [min]="0.01"
+                  [showButtons]="true"
+                  class="w-full"
+                ></p-inputNumber>
+                <p-button
+                  label="Deposit"
+                  icon="pi pi-arrow-down"
+                  severity="success"
+                  (click)="deposit()"
+                  [disabled]="depositAmount() <= 0"
+                  class="w-full"
+                ></p-button>
+              </div>
+              <div class="space-y-3">
+                <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300">
+                  <i class="fas fa-arrow-up text-red-500 mr-2"></i>Withdraw Amount
+                </label>
+                <p-inputNumber
+                  [(ngModel)]="withdrawAmount"
+                  [min]="0.01"
+                  [showButtons]="true"
+                  class="w-full"
+                ></p-inputNumber>
+                <p-button
+                  label="Withdraw"
+                  icon="pi pi-arrow-up"
+                  severity="danger"
+                  (click)="withdraw()"
+                  [disabled]="withdrawAmount() <= 0"
+                  class="w-full"
+                ></p-button>
+              </div>
+            </div>
+          </div>
+        }
+
+        @if (message()) {
+          <p-message 
+            [severity]="account() ? 'success' : 'info'" 
+            [text]="message()" 
+            class="w-full fade-in"
+          ></p-message>
+        }
+      </div>
     </div>
   </p-card>
 
   <!-- Key Takeaways -->
-  <p-card class="shadow-lg">
-    <h2 class="text-3xl font-semibold text-gray-900 dark:text-gray-100 mb-5">Key Takeaways</h2>
-    <ul class="space-y-3 text-base text-gray-700 dark:text-gray-300">
-      <li class="flex items-start">
-        <span class="text-green-500 mr-2">✓</span>
-        <span>Use private/protected access modifiers to hide internal data</span>
-      </li>
-      <li class="flex items-start">
-        <span class="text-green-500 mr-2">✓</span>
-        <span>Provide controlled access through public methods (getters/setters)</span>
-      </li>
-      <li class="flex items-start">
-        <span class="text-green-500 mr-2">✓</span>
-        <span>Add validation and business logic in accessor methods</span>
-      </li>
-      <li class="flex items-start">
-        <span class="text-green-500 mr-2">✓</span>
-        <span>Protects data integrity and prevents unauthorized access</span>
-      </li>
-    </ul>
+  <p-card class="card-modern hover-lift slide-in-up">
+    <div class="padding-responsive">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-teal-500 to-cyan-600 flex items-center justify-center">
+          <i class="fas fa-graduation-cap text-white"></i>
+        </div>
+        <h2 class="subheading-responsive text-gray-900 dark:text-gray-100">Key Takeaways</h2>
+      </div>
+      
+      <ul class="list-modern">
+        <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+          Use private/protected access modifiers to hide internal data
+        </li>
+        <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+          Provide controlled access through public methods (getters/setters)
+        </li>
+        <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+          Add validation and business logic in accessor methods
+        </li>
+        <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+          Protects data integrity and prevents unauthorized access
+        </li>
+      </ul>
+
+      <!-- Additional Resources -->
+      <div class="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
+        <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4 flex items-center gap-2">
+          <i class="fas fa-book-open text-accent"></i>
+          Learn More
+        </h3>
+        <div class="flex flex-wrap gap-3">
+          <a href="#" class="badge-outline hover:scale-105 transition-transform">
+            <i class="fas fa-external-link-alt mr-2"></i>Documentation
+          </a>
+          <a href="#" class="badge-outline hover:scale-105 transition-transform">
+            <i class="fas fa-video mr-2"></i>Video Tutorial
+          </a>
+          <a href="#" class="badge-outline hover:scale-105 transition-transform">
+            <i class="fas fa-code-branch mr-2"></i>GitHub Examples
+          </a>
+        </div>
+      </div>
+    </div>
   </p-card>
 </div>
 

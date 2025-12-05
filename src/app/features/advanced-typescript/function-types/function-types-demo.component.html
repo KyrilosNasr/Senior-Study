@@ -1,115 +1,193 @@
-<div class="max-w-7xl mx-auto space-y-8">
-  <!-- Header -->
-  <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8">
-    <h1 class="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-3">Advanced Function Types</h1>
-    <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-      Function overloads, rest parameters, and advanced function type patterns.
-    </p>
+<div class="container-responsive space-y-responsive">
+  <!-- Hero Header -->
+  <div class="card-modern padding-responsive hover-lift slide-in-up">
+    <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+      <div class="flex-1">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br from-blue-600 to-cyan-600 flex items-center justify-center shadow-lg">
+            <i class="fas fa-function text-white text-xl sm:text-2xl"></i>
+          </div>
+          <div>
+            <span class="badge-modern text-xs sm:text-sm">TypeScript</span>
+          </div>
+        </div>
+        <h1 class="heading-responsive text-gradient mb-4">
+          Advanced Function Types
+        </h1>
+        <p class="text-responsive text-gray-700 dark:text-gray-300">
+          Function overloads, rest parameters, and advanced function type patterns.
+        </p>
+      </div>
+      <div class="hidden lg:block">
+        <div class="w-32 h-32 rounded-2xl bg-gradient-to-br from-blue-600/20 to-cyan-600/20 flex items-center justify-center">
+          <i class="fas fa-function text-6xl text-blue-600"></i>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- Explanation -->
-  <p-card class="shadow-lg">
-    <div class="space-y-4">
-      <h2 class="text-3xl font-semibold text-gray-900 dark:text-gray-100 mb-3">What are Advanced Function Types?</h2>
-      <p class="text-base text-gray-700 dark:text-gray-300 leading-relaxed">
+  <p-card class="card-modern hover-lift slide-in-up">
+    <div class="padding-responsive space-y-6">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+          <i class="fas fa-lightbulb text-white"></i>
+        </div>
+        <h2 class="subheading-responsive text-gray-900 dark:text-gray-100">What are Advanced Function Types?</h2>
+      </div>
+      
+      <p class="text-responsive text-gray-700 dark:text-gray-300 leading-relaxed">
         Advanced function types enable powerful patterns like overloads, rest parameters, and higher-order functions
         with full type safety.
       </p>
-      <div class="bg-blue-50 dark:bg-blue-900/30 p-5 rounded-lg border border-blue-200 dark:border-blue-800">
-        <h3 class="text-lg font-semibold text-blue-900 dark:text-blue-100 mb-3">Key Concepts:</h3>
-        <ul class="list-disc list-inside space-y-2 text-base text-blue-800 dark:text-blue-200">
-          <li><strong>Function Overloads:</strong> Multiple signatures for one function implementation</li>
-          <li><strong>Rest Parameters:</strong> Variable number of arguments with type safety</li>
-          <li><strong>Function Types:</strong> Type aliases for function signatures</li>
-          <li><strong>Higher-Order Functions:</strong> Functions that take or return functions</li>
+      
+      <div class="glass rounded-xl p-6 border-l-4 border-accent">
+        <div class="flex items-center gap-3 mb-4">
+          <i class="fas fa-star text-accent text-xl"></i>
+          <h3 class="text-lg sm:text-xl font-semibold text-gray-900 dark:text-gray-100">Key Concepts</h3>
+        </div>
+        <ul class="list-modern">
+          <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+            <strong>Function Overloads:</strong> Multiple signatures for one function implementation
+          </li>
+          <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+            <strong>Rest Parameters:</strong> Variable number of arguments with type safety
+          </li>
+          <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+            <strong>Function Types:</strong> Type aliases for function signatures
+          </li>
+          <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+            <strong>Higher-Order Functions:</strong> Functions that take or return functions
+          </li>
         </ul>
       </div>
     </div>
   </p-card>
 
   <!-- Code Examples -->
-  <p-card class="shadow-lg">
-    <p-tabs value="0">
-      <p-tablist>
-        <p-tab value="0">Overloads</p-tab>
-        <p-tab value="1">Rest Parameters</p-tab>
-        <p-tab value="2">Function Types</p-tab>
-        <p-tab value="3">Higher-Order Functions</p-tab>
-      </p-tablist>
-      <p-tabpanels>
-        <p-tabpanel value="0">
-          <pre class="overflow-x-auto"><code>{{ overloadsCode }}</code></pre>
-        </p-tabpanel>
-        <p-tabpanel value="1">
-          <pre class="overflow-x-auto"><code>{{ restParametersCode }}</code></pre>
-        </p-tabpanel>
-        <p-tabpanel value="2">
-          <pre class="overflow-x-auto"><code>{{ functionTypesCode }}</code></pre>
-        </p-tabpanel>
-        <p-tabpanel value="3">
-          <pre class="overflow-x-auto"><code>{{ higherOrderFunctionsCode }}</code></pre>
-        </p-tabpanel>
-      </p-tabpanels>
-    </p-tabs>
+  <p-card class="card-modern hover-lift slide-in-up">
+    <div class="padding-responsive">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-green-500 to-teal-600 flex items-center justify-center">
+          <i class="fas fa-code text-white"></i>
+        </div>
+        <h2 class="subheading-responsive text-gray-900 dark:text-gray-100">Code Examples</h2>
+      </div>
+      
+      <p-tabs value="0">
+        <p-tablist class="flex flex-wrap gap-2 mb-6">
+          <p-tab value="0" class="flex items-center gap-2">
+            <i class="fas fa-layer-group text-blue-500"></i>
+            <span class="text-sm sm:text-base font-semibold">Overloads</span>
+          </p-tab>
+          <p-tab value="1" class="flex items-center gap-2">
+            <i class="fas fa-ellipsis-h text-purple-500"></i>
+            <span class="text-sm sm:text-base font-semibold">Rest Parameters</span>
+          </p-tab>
+          <p-tab value="2" class="flex items-center gap-2">
+            <i class="fas fa-signature text-cyan-500"></i>
+            <span class="text-sm sm:text-base font-semibold">Function Types</span>
+          </p-tab>
+          <p-tab value="3" class="flex items-center gap-2">
+            <i class="fas fa-rocket text-green-500"></i>
+            <span class="text-sm sm:text-base font-semibold">Higher-Order Functions</span>
+          </p-tab>
+        </p-tablist>
+        <p-tabpanels>
+          <p-tabpanel value="0">
+            <div class="code-block-modern">
+              <pre class="overflow-x-auto text-sm sm:text-base"><code>{{ overloadsCode }}</code></pre>
+            </div>
+          </p-tabpanel>
+          <p-tabpanel value="1">
+            <div class="code-block-modern">
+              <pre class="overflow-x-auto text-sm sm:text-base"><code>{{ restParametersCode }}</code></pre>
+            </div>
+          </p-tabpanel>
+          <p-tabpanel value="2">
+            <div class="code-block-modern">
+              <pre class="overflow-x-auto text-sm sm:text-base"><code>{{ functionTypesCode }}</code></pre>
+            </div>
+          </p-tabpanel>
+          <p-tabpanel value="3">
+            <div class="code-block-modern">
+              <pre class="overflow-x-auto text-sm sm:text-base"><code>{{ higherOrderFunctionsCode }}</code></pre>
+            </div>
+          </p-tabpanel>
+        </p-tabpanels>
+      </p-tabs>
+    </div>
   </p-card>
 
-  <!-- Live Demo -->
-  <p-card class="shadow-lg">
-    <h2 class="text-3xl font-semibold text-gray-900 dark:text-gray-100 mb-3 mb-4">Live Demo</h2>
-    <p class="text-base text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
-      Test advanced function types in action.
-    </p>
-
-    <div class="space-y-4">
-      <div class="flex gap-5 flex-wrap">
-        <p-button
-          label="Test Overloads"
-          icon="pi pi-function"
-          (click)="testOverloads()"
-        ></p-button>
-        <p-button
-          label="Test Rest Parameters"
-          icon="pi pi-list"
-          (click)="testRestParameters()"
-        ></p-button>
-        <p-button
-          label="Test Function Types"
-          icon="pi pi-code"
-          (click)="testFunctionTypes()"
-        ></p-button>
-      </div>
-
-      @if (result()) {
-        <div class="bg-gray-100 dark:bg-gray-700 p-5 rounded-lg">
-          <pre class="text-sm text-gray-800 dark:text-gray-200 whitespace-pre-wrap">{{ result() }}</pre>
+  <!-- Interactive Demo -->
+  <p-card class="card-modern hover-lift slide-in-up">
+    <div class="padding-responsive">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center">
+          <i class="fas fa-play-circle text-white"></i>
         </div>
-      }
+        <h2 class="subheading-responsive text-gray-900 dark:text-gray-100">Interactive Demo</h2>
+      </div>
+      
+      <p class="text-responsive text-gray-700 dark:text-gray-300 mb-8">
+        Test advanced function types in action.
+      </p>
+
+      <div class="space-y-6">
+        <div class="flex gap-3 flex-wrap">
+          <p-button
+            label="Test Overloads"
+            icon="pi pi-function"
+            (click)="testOverloads()"
+            class="btn-modern"
+          ></p-button>
+          <p-button
+            label="Test Rest Parameters"
+            icon="pi pi-list"
+            (click)="testRestParameters()"
+            class="btn-modern"
+          ></p-button>
+          <p-button
+            label="Test Function Types"
+            icon="pi pi-code"
+            (click)="testFunctionTypes()"
+            class="btn-modern"
+          ></p-button>
+        </div>
+
+        @if (result()) {
+          <div class="glass rounded-xl p-6 fade-in">
+            <pre class="text-sm sm:text-base text-gray-800 dark:text-gray-200 whitespace-pre-wrap">{{ result() }}</pre>
+          </div>
+        }
+      </div>
     </div>
   </p-card>
 
   <!-- Key Takeaways -->
-  <p-card class="shadow-lg">
-    <h2 class="text-3xl font-semibold text-gray-900 dark:text-gray-100 mb-3 mb-4">Key Takeaways</h2>
-    <ul class="space-y-2 text-base text-gray-700 dark:text-gray-300 leading-relaxed">
-      <li class="flex items-start">
-        <span class="text-green-500 mr-2">✓</span>
-        <span>Function overloads provide type-safe multiple signatures</span>
-      </li>
-      <li class="flex items-start">
-        <span class="text-green-500 mr-2">✓</span>
-        <span>Rest parameters enable variable arguments with type safety</span>
-      </li>
-      <li class="flex items-start">
-        <span class="text-green-500 mr-2">✓</span>
-        <span>Function type aliases improve code readability and reusability</span>
-      </li>
-      <li class="flex items-start">
-        <span class="text-green-500 mr-2">✓</span>
-        <span>Higher-order functions enable powerful functional programming patterns</span>
-      </li>
-    </ul>
+  <p-card class="card-modern hover-lift slide-in-up">
+    <div class="padding-responsive">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-teal-500 to-cyan-600 flex items-center justify-center">
+          <i class="fas fa-graduation-cap text-white"></i>
+        </div>
+        <h2 class="subheading-responsive text-gray-900 dark:text-gray-100">Key Takeaways</h2>
+      </div>
+      
+      <ul class="list-modern">
+        <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+          Function overloads provide type-safe multiple signatures
+        </li>
+        <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+          Rest parameters enable variable arguments with type safety
+        </li>
+        <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+          Function type aliases improve code readability and reusability
+        </li>
+        <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+          Higher-order functions enable powerful functional programming patterns
+        </li>
+      </ul>
+    </div>
   </p-card>
 </div>
-
-
-

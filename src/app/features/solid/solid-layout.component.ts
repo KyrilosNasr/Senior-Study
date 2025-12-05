@@ -1,4 +1,4 @@
-import { Component, signal, inject, computed } from '@angular/core';
+import { Component, signal, inject, computed, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule, RouterOutlet } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
@@ -6,22 +6,32 @@ import { TreeNode } from 'primeng/api';
 import { SidebarComponent, SidebarConfig } from '../../shared/components/sidebar/sidebar.component';
 import { ThemeService } from '../../core/services/theme.service';
 import { ThemeToggleComponent } from '../../shared/components/theme-toggle/theme-toggle.component';
+import { getIconForLabel } from '../../shared/config/icon-mapping.config';
 
 @Component({
   selector: 'app-solid-layout',
   standalone: true,
   imports: [CommonModule, RouterModule, RouterOutlet, ButtonModule, SidebarComponent, ThemeToggleComponent],
   templateUrl: './solid-layout.component.html',
-  styleUrl: './solid-layout.component.scss'
+  styleUrl: './solid-layout.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SolidLayoutComponent {
   private readonly router = inject(Router);
   private readonly themeService = inject(ThemeService);
 
+  @ViewChild(SidebarComponent) sidebarComponent = signal<SidebarComponent | undefined>(undefined);
+
   sidebarVisible = signal(false);
 
   readonly contentGradient = computed(() => {
     return this.themeService.getGradientClasses('to-br', 'subtle');
+  });
+
+  readonly mainContentClass = computed(() => {
+    const sidebar = this.sidebarComponent();
+    if (!sidebar) return 'lg:ml-64';
+    return sidebar.isExpanded() ? 'lg:ml-64' : 'lg:ml-16';
   });
 
   sidebarConfig: SidebarConfig = {
@@ -39,31 +49,31 @@ export class SolidLayoutComponent {
       children: [
         {
           label: 'Single Responsibility',
-          icon: 'pi pi-circle',
+          icon: getIconForLabel('Single Responsibility'),
           data: '/solid/srp',
           leaf: true
         },
         {
           label: 'Open/Closed',
-          icon: 'pi pi-circle',
+          icon: getIconForLabel('Open/Closed'),
           data: '/solid/ocp',
           leaf: true
         },
         {
           label: 'Liskov Substitution',
-          icon: 'pi pi-circle',
+          icon: getIconForLabel('Liskov Substitution'),
           data: '/solid/lsp',
           leaf: true
         },
         {
           label: 'Interface Segregation',
-          icon: 'pi pi-circle',
+          icon: getIconForLabel('Interface Segregation'),
           data: '/solid/isp',
           leaf: true
         },
         {
           label: 'Dependency Inversion',
-          icon: 'pi pi-circle',
+          icon: getIconForLabel('Dependency Inversion'),
           data: '/solid/dip',
           leaf: true
         }
@@ -75,19 +85,19 @@ export class SolidLayoutComponent {
       children: [
         {
           label: 'OOP Concepts',
-          icon: 'pi pi-arrow-right',
+          icon: getIconForLabel('OOP Concepts'),
           data: '/oop/encapsulation',
           leaf: true
         },
         {
           label: 'Advanced TypeScript',
-          icon: 'pi pi-arrow-right',
+          icon: getIconForLabel('Advanced TypeScript'),
           data: '/typescript/advanced-types',
           leaf: true
         },
         {
           label: 'RxJS Patterns',
-          icon: 'pi pi-arrow-right',
+          icon: getIconForLabel('RxJS Patterns'),
           data: '/rxjs/creation-operators',
           leaf: true
         }

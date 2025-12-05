@@ -1,105 +1,176 @@
-<div class="max-w-7xl mx-auto space-y-8">
-  <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8">
-    <h1 class="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-3">Advanced Caching</h1>
-    <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-      Implementing sophisticated caching strategies like stale-while-revalidate for optimal performance.
-    </p>
+<div class="container-responsive space-y-responsive">
+  <!-- Hero Header -->
+  <div class="card-modern padding-responsive hover-lift slide-in-up">
+    <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+      <div class="flex-1">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center shadow-lg">
+            <i class="fas fa-database text-white text-xl sm:text-2xl"></i>
+          </div>
+          <div>
+            <span class="badge-modern text-xs sm:text-sm">RxJS Patterns</span>
+          </div>
+        </div>
+        <h1 class="heading-responsive text-gradient mb-4">
+          Advanced Caching
+        </h1>
+        <p class="text-responsive text-gray-700 dark:text-gray-300">
+          Implementing sophisticated caching strategies like stale-while-revalidate for optimal performance.
+        </p>
+      </div>
+      <div class="hidden lg:block">
+        <div class="w-32 h-32 rounded-2xl bg-gradient-to-br from-purple-500/20 to-pink-600/20 flex items-center justify-center">
+          <i class="fas fa-database text-6xl text-purple-500"></i>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <p-card class="shadow-lg">
-    <div class="space-y-4">
-      <h2 class="text-3xl font-semibold text-gray-900 dark:text-gray-100 mb-3">Caching Strategies</h2>
-      <p class="text-base text-gray-700 dark:text-gray-300 leading-relaxed">
+  <!-- Explanation -->
+  <p-card class="card-modern hover-lift slide-in-up">
+    <div class="padding-responsive space-y-6">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+          <i class="fas fa-lightbulb text-white"></i>
+        </div>
+        <h2 class="subheading-responsive text-gray-900 dark:text-gray-100">Caching Strategies</h2>
+      </div>
+      
+      <p class="text-responsive text-gray-700 dark:text-gray-300 leading-relaxed">
         Advanced caching patterns help reduce API calls, improve performance, and provide better user experience
         with strategies like stale-while-revalidate.
       </p>
-      <div class="bg-blue-50 dark:bg-blue-900/30 p-5 rounded-lg border border-blue-200 dark:border-blue-800">
-        <h3 class="text-lg font-semibold text-blue-900 dark:text-blue-100 mb-3">Caching Patterns:</h3>
-        <ul class="list-disc list-inside space-y-2 text-base text-blue-800 dark:text-blue-200">
-          <li><strong>Fresh:</strong> Return cached data if within TTL</li>
-          <li><strong>Stale-while-revalidate:</strong> Return stale data immediately, update in background</li>
-          <li><strong>TTL Management:</strong> Time-to-live for cache entries</li>
-          <li><strong>Cache Invalidation:</strong> Manual and automatic cleanup</li>
+      
+      <div class="glass rounded-xl p-6 border-l-4 border-accent">
+        <div class="flex items-center gap-3 mb-4">
+          <i class="fas fa-star text-accent text-xl"></i>
+          <h3 class="text-lg sm:text-xl font-semibold text-gray-900 dark:text-gray-100">Caching Patterns</h3>
+        </div>
+        <ul class="list-modern">
+          <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+            <strong>Fresh:</strong> Return cached data if within TTL
+          </li>
+          <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+            <strong>Stale-while-revalidate:</strong> Return stale data immediately, update in background
+          </li>
+          <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+            <strong>TTL Management:</strong> Time-to-live for cache entries
+          </li>
+          <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+            <strong>Cache Invalidation:</strong> Manual and automatic cleanup
+          </li>
         </ul>
       </div>
     </div>
   </p-card>
 
-  <p-card class="shadow-lg">
-    <p-tabs value="0">
-      <p-tablist>
-        <p-tab value="0">❌ Violation</p-tab>
-        <p-tab value="1">✅ Solution</p-tab>
-      </p-tablist>
-      <p-tabpanels>
-        <p-tabpanel value="0">
-          <pre class="overflow-x-auto"><code>{{ violationCode }}</code></pre>
-        </p-tabpanel>
-        <p-tabpanel value="1">
-          <pre class="overflow-x-auto"><code>{{ solutionCode }}</code></pre>
-        </p-tabpanel>
-      </p-tabpanels>
-    </p-tabs>
+  <!-- Code Examples -->
+  <p-card class="card-modern hover-lift slide-in-up">
+    <div class="padding-responsive">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-green-500 to-teal-600 flex items-center justify-center">
+          <i class="fas fa-code text-white"></i>
+        </div>
+        <h2 class="subheading-responsive text-gray-900 dark:text-gray-100">Code Examples</h2>
+      </div>
+      
+      <p-tabs value="0">
+        <p-tablist class="flex flex-wrap gap-2 mb-6">
+          <p-tab value="0" class="flex items-center gap-2">
+            <i class="fas fa-times-circle text-red-500"></i>
+            <span class="text-sm sm:text-base font-semibold">Violation</span>
+          </p-tab>
+          <p-tab value="1" class="flex items-center gap-2">
+            <i class="fas fa-check-circle text-green-500"></i>
+            <span class="text-sm sm:text-base font-semibold">Solution</span>
+          </p-tab>
+        </p-tablist>
+        <p-tabpanels>
+          <p-tabpanel value="0">
+            <div class="code-block-modern">
+              <pre class="overflow-x-auto text-sm sm:text-base"><code>{{ violationCode }}</code></pre>
+            </div>
+          </p-tabpanel>
+          <p-tabpanel value="1">
+            <div class="code-block-modern">
+              <pre class="overflow-x-auto text-sm sm:text-base"><code>{{ solutionCode }}</code></pre>
+            </div>
+          </p-tabpanel>
+        </p-tabpanels>
+      </p-tabs>
+    </div>
   </p-card>
 
-  <p-card class="shadow-lg">
-    <h2 class="text-3xl font-semibold text-gray-900 dark:text-gray-100 mb-3 mb-4">Live Demo</h2>
-    
-    <div class="space-y-8">
-      <div class="border-2 border-gray-200 dark:border-gray-700 rounded-lg p-5">
-        <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">Cache Operations</h3>
-        <div class="mb-4 flex gap-2">
-          <p-button
-            label="Load Data (Cached)"
-            icon="pi pi-download"
-            (click)="loadData()"
-            class="mr-2"
-          ></p-button>
-          <p-button
-            label="Clear Cache"
-            icon="pi pi-trash"
-            (click)="clearCache()"
-            severity="danger"
-          ></p-button>
+  <!-- Live Demo -->
+  <p-card class="card-modern hover-lift slide-in-up">
+    <div class="padding-responsive">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center">
+          <i class="fas fa-play-circle text-white"></i>
         </div>
-        
-        <div class="bg-gray-100 dark:bg-gray-700 p-5 rounded mb-2">
-          <p><strong>Cache Size:</strong> {{ cacheSize() }}</p>
-        </div>
-        
-        @if (message()) {
-          <p-message [severity]="cachedData() ? 'success' : 'info'" [text]="message()"></p-message>
-        }
-        
-        @if (cachedData(); as data) {
-          <div class="mt-4 bg-gray-100 dark:bg-gray-700 p-5 rounded">
-            <pre class="text-sm">{{ data | json }}</pre>
+        <h2 class="subheading-responsive text-gray-900 dark:text-gray-100">Interactive Demo</h2>
+      </div>
+      
+      <div class="space-y-8">
+        <div class="border-2 border-gray-200 dark:border-gray-700 rounded-lg p-5">
+          <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">Cache Operations</h3>
+          <div class="mb-4 flex gap-2">
+            <p-button
+              label="Load Data (Cached)"
+              icon="pi pi-download"
+              (click)="loadData()"
+              class="mr-2"
+            ></p-button>
+            <p-button
+              label="Clear Cache"
+              icon="pi pi-trash"
+              (click)="clearCache()"
+              severity="danger"
+            ></p-button>
           </div>
-        }
+          
+          <div class="bg-gray-100 dark:bg-gray-700 p-5 rounded mb-2">
+            <p><strong>Cache Size:</strong> {{ cacheSize() }}</p>
+          </div>
+          
+          @if (message()) {
+            <p-message [severity]="cachedData() ? 'success' : 'info'" [text]="message()"></p-message>
+          }
+          
+          @if (cachedData(); as data) {
+            <div class="mt-4 bg-gray-100 dark:bg-gray-700 p-5 rounded">
+              <pre class="text-sm">{{ data | json }}</pre>
+            </div>
+          }
+        </div>
       </div>
     </div>
   </p-card>
 
-  <p-card class="shadow-lg">
-    <h2 class="text-3xl font-semibold text-gray-900 dark:text-gray-100 mb-3 mb-4">Key Takeaways</h2>
-    <ul class="space-y-2 text-base text-gray-700 dark:text-gray-300 leading-relaxed">
-      <li class="flex items-start">
-        <span class="text-green-500 mr-2">✓</span>
-        <span>Use stale-while-revalidate for better perceived performance</span>
-      </li>
-      <li class="flex items-start">
-        <span class="text-green-500 mr-2">✓</span>
-        <span>Set appropriate TTL values based on data freshness requirements</span>
-      </li>
-      <li class="flex items-start">
-        <span class="text-green-500 mr-2">✓</span>
-        <span>Combine caching with shareReplay for observable caching</span>
-      </li>
-      <li class="flex items-start">
-        <span class="text-green-500 mr-2">✓</span>
-        <span>Implement cache invalidation strategies</span>
-      </li>
-    </ul>
+  <!-- Key Takeaways -->
+  <p-card class="card-modern hover-lift slide-in-up">
+    <div class="padding-responsive">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-teal-500 to-cyan-600 flex items-center justify-center">
+          <i class="fas fa-graduation-cap text-white"></i>
+        </div>
+        <h2 class="subheading-responsive text-gray-900 dark:text-gray-100">Key Takeaways</h2>
+      </div>
+      
+      <ul class="list-modern">
+        <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+          Use stale-while-revalidate for better perceived performance
+        </li>
+        <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+          Set appropriate TTL values based on data freshness requirements
+        </li>
+        <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+          Combine caching with shareReplay for observable caching
+        </li>
+        <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+          Implement cache invalidation strategies
+        </li>
+      </ul>
+    </div>
   </p-card>
 </div>
-

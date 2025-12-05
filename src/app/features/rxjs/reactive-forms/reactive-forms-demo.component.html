@@ -1,121 +1,193 @@
-<div class="max-w-7xl mx-auto space-y-8">
-  <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8">
-    <h1 class="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-3">Reactive Forms Integration</h1>
-    <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-      Combining Angular Reactive Forms with RxJS for powerful form handling patterns.
-    </p>
+<div class="container-responsive space-y-responsive">
+  <!-- Hero Header -->
+  <div class="card-modern padding-responsive hover-lift slide-in-up">
+    <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+      <div class="flex-1">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center shadow-lg">
+            <i class="fas fa-edit text-white text-xl sm:text-2xl"></i>
+          </div>
+          <div>
+            <span class="badge-modern text-xs sm:text-sm">RxJS Patterns</span>
+          </div>
+        </div>
+        <h1 class="heading-responsive text-gradient mb-4">
+          Reactive Forms Integration
+        </h1>
+        <p class="text-responsive text-gray-700 dark:text-gray-300">
+          Combining Angular Reactive Forms with RxJS for powerful form handling patterns.
+        </p>
+      </div>
+      <div class="hidden lg:block">
+        <div class="w-32 h-32 rounded-2xl bg-gradient-to-br from-purple-500/20 to-pink-600/20 flex items-center justify-center">
+          <i class="fas fa-edit text-6xl text-purple-500"></i>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <p-card class="shadow-lg">
-    <div class="space-y-4">
-      <h2 class="text-3xl font-semibold text-gray-900 dark:text-gray-100 mb-3">RxJS + Reactive Forms</h2>
-      <p class="text-base text-gray-700 dark:text-gray-300 leading-relaxed">
+  <!-- Explanation -->
+  <p-card class="card-modern hover-lift slide-in-up">
+    <div class="padding-responsive space-y-6">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+          <i class="fas fa-lightbulb text-white"></i>
+        </div>
+        <h2 class="subheading-responsive text-gray-900 dark:text-gray-100">RxJS + Reactive Forms</h2>
+      </div>
+      
+      <p class="text-responsive text-gray-700 dark:text-gray-300 leading-relaxed">
         Reactive Forms' valueChanges is an Observable, making it perfect for integration with RxJS operators
         like debounceTime, distinctUntilChanged, and combineLatest.
       </p>
-      <div class="bg-blue-50 dark:bg-blue-900/30 p-5 rounded-lg border border-blue-200 dark:border-blue-800">
-        <h3 class="text-lg font-semibold text-blue-900 dark:text-blue-100 mb-3">Common Patterns:</h3>
-        <ul class="list-disc list-inside space-y-2 text-base text-blue-800 dark:text-blue-200">
-          <li>Debounced search inputs</li>
-          <li>Combining multiple form controls</li>
-          <li>Async validation</li>
-          <li>Auto-save with auditTime</li>
+      
+      <div class="glass rounded-xl p-6 border-l-4 border-accent">
+        <div class="flex items-center gap-3 mb-4">
+          <i class="fas fa-star text-accent text-xl"></i>
+          <h3 class="text-lg sm:text-xl font-semibold text-gray-900 dark:text-gray-100">Common Patterns</h3>
+        </div>
+        <ul class="list-modern">
+          <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+            Debounced search inputs
+          </li>
+          <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+            Combining multiple form controls
+          </li>
+          <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+            Async validation
+          </li>
+          <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+            Auto-save with auditTime
+          </li>
         </ul>
       </div>
     </div>
   </p-card>
 
-  <p-card class="shadow-lg">
-    <p-tabs value="0">
-      <p-tablist>
-        <p-tab value="0">❌ Violation</p-tab>
-        <p-tab value="1">✅ Solution</p-tab>
-      </p-tablist>
-      <p-tabpanels>
-        <p-tabpanel value="0">
-          <pre class="overflow-x-auto"><code>{{ violationCode }}</code></pre>
-        </p-tabpanel>
-        <p-tabpanel value="1">
-          <pre class="overflow-x-auto"><code>{{ solutionCode }}</code></pre>
-        </p-tabpanel>
-      </p-tabpanels>
-    </p-tabs>
-  </p-card>
-
-  <p-card class="shadow-lg">
-    <h2 class="text-3xl font-semibold text-gray-900 dark:text-gray-100 mb-3 mb-4">Live Demo</h2>
-    <p class="text-base text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
-      Type in the search field - notice how results only appear after you stop typing for 300ms (debounced).
-    </p>
-    
-    <form [formGroup]="searchForm" class="space-y-4">
-      <div>
-        <label class="block text-sm font-medium text-base text-gray-700 dark:text-gray-300 leading-relaxed mb-2">Search</label>
-        <input
-          pInputText
-          type="text"
-          formControlName="search"
-          placeholder="Type to search (min 2 characters)..."
-          class="w-full"
-        />
+  <!-- Code Examples -->
+  <p-card class="card-modern hover-lift slide-in-up">
+    <div class="padding-responsive">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-green-500 to-teal-600 flex items-center justify-center">
+          <i class="fas fa-code text-white"></i>
+        </div>
+        <h2 class="subheading-responsive text-gray-900 dark:text-gray-100">Code Examples</h2>
       </div>
       
-      <div class="grid grid-cols-2 gap-5">
+      <p-tabs value="0">
+        <p-tablist class="flex flex-wrap gap-2 mb-6">
+          <p-tab value="0" class="flex items-center gap-2">
+            <i class="fas fa-times-circle text-red-500"></i>
+            <span class="text-sm sm:text-base font-semibold">Violation</span>
+          </p-tab>
+          <p-tab value="1" class="flex items-center gap-2">
+            <i class="fas fa-check-circle text-green-500"></i>
+            <span class="text-sm sm:text-base font-semibold">Solution</span>
+          </p-tab>
+        </p-tablist>
+        <p-tabpanels>
+          <p-tabpanel value="0">
+            <div class="code-block-modern">
+              <pre class="overflow-x-auto text-sm sm:text-base"><code>{{ violationCode }}</code></pre>
+            </div>
+          </p-tabpanel>
+          <p-tabpanel value="1">
+            <div class="code-block-modern">
+              <pre class="overflow-x-auto text-sm sm:text-base"><code>{{ solutionCode }}</code></pre>
+            </div>
+          </p-tabpanel>
+        </p-tabpanels>
+      </p-tabs>
+    </div>
+  </p-card>
+
+  <!-- Live Demo -->
+  <p-card class="card-modern hover-lift slide-in-up">
+    <div class="padding-responsive">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center">
+          <i class="fas fa-play-circle text-white"></i>
+        </div>
+        <h2 class="subheading-responsive text-gray-900 dark:text-gray-100">Interactive Demo</h2>
+      </div>
+      
+      <p class="text-responsive text-gray-700 dark:text-gray-300 mb-8">
+        Type in the search field - notice how results only appear after you stop typing for 300ms (debounced).
+      </p>
+      
+      <form [formGroup]="searchForm" class="space-y-4">
         <div>
-          <label class="block text-sm font-medium text-base text-gray-700 dark:text-gray-300 leading-relaxed mb-2">Category</label>
-          <select formControlName="category" class="w-full p-2 border rounded">
-            <option value="all">All</option>
-            <option value="tech">Tech</option>
-            <option value="design">Design</option>
-          </select>
+          <label class="block text-sm font-medium text-base text-gray-700 dark:text-gray-300 leading-relaxed mb-2">Search</label>
+          <input
+            pInputText
+            type="text"
+            formControlName="search"
+            placeholder="Type to search (min 2 characters)..."
+            class="w-full"
+          />
         </div>
         
-        <div>
-          <label class="block text-sm font-medium text-base text-gray-700 dark:text-gray-300 leading-relaxed mb-2">Sort By</label>
-          <select formControlName="sortBy" class="w-full p-2 border rounded">
-            <option value="name">Name</option>
-            <option value="date">Date</option>
-          </select>
+        <div class="grid grid-cols-2 gap-5">
+          <div>
+            <label class="block text-sm font-medium text-base text-gray-700 dark:text-gray-300 leading-relaxed mb-2">Category</label>
+            <select formControlName="category" class="w-full p-2 border rounded">
+              <option value="all">All</option>
+              <option value="tech">Tech</option>
+              <option value="design">Design</option>
+            </select>
+          </div>
+          
+          <div>
+            <label class="block text-sm font-medium text-base text-gray-700 dark:text-gray-300 leading-relaxed mb-2">Sort By</label>
+            <select formControlName="sortBy" class="w-full p-2 border rounded">
+              <option value="name">Name</option>
+              <option value="date">Date</option>
+            </select>
+          </div>
         </div>
-      </div>
-    </form>
+      </form>
 
-    @if (isSearching()) {
-      <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mt-4">Searching...</p>
-    }
+      @if (isSearching()) {
+        <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mt-4">Searching...</p>
+      }
 
-    @if (searchResults().length > 0) {
-      <div class="mt-4 bg-gray-100 dark:bg-gray-700 p-5 rounded">
-        <h3 class="font-semibold mb-2">Results:</h3>
-        <ul class="list-disc list-inside">
-          @for (result of searchResults(); track result.id) {
-            <li>{{ result | json }}</li>
-          }
-        </ul>
-      </div>
-    }
+      @if (searchResults().length > 0) {
+        <div class="mt-4 bg-gray-100 dark:bg-gray-700 p-5 rounded">
+          <h3 class="font-semibold mb-2">Results:</h3>
+          <ul class="list-disc list-inside">
+            @for (result of searchResults(); track result.id) {
+              <li>{{ result | json }}</li>
+            }
+          </ul>
+        </div>
+      }
+    </div>
   </p-card>
 
-  <p-card class="shadow-lg">
-    <h2 class="text-3xl font-semibold text-gray-900 dark:text-gray-100 mb-3 mb-4">Key Takeaways</h2>
-    <ul class="space-y-2 text-base text-gray-700 dark:text-gray-300 leading-relaxed">
-      <li class="flex items-start">
-        <span class="text-green-500 mr-2">✓</span>
-        <span>Use valueChanges with debounceTime for search inputs</span>
-      </li>
-      <li class="flex items-start">
-        <span class="text-green-500 mr-2">✓</span>
-        <span>Combine multiple form controls with combineLatest</span>
-      </li>
-      <li class="flex items-start">
-        <span class="text-green-500 mr-2">✓</span>
-        <span>Use distinctUntilChanged to prevent duplicate API calls</span>
-      </li>
-      <li class="flex items-start">
-        <span class="text-green-500 mr-2">✓</span>
-        <span>Use startWith to provide initial values</span>
-      </li>
-    </ul>
+  <!-- Key Takeaways -->
+  <p-card class="card-modern hover-lift slide-in-up">
+    <div class="padding-responsive">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-teal-500 to-cyan-600 flex items-center justify-center">
+          <i class="fas fa-graduation-cap text-white"></i>
+        </div>
+        <h2 class="subheading-responsive text-gray-900 dark:text-gray-100">Key Takeaways</h2>
+      </div>
+      
+      <ul class="list-modern">
+        <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+          Use valueChanges with debounceTime for search inputs
+        </li>
+        <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+          Combine multiple form controls with combineLatest
+        </li>
+        <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+          Use distinctUntilChanged to prevent duplicate API calls
+        </li>
+        <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+          Use startWith to provide initial values
+        </li>
+      </ul>
+    </div>
   </p-card>
 </div>
-

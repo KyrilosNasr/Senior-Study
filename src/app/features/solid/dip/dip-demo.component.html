@@ -1,92 +1,200 @@
-<div class="max-w-7xl mx-auto space-y-8">
-  <!-- Header -->
-  <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8">
-    <h1 class="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-3">Dependency Inversion Principle (DIP)</h1>
-    <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-      High-level modules should not depend on low-level modules. Both should depend on abstractions.
-    </p>
+<div class="container-responsive space-y-responsive">
+  <!-- Hero Header -->
+  <div class="card-modern padding-responsive hover-lift slide-in-up">
+    <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+      <div class="flex-1">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br from-orange-500 to-red-600 flex items-center justify-center shadow-lg">
+            <i class="fas fa-arrows-alt-v text-white text-xl sm:text-2xl"></i>
+          </div>
+          <div>
+            <span class="badge-modern text-xs sm:text-sm">SOLID Principles</span>
+          </div>
+        </div>
+        <h1 class="heading-responsive text-gradient mb-4">
+          Dependency Inversion Principle
+        </h1>
+        <p class="text-responsive text-gray-700 dark:text-gray-300">
+          High-level modules should not depend on low-level modules. Both should depend on abstractions.
+        </p>
+      </div>
+      <div class="hidden lg:block">
+        <div class="w-32 h-32 rounded-2xl bg-gradient-to-br from-orange-500/20 to-red-600/20 flex items-center justify-center">
+          <i class="fas fa-arrows-alt-v text-6xl text-orange-500"></i>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- Explanation -->
-  <p-card class="shadow-lg">
-    <div class="space-y-4">
-      <h2 class="text-3xl font-semibold text-gray-900 dark:text-gray-100 mb-3">What is DIP?</h2>
-      <p class="text-base text-gray-700 dark:text-gray-300 leading-relaxed">
+  <p-card class="card-modern hover-lift slide-in-up">
+    <div class="padding-responsive space-y-6">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+          <i class="fas fa-lightbulb text-white"></i>
+        </div>
+        <h2 class="subheading-responsive text-gray-900 dark:text-gray-100">What is DIP?</h2>
+      </div>
+      
+      <p class="text-responsive text-gray-700 dark:text-gray-300 leading-relaxed">
         The Dependency Inversion Principle states that high-level modules should not depend on low-level modules. 
         Both should depend on abstractions (interfaces). Abstractions should not depend on details; 
         details should depend on abstractions. This principle promotes loose coupling and makes code more flexible.
       </p>
-      <div class="bg-indigo-50 dark:bg-indigo-900/20 p-5 rounded-lg">
-        <h3 class="font-semibold text-indigo-900 dark:text-indigo-200 mb-2">Key Benefits:</h3>
-        <ul class="list-disc list-inside space-y-1 text-indigo-800 dark:text-indigo-300">
-          <li>Reduces coupling between modules</li>
-          <li>Makes code more testable (easy to mock dependencies)</li>
-          <li>Enables swapping implementations easily</li>
-          <li>Promotes better architecture and design</li>
+      
+      <div class="glass rounded-xl p-6 border-l-4 border-accent">
+        <div class="flex items-center gap-3 mb-4">
+          <i class="fas fa-star text-accent text-xl"></i>
+          <h3 class="text-lg sm:text-xl font-semibold text-gray-900 dark:text-gray-100">Key Benefits</h3>
+        </div>
+        <ul class="list-modern">
+          <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+            Reduces coupling between modules
+          </li>
+          <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+            Makes code more testable (easy to mock dependencies)
+          </li>
+          <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+            Enables swapping implementations easily
+          </li>
+          <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+            Promotes better architecture and design
+          </li>
         </ul>
       </div>
     </div>
   </p-card>
 
   <!-- Code Examples -->
-  <p-card class="shadow-lg">
-    <p-tabs value="0">
-      <p-tablist>
-        <p-tab value="0">❌ Violation</p-tab>
-        <p-tab value="1">✅ Solution</p-tab>
-      </p-tablist>
-      <p-tabpanels>
-        <p-tabpanel value="0">
-          <pre class="overflow-x-auto"><code>{{ violationCode }}</code></pre>
-        </p-tabpanel>
-        <p-tabpanel value="1">
-          <pre class="overflow-x-auto"><code>{{ solutionCode }}</code></pre>
-        </p-tabpanel>
-      </p-tabpanels>
-    </p-tabs>
+  <p-card class="card-modern hover-lift slide-in-up">
+    <div class="padding-responsive">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-green-500 to-teal-600 flex items-center justify-center">
+          <i class="fas fa-code text-white"></i>
+        </div>
+        <h2 class="subheading-responsive text-gray-900 dark:text-gray-100">Code Examples</h2>
+      </div>
+      
+      <p-tabs value="0">
+        <p-tablist class="flex flex-wrap gap-2 mb-6">
+          <p-tab value="0" class="flex items-center gap-2">
+            <i class="fas fa-times-circle text-red-500"></i>
+            <span class="text-sm sm:text-base font-semibold">Violation</span>
+          </p-tab>
+          <p-tab value="1" class="flex items-center gap-2">
+            <i class="fas fa-check-circle text-green-500"></i>
+            <span class="text-sm sm:text-base font-semibold">Solution</span>
+          </p-tab>
+        </p-tablist>
+        <p-tabpanels>
+          <p-tabpanel value="0">
+            <div class="code-block-modern">
+              <pre class="overflow-x-auto text-sm sm:text-base"><code>{{ violationCode }}</code></pre>
+            </div>
+          </p-tabpanel>
+          <p-tabpanel value="1">
+            <div class="code-block-modern">
+              <pre class="overflow-x-auto text-sm sm:text-base"><code>{{ solutionCode }}</code></pre>
+            </div>
+          </p-tabpanel>
+        </p-tabpanels>
+      </p-tabs>
+    </div>
   </p-card>
 
   <!-- Live Demo -->
-  <p-card class="shadow-lg">
-    <h2 class="text-3xl font-semibold text-gray-900 dark:text-gray-100 mb-3 mb-4">Live Demo</h2>
-    <p class="text-base text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
-      This demo shows how dependency injection allows high-level code to depend on abstractions.
-    </p>
-
-    <div class="space-y-4">
-      <p-button
-        label="Test Dependency Inversion"
-        icon="pi pi-check"
-        (click)="testDependencyInversion()"
-      ></p-button>
+  <p-card class="card-modern hover-lift slide-in-up">
+    <div class="padding-responsive">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center">
+          <i class="fas fa-play-circle text-white"></i>
+        </div>
+        <h2 class="subheading-responsive text-gray-900 dark:text-gray-100">Interactive Demo</h2>
+      </div>
       
-      @if (testResult()) {
-        <p-message severity="success" [text]="testResult()"></p-message>
-      }
+      <p class="text-responsive text-gray-700 dark:text-gray-300 mb-8">
+        This demo shows how dependency injection allows high-level code to depend on abstractions.
+      </p>
+
+      <div class="space-y-6">
+        <p-button
+          label="Test Dependency Inversion"
+          icon="pi pi-check"
+          (click)="testDependencyInversion()"
+          class="btn-modern"
+        ></p-button>
+        
+        @if (testResult()) {
+          <div class="glass rounded-lg p-6 fade-in border border-green-200 dark:border-green-800">
+            <div class="flex items-center gap-3 mb-4">
+              <i class="fas fa-check-circle text-green-500 text-xl"></i>
+              <h3 class="text-lg sm:text-xl font-semibold text-gray-800 dark:text-gray-200">
+                Test Result
+              </h3>
+            </div>
+            <p class="text-sm sm:text-base text-green-800 dark:text-green-200">{{ testResult() }}</p>
+          </div>
+        }
+      </div>
     </div>
   </p-card>
 
   <!-- Key Takeaways -->
-  <p-card class="shadow-lg">
-    <h2 class="text-3xl font-semibold text-gray-900 dark:text-gray-100 mb-3 mb-4">Key Takeaways</h2>
-    <ul class="space-y-2 text-base text-gray-700 dark:text-gray-300 leading-relaxed">
-      <li class="flex items-start">
-        <span class="text-green-500 mr-2">✓</span>
-        <span>Depend on abstractions (interfaces), not concrete implementations</span>
-      </li>
-      <li class="flex items-start">
-        <span class="text-green-500 mr-2">✓</span>
-        <span>Use dependency injection to provide dependencies</span>
-      </li>
-      <li class="flex items-start">
-        <span class="text-green-500 mr-2">✓</span>
-        <span>High-level modules define what they need, low-level modules provide it</span>
-      </li>
-      <li class="flex items-start">
-        <span class="text-green-500 mr-2">✓</span>
-        <span>Makes code more flexible, testable, and maintainable</span>
-      </li>
-    </ul>
+  <p-card class="card-modern hover-lift slide-in-up">
+    <div class="padding-responsive">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-teal-500 to-cyan-600 flex items-center justify-center">
+          <i class="fas fa-graduation-cap text-white"></i>
+        </div>
+        <h2 class="subheading-responsive text-gray-900 dark:text-gray-100">Key Takeaways</h2>
+      </div>
+      
+      <ul class="list-modern">
+        <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+          Depend on abstractions (interfaces), not concrete implementations
+        </li>
+        <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+          Use dependency injection to provide dependencies
+        </li>
+        <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+          High-level modules define what they need, low-level modules provide it
+        </li>
+        <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+          Makes code more flexible, testable, and maintainable
+        </li>
+      </ul>
+
+      <!-- Additional Resources -->
+      <div class="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
+        <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4 flex items-center gap-2">
+          <i class="fas fa-book-open text-accent"></i>
+          Learn More
+        </h3>
+        <div class="flex flex-wrap gap-3">
+          <a href="#" class="badge-outline hover:scale-105 transition-transform">
+            <i class="fas fa-external-link-alt mr-2"></i>Documentation
+          </a>
+          <a href="#" class="badge-outline hover:scale-105 transition-transform">
+            <i class="fas fa-video mr-2"></i>Video Tutorial
+          </a>
+          <a href="#" class="badge-outline hover:scale-105 transition-transform">
+            <i class="fas fa-code-branch mr-2"></i>GitHub Examples
+          </a>
+        </div>
+      </div>
+    </div>
   </p-card>
+
+  <!-- Quick Navigation -->
+  <div class="flex flex-col sm:flex-row gap-4 justify-between items-stretch sm:items-center fade-in">
+    <button class="glass padding-responsive-sm rounded-xl hover-lift flex items-center justify-center gap-3 group">
+      <i class="fas fa-arrow-left text-accent group-hover:-translate-x-1 transition-transform"></i>
+      <span class="font-semibold text-gray-900 dark:text-gray-100">Previous: Interface Segregation</span>
+    </button>
+    <button class="glass padding-responsive-sm rounded-xl hover-lift flex items-center justify-center gap-3 group">
+      <span class="font-semibold text-gray-900 dark:text-gray-100">Next: OOP Concepts</span>
+      <i class="fas fa-arrow-right text-accent group-hover:translate-x-1 transition-transform"></i>
+    </button>
+  </div>
 </div>
 

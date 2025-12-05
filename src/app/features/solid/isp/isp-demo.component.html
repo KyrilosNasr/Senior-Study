@@ -1,108 +1,219 @@
-<div class="max-w-7xl mx-auto space-y-8">
-  <!-- Header -->
-  <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8">
-    <h1 class="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-3">Interface Segregation Principle (ISP)</h1>
-    <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-      Clients should not be forced to depend upon interfaces that they do not use.
-    </p>
+<div class="container-responsive space-y-responsive">
+  <!-- Hero Header -->
+  <div class="card-modern padding-responsive hover-lift slide-in-up">
+    <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+      <div class="flex-1">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br from-orange-500 to-red-600 flex items-center justify-center shadow-lg">
+            <i class="fas fa-layer-group text-white text-xl sm:text-2xl"></i>
+          </div>
+          <div>
+            <span class="badge-modern text-xs sm:text-sm">SOLID Principles</span>
+          </div>
+        </div>
+        <h1 class="heading-responsive text-gradient mb-4">
+          Interface Segregation Principle
+        </h1>
+        <p class="text-responsive text-gray-700 dark:text-gray-300">
+          Clients should not be forced to depend upon interfaces that they do not use.
+        </p>
+      </div>
+      <div class="hidden lg:block">
+        <div class="w-32 h-32 rounded-2xl bg-gradient-to-br from-orange-500/20 to-red-600/20 flex items-center justify-center">
+          <i class="fas fa-layer-group text-6xl text-orange-500"></i>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- Explanation -->
-  <p-card class="shadow-lg">
-    <div class="space-y-4">
-      <h2 class="text-3xl font-semibold text-gray-900 dark:text-gray-100 mb-3">What is ISP?</h2>
-      <p class="text-base text-gray-700 dark:text-gray-300 leading-relaxed">
+  <p-card class="card-modern hover-lift slide-in-up">
+    <div class="padding-responsive space-y-6">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+          <i class="fas fa-lightbulb text-white"></i>
+        </div>
+        <h2 class="subheading-responsive text-gray-900 dark:text-gray-100">What is ISP?</h2>
+      </div>
+      
+      <p class="text-responsive text-gray-700 dark:text-gray-300 leading-relaxed">
         The Interface Segregation Principle states that no client should be forced to depend on methods it does not use. 
         Instead of having one large interface, we should have multiple smaller, more specific interfaces. 
         This prevents classes from being forced to implement methods they don't need.
       </p>
-      <div class="bg-orange-50 dark:bg-orange-900/20 p-5 rounded-lg">
-        <h3 class="font-semibold text-orange-900 dark:text-orange-200 mb-2">Key Benefits:</h3>
-        <ul class="list-disc list-inside space-y-1 text-orange-800 dark:text-orange-300">
-          <li>Prevents fat interfaces with unused methods</li>
-          <li>Reduces coupling between classes</li>
-          <li>Makes interfaces more focused and cohesive</li>
-          <li>Easier to maintain and extend</li>
+      
+      <div class="glass rounded-xl p-6 border-l-4 border-accent">
+        <div class="flex items-center gap-3 mb-4">
+          <i class="fas fa-star text-accent text-xl"></i>
+          <h3 class="text-lg sm:text-xl font-semibold text-gray-900 dark:text-gray-100">Key Benefits</h3>
+        </div>
+        <ul class="list-modern">
+          <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+            Prevents fat interfaces with unused methods
+          </li>
+          <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+            Reduces coupling between classes
+          </li>
+          <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+            Makes interfaces more focused and cohesive
+          </li>
+          <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+            Easier to maintain and extend
+          </li>
         </ul>
       </div>
     </div>
   </p-card>
 
   <!-- Code Examples -->
-  <p-card class="shadow-lg">
-    <p-tabs value="0">
-      <p-tablist>
-        <p-tab value="0">❌ Violation</p-tab>
-        <p-tab value="1">✅ Solution</p-tab>
-      </p-tablist>
-      <p-tabpanels>
-        <p-tabpanel value="0">
-          <pre class="overflow-x-auto"><code>{{ violationCode }}</code></pre>
-        </p-tabpanel>
-        <p-tabpanel value="1">
-          <pre class="overflow-x-auto"><code>{{ solutionCode }}</code></pre>
-        </p-tabpanel>
-      </p-tabpanels>
-    </p-tabs>
+  <p-card class="card-modern hover-lift slide-in-up">
+    <div class="padding-responsive">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-green-500 to-teal-600 flex items-center justify-center">
+          <i class="fas fa-code text-white"></i>
+        </div>
+        <h2 class="subheading-responsive text-gray-900 dark:text-gray-100">Code Examples</h2>
+      </div>
+      
+      <p-tabs value="0">
+        <p-tablist class="flex flex-wrap gap-2 mb-6">
+          <p-tab value="0" class="flex items-center gap-2">
+            <i class="fas fa-times-circle text-red-500"></i>
+            <span class="text-sm sm:text-base font-semibold">Violation</span>
+          </p-tab>
+          <p-tab value="1" class="flex items-center gap-2">
+            <i class="fas fa-check-circle text-green-500"></i>
+            <span class="text-sm sm:text-base font-semibold">Solution</span>
+          </p-tab>
+        </p-tablist>
+        <p-tabpanels>
+          <p-tabpanel value="0">
+            <div class="code-block-modern">
+              <pre class="overflow-x-auto text-sm sm:text-base"><code>{{ violationCode }}</code></pre>
+            </div>
+          </p-tabpanel>
+          <p-tabpanel value="1">
+            <div class="code-block-modern">
+              <pre class="overflow-x-auto text-sm sm:text-base"><code>{{ solutionCode }}</code></pre>
+            </div>
+          </p-tabpanel>
+        </p-tabpanels>
+      </p-tabs>
+    </div>
   </p-card>
 
   <!-- Live Demo -->
-  <p-card class="shadow-lg">
-    <h2 class="text-3xl font-semibold text-gray-900 dark:text-gray-100 mb-3 mb-4">Live Demo</h2>
-    <p class="text-base text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
-      Compare the violation (fat interface) with the solution (segregated interfaces).
-    </p>
-
-    <div class="space-y-4">
-      <div class="border-2 border-red-200 dark:border-red-800 rounded-lg p-5">
-        <h3 class="text-lg font-semibold text-red-800 dark:text-red-200 mb-2">❌ Violation</h3>
-        <p-button
-          label="Test Violation"
-          icon="pi pi-exclamation-triangle"
-          severity="danger"
-          (click)="testViolation()"
-        ></p-button>
-        @if (violationResult()) {
-          <p-message severity="warn" [text]="violationResult()" class="mt-4"></p-message>
-        }
+  <p-card class="card-modern hover-lift slide-in-up">
+    <div class="padding-responsive">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center">
+          <i class="fas fa-play-circle text-white"></i>
+        </div>
+        <h2 class="subheading-responsive text-gray-900 dark:text-gray-100">Interactive Demo</h2>
       </div>
+      
+      <p class="text-responsive text-gray-700 dark:text-gray-300 mb-8">
+        Compare the violation (fat interface) with the solution (segregated interfaces).
+      </p>
 
-      <div class="border-2 border-green-200 dark:border-green-800 rounded-lg p-5">
-        <h3 class="text-lg font-semibold text-green-800 dark:text-green-200 mb-2">✅ Solution</h3>
-        <p-button
-          label="Test Solution"
-          icon="pi pi-check"
-          severity="success"
-          (click)="testSolution()"
-        ></p-button>
-        @if (solutionResult()) {
-          <p-message severity="success" [text]="solutionResult()" class="mt-4"></p-message>
-        }
+      <div class="space-y-6">
+        <div class="glass rounded-xl p-6 border-l-4 border-red-500">
+          <div class="flex items-center gap-3 mb-4">
+            <i class="fas fa-times-circle text-red-500 text-xl"></i>
+            <h3 class="text-lg sm:text-xl font-semibold text-red-800 dark:text-red-200">Violation</h3>
+          </div>
+          <p-button
+            label="Test Violation"
+            icon="pi pi-exclamation-triangle"
+            severity="danger"
+            (click)="testViolation()"
+            class="btn-modern"
+          ></p-button>
+          @if (violationResult()) {
+            <div class="mt-4 glass rounded-lg p-5 border border-yellow-200 dark:border-yellow-800 fade-in">
+              <p class="text-sm sm:text-base text-yellow-800 dark:text-yellow-200">{{ violationResult() }}</p>
+            </div>
+          }
+        </div>
+
+        <div class="glass rounded-xl p-6 border-l-4 border-green-500">
+          <div class="flex items-center gap-3 mb-4">
+            <i class="fas fa-check-circle text-green-500 text-xl"></i>
+            <h3 class="text-lg sm:text-xl font-semibold text-green-800 dark:text-green-200">Solution</h3>
+          </div>
+          <p-button
+            label="Test Solution"
+            icon="pi pi-check"
+            severity="success"
+            (click)="testSolution()"
+            class="btn-modern"
+          ></p-button>
+          @if (solutionResult()) {
+            <div class="mt-4 glass rounded-lg p-5 border border-green-200 dark:border-green-800 fade-in">
+              <p class="text-sm sm:text-base text-green-800 dark:text-green-200">{{ solutionResult() }}</p>
+            </div>
+          }
+        </div>
       </div>
     </div>
   </p-card>
 
   <!-- Key Takeaways -->
-  <p-card class="shadow-lg">
-    <h2 class="text-3xl font-semibold text-gray-900 dark:text-gray-100 mb-3 mb-4">Key Takeaways</h2>
-    <ul class="space-y-2 text-base text-gray-700 dark:text-gray-300 leading-relaxed">
-      <li class="flex items-start">
-        <span class="text-green-500 mr-2">✓</span>
-        <span>Split large interfaces into smaller, focused ones</span>
-      </li>
-      <li class="flex items-start">
-        <span class="text-green-500 mr-2">✓</span>
-        <span>Classes should only implement interfaces they actually use</span>
-      </li>
-      <li class="flex items-start">
-        <span class="text-green-500 mr-2">✓</span>
-        <span>Avoid "fat" interfaces with many unrelated methods</span>
-      </li>
-      <li class="flex items-start">
-        <span class="text-green-500 mr-2">✓</span>
-        <span>Use composition to combine multiple interfaces when needed</span>
-      </li>
-    </ul>
+  <p-card class="card-modern hover-lift slide-in-up">
+    <div class="padding-responsive">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-teal-500 to-cyan-600 flex items-center justify-center">
+          <i class="fas fa-graduation-cap text-white"></i>
+        </div>
+        <h2 class="subheading-responsive text-gray-900 dark:text-gray-100">Key Takeaways</h2>
+      </div>
+      
+      <ul class="list-modern">
+        <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+          Split large interfaces into smaller, focused ones
+        </li>
+        <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+          Classes should only implement interfaces they actually use
+        </li>
+        <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+          Avoid "fat" interfaces with many unrelated methods
+        </li>
+        <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+          Use composition to combine multiple interfaces when needed
+        </li>
+      </ul>
+
+      <!-- Additional Resources -->
+      <div class="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
+        <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4 flex items-center gap-2">
+          <i class="fas fa-book-open text-accent"></i>
+          Learn More
+        </h3>
+        <div class="flex flex-wrap gap-3">
+          <a href="#" class="badge-outline hover:scale-105 transition-transform">
+            <i class="fas fa-external-link-alt mr-2"></i>Documentation
+          </a>
+          <a href="#" class="badge-outline hover:scale-105 transition-transform">
+            <i class="fas fa-video mr-2"></i>Video Tutorial
+          </a>
+          <a href="#" class="badge-outline hover:scale-105 transition-transform">
+            <i class="fas fa-code-branch mr-2"></i>GitHub Examples
+          </a>
+        </div>
+      </div>
+    </div>
   </p-card>
+
+  <!-- Quick Navigation -->
+  <div class="flex flex-col sm:flex-row gap-4 justify-between items-stretch sm:items-center fade-in">
+    <button class="glass padding-responsive-sm rounded-xl hover-lift flex items-center justify-center gap-3 group">
+      <i class="fas fa-arrow-left text-accent group-hover:-translate-x-1 transition-transform"></i>
+      <span class="font-semibold text-gray-900 dark:text-gray-100">Previous: Liskov Substitution</span>
+    </button>
+    <button class="glass padding-responsive-sm rounded-xl hover-lift flex items-center justify-center gap-3 group">
+      <span class="font-semibold text-gray-900 dark:text-gray-100">Next: Dependency Inversion</span>
+      <i class="fas fa-arrow-right text-accent group-hover:translate-x-1 transition-transform"></i>
+    </button>
+  </div>
 </div>
 

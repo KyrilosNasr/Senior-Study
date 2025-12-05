@@ -1,126 +1,198 @@
-<div class="max-w-7xl mx-auto space-y-8">
-  <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8">
-    <h1 class="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-3">Memory Leak Prevention</h1>
-    <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-      Properly managing subscriptions to prevent memory leaks in Angular applications.
-    </p>
+<div class="container-responsive space-y-responsive">
+  <!-- Hero Header -->
+  <div class="card-modern padding-responsive hover-lift slide-in-up">
+    <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+      <div class="flex-1">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center shadow-lg">
+            <i class="fas fa-shield-alt text-white text-xl sm:text-2xl"></i>
+          </div>
+          <div>
+            <span class="badge-modern text-xs sm:text-sm">RxJS Patterns</span>
+          </div>
+        </div>
+        <h1 class="heading-responsive text-gradient mb-4">
+          Memory Leak Prevention
+        </h1>
+        <p class="text-responsive text-gray-700 dark:text-gray-300">
+          Properly managing subscriptions to prevent memory leaks in Angular applications.
+        </p>
+      </div>
+      <div class="hidden lg:block">
+        <div class="w-32 h-32 rounded-2xl bg-gradient-to-br from-purple-500/20 to-pink-600/20 flex items-center justify-center">
+          <i class="fas fa-shield-alt text-6xl text-purple-500"></i>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <p-card class="shadow-lg">
-    <div class="space-y-4">
-      <h2 class="text-3xl font-semibold text-gray-900 dark:text-gray-100 mb-3">Why Memory Leaks Matter</h2>
-      <p class="text-base text-gray-700 dark:text-gray-300 leading-relaxed">
+  <!-- Explanation -->
+  <p-card class="card-modern hover-lift slide-in-up">
+    <div class="padding-responsive space-y-6">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+          <i class="fas fa-lightbulb text-white"></i>
+        </div>
+        <h2 class="subheading-responsive text-gray-900 dark:text-gray-100">Why Memory Leaks Matter</h2>
+      </div>
+      
+      <p class="text-responsive text-gray-700 dark:text-gray-300 leading-relaxed">
         Subscriptions that aren't cleaned up continue to run after components are destroyed, causing memory leaks,
         performance issues, and unexpected behavior.
       </p>
-      <div class="bg-red-50 dark:bg-red-900/30 p-5 rounded-lg border border-red-200 dark:border-red-800">
-        <h3 class="font-semibold text-red-900 dark:text-red-200 mb-2">Common Causes:</h3>
-        <ul class="list-disc list-inside space-y-1 text-red-800 dark:text-red-300">
-          <li>Subscriptions without cleanup</li>
-          <li>Event listeners not removed</li>
-          <li>Intervals/timeouts not cleared</li>
-          <li>WebSocket connections not closed</li>
+      
+      <div class="glass rounded-xl p-6 border-l-4 border-red-500">
+        <div class="flex items-center gap-3 mb-4">
+          <i class="fas fa-exclamation-triangle text-red-500 text-xl"></i>
+          <h3 class="text-lg sm:text-xl font-semibold text-gray-900 dark:text-gray-100">Common Causes</h3>
+        </div>
+        <ul class="list-modern">
+          <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+            Subscriptions without cleanup
+          </li>
+          <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+            Event listeners not removed
+          </li>
+          <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+            Intervals/timeouts not cleared
+          </li>
+          <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+            WebSocket connections not closed
+          </li>
         </ul>
       </div>
     </div>
   </p-card>
 
-  <p-card class="shadow-lg">
-    <p-tabs value="0">
-      <p-tablist>
-        <p-tab value="0">❌ Violation</p-tab>
-        <p-tab value="1">✅ Solution</p-tab>
-      </p-tablist>
-      <p-tabpanels>
-        <p-tabpanel value="0">
-          <pre class="overflow-x-auto"><code>{{ violationCode }}</code></pre>
-        </p-tabpanel>
-        <p-tabpanel value="1">
-          <pre class="overflow-x-auto"><code>{{ solutionCode }}</code></pre>
-        </p-tabpanel>
-      </p-tabpanels>
-    </p-tabs>
+  <!-- Code Examples -->
+  <p-card class="card-modern hover-lift slide-in-up">
+    <div class="padding-responsive">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-green-500 to-teal-600 flex items-center justify-center">
+          <i class="fas fa-code text-white"></i>
+        </div>
+        <h2 class="subheading-responsive text-gray-900 dark:text-gray-100">Code Examples</h2>
+      </div>
+      
+      <p-tabs value="0">
+        <p-tablist class="flex flex-wrap gap-2 mb-6">
+          <p-tab value="0" class="flex items-center gap-2">
+            <i class="fas fa-times-circle text-red-500"></i>
+            <span class="text-sm sm:text-base font-semibold">Violation</span>
+          </p-tab>
+          <p-tab value="1" class="flex items-center gap-2">
+            <i class="fas fa-check-circle text-green-500"></i>
+            <span class="text-sm sm:text-base font-semibold">Solution</span>
+          </p-tab>
+        </p-tablist>
+        <p-tabpanels>
+          <p-tabpanel value="0">
+            <div class="code-block-modern">
+              <pre class="overflow-x-auto text-sm sm:text-base"><code>{{ violationCode }}</code></pre>
+            </div>
+          </p-tabpanel>
+          <p-tabpanel value="1">
+            <div class="code-block-modern">
+              <pre class="overflow-x-auto text-sm sm:text-base"><code>{{ solutionCode }}</code></pre>
+            </div>
+          </p-tabpanel>
+        </p-tabpanels>
+      </p-tabs>
+    </div>
   </p-card>
 
-  <p-card class="shadow-lg">
-    <h2 class="text-3xl font-semibold text-gray-900 dark:text-gray-100 mb-3 mb-4">Live Demo</h2>
-    <p class="text-base text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
-      Compare leaky vs safe subscriptions. The leaky one continues even after component destruction simulation.
-    </p>
-    
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-      <div class="border-2 border-red-200 dark:border-red-800 rounded-lg p-5">
-        <h3 class="text-lg font-semibold text-red-800 dark:text-red-200 mb-4">❌ Leaky Subscription</h3>
-        <div class="mb-4">
-          <p-button
-            label="Start (Leaky)"
-            icon="pi pi-play"
-            (click)="startLeaky()"
-            [disabled]="isLeakyActive()"
-            severity="danger"
-            class="mr-2"
-          ></p-button>
-          <p-button
-            label="Stop"
-            icon="pi pi-stop"
-            (click)="stopLeaky()"
-            [disabled]="!isLeakyActive()"
-            severity="danger"
-          ></p-button>
+  <!-- Live Demo -->
+  <p-card class="card-modern hover-lift slide-in-up">
+    <div class="padding-responsive">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center">
+          <i class="fas fa-play-circle text-white"></i>
         </div>
-        <div class="bg-red-50 dark:bg-red-900/20 p-5 rounded">
-          <p class="text-2xl font-bold">{{ leakyCount() }}</p>
-          <p class="text-sm text-red-700 dark:text-red-300">Continues after destruction!</p>
-        </div>
+        <h2 class="subheading-responsive text-gray-900 dark:text-gray-100">Interactive Demo</h2>
       </div>
-
-      <div class="border-2 border-green-200 dark:border-green-800 rounded-lg p-5">
-        <h3 class="text-lg font-semibold text-green-800 dark:text-green-200 mb-4">✅ Safe Subscription</h3>
-        <div class="mb-4">
-          <p-button
-            label="Start (Safe)"
-            icon="pi pi-play"
-            (click)="startSafe()"
-            [disabled]="isSafeActive()"
-            severity="success"
-            class="mr-2"
-          ></p-button>
-          <p-button
-            label="Stop"
-            icon="pi pi-stop"
-            (click)="stopSafe()"
-            [disabled]="!isSafeActive()"
-            severity="success"
-          ></p-button>
+      
+      <p class="text-responsive text-gray-700 dark:text-gray-300 mb-8">
+        Compare leaky vs safe subscriptions. The leaky one continues even after component destruction simulation.
+      </p>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="border-2 border-red-200 dark:border-red-800 rounded-lg p-5">
+          <h3 class="text-lg font-semibold text-red-800 dark:text-red-200 mb-4">❌ Leaky Subscription</h3>
+          <div class="mb-4">
+            <p-button
+              label="Start (Leaky)"
+              icon="pi pi-play"
+              (click)="startLeaky()"
+              [disabled]="isLeakyActive()"
+              severity="danger"
+              class="mr-2"
+            ></p-button>
+            <p-button
+              label="Stop"
+              icon="pi pi-stop"
+              (click)="stopLeaky()"
+              [disabled]="!isLeakyActive()"
+              severity="danger"
+            ></p-button>
+          </div>
+          <div class="bg-red-50 dark:bg-red-900/20 p-5 rounded">
+            <p class="text-2xl font-bold">{{ leakyCount() }}</p>
+            <p class="text-sm text-red-700 dark:text-red-300">Continues after destruction!</p>
+          </div>
         </div>
-        <div class="bg-green-50 dark:bg-green-900/20 p-5 rounded">
-          <p class="text-2xl font-bold">{{ safeCount() }}</p>
-          <p class="text-sm text-green-700 dark:text-green-300">Auto-cleanup on destroy</p>
+
+        <div class="border-2 border-green-200 dark:border-green-800 rounded-lg p-5">
+          <h3 class="text-lg font-semibold text-green-800 dark:text-green-200 mb-4">✅ Safe Subscription</h3>
+          <div class="mb-4">
+            <p-button
+              label="Start (Safe)"
+              icon="pi pi-play"
+              (click)="startSafe()"
+              [disabled]="isSafeActive()"
+              severity="success"
+              class="mr-2"
+            ></p-button>
+            <p-button
+              label="Stop"
+              icon="pi pi-stop"
+              (click)="stopSafe()"
+              [disabled]="!isSafeActive()"
+              severity="success"
+            ></p-button>
+          </div>
+          <div class="bg-green-50 dark:bg-green-900/20 p-5 rounded">
+            <p class="text-2xl font-bold">{{ safeCount() }}</p>
+            <p class="text-sm text-green-700 dark:text-green-300">Auto-cleanup on destroy</p>
+          </div>
         </div>
       </div>
     </div>
   </p-card>
 
-  <p-card class="shadow-lg">
-    <h2 class="text-3xl font-semibold text-gray-900 dark:text-gray-100 mb-3 mb-4">Key Takeaways</h2>
-    <ul class="space-y-2 text-base text-gray-700 dark:text-gray-300 leading-relaxed">
-      <li class="flex items-start">
-        <span class="text-green-500 mr-2">✓</span>
-        <span>Always unsubscribe or use takeUntilDestroyed/takeUntil</span>
-      </li>
-      <li class="flex items-start">
-        <span class="text-green-500 mr-2">✓</span>
-        <span>Use takeUntilDestroyed in Angular 17+ (preferred)</span>
-      </li>
-      <li class="flex items-start">
-        <span class="text-green-500 mr-2">✓</span>
-        <span>Use takeUntil with Subject for older Angular versions</span>
-      </li>
-      <li class="flex items-start">
-        <span class="text-green-500 mr-2">✓</span>
-        <span>Clean up intervals, timeouts, and event listeners</span>
-      </li>
-    </ul>
+  <!-- Key Takeaways -->
+  <p-card class="card-modern hover-lift slide-in-up">
+    <div class="padding-responsive">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-teal-500 to-cyan-600 flex items-center justify-center">
+          <i class="fas fa-graduation-cap text-white"></i>
+        </div>
+        <h2 class="subheading-responsive text-gray-900 dark:text-gray-100">Key Takeaways</h2>
+      </div>
+      
+      <ul class="list-modern">
+        <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+          Always unsubscribe or use takeUntilDestroyed/takeUntil
+        </li>
+        <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+          Use takeUntilDestroyed in Angular 17+ (preferred)
+        </li>
+        <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+          Use takeUntil with Subject for older Angular versions
+        </li>
+        <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+          Clean up intervals, timeouts, and event listeners
+        </li>
+      </ul>
+    </div>
   </p-card>
 </div>
-

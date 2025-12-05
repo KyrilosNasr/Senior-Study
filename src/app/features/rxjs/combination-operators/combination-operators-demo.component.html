@@ -1,205 +1,272 @@
-<div class="max-w-7xl mx-auto space-y-8">
-  <!-- Header -->
-  <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8">
-    <h1 class="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-3">Part 4: Combination Operators</h1>
-    <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-      Combining multiple observables: <code>combineLatest()</code>, 
-      <code>forkJoin()</code>, 
-      <code>merge()</code>, 
-      <code>concat()</code>, 
-      <code>withLatestFrom()</code>
-    </p>
+<div class="container-responsive space-y-responsive">
+  <!-- Hero Header -->
+  <div class="card-modern padding-responsive hover-lift slide-in-up">
+    <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+      <div class="flex-1">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center shadow-lg">
+            <i class="fas fa-code-branch text-white text-xl sm:text-2xl"></i>
+          </div>
+          <div>
+            <span class="badge-modern text-xs sm:text-sm">RxJS Operators</span>
+          </div>
+        </div>
+        <h1 class="heading-responsive text-gradient mb-4">
+          Combination Operators
+        </h1>
+        <p class="text-responsive text-gray-700 dark:text-gray-300">
+          Combining multiple observables: <code>combineLatest()</code>, 
+          <code>forkJoin()</code>, 
+          <code>merge()</code>, 
+          <code>concat()</code>, 
+          <code>withLatestFrom()</code>
+        </p>
+      </div>
+      <div class="hidden lg:block">
+        <div class="w-32 h-32 rounded-2xl bg-gradient-to-br from-purple-500/20 to-pink-600/20 flex items-center justify-center">
+          <i class="fas fa-code-branch text-6xl text-purple-500"></i>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- Explanation -->
-  <p-card class="shadow-lg">
-    <div class="space-y-4">
-      <h2 class="text-3xl font-semibold text-gray-900 dark:text-gray-100 mb-3">Combination Operators</h2>
-      <p class="text-base text-gray-700 dark:text-gray-300 leading-relaxed">
+  <p-card class="card-modern hover-lift slide-in-up">
+    <div class="padding-responsive space-y-6">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+          <i class="fas fa-lightbulb text-white"></i>
+        </div>
+        <h2 class="subheading-responsive text-gray-900 dark:text-gray-100">What are Combination Operators?</h2>
+      </div>
+      
+      <p class="text-responsive text-gray-700 dark:text-gray-300 leading-relaxed">
         Combination operators merge multiple observables into one, enabling parallel loading, reactive form handling,
         and efficient data aggregation.
       </p>
-      <div class="bg-blue-50 dark:bg-blue-900/30 p-5 rounded-lg border border-blue-200 dark:border-blue-800">
-        <h3 class="text-lg font-semibold text-blue-900 dark:text-blue-100 mb-3">Key Operators:</h3>
-        <ul class="list-disc list-inside space-y-2 text-base text-blue-800 dark:text-blue-200">
-          <li><strong>combineLatest():</strong> Emits when ANY source emits (needs all to emit once) - Forms, dependent streams</li>
-          <li><strong>forkJoin():</strong> Waits for ALL to complete, emits last values - Parallel HTTP requests</li>
-          <li><strong>merge():</strong> Emits from all sources as they emit - Multiple event sources, real-time updates</li>
-          <li><strong>concat():</strong> Emits sequentially, one after another - Order matters</li>
-          <li><strong>withLatestFrom():</strong> Combines with latest from other stream - Enriching data</li>
+      
+      <div class="glass rounded-xl p-6 border-l-4 border-accent">
+        <div class="flex items-center gap-3 mb-4">
+          <i class="fas fa-star text-accent text-xl"></i>
+          <h3 class="text-lg sm:text-xl font-semibold text-gray-900 dark:text-gray-100">Key Operators</h3>
+        </div>
+        <ul class="list-modern">
+          <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+            <strong>combineLatest():</strong> Emits when ANY source emits (needs all to emit once) - Forms, dependent streams
+          </li>
+          <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+            <strong>forkJoin():</strong> Waits for ALL to complete, emits last values - Parallel HTTP requests
+          </li>
+          <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+            <strong>merge():</strong> Emits from all sources as they emit - Multiple event sources, real-time updates
+          </li>
+          <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+            <strong>concat():</strong> Emits sequentially, one after another - Order matters
+          </li>
+          <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+            <strong>withLatestFrom():</strong> Combines with latest from other stream - Enriching data
+          </li>
         </ul>
       </div>
     </div>
   </p-card>
 
   <!-- Code Examples -->
-  <p-card class="shadow-lg">
-    <p-tabs value="0">
-      <p-tablist>
-        <p-tab value="0">❌ Violation</p-tab>
-        <p-tab value="1">✅ Solution</p-tab>
-      </p-tablist>
-      <p-tabpanels>
-        <p-tabpanel value="0">
-          <pre class="overflow-x-auto"><code>{{ violationCode }}</code></pre>
-        </p-tabpanel>
-        <p-tabpanel value="1">
-          <pre class="overflow-x-auto"><code>{{ solutionCode }}</code></pre>
-        </p-tabpanel>
-      </p-tabpanels>
-    </p-tabs>
+  <p-card class="card-modern hover-lift slide-in-up">
+    <div class="padding-responsive">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-green-500 to-teal-600 flex items-center justify-center">
+          <i class="fas fa-code text-white"></i>
+        </div>
+        <h2 class="subheading-responsive text-gray-900 dark:text-gray-100">Code Examples</h2>
+      </div>
+      
+      <p-tabs value="0">
+        <p-tablist class="flex flex-wrap gap-2 mb-6">
+          <p-tab value="0" class="flex items-center gap-2">
+            <i class="fas fa-times-circle text-red-500"></i>
+            <span class="text-sm sm:text-base font-semibold">Violation</span>
+          </p-tab>
+          <p-tab value="1" class="flex items-center gap-2">
+            <i class="fas fa-check-circle text-green-500"></i>
+            <span class="text-sm sm:text-base font-semibold">Solution</span>
+          </p-tab>
+        </p-tablist>
+        <p-tabpanels>
+          <p-tabpanel value="0">
+            <div class="code-block-modern">
+              <pre class="overflow-x-auto text-sm sm:text-base"><code>{{ violationCode }}</code></pre>
+            </div>
+          </p-tabpanel>
+          <p-tabpanel value="1">
+            <div class="code-block-modern">
+              <pre class="overflow-x-auto text-sm sm:text-base"><code>{{ solutionCode }}</code></pre>
+            </div>
+          </p-tabpanel>
+        </p-tabpanels>
+      </p-tabs>
+    </div>
   </p-card>
 
   <!-- Live Demo -->
-  <p-card class="shadow-lg">
-    <h2 class="text-3xl font-semibold text-gray-900 dark:text-gray-100 mb-3 mb-4">Live Demo</h2>
-    
-    <div class="space-y-8">
-      <!-- combineLatest() Demo -->
-      <div class="border-2 border-green-200 dark:border-green-800 rounded-lg p-5">
-        <h3 class="text-lg font-semibold text-green-800 dark:text-green-200 mb-4">combineLatest() - Reactive Form Fields</h3>
-        <p class="text-sm text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-          Simulates form fields that depend on each other (country + state → cities).
-        </p>
-        <div class="grid grid-cols-2 gap-5 mb-4">
-          <div>
-            <label class="block text-sm font-medium mb-2">Country</label>
-            <input
-              pInputText
-              type="text"
-              [(ngModel)]="country"
-              class="w-full"
-            />
-          </div>
-          <div>
-            <label class="block text-sm font-medium mb-2">State</label>
-            <input
-              pInputText
-              type="text"
-              [(ngModel)]="state"
-              class="w-full"
-            />
-          </div>
+  <p-card class="card-modern hover-lift slide-in-up">
+    <div class="padding-responsive">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center">
+          <i class="fas fa-play-circle text-white"></i>
         </div>
-        <p-button
-          label="Test combineLatest()"
-          icon="pi pi-link"
-          (click)="testCombineLatest()"
-          severity="success"
-          class="mb-4"
-        ></p-button>
-        @if (combineLatestResult()) {
-          <div class="bg-green-50 dark:bg-green-900/20 p-5 rounded">
-            <p class="text-sm">{{ combineLatestResult() }}</p>
-          </div>
-        }
+        <h2 class="subheading-responsive text-gray-900 dark:text-gray-100">Interactive Demo</h2>
       </div>
-
-      <!-- forkJoin() Demo -->
-      <div class="border-2 border-blue-200 dark:border-blue-800 rounded-lg p-5">
-        <h3 class="text-lg font-semibold text-blue-800 dark:text-blue-200 mb-4">forkJoin() - Parallel Loading</h3>
-        <p class="text-sm text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-2">
-          Loads user, settings, and permissions in parallel. Waits for all to complete.
-        </p>
-        <p-button
-          label="Test forkJoin() (Parallel)"
-          icon="pi pi-download"
-          (click)="testForkJoin()"
-          class="mb-4"
-        ></p-button>
-        @if (forkJoinResult()) {
-          <div class="bg-blue-50 dark:bg-blue-900/20 p-5 rounded">
-            <p class="text-sm">{{ forkJoinResult() }}</p>
+      
+      <div class="space-y-8">
+        <!-- combineLatest() Demo -->
+        <div class="border-2 border-green-200 dark:border-green-800 rounded-lg p-5">
+          <h3 class="text-lg font-semibold text-green-800 dark:text-green-200 mb-4">combineLatest() - Reactive Form Fields</h3>
+          <p class="text-sm text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+            Simulates form fields that depend on each other (country + state → cities).
+          </p>
+          <div class="grid grid-cols-2 gap-5 mb-4">
+            <div>
+              <label class="block text-sm font-medium mb-2">Country</label>
+              <input
+                pInputText
+                type="text"
+                [(ngModel)]="country"
+                class="w-full"
+              />
+            </div>
+            <div>
+              <label class="block text-sm font-medium mb-2">State</label>
+              <input
+                pInputText
+                type="text"
+                [(ngModel)]="state"
+                class="w-full"
+              />
+            </div>
           </div>
-        }
-      </div>
+          <p-button
+            label="Test combineLatest()"
+            icon="pi pi-link"
+            (click)="testCombineLatest()"
+            severity="success"
+            class="mb-4"
+          ></p-button>
+          @if (combineLatestResult()) {
+            <div class="bg-green-50 dark:bg-green-900/20 p-5 rounded">
+              <p class="text-sm">{{ combineLatestResult() }}</p>
+            </div>
+          }
+        </div>
 
-      <!-- merge() Demo -->
-      <div class="border-2 border-purple-200 dark:border-purple-800 rounded-lg p-5">
-        <h3 class="text-lg font-semibold text-purple-800 dark:text-purple-200 mb-4">merge() - Multiple Event Sources</h3>
-        <p class="text-sm text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-2">
-          Merges multiple observables, emits as they arrive (order may vary).
-        </p>
-        <p-button
-          label="Test merge()"
-          icon="pi pi-code"
-          (click)="testMerge()"
-          class="mb-4"
-        ></p-button>
-        @if (mergeResult()) {
-          <div class="bg-purple-50 dark:bg-purple-900/20 p-5 rounded">
-            <p class="text-sm">Merged: {{ mergeResult() }}</p>
-            <p class="text-xs text-lg text-gray-700 dark:text-gray-300 leading-relaxed mt-2">Note: Order may vary based on timing</p>
-          </div>
-        }
-      </div>
+        <!-- forkJoin() Demo -->
+        <div class="border-2 border-blue-200 dark:border-blue-800 rounded-lg p-5">
+          <h3 class="text-lg font-semibold text-blue-800 dark:text-blue-200 mb-4">forkJoin() - Parallel Loading</h3>
+          <p class="text-sm text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-2">
+            Loads user, settings, and permissions in parallel. Waits for all to complete.
+          </p>
+          <p-button
+            label="Test forkJoin() (Parallel)"
+            icon="pi pi-download"
+            (click)="testForkJoin()"
+            class="mb-4"
+          ></p-button>
+          @if (forkJoinResult()) {
+            <div class="bg-blue-50 dark:bg-blue-900/20 p-5 rounded">
+              <p class="text-sm">{{ forkJoinResult() }}</p>
+            </div>
+          }
+        </div>
 
-      <!-- concat() Demo -->
-      <div class="border-2 border-orange-200 dark:border-orange-800 rounded-lg p-5">
-        <h3 class="text-lg font-semibold text-orange-800 dark:text-orange-200 mb-4">concat() - Sequential Execution</h3>
-        <p class="text-sm text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-2">
-          Concatenates observables sequentially, one after another (order preserved).
-        </p>
-        <p-button
-          label="Test concat()"
-          icon="pi pi-list"
-          (click)="testConcat()"
-          class="mb-4"
-        ></p-button>
-        @if (concatResult()) {
-          <div class="bg-orange-50 dark:bg-orange-900/20 p-5 rounded">
-            <p class="text-sm">Sequential: {{ concatResult() }}</p>
-            <p class="text-xs text-lg text-gray-700 dark:text-gray-300 leading-relaxed mt-2">Note: Order is always preserved</p>
-          </div>
-        }
-      </div>
+        <!-- merge() Demo -->
+        <div class="border-2 border-purple-200 dark:border-purple-800 rounded-lg p-5">
+          <h3 class="text-lg font-semibold text-purple-800 dark:text-purple-200 mb-4">merge() - Multiple Event Sources</h3>
+          <p class="text-sm text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-2">
+            Merges multiple observables, emits as they arrive (order may vary).
+          </p>
+          <p-button
+            label="Test merge()"
+            icon="pi pi-code"
+            (click)="testMerge()"
+            class="mb-4"
+          ></p-button>
+          @if (mergeResult()) {
+            <div class="bg-purple-50 dark:bg-purple-900/20 p-5 rounded">
+              <p class="text-sm">Merged: {{ mergeResult() }}</p>
+              <p class="text-xs text-lg text-gray-700 dark:text-gray-300 leading-relaxed mt-2">Note: Order may vary based on timing</p>
+            </div>
+          }
+        </div>
 
-      <!-- withLatestFrom() Demo -->
-      <div class="border-2 border-indigo-200 dark:border-indigo-800 rounded-lg p-5">
-        <h3 class="text-lg font-semibold text-indigo-800 dark:text-indigo-200 mb-4">withLatestFrom() - Enrich Data</h3>
-        <p class="text-sm text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-2">
-          Combines with latest from other streams without triggering emissions.
-        </p>
-        <p-button
-          label="Test withLatestFrom()"
-          icon="pi pi-link"
-          (click)="testWithLatestFrom()"
-          class="mb-4"
-        ></p-button>
-        @if (withLatestFromResult()) {
-          <div class="bg-indigo-50 dark:bg-indigo-900/20 p-5 rounded">
-            <p class="text-sm">{{ withLatestFromResult() }}</p>
-          </div>
-        }
+        <!-- concat() Demo -->
+        <div class="border-2 border-orange-200 dark:border-orange-800 rounded-lg p-5">
+          <h3 class="text-lg font-semibold text-orange-800 dark:text-orange-200 mb-4">concat() - Sequential Execution</h3>
+          <p class="text-sm text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-2">
+            Concatenates observables sequentially, one after another (order preserved).
+          </p>
+          <p-button
+            label="Test concat()"
+            icon="pi pi-list"
+            (click)="testConcat()"
+            class="mb-4"
+          ></p-button>
+          @if (concatResult()) {
+            <div class="bg-orange-50 dark:bg-orange-900/20 p-5 rounded">
+              <p class="text-sm">Sequential: {{ concatResult() }}</p>
+              <p class="text-xs text-lg text-gray-700 dark:text-gray-300 leading-relaxed mt-2">Note: Order is always preserved</p>
+            </div>
+          }
+        </div>
+
+        <!-- withLatestFrom() Demo -->
+        <div class="border-2 border-indigo-200 dark:border-indigo-800 rounded-lg p-5">
+          <h3 class="text-lg font-semibold text-indigo-800 dark:text-indigo-200 mb-4">withLatestFrom() - Enrich Data</h3>
+          <p class="text-sm text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-2">
+            Combines with latest from other streams without triggering emissions.
+          </p>
+          <p-button
+            label="Test withLatestFrom()"
+            icon="pi pi-link"
+            (click)="testWithLatestFrom()"
+            class="mb-4"
+          ></p-button>
+          @if (withLatestFromResult()) {
+            <div class="bg-indigo-50 dark:bg-indigo-900/20 p-5 rounded">
+              <p class="text-sm">{{ withLatestFromResult() }}</p>
+            </div>
+          }
+        </div>
       </div>
     </div>
   </p-card>
 
   <!-- Key Takeaways -->
-  <p-card class="shadow-lg">
-    <h2 class="text-3xl font-semibold text-gray-900 dark:text-gray-100 mb-3 mb-4">Key Takeaways</h2>
-    <ul class="space-y-2 text-base text-gray-700 dark:text-gray-300 leading-relaxed">
-      <li class="flex items-start">
-        <span class="text-green-500 mr-2">✓</span>
-        <span>Use <code>forkJoin()</code> for parallel HTTP requests - much faster than sequential</span>
-      </li>
-      <li class="flex items-start">
-        <span class="text-green-500 mr-2">✓</span>
-        <span>Use <code>combineLatest()</code> for reactive form field combinations</span>
-      </li>
-      <li class="flex items-start">
-        <span class="text-green-500 mr-2">✓</span>
-        <span>Use <code>merge()</code> to combine multiple event sources (WebSocket + polling)</span>
-      </li>
-      <li class="flex items-start">
-        <span class="text-green-500 mr-2">✓</span>
-        <span>Use <code>concat()</code> when order matters and you need sequential execution</span>
-      </li>
-      <li class="flex items-start">
-        <span class="text-green-500 mr-2">✓</span>
-        <span>Use <code>withLatestFrom()</code> to enrich data without triggering emissions</span>
-      </li>
-    </ul>
+  <p-card class="card-modern hover-lift slide-in-up">
+    <div class="padding-responsive">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-teal-500 to-cyan-600 flex items-center justify-center">
+          <i class="fas fa-graduation-cap text-white"></i>
+        </div>
+        <h2 class="subheading-responsive text-gray-900 dark:text-gray-100">Key Takeaways</h2>
+      </div>
+      
+      <ul class="list-modern">
+        <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+          Use <code>forkJoin()</code> for parallel HTTP requests - much faster than sequential
+        </li>
+        <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+          Use <code>combineLatest()</code> for reactive form field combinations
+        </li>
+        <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+          Use <code>merge()</code> to combine multiple event sources (WebSocket + polling)
+        </li>
+        <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+          Use <code>concat()</code> when order matters and you need sequential execution
+        </li>
+        <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+          Use <code>withLatestFrom()</code> to enrich data without triggering emissions
+        </li>
+      </ul>
+    </div>
   </p-card>
 </div>
-

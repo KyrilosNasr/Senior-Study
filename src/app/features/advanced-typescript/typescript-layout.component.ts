@@ -1,4 +1,4 @@
-import { Component, signal, inject, computed } from '@angular/core';
+import { Component, signal, inject, computed, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule, RouterOutlet } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
@@ -6,22 +6,32 @@ import { TreeNode } from 'primeng/api';
 import { SidebarComponent, SidebarConfig } from '../../shared/components/sidebar/sidebar.component';
 import { ThemeService } from '../../core/services/theme.service';
 import { ThemeToggleComponent } from '../../shared/components/theme-toggle/theme-toggle.component';
+import { getIconForLabel } from '../../shared/config/icon-mapping.config';
 
 @Component({
   selector: 'app-typescript-layout',
   standalone: true,
   imports: [CommonModule, RouterModule, RouterOutlet, ButtonModule, SidebarComponent, ThemeToggleComponent],
   templateUrl: './typescript-layout.component.html',
-  styleUrl: './typescript-layout.component.scss'
+  styleUrl: './typescript-layout.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TypeScriptLayoutComponent {
   private readonly router = inject(Router);
   private readonly themeService = inject(ThemeService);
 
+  @ViewChild(SidebarComponent) sidebarComponent = signal<SidebarComponent | undefined>(undefined);
+
   sidebarVisible = signal(false);
 
   readonly contentGradient = computed(() => {
     return this.themeService.getGradientClasses('to-br', 'subtle');
+  });
+
+  readonly mainContentClass = computed(() => {
+    const sidebar = this.sidebarComponent();
+    if (!sidebar) return 'lg:ml-64';
+    return sidebar.isExpanded() ? 'lg:ml-64' : 'lg:ml-16';
   });
 
   sidebarConfig: SidebarConfig = {
@@ -39,49 +49,49 @@ export class TypeScriptLayoutComponent {
       children: [
         {
           label: 'Advanced Types',
-          icon: 'pi pi-code',
+          icon: getIconForLabel('Advanced Types'),
           data: '/typescript/advanced-types',
           leaf: true
         },
         {
           label: 'Type Guards',
-          icon: 'pi pi-shield',
+          icon: getIconForLabel('Type Guards'),
           data: '/typescript/type-guards',
           leaf: true
         },
         {
           label: 'Generics',
-          icon: 'pi pi-cog',
+          icon: getIconForLabel('Generics'),
           data: '/typescript/generics',
           leaf: true
         },
         {
           label: 'Utility Types',
-          icon: 'pi pi-wrench',
+          icon: getIconForLabel('Utility Types'),
           data: '/typescript/utility-types',
           leaf: true
         },
         {
           label: 'Decorators',
-          icon: 'pi pi-star',
+          icon: getIconForLabel('Decorators'),
           data: '/typescript/decorators',
           leaf: true
         },
         {
           label: 'TypeScript 5.x',
-          icon: 'pi pi-bolt',
+          icon: getIconForLabel('TypeScript 5.x'),
           data: '/typescript/typescript-5-features',
           leaf: true
         },
         {
           label: 'Function Types',
-          icon: 'pi pi-function',
+          icon: getIconForLabel('Function Types'),
           data: '/typescript/function-types',
           leaf: true
         },
         {
           label: 'Module Augmentation',
-          icon: 'pi pi-puzzle',
+          icon: getIconForLabel('Module Augmentation'),
           data: '/typescript/module-augmentation',
           leaf: true
         }
@@ -93,19 +103,19 @@ export class TypeScriptLayoutComponent {
       children: [
         {
           label: 'SOLID Principles',
-          icon: 'pi pi-arrow-right',
+          icon: getIconForLabel('SOLID Principles'),
           data: '/solid/srp',
           leaf: true
         },
         {
           label: 'OOP Concepts',
-          icon: 'pi pi-arrow-right',
+          icon: getIconForLabel('OOP Concepts'),
           data: '/oop/encapsulation',
           leaf: true
         },
         {
           label: 'RxJS Patterns',
-          icon: 'pi pi-arrow-right',
+          icon: getIconForLabel('RxJS Patterns'),
           data: '/rxjs/creation-operators',
           leaf: true
         }

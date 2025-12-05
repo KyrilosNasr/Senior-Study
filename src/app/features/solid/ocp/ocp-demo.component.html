@@ -1,134 +1,250 @@
-<div class="max-w-7xl mx-auto space-y-8">
-  <!-- Header -->
-  <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8">
-    <h1 class="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-3">Open/Closed Principle (OCP)</h1>
-    <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-      Software entities should be open for extension but closed for modification.
-    </p>
+<div class="container-responsive space-y-responsive">
+  <!-- Hero Header -->
+  <div class="card-modern padding-responsive hover-lift slide-in-up">
+    <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+      <div class="flex-1">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br from-orange-500 to-red-600 flex items-center justify-center shadow-lg">
+            <i class="fas fa-door-open text-white text-xl sm:text-2xl"></i>
+          </div>
+          <div>
+            <span class="badge-modern text-xs sm:text-sm">SOLID Principles</span>
+          </div>
+        </div>
+        <h1 class="heading-responsive text-gradient mb-4">
+          Open/Closed Principle
+        </h1>
+        <p class="text-responsive text-gray-700 dark:text-gray-300">
+          Software entities should be open for extension but closed for modification.
+        </p>
+      </div>
+      <div class="hidden lg:block">
+        <div class="w-32 h-32 rounded-2xl bg-gradient-to-br from-orange-500/20 to-red-600/20 flex items-center justify-center">
+          <i class="fas fa-door-open text-6xl text-orange-500"></i>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- Explanation -->
-  <p-card class="shadow-lg">
-    <div class="space-y-4">
-      <h2 class="text-3xl font-semibold text-gray-900 dark:text-gray-100 mb-3">What is OCP?</h2>
-      <p class="text-base text-gray-700 dark:text-gray-300 leading-relaxed">
+  <p-card class="card-modern hover-lift slide-in-up">
+    <div class="padding-responsive space-y-6">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+          <i class="fas fa-lightbulb text-white"></i>
+        </div>
+        <h2 class="subheading-responsive text-gray-900 dark:text-gray-100">What is OCP?</h2>
+      </div>
+      
+      <p class="text-responsive text-gray-700 dark:text-gray-300 leading-relaxed">
         The Open/Closed Principle states that classes should be open for extension but closed for modification. 
         This means you should be able to add new functionality without changing existing code. 
         This is typically achieved through interfaces, abstract classes, and polymorphism.
       </p>
-      <div class="bg-green-50 dark:bg-green-900/20 p-5 rounded-lg">
-        <h3 class="font-semibold text-green-900 dark:text-green-200 mb-2">Key Benefits:</h3>
-        <ul class="list-disc list-inside space-y-1 text-green-800 dark:text-green-300">
-          <li>Add new features without breaking existing code</li>
-          <li>Reduced risk of introducing bugs</li>
-          <li>Better code stability</li>
-          <li>Easier to maintain and test</li>
+      
+      <div class="glass rounded-xl p-6 border-l-4 border-accent">
+        <div class="flex items-center gap-3 mb-4">
+          <i class="fas fa-star text-accent text-xl"></i>
+          <h3 class="text-lg sm:text-xl font-semibold text-gray-900 dark:text-gray-100">Key Benefits</h3>
+        </div>
+        <ul class="list-modern">
+          <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+            Add new features without breaking existing code
+          </li>
+          <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+            Reduced risk of introducing bugs
+          </li>
+          <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+            Better code stability
+          </li>
+          <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+            Easier to maintain and test
+          </li>
         </ul>
       </div>
     </div>
   </p-card>
 
   <!-- Code Examples -->
-  <p-card class="shadow-lg">
-    <p-tabs value="0">
-      <p-tablist>
-        <p-tab value="0">❌ Violation</p-tab>
-        <p-tab value="1">✅ Solution</p-tab>
-      </p-tablist>
-      <p-tabpanels>
-        <p-tabpanel value="0">
-          <pre class="overflow-x-auto"><code>{{ violationCode }}</code></pre>
-        </p-tabpanel>
-        <p-tabpanel value="1">
-          <pre class="overflow-x-auto"><code>{{ solutionCode }}</code></pre>
-        </p-tabpanel>
-      </p-tabpanels>
-    </p-tabs>
+  <p-card class="card-modern hover-lift slide-in-up">
+    <div class="padding-responsive">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-green-500 to-teal-600 flex items-center justify-center">
+          <i class="fas fa-code text-white"></i>
+        </div>
+        <h2 class="subheading-responsive text-gray-900 dark:text-gray-100">Code Examples</h2>
+      </div>
+      
+      <p-tabs value="0">
+        <p-tablist class="flex flex-wrap gap-2 mb-6">
+          <p-tab value="0" class="flex items-center gap-2">
+            <i class="fas fa-times-circle text-red-500"></i>
+            <span class="text-sm sm:text-base font-semibold">Violation</span>
+          </p-tab>
+          <p-tab value="1" class="flex items-center gap-2">
+            <i class="fas fa-check-circle text-green-500"></i>
+            <span class="text-sm sm:text-base font-semibold">Solution</span>
+          </p-tab>
+        </p-tablist>
+        <p-tabpanels>
+          <p-tabpanel value="0">
+            <div class="code-block-modern">
+              <pre class="overflow-x-auto text-sm sm:text-base"><code>{{ violationCode }}</code></pre>
+            </div>
+          </p-tabpanel>
+          <p-tabpanel value="1">
+            <div class="code-block-modern">
+              <pre class="overflow-x-auto text-sm sm:text-base"><code>{{ solutionCode }}</code></pre>
+            </div>
+          </p-tabpanel>
+        </p-tabpanels>
+      </p-tabs>
+    </div>
   </p-card>
 
   <!-- Live Demo -->
-  <p-card class="shadow-lg">
-    <h2 class="text-3xl font-semibold text-gray-900 dark:text-gray-100 mb-3 mb-4">Live Demo</h2>
-    <p class="text-base text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
-      Select a payment method and process a payment. New payment methods can be added without modifying existing code.
-    </p>
-
-    <div class="space-y-4">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-        <div>
-          <label class="block text-sm font-medium text-base text-gray-700 dark:text-gray-300 leading-relaxed mb-2">Payment Method</label>
-          <p-select
-            [options]="paymentMethods"
-            [(ngModel)]="selectedMethod"
-            optionLabel="label"
-            optionValue="value"
-            class="w-full"
-          ></p-select>
+  <p-card class="card-modern hover-lift slide-in-up">
+    <div class="padding-responsive">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center">
+          <i class="fas fa-play-circle text-white"></i>
         </div>
-        <div>
-          <label class="block text-sm font-medium text-base text-gray-700 dark:text-gray-300 leading-relaxed mb-2">Amount</label>
-          <p-inputNumber
-            [(ngModel)]="amount"
-            [min]="1"
-            [max]="10000"
-            mode="decimal"
-            [showButtons]="true"
-            class="w-full"
-          ></p-inputNumber>
-        </div>
-        <div>
-          <label class="block text-sm font-medium text-base text-gray-700 dark:text-gray-300 leading-relaxed mb-2">Currency</label>
-          <p-select
-            [options]="[{label: 'USD', value: 'USD'}, {label: 'EUR', value: 'EUR'}]"
-            [(ngModel)]="currency"
-            optionLabel="label"
-            optionValue="value"
-            class="w-full"
-          ></p-select>
-        </div>
+        <h2 class="subheading-responsive text-gray-900 dark:text-gray-100">Interactive Demo</h2>
       </div>
+      
+      <p class="text-responsive text-gray-700 dark:text-gray-300 mb-8">
+        Select a payment method and process a payment. New payment methods can be added without modifying existing code.
+      </p>
 
-      <p-button
-        label="Process Payment"
-        icon="pi pi-check"
-        (click)="processPayment()"
-      ></p-button>
-
-      @if (paymentResult(); as result) {
-        <div class="bg-gray-100 dark:bg-gray-700 p-5 rounded-lg">
-          <h3 class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Payment Result:</h3>
-          <p class="text-sm text-base text-gray-700 dark:text-gray-300 leading-relaxed">
-            <strong>ID:</strong> {{ result.id }}<br>
-            <strong>Amount:</strong> {{ result.amount }} {{ result.currency }}<br>
-            <strong>Status:</strong> {{ result.status }}<br>
-            <strong>Timestamp:</strong> {{ result.timestamp | date:'short' }}
-          </p>
+      <div class="space-y-6">
+        <!-- Form Inputs -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
+          <div class="space-y-2">
+            <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300">
+              <i class="fas fa-credit-card text-accent mr-2"></i>Payment Method
+            </label>
+            <p-select
+              [options]="paymentMethods"
+              [(ngModel)]="selectedMethod"
+              optionLabel="label"
+              optionValue="value"
+              class="w-full"
+            ></p-select>
+          </div>
+          <div class="space-y-2">
+            <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300">
+              <i class="fas fa-dollar-sign text-accent mr-2"></i>Amount
+            </label>
+            <p-inputNumber
+              [(ngModel)]="amount"
+              [min]="1"
+              [max]="10000"
+              mode="decimal"
+              [showButtons]="true"
+              class="w-full"
+            ></p-inputNumber>
+          </div>
+          <div class="space-y-2">
+            <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300">
+              <i class="fas fa-money-bill text-accent mr-2"></i>Currency
+            </label>
+            <p-select
+              [options]="[{label: 'USD', value: 'USD'}, {label: 'EUR', value: 'EUR'}]"
+              [(ngModel)]="currency"
+              optionLabel="label"
+              optionValue="value"
+              class="w-full"
+            ></p-select>
+          </div>
         </div>
-      }
+
+        <!-- Action Button -->
+        <div class="flex flex-col sm:flex-row gap-4 items-stretch sm:items-center">
+          <p-button
+            label="Process Payment"
+            icon="pi pi-check"
+            (click)="processPayment()"
+            class="btn-modern flex-1 sm:flex-initial"
+          ></p-button>
+        </div>
+
+        <!-- Payment Result -->
+        @if (paymentResult(); as result) {
+          <div class="glass rounded-lg p-6 fade-in border border-gray-200 dark:border-gray-700">
+            <div class="flex items-center gap-3 mb-4">
+              <i class="fas fa-receipt text-accent text-xl"></i>
+              <h3 class="text-lg sm:text-xl font-semibold text-gray-800 dark:text-gray-200">
+                Payment Result
+              </h3>
+            </div>
+            <div class="space-y-2 text-sm sm:text-base text-gray-700 dark:text-gray-300">
+              <p><strong>ID:</strong> {{ result.id }}</p>
+              <p><strong>Amount:</strong> {{ result.amount }} {{ result.currency }}</p>
+              <p><strong>Status:</strong> <span class="text-green-600 dark:text-green-400">{{ result.status }}</span></p>
+              <p><strong>Timestamp:</strong> {{ result.timestamp | date:'short' }}</p>
+            </div>
+          </div>
+        }
+      </div>
     </div>
   </p-card>
 
   <!-- Key Takeaways -->
-  <p-card class="shadow-lg">
-    <h2 class="text-3xl font-semibold text-gray-900 dark:text-gray-100 mb-3 mb-4">Key Takeaways</h2>
-    <ul class="space-y-2 text-base text-gray-700 dark:text-gray-300 leading-relaxed">
-      <li class="flex items-start">
-        <span class="text-green-500 mr-2">✓</span>
-        <span>Use interfaces and abstractions to define contracts</span>
-      </li>
-      <li class="flex items-start">
-        <span class="text-green-500 mr-2">✓</span>
-        <span>Implement new features by adding new classes, not modifying existing ones</span>
-      </li>
-      <li class="flex items-start">
-        <span class="text-green-500 mr-2">✓</span>
-        <span>Strategy pattern is a common way to achieve OCP</span>
-      </li>
-      <li class="flex items-start">
-        <span class="text-green-500 mr-2">✓</span>
-        <span>Makes code more maintainable and extensible</span>
-      </li>
-    </ul>
+  <p-card class="card-modern hover-lift slide-in-up">
+    <div class="padding-responsive">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-teal-500 to-cyan-600 flex items-center justify-center">
+          <i class="fas fa-graduation-cap text-white"></i>
+        </div>
+        <h2 class="subheading-responsive text-gray-900 dark:text-gray-100">Key Takeaways</h2>
+      </div>
+      
+      <ul class="list-modern">
+        <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+          Use interfaces and abstractions to define contracts
+        </li>
+        <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+          Implement new features by adding new classes, not modifying existing ones
+        </li>
+        <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+          Strategy pattern is a common way to achieve OCP
+        </li>
+        <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+          Makes code more maintainable and extensible
+        </li>
+      </ul>
+
+      <!-- Additional Resources -->
+      <div class="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
+        <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4 flex items-center gap-2">
+          <i class="fas fa-book-open text-accent"></i>
+          Learn More
+        </h3>
+        <div class="flex flex-wrap gap-3">
+          <a href="#" class="badge-outline hover:scale-105 transition-transform">
+            <i class="fas fa-external-link-alt mr-2"></i>Documentation
+          </a>
+          <a href="#" class="badge-outline hover:scale-105 transition-transform">
+            <i class="fas fa-video mr-2"></i>Video Tutorial
+          </a>
+          <a href="#" class="badge-outline hover:scale-105 transition-transform">
+            <i class="fas fa-code-branch mr-2"></i>GitHub Examples
+          </a>
+        </div>
+      </div>
+    </div>
   </p-card>
+
+  <!-- Quick Navigation -->
+  <div class="flex flex-col sm:flex-row gap-4 justify-between items-stretch sm:items-center fade-in">
+    <button class="glass padding-responsive-sm rounded-xl hover-lift flex items-center justify-center gap-3 group">
+      <i class="fas fa-arrow-left text-accent group-hover:-translate-x-1 transition-transform"></i>
+      <span class="font-semibold text-gray-900 dark:text-gray-100">Previous: Single Responsibility</span>
+    </button>
+    <button class="glass padding-responsive-sm rounded-xl hover-lift flex items-center justify-center gap-3 group">
+      <span class="font-semibold text-gray-900 dark:text-gray-100">Next: Liskov Substitution</span>
+      <i class="fas fa-arrow-right text-accent group-hover:translate-x-1 transition-transform"></i>
+    </button>
+  </div>
 </div>
 

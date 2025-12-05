@@ -8,7 +8,7 @@
   ></app-sidebar>
 
   <!-- Main Content - with dynamic margin for sidebar -->
-  <main class="flex-1 flex flex-col transition-all duration-300 lg:ml-64">
+  <main [class]="'flex-1 flex flex-col transition-all duration-300 ' + mainContentClass()">
     <!-- Mobile Header -->
     <header class="lg:hidden glass sticky top-0 z-30 shadow-modern p-4 flex items-center justify-between gap-3">
       <button
