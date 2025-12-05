@@ -1,22 +1,104 @@
 <!-- Mobile Sidebar -->
-<p-drawer [visible]="sidebarVisible()" (visibleChange)="sidebarVisible.set($event)" position="left"
-  [header]="config.headerText" [closeOnEscape]="true" styleClass="w-64 lg:hidden">
-  <div class="p-5 overflow-y-auto max-h-[calc(100vh-4rem)]">
-    <p-tree [value]="treeNodes" (onNodeSelect)="onNodeSelect($event)" selectionMode="single"
-      [style]="{ width: '100%', border: 'none' }" styleClass="w-full border-none modern-tree"></p-tree>
+<p-drawer 
+  [visible]="sidebarVisible()" 
+  (visibleChange)="sidebarVisible.set($event)" 
+  position="left"
+  [header]="config.headerText" 
+  [closeOnEscape]="true" 
+  styleClass="w-72 lg:hidden"
+>
+  <div class="p-4 overflow-y-auto max-h-[calc(100vh-4rem)] scrollbar-thin">
+    <p-tree 
+      [value]="treeNodes" 
+      (onNodeSelect)="onNodeSelect($event)" 
+      selectionMode="single"
+      [style]="{ width: '100%', border: 'none' }" 
+      styleClass="w-full border-none modern-tree"
+    ></p-tree>
   </div>
 </p-drawer>
 
 <!-- Desktop Sidebar -->
 <aside
-  [class]="'hidden lg:block w-72 shadow-xl border-r border-gray-200 dark:border-gray-700 flex flex-col h-screen z-40 ' + sidebarGradient()">
-  <div class="p-6 flex-shrink-0 border-b border-gray-200/50 dark:border-gray-700/50">
-    <h1 [class]="'text-3xl font-bold ' + titleGradient()">{{ config.title }}</h1>
-    <p class="text-xs text-gray-700 dark:text-gray-300 mt-1 font-medium">{{ config.subtitle }}</p>
+  [class]="'hidden lg:flex flex-col fixed left-0 top-0 h-screen z-40 shadow-2xl border-r border-gray-200/50 dark:border-gray-700/50 transition-all duration-300 ' + sidebarGradient() + (isExpanded() ? ' w-64' : ' w-16')"
+>
+  <!-- Toggle Button -->
+  <button
+    type="button"
+    (click)="toggleSidebar()"
+    class="absolute -right-3 top-6 w-6 h-6 rounded-full bg-white dark:bg-gray-800 border-2 border-gray-300 dark:border-gray-600 shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center z-50 hover:scale-110"
+    [title]="isExpanded() ? 'Collapse sidebar' : 'Expand sidebar'"
+    [attr.aria-label]="isExpanded() ? 'Collapse sidebar' : 'Expand sidebar'"
+  >
+    <i [class]="'fas text-xs text-gray-600 dark:text-gray-300 transition-transform duration-300 ' + (isExpanded() ? 'fa-chevron-left' : 'fa-chevron-right')"></i>
+  </button>
+
+  <!-- Sidebar Header -->
+  <div class="p-4 flex-shrink-0 border-b border-gray-200/30 dark:border-gray-700/30 backdrop-blur-sm overflow-hidden">
+    @if (isExpanded()) {
+      <div class="flex items-center gap-3 animate-fade-in">
+        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-accent-light to-accent-dark flex items-center justify-center shadow-lg flex-shrink-0">
+          <i class="fas fa-book text-white text-lg"></i>
+        </div>
+        <div class="min-w-0 flex-1">
+          <h1 [class]="'text-xl font-bold truncate ' + titleGradient()">{{ config.title }}</h1>
+          <p class="text-xs text-gray-600 dark:text-gray-400 font-medium truncate">{{ config.subtitle }}</p>
+        </div>
+      </div>
+    } @else {
+      <div class="flex justify-center animate-fade-in">
+        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-accent-light to-accent-dark flex items-center justify-center shadow-lg">
+          <i class="fas fa-book text-white text-lg"></i>
+        </div>
+      </div>
+    }
   </div>
-  <div
-    class="flex-1 overflow-y-scroll px-3 py-4 scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-600 scrollbar-track-transparent min-h-0">
-    <p-tree [value]="treeNodes" (onNodeSelect)="onNodeSelect($event)" selectionMode="single"
-      [style]="{ width: '100%', border: 'none' }" styleClass="w-full border-none modern-tree"></p-tree>
+
+  <!-- Navigation Tree -->
+  <div class="flex-1 overflow-y-auto overflow-x-hidden py-4 scrollbar-thin min-h-0" [class.px-2]="!isExpanded()" [class.px-3]="isExpanded()">
+    @if (isExpanded()) {
+      <p-tree 
+        [value]="treeNodes" 
+        (onNodeSelect)="onNodeSelect($event)" 
+        selectionMode="single"
+        [style]="{ width: '100%', border: 'none' }" 
+        styleClass="w-full border-none modern-tree"
+      ></p-tree>
+    } @else {
+      <!-- Collapsed view - show only icons -->
+      <div class="space-y-2">
+        @for (node of treeNodes; track node.label) {
+          <div class="relative group">
+            <button
+              type="button"
+              class="w-full p-2 rounded-lg hover:bg-white/10 dark:hover:bg-gray-700/50 transition-all duration-200 flex items-center justify-center"
+              [title]="node.label"
+            >
+              <i class="fas fa-folder text-gray-600 dark:text-gray-300 text-sm"></i>
+            </button>
+            <!-- Tooltip on hover -->
+            <div class="absolute left-full ml-2 top-1/2 -translate-y-1/2 px-3 py-2 bg-gray-900 dark:bg-gray-700 text-white text-xs rounded-lg shadow-lg opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-200 whitespace-nowrap z-50">
+              {{ node.label }}
+            </div>
+          </div>
+        }
+      </div>
+    }
+  </div>
+
+  <!-- Sidebar Footer -->
+  <div class="p-3 flex-shrink-0 border-t border-gray-200/30 dark:border-gray-700/30 backdrop-blur-sm overflow-hidden">
+    @if (isExpanded()) {
+      <div class="text-xs text-gray-500 dark:text-gray-400 text-center animate-fade-in">
+        <p class="font-medium">Angular Study</p>
+        <p class="mt-1 opacity-75">v1.0.0</p>
+      </div>
+    } @else {
+      <div class="flex justify-center animate-fade-in">
+        <div class="w-8 h-8 rounded-full bg-gradient-to-br from-accent-light to-accent-dark flex items-center justify-center text-white text-xs font-bold">
+          A
+        </div>
+      </div>
+    }
   </div>
 </aside>

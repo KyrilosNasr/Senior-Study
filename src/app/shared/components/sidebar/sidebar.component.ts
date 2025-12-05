@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, WritableSignal, inject, computed } from '@angular/core';
+import { Component, Input, Output, EventEmitter, WritableSignal, inject, computed, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Drawer } from 'primeng/drawer';
 import { TreeModule } from 'primeng/tree';
@@ -28,6 +28,9 @@ export class SidebarComponent {
   @Input({ required: true }) sidebarVisible!: WritableSignal<boolean>;
   @Output() nodeSelect = new EventEmitter<any>();
 
+  // Sidebar expand/collapse state
+  readonly isExpanded = signal(true);
+
   readonly sidebarGradient = computed(() => {
     return this.themeService.getGradientClasses('to-br', 'strong');
   });
@@ -38,6 +41,10 @@ export class SidebarComponent {
 
   onNodeSelect(event: any): void {
     this.nodeSelect.emit(event);
+  }
+
+  toggleSidebar(): void {
+    this.isExpanded.update(v => !v);
   }
 }
 

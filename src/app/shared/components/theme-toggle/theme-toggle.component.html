@@ -1,16 +1,16 @@
-<div class="flex items-center gap-2 relative">
+<div class="flex items-center gap-2 sm:gap-3 relative">
   <!-- Theme Mode Toggle -->
   <button
     type="button"
     (click)="toggleMode()"
-    class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-500"
+    class="p-2.5 sm:p-3 rounded-xl hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-accent shadow-sm hover:shadow-md hover:-translate-y-0.5 group"
     [title]="themeMode() === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'"
     [attr.aria-label]="themeMode() === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'"
   >
     @if (themeMode() === 'dark') {
-      <i class="fas fa-sun text-yellow-500 text-lg"></i>
+      <i class="fas fa-sun text-yellow-500 text-lg sm:text-xl group-hover:rotate-45 transition-transform duration-300"></i>
     } @else {
-      <i class="fas fa-moon text-gray-700 dark:text-gray-300 text-lg"></i>
+      <i class="fas fa-moon text-gray-700 dark:text-gray-300 text-lg sm:text-xl group-hover:-rotate-12 transition-transform duration-300"></i>
     }
   </button>
 
@@ -18,28 +18,58 @@
   <button
     type="button"
     (click)="toggleColorPicker()"
-    class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-500"
+    class="p-2.5 sm:p-3 rounded-xl hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-accent shadow-sm hover:shadow-md hover:-translate-y-0.5 group relative"
     title="Change Accent Color"
     aria-label="Change Accent Color"
     [attr.aria-expanded]="colorPickerOpen()"
   >
-    <i class="fas fa-palette text-gray-700 dark:text-gray-300 text-lg"></i>
+    <i class="fas fa-palette text-gray-700 dark:text-gray-300 text-lg sm:text-xl group-hover:scale-110 transition-transform duration-300"></i>
+    @if (colorPickerOpen()) {
+      <span class="absolute -top-1 -right-1 w-3 h-3 bg-accent rounded-full animate-pulse"></span>
+    }
   </button>
 
   <!-- Color Picker Dropdown -->
   @if (colorPickerOpen()) {
-    <div class="absolute right-0 top-full mt-2 bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 p-3 min-w-[200px] z-50">
-      <h3 class="text-sm font-semibold text-gray-900 dark:text-gray-100 mb-3">Accent Color</h3>
-      <div class="grid grid-cols-5 gap-2">
+    <div class="absolute right-0 top-full mt-3 glass rounded-2xl shadow-modern-lg border border-gray-200/50 dark:border-gray-700/50 p-5 min-w-[280px] z-50 fade-in">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-sm sm:text-base font-bold text-gray-900 dark:text-gray-100 flex items-center gap-2">
+          <i class="fas fa-swatchbook text-accent"></i>
+          Accent Color
+        </h3>
+        <button
+          type="button"
+          (click)="toggleColorPicker()"
+          class="p-1.5 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+          aria-label="Close color picker"
+        >
+          <i class="fas fa-times text-gray-500 dark:text-gray-400"></i>
+        </button>
+      </div>
+      
+      <div class="grid grid-cols-5 gap-3">
         @for (color of accentColors; track color) {
           <button
             type="button"
             (click)="selectAccentColor(color)"
-            [class]="'w-10 h-10 rounded-full transition-all duration-200 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 ' + getColorClasses(color) + (isSelected(color) ? ' ring-2 ring-gray-900 dark:ring-gray-100 ring-offset-2' : '')"
+            [class]="'relative w-12 h-12 rounded-xl transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 shadow-md hover:shadow-lg ' + getColorClasses(color)"
             [attr.aria-label]="'Select ' + getColorName(color) + ' accent color'"
             [title]="getColorName(color)"
-          ></button>
+          >
+            @if (isSelected(color)) {
+              <span class="absolute inset-0 flex items-center justify-center">
+                <i class="fas fa-check text-white text-lg drop-shadow-lg"></i>
+              </span>
+              <span class="absolute -inset-1 border-2 border-gray-900 dark:border-gray-100 rounded-xl"></span>
+            }
+          </button>
         }
+      </div>
+      
+      <div class="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
+        <p class="text-xs text-gray-600 dark:text-gray-400 text-center">
+          Selected: <span class="font-semibold text-accent">{{ getColorName(accentColor()) }}</span>
+        </p>
       </div>
     </div>
   }

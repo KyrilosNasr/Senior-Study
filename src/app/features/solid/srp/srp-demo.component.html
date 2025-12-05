@@ -1,151 +1,287 @@
-<div class="max-w-7xl mx-auto space-y-8">
-  <!-- Header -->
-  <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8">
-    <h1 class="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-3">Single Responsibility Principle (SRP)</h1>
-    <p class="text-lg text-gray-700 dark:text-gray-300">
-      A class should have only one reason to change, meaning it should have only one job or responsibility.
-    </p>
+<div class="container-responsive space-y-responsive">
+  <!-- Hero Header -->
+  <div class="card-modern padding-responsive hover-lift slide-in-up">
+    <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+      <div class="flex-1">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br from-orange-500 to-red-600 flex items-center justify-center shadow-lg">
+            <i class="fas fa-cube text-white text-xl sm:text-2xl"></i>
+          </div>
+          <div>
+            <span class="badge-modern text-xs sm:text-sm">SOLID Principles</span>
+          </div>
+        </div>
+        <h1 class="heading-responsive text-gradient mb-4">
+          Single Responsibility Principle
+        </h1>
+        <p class="text-responsive text-gray-700 dark:text-gray-300">
+          A class should have only one reason to change, meaning it should have only one job or responsibility.
+        </p>
+      </div>
+      <div class="hidden lg:block">
+        <div class="w-32 h-32 rounded-2xl bg-gradient-to-br from-orange-500/20 to-red-600/20 flex items-center justify-center">
+          <i class="fas fa-layer-group text-6xl text-orange-500"></i>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- Explanation -->
-  <p-card class="shadow-lg">
-    <div class="space-y-4">
-      <h2 class="text-3xl font-semibold text-gray-900 dark:text-gray-100 mb-3">What is SRP?</h2>
-      <p class="text-base text-gray-700 dark:text-gray-300 leading-relaxed">
+  <p-card class="card-modern hover-lift slide-in-up">
+    <div class="padding-responsive space-y-6">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+          <i class="fas fa-lightbulb text-white"></i>
+        </div>
+        <h2 class="subheading-responsive text-gray-900 dark:text-gray-100">What is SRP?</h2>
+      </div>
+      
+      <p class="text-responsive text-gray-700 dark:text-gray-300 leading-relaxed">
         The Single Responsibility Principle states that a class should have only one reason to change. 
         This means each class should focus on doing one thing well. When a class has multiple responsibilities, 
         it becomes harder to maintain, test, and understand.
       </p>
-      <div class="bg-blue-50 dark:bg-blue-900/30 p-5 rounded-lg border border-blue-200 dark:border-blue-800">
-        <h3 class="text-lg font-semibold text-blue-900 dark:text-blue-100 mb-3">Key Benefits:</h3>
-        <ul class="list-disc list-inside space-y-2 text-base text-blue-800 dark:text-blue-200">
-          <li>Easier to understand and maintain</li>
-          <li>Reduced coupling between classes</li>
-          <li>Better testability</li>
-          <li>Improved code reusability</li>
+      
+      <div class="glass rounded-xl p-6 border-l-4 border-accent">
+        <div class="flex items-center gap-3 mb-4">
+          <i class="fas fa-star text-accent text-xl"></i>
+          <h3 class="text-lg sm:text-xl font-semibold text-gray-900 dark:text-gray-100">Key Benefits</h3>
+        </div>
+        <ul class="list-modern">
+          <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+            Easier to understand and maintain
+          </li>
+          <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+            Reduced coupling between classes
+          </li>
+          <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+            Better testability
+          </li>
+          <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+            Improved code reusability
+          </li>
         </ul>
       </div>
     </div>
   </p-card>
 
   <!-- Code Examples -->
-  <p-card class="shadow-lg">
-    <p-tabs value="0">
-      <p-tablist>
-        <p-tab value="0">❌ Violation</p-tab>
-        <p-tab value="1">✅ Solution</p-tab>
-      </p-tablist>
-      <p-tabpanels>
-        <p-tabpanel value="0">
-          <pre class="overflow-x-auto"><code>{{ violationCode }}</code></pre>
-        </p-tabpanel>
-        <p-tabpanel value="1">
-          <pre class="overflow-x-auto"><code>{{ solutionCode }}</code></pre>
-        </p-tabpanel>
-      </p-tabpanels>
-    </p-tabs>
+  <p-card class="card-modern hover-lift slide-in-up">
+    <div class="padding-responsive">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-green-500 to-teal-600 flex items-center justify-center">
+          <i class="fas fa-code text-white"></i>
+        </div>
+        <h2 class="subheading-responsive text-gray-900 dark:text-gray-100">Code Examples</h2>
+      </div>
+      
+      <p-tabs value="0">
+        <p-tablist class="flex flex-wrap gap-2 mb-6">
+          <p-tab value="0" class="flex items-center gap-2">
+            <i class="fas fa-times-circle text-red-500"></i>
+            <span class="text-sm sm:text-base font-semibold">Violation</span>
+          </p-tab>
+          <p-tab value="1" class="flex items-center gap-2">
+            <i class="fas fa-check-circle text-green-500"></i>
+            <span class="text-sm sm:text-base font-semibold">Solution</span>
+          </p-tab>
+        </p-tablist>
+        <p-tabpanels>
+          <p-tabpanel value="0">
+            <div class="code-block-modern">
+              <pre class="overflow-x-auto text-sm sm:text-base"><code>{{ violationCode }}</code></pre>
+            </div>
+          </p-tabpanel>
+          <p-tabpanel value="1">
+            <div class="code-block-modern">
+              <pre class="overflow-x-auto text-sm sm:text-base"><code>{{ solutionCode }}</code></pre>
+            </div>
+          </p-tabpanel>
+        </p-tabpanels>
+      </p-tabs>
+    </div>
   </p-card>
 
   <!-- Live Demo -->
-  <p-card class="shadow-lg">
-    <h2 class="text-3xl font-semibold text-gray-900 dark:text-gray-100 mb-4">Live Demo</h2>
-    <p class="text-gray-700 dark:text-gray-300 mb-6">
-      This demo uses separate services for repository, validation, and notification responsibilities.
-    </p>
-
-    <div class="space-y-4">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div>
-          <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Name</label>
-          <input
-            pInputText
-            type="text"
-            [(ngModel)]="userDto.name"
-            placeholder="John Doe"
-            class="w-full"
-          />
+  <p-card class="card-modern hover-lift slide-in-up">
+    <div class="padding-responsive">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center">
+          <i class="fas fa-play-circle text-white"></i>
         </div>
-        <div>
-          <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Email</label>
-          <input
-            pInputText
-            type="email"
-            [(ngModel)]="userDto.email"
-            placeholder="john@example.com"
-            class="w-full"
-          />
-        </div>
-        <div>
-          <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Password</label>
-          <input
-            pInputText
-            type="password"
-            [(ngModel)]="userDto.password"
-            placeholder="Password123"
-            class="w-full"
-          />
-        </div>
+        <h2 class="subheading-responsive text-gray-900 dark:text-gray-100">Interactive Demo</h2>
       </div>
+      
+      <p class="text-responsive text-gray-700 dark:text-gray-300 mb-8">
+        This demo uses separate services for repository, validation, and notification responsibilities.
+      </p>
 
-      @if (validationResult(); as result) {
-        @if (!result.valid) {
+      <div class="space-y-6">
+        <!-- Form Inputs -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
           <div class="space-y-2">
-            @for (error of result.errors; track error) {
-              <p-message severity="error" [text]="error"></p-message>
-            }
+            <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300">
+              <i class="fas fa-user text-accent mr-2"></i>Name
+            </label>
+            <input
+              pInputText
+              type="text"
+              [(ngModel)]="userDto.name"
+              placeholder="John Doe"
+              class="input-modern"
+            />
           </div>
-        }
-      }
+          <div class="space-y-2">
+            <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300">
+              <i class="fas fa-envelope text-accent mr-2"></i>Email
+            </label>
+            <input
+              pInputText
+              type="email"
+              [(ngModel)]="userDto.email"
+              placeholder="john@example.com"
+              class="input-modern"
+            />
+          </div>
+          <div class="space-y-2">
+            <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300">
+              <i class="fas fa-lock text-accent mr-2"></i>Password
+            </label>
+            <input
+              pInputText
+              type="password"
+              [(ngModel)]="userDto.password"
+              placeholder="Password123"
+              class="input-modern"
+            />
+          </div>
+        </div>
 
-      @if (createdUser(); as user) {
-        <p-message severity="success" [text]="'User created successfully: ' + user.email"></p-message>
-      }
-
-      <p-button
-        label="Create User"
-        icon="pi pi-plus"
-        (click)="createUser()"
-        [disabled]="!userDto.name || !userDto.email || !userDto.password"
-      ></p-button>
-    </div>
-
-    @if (users().length > 0) {
-      <div class="mt-6">
-        <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-3">Created Users</h3>
-        <div class="space-y-2">
-          @for (user of users(); track user.id) {
-            <div class="bg-gray-100 dark:bg-gray-700 p-3 rounded">
-              <p class="text-sm text-gray-800 dark:text-gray-200">
-                <strong>{{ user.name }}</strong> - {{ user.email }}
-              </p>
+        <!-- Validation Messages -->
+        @if (validationResult(); as result) {
+          @if (!result.valid) {
+            <div class="space-y-3 fade-in">
+              @for (error of result.errors; track error) {
+                <p-message severity="error" [text]="error" class="w-full"></p-message>
+              }
             </div>
           }
+        }
+
+        <!-- Success Message -->
+        @if (createdUser(); as user) {
+          <p-message 
+            severity="success" 
+            [text]="'✓ User created successfully: ' + user.email" 
+            class="w-full fade-in"
+          ></p-message>
+        }
+
+        <!-- Action Button -->
+        <div class="flex flex-col sm:flex-row gap-4 items-stretch sm:items-center">
+          <p-button
+            label="Create User"
+            icon="pi pi-plus"
+            (click)="createUser()"
+            [disabled]="!userDto.name || !userDto.email || !userDto.password"
+            class="btn-modern flex-1 sm:flex-initial"
+          ></p-button>
+          <p class="text-sm text-gray-500 dark:text-gray-400 italic">
+            <i class="fas fa-info-circle mr-2"></i>Fill all fields to enable
+          </p>
         </div>
+
+        <!-- Created Users List -->
+        @if (users().length > 0) {
+          <div class="mt-8 fade-in">
+            <div class="flex items-center gap-3 mb-4">
+              <i class="fas fa-users text-accent text-xl"></i>
+              <h3 class="text-lg sm:text-xl font-semibold text-gray-800 dark:text-gray-200">
+                Created Users ({{ users().length }})
+              </h3>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 lg:gap-4">
+              @for (user of users(); track user.id) {
+                <div class="glass rounded-lg p-4 hover-lift border border-gray-200 dark:border-gray-700">
+                  <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-gradient-to-br from-accent-light to-accent-dark flex items-center justify-center text-white font-bold">
+                      {{ user.name.charAt(0).toUpperCase() }}
+                    </div>
+                    <div class="flex-1 min-w-0">
+                      <p class="text-sm sm:text-base font-semibold text-gray-900 dark:text-gray-100 truncate">
+                        {{ user.name }}
+                      </p>
+                      <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-400 truncate">
+                        {{ user.email }}
+                      </p>
+                    </div>
+                    <i class="fas fa-check-circle text-green-500"></i>
+                  </div>
+                </div>
+              }
+            </div>
+          </div>
+        }
       </div>
-    }
+    </div>
   </p-card>
 
   <!-- Key Takeaways -->
-  <p-card class="shadow-lg">
-    <h2 class="text-3xl font-semibold text-gray-900 dark:text-gray-100 mb-5">Key Takeaways</h2>
-    <ul class="space-y-3 text-base text-gray-700 dark:text-gray-300">
-      <li class="flex items-start">
-        <span class="text-green-500 mr-2">✓</span>
-        <span>Each class should have a single, well-defined responsibility</span>
-      </li>
-      <li class="flex items-start">
-        <span class="text-green-500 mr-2">✓</span>
-        <span>Separate concerns: data access, validation, and notifications</span>
-      </li>
-      <li class="flex items-start">
-        <span class="text-green-500 mr-2">✓</span>
-        <span>Use dependency injection to compose services</span>
-      </li>
-      <li class="flex items-start">
-        <span class="text-green-500 mr-2">✓</span>
-        <span>Makes code easier to test, maintain, and extend</span>
-      </li>
-    </ul>
+  <p-card class="card-modern hover-lift slide-in-up">
+    <div class="padding-responsive">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-teal-500 to-cyan-600 flex items-center justify-center">
+          <i class="fas fa-graduation-cap text-white"></i>
+        </div>
+        <h2 class="subheading-responsive text-gray-900 dark:text-gray-100">Key Takeaways</h2>
+      </div>
+      
+      <ul class="list-modern">
+        <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+          Each class should have a single, well-defined responsibility
+        </li>
+        <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+          Separate concerns: data access, validation, and notifications
+        </li>
+        <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+          Use dependency injection to compose services
+        </li>
+        <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+          Makes code easier to test, maintain, and extend
+        </li>
+      </ul>
+
+      <!-- Additional Resources -->
+      <div class="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
+        <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4 flex items-center gap-2">
+          <i class="fas fa-book-open text-accent"></i>
+          Learn More
+        </h3>
+        <div class="flex flex-wrap gap-3">
+          <a href="#" class="badge-outline hover:scale-105 transition-transform">
+            <i class="fas fa-external-link-alt mr-2"></i>Documentation
+          </a>
+          <a href="#" class="badge-outline hover:scale-105 transition-transform">
+            <i class="fas fa-video mr-2"></i>Video Tutorial
+          </a>
+          <a href="#" class="badge-outline hover:scale-105 transition-transform">
+            <i class="fas fa-code-branch mr-2"></i>GitHub Examples
+          </a>
+        </div>
+      </div>
+    </div>
   </p-card>
+
+  <!-- Quick Navigation -->
+  <div class="flex flex-col sm:flex-row gap-4 justify-between items-stretch sm:items-center fade-in">
+    <button class="glass padding-responsive-sm rounded-xl hover-lift flex items-center justify-center gap-3 group">
+      <i class="fas fa-arrow-left text-accent group-hover:-translate-x-1 transition-transform"></i>
+      <span class="font-semibold text-gray-900 dark:text-gray-100">Previous: Introduction</span>
+    </button>
+    <button class="glass padding-responsive-sm rounded-xl hover-lift flex items-center justify-center gap-3 group">
+      <span class="font-semibold text-gray-900 dark:text-gray-100">Next: Open/Closed Principle</span>
+      <i class="fas fa-arrow-right text-accent group-hover:translate-x-1 transition-transform"></i>
+    </button>
+  </div>
 </div>
 
