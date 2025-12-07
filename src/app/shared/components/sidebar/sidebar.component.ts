@@ -28,6 +28,7 @@ export class SidebarComponent {
   @Input({ required: true }) treeNodes!: TreeNode[];
   @Input({ required: true }) sidebarVisible!: WritableSignal<boolean>;
   @Output() nodeSelect = new EventEmitter<any>();
+  @Output() expandedChange = new EventEmitter<boolean>();
 
   // Sidebar expand/collapse state
   readonly isExpanded = signal(true);
@@ -71,7 +72,11 @@ export class SidebarComponent {
   }
 
   toggleSidebar(): void {
-    this.isExpanded.update(v => !v);
+    this.isExpanded.update(v => {
+      const newValue = !v;
+      this.expandedChange.emit(newValue);
+      return newValue;
+    });
   }
 
   /**

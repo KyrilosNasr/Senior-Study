@@ -3,9 +3,9 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { CardModule } from 'primeng/card';
 import { Tabs, Tab, TabList, TabPanel, TabPanels } from 'primeng/tabs';
-import { ButtonModule } from 'primeng/button';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { MessageModule } from 'primeng/message';
+import { EnhancedButtonComponent } from '../../../shared/components/enhanced-button/enhanced-button.component';
 import { Shape, Rectangle, Square } from '../shared/models/shape.model';
 
 // Violation: Square extends Rectangle incorrectly
@@ -74,7 +74,7 @@ class GoodSquare implements Square {
     TabList,
     TabPanel,
     TabPanels,
-    ButtonModule,
+    EnhancedButtonComponent,
     InputNumberModule,
     MessageModule
   ],

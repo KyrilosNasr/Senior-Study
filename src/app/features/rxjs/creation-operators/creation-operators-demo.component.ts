@@ -2,9 +2,9 @@ import { Component, signal, inject, AfterViewInit, ViewChild, ElementRef } from 
 import { CommonModule } from '@angular/common';
 import { CardModule } from 'primeng/card';
 import { Tabs, Tab, TabList, TabPanel, TabPanels } from 'primeng/tabs';
-import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { MessageModule } from 'primeng/message';
+import { EnhancedButtonComponent } from '../../../shared/components/enhanced-button/enhanced-button.component';
 import { of, from, fromEvent } from 'rxjs';
 import { debounceTime, map } from 'rxjs/operators';
 
@@ -19,7 +19,7 @@ import { debounceTime, map } from 'rxjs/operators';
     TabList,
     TabPanel,
     TabPanels,
-    ButtonModule,
+    EnhancedButtonComponent,
     InputTextModule,
     MessageModule
   ],
@@ -123,6 +123,8 @@ export class SearchComponent implements AfterViewInit {
     });
   }
 }
+
+
 
 
 

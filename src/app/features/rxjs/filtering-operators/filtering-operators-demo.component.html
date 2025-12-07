@@ -125,12 +125,12 @@
           <p class="text-sm text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-2">
             Emits only even numbers greater than 5.
           </p>
-          <p-button
+          <app-enhanced-button
             label="Test filter()"
             icon="pi pi-filter"
-            (click)="testFilter()"
+            (buttonClick)="testFilter()"
             class="mb-4"
-          ></p-button>
+          ></app-enhanced-button>
           @if (filterResult().length > 0) {
             <div class="bg-gray-100 dark:bg-gray-700 p-5 rounded">
               <p class="text-sm font-semibold mb-2">Filtered Values:</p>
@@ -145,12 +145,12 @@
           <p class="text-sm text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-2">
             Takes only the first 5 values, then completes.
           </p>
-          <p-button
+          <app-enhanced-button
             label="Test take(5)"
             icon="pi pi-list"
-            (click)="testTake()"
+            (buttonClick)="testTake()"
             class="mb-4"
-          ></p-button>
+          ></app-enhanced-button>
           @if (takeResult().length > 0) {
             <div class="bg-gray-100 dark:bg-gray-700 p-5 rounded">
               <p class="text-sm font-semibold mb-2">First 5 Values:</p>
@@ -165,14 +165,13 @@
           <p class="text-sm text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-2">
             Streams values until destroyed. Auto-stops after 3 seconds (simulating component destroy).
           </p>
-          <p-button
+          <app-enhanced-button
             label="Test takeUntil()"
             icon="pi pi-shield"
-            (click)="testTakeUntil()"
+            (buttonClick)="testTakeUntil()"
             [disabled]="isStreaming()"
-            severity="success"
             class="mb-4"
-          ></p-button>
+          ></app-enhanced-button>
           @if (isStreaming()) {
             <div class="bg-green-50 dark:bg-green-900/20 p-5 rounded mb-2">
               <p class="text-sm font-semibold">Streaming... Count: {{ streamCount() }}</p>
@@ -193,12 +192,12 @@
           <p class="text-sm text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-2">
             Emits values while condition is true (stops when value >= 10).
           </p>
-          <p-button
+          <app-enhanced-button
             label="Test takeWhile()"
             icon="pi pi-check-circle"
-            (click)="testTakeWhile()"
+            (buttonClick)="testTakeWhile()"
             class="mb-4"
-          ></p-button>
+          ></app-enhanced-button>
           @if (takeWhileResult().length > 0) {
             <div class="bg-gray-100 dark:bg-gray-700 p-5 rounded">
               <p class="text-sm font-semibold mb-2">Values (stopped at 10):</p>
@@ -213,12 +212,12 @@
           <p class="text-sm text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-2">
             Emits only when value changes. Prevents duplicate API calls.
           </p>
-          <p-button
+          <app-enhanced-button
             label="Test distinctUntilChanged()"
             icon="pi pi-ban"
-            (click)="testDistinctUntilChanged()"
+            (buttonClick)="testDistinctUntilChanged()"
             class="mb-4"
-          ></p-button>
+          ></app-enhanced-button>
           @if (distinctResult().length > 0) {
             <div class="bg-blue-50 dark:bg-blue-900/20 p-5 rounded">
               <p class="text-sm font-semibold mb-2">Distinct Values:</p>
@@ -261,3 +260,5 @@
     </div>
   </p-card>
 </div>
+
+

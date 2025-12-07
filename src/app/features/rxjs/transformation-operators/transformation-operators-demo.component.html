@@ -126,12 +126,12 @@
       <!-- map() Demo -->
       <div class="border-2 border-gray-200 dark:border-gray-700 rounded-lg p-4">
         <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">map() - Simple Transformation</h3>
-        <p-button
+        <app-enhanced-button
           label="Test map()"
           icon="pi pi-play"
-          (click)="testMap()"
+          (buttonClick)="testMap()"
           class="mb-4"
-        ></p-button>
+        ></app-enhanced-button>
         @if (mapResult()) {
           <div class="bg-gray-100 dark:bg-gray-700 p-4 rounded">
             <p class="text-sm">{{ mapResult() }}</p>
@@ -145,13 +145,12 @@
         <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">
           Simulates rapid search queries. Notice how only the latest result is shown.
         </p>
-        <p-button
+        <app-enhanced-button
           label="Test switchMap() (Rapid Queries)"
           icon="pi pi-search"
-          (click)="testSwitchMap()"
-          severity="success"
+          (buttonClick)="testSwitchMap()"
           class="mb-4"
-        ></p-button>
+        ></app-enhanced-button>
         @if (switchMapResult()) {
           <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded mb-2">
             <p class="text-sm font-semibold">{{ switchMapResult() }}</p>
@@ -175,12 +174,12 @@
         <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">
           Simulates parallel file uploads. All requests execute concurrently.
         </p>
-        <p-button
+        <app-enhanced-button
           label="Test mergeMap() (Parallel)"
           icon="pi pi-upload"
-          (click)="testMergeMap()"
+          (buttonClick)="testMergeMap()"
           class="mb-4"
-        ></p-button>
+        ></app-enhanced-button>
         @if (mergeMapResult()) {
           <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded">
             <p class="text-sm">{{ mergeMapResult() }}</p>
@@ -194,12 +193,12 @@
         <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">
           Simulates sequential actions. Each action waits for the previous to complete.
         </p>
-        <p-button
+        <app-enhanced-button
           label="Test concatMap() (Sequential)"
           icon="pi pi-list"
-          (click)="testConcatMap()"
+          (buttonClick)="testConcatMap()"
           class="mb-4"
-        ></p-button>
+        ></app-enhanced-button>
         @if (concatMapResult()) {
           <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded">
             <p class="text-sm">{{ concatMapResult() }}</p>
@@ -213,12 +212,12 @@
         <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">
           Simulates rapid save clicks. Only the first click is processed, others are ignored.
         </p>
-        <p-button
+        <app-enhanced-button
           label="Test exhaustMap() (Save Button)"
           icon="pi pi-save"
-          (click)="testExhaustMap()"
+          (buttonClick)="testExhaustMap()"
           class="mb-4"
-        ></p-button>
+        ></app-enhanced-button>
         @if (exhaustMapResult()) {
           <div class="bg-orange-50 dark:bg-orange-900/20 p-4 rounded">
             <p class="text-sm">{{ exhaustMapResult() }}</p>

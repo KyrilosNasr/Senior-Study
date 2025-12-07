@@ -2,9 +2,9 @@ import { Component, signal, inject, DestroyRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CardModule } from 'primeng/card';
 import { Tabs, Tab, TabList, TabPanel, TabPanels } from 'primeng/tabs';
-import { ButtonModule } from 'primeng/button';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { MessageModule } from 'primeng/message';
+import { EnhancedButtonComponent } from '../../../shared/components/enhanced-button/enhanced-button.component';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { interval, Subject, of } from 'rxjs';
 import { filter, take, takeUntil, takeWhile, distinctUntilChanged } from 'rxjs/operators';
@@ -20,7 +20,7 @@ import { filter, take, takeUntil, takeWhile, distinctUntilChanged } from 'rxjs/o
     TabList,
     TabPanel,
     TabPanels,
-    ButtonModule,
+    EnhancedButtonComponent,
     InputNumberModule,
     MessageModule
   ],
@@ -180,6 +180,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
     });
   }
 }
+
+
 
 
 

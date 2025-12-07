@@ -2,9 +2,9 @@ import { Component, signal, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CardModule } from 'primeng/card';
 import { Tabs, Tab, TabList, TabPanel, TabPanels } from 'primeng/tabs';
-import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { MessageModule } from 'primeng/message';
+import { EnhancedButtonComponent } from '../../../shared/components/enhanced-button/enhanced-button.component';
 import { ApiService } from '../shared/services/api.service';
 import { of, from } from 'rxjs';
 import { map, switchMap, mergeMap, concatMap, exhaustMap, delay } from 'rxjs/operators';
@@ -20,7 +20,7 @@ import { map, switchMap, mergeMap, concatMap, exhaustMap, delay } from 'rxjs/ope
     TabList,
     TabPanel,
     TabPanels,
-    ButtonModule,
+    EnhancedButtonComponent,
     InputTextModule,
     MessageModule
   ],
@@ -185,6 +185,8 @@ export class UserService {
     });
   }
 }
+
+
 
 
 

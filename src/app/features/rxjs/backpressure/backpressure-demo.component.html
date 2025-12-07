@@ -133,12 +133,12 @@
 
         <div class="border-2 border-gray-200 dark:border-gray-700 rounded-lg p-5">
           <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">Throttle</h3>
-          <p-button
+          <app-enhanced-button
             label="Generate Rapid Events"
             icon="pi pi-bolt"
-            (click)="testThrottle()"
+            (buttonClick)="testThrottle()"
             class="mb-4"
-          ></p-button>
+          ></app-enhanced-button>
           <div class="bg-gray-100 dark:bg-gray-700 p-5 rounded">
             <p><strong>Throttled Value:</strong> {{ throttledValue() }}</p>
           </div>

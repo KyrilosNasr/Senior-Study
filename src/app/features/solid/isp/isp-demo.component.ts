@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { CardModule } from 'primeng/card';
 import { Tabs, Tab, TabList, TabPanel, TabPanels } from 'primeng/tabs';
 import { MessageModule } from 'primeng/message';
-import { ButtonModule } from 'primeng/button';
+import { EnhancedButtonComponent } from '../../../shared/components/enhanced-button/enhanced-button.component';
 // Violation: Fat interface
 interface Worker {
   work(): void;
@@ -74,7 +74,7 @@ class GoodManager implements Workable, Eatable, Sleepable, Manageable {
 @Component({
   selector: 'app-isp-demo',
   standalone: true,
-  imports: [CommonModule, CardModule, Tabs, Tab, TabList, TabPanel, TabPanels, MessageModule, ButtonModule],
+  imports: [CommonModule, CardModule, Tabs, Tab, TabList, TabPanel, TabPanels, MessageModule, EnhancedButtonComponent],
   templateUrl: './isp-demo.component.html',
   styleUrl: './isp-demo.component.scss'
 })

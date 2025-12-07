@@ -128,13 +128,12 @@
           <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">
             Each subscription creates a new request. 3 subscriptions = 3 requests!
           </p>
-          <p-button
+          <app-enhanced-button
             label="Test Unshared (3 subscriptions)"
             icon="pi pi-times-circle"
-            (click)="testUnshared()"
-            severity="danger"
+            (buttonClick)="testUnshared()"
             class="mb-4"
-          ></p-button>
+          ></app-enhanced-button>
           @if (unsharedRequests() > 0) {
             <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded mb-2">
               <p class="text-sm font-semibold">Total Requests: {{ unsharedRequests() }}</p>
@@ -158,13 +157,12 @@
           <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">
             Multiple subscriptions share execution. 3 subscriptions = 1 request!
           </p>
-          <p-button
+          <app-enhanced-button
             label="Test share() (3 subscriptions)"
             icon="pi pi-check-circle"
-            (click)="testShared()"
-            severity="success"
+            (buttonClick)="testShared()"
             class="mb-4"
-          ></p-button>
+          ></app-enhanced-button>
           @if (sharedRequests() > 0) {
             <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded mb-2">
               <p class="text-sm font-semibold">Total Requests: {{ sharedRequests() }}</p>
@@ -188,12 +186,12 @@
           <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">
             First subscription makes request, subsequent subscriptions use cached result.
           </p>
-          <p-button
+          <app-enhanced-button
             label="Test shareReplay() (Caching)"
             icon="pi pi-database"
-            (click)="testShareReplay()"
+            (buttonClick)="testShareReplay()"
             class="mb-4"
-          ></p-button>
+          ></app-enhanced-button>
           @if (shareReplayResults().length > 0) {
             <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded mb-2">
               @if (cacheHit()) {

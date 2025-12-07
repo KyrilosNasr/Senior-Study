@@ -2,9 +2,9 @@ import { Component, signal, ElementRef, ViewChild, AfterViewInit } from '@angula
 import { CommonModule } from '@angular/common';
 import { CardModule } from 'primeng/card';
 import { Tabs, Tab, TabList, TabPanel, TabPanels } from 'primeng/tabs';
-import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { FormsModule } from '@angular/forms';
+import { EnhancedButtonComponent } from '../../../shared/components/enhanced-button/enhanced-button.component';
 import { fromEvent } from 'rxjs';
 import { throttleTime, debounceTime, sampleTime, auditTime, map } from 'rxjs/operators';
 
@@ -19,7 +19,7 @@ import { throttleTime, debounceTime, sampleTime, auditTime, map } from 'rxjs/ope
     TabList,
     TabPanel,
     TabPanels,
-    ButtonModule,
+    EnhancedButtonComponent,
     InputTextModule,
     FormsModule
   ],

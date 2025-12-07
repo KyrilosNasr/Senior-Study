@@ -145,13 +145,12 @@
               />
             </div>
           </div>
-          <p-button
+          <app-enhanced-button
             label="Test combineLatest()"
             icon="pi pi-link"
-            (click)="testCombineLatest()"
-            severity="success"
+            (buttonClick)="testCombineLatest()"
             class="mb-4"
-          ></p-button>
+          ></app-enhanced-button>
           @if (combineLatestResult()) {
             <div class="bg-green-50 dark:bg-green-900/20 p-5 rounded">
               <p class="text-sm">{{ combineLatestResult() }}</p>
@@ -165,12 +164,12 @@
           <p class="text-sm text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-2">
             Loads user, settings, and permissions in parallel. Waits for all to complete.
           </p>
-          <p-button
+          <app-enhanced-button
             label="Test forkJoin() (Parallel)"
             icon="pi pi-download"
-            (click)="testForkJoin()"
+            (buttonClick)="testForkJoin()"
             class="mb-4"
-          ></p-button>
+          ></app-enhanced-button>
           @if (forkJoinResult()) {
             <div class="bg-blue-50 dark:bg-blue-900/20 p-5 rounded">
               <p class="text-sm">{{ forkJoinResult() }}</p>
@@ -184,12 +183,12 @@
           <p class="text-sm text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-2">
             Merges multiple observables, emits as they arrive (order may vary).
           </p>
-          <p-button
+          <app-enhanced-button
             label="Test merge()"
             icon="pi pi-code"
-            (click)="testMerge()"
+            (buttonClick)="testMerge()"
             class="mb-4"
-          ></p-button>
+          ></app-enhanced-button>
           @if (mergeResult()) {
             <div class="bg-purple-50 dark:bg-purple-900/20 p-5 rounded">
               <p class="text-sm">Merged: {{ mergeResult() }}</p>
@@ -204,12 +203,12 @@
           <p class="text-sm text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-2">
             Concatenates observables sequentially, one after another (order preserved).
           </p>
-          <p-button
+          <app-enhanced-button
             label="Test concat()"
             icon="pi pi-list"
-            (click)="testConcat()"
+            (buttonClick)="testConcat()"
             class="mb-4"
-          ></p-button>
+          ></app-enhanced-button>
           @if (concatResult()) {
             <div class="bg-orange-50 dark:bg-orange-900/20 p-5 rounded">
               <p class="text-sm">Sequential: {{ concatResult() }}</p>
@@ -224,12 +223,12 @@
           <p class="text-sm text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-2">
             Combines with latest from other streams without triggering emissions.
           </p>
-          <p-button
+          <app-enhanced-button
             label="Test withLatestFrom()"
             icon="pi pi-link"
-            (click)="testWithLatestFrom()"
+            (buttonClick)="testWithLatestFrom()"
             class="mb-4"
-          ></p-button>
+          ></app-enhanced-button>
           @if (withLatestFromResult()) {
             <div class="bg-indigo-50 dark:bg-indigo-900/20 p-5 rounded">
               <p class="text-sm">{{ withLatestFromResult() }}</p>

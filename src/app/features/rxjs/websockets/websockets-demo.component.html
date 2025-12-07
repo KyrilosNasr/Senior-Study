@@ -115,20 +115,18 @@
         <div class="border-2 border-gray-200 dark:border-gray-700 rounded-lg p-5">
           <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">WebSocket Connection</h3>
           <div class="mb-4 flex gap-2">
-            <p-button
+            <app-enhanced-button
               label="Connect"
               icon="pi pi-link"
-              (click)="connect()"
               [disabled]="isConnected()"
-              severity="success"
-            ></p-button>
-            <p-button
+              (buttonClick)="connect()"
+            ></app-enhanced-button>
+            <app-enhanced-button
               label="Disconnect"
               icon="pi pi-unlink"
-              (click)="disconnect()"
               [disabled]="!isConnected()"
-              severity="danger"
-            ></p-button>
+              (buttonClick)="disconnect()"
+            ></app-enhanced-button>
           </div>
           <div class="bg-gray-100 dark:bg-gray-700 p-5 rounded">
             <p><strong>Status:</strong> {{ connectionStatus() }}</p>
@@ -146,12 +144,12 @@
               class="w-full mb-2"
               [disabled]="!isConnected()"
             />
-            <p-button
+            <app-enhanced-button
               label="Send"
               icon="pi pi-send"
-              (click)="sendMessage()"
               [disabled]="!isConnected() || !messageText().trim()"
-            ></p-button>
+              (buttonClick)="sendMessage()"
+            ></app-enhanced-button>
           </div>
           
           <div class="bg-gray-100 dark:bg-gray-700 p-5 rounded max-h-64 overflow-y-auto">

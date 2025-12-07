@@ -1,0 +1,22 @@
+<header class="hidden lg:flex items-center justify-between px-8 xl:px-12 pt-6 pb-4 glass sticky top-0 z-30 shadow-sm backdrop-blur-md border-b border-gray-200/50 dark:border-gray-700/30">
+  <div class="flex items-center gap-5">
+    <!-- Accent Indicator Bar -->
+    <div class="w-1 h-10 bg-gradient-to-b from-[var(--accent-gradient-from)] to-[var(--accent-gradient-to)] rounded-full shadow-lg"></div>
+    
+    <!-- Title Section -->
+    <div class="flex flex-col">
+      <h1 class="text-3xl font-bold bg-gradient-to-r from-[var(--accent-gradient-from)] to-[var(--accent-gradient-to)] bg-clip-text text-transparent">
+        {{ title }}
+      </h1>
+      <p class="text-sm font-medium text-gray-600 dark:text-gray-400 mt-1">
+        {{ subtitle }}
+      </p>
+    </div>
+  </div>
+  
+  <!-- Actions -->
+  <div class="flex items-center gap-3">
+    <app-theme-toggle></app-theme-toggle>
+  </div>
+</header>
+

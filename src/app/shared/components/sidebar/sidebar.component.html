@@ -31,13 +31,13 @@
   <button
     type="button"
     (click)="toggleSidebar()"
-    class="absolute -right-3 top-6 w-6 h-6 rounded-full bg-white dark:bg-gray-800 border-2 border-gray-300 dark:border-gray-600 shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center z-50 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-accent-light focus:ring-offset-2 dark:focus:ring-accent-dark dark:focus:ring-offset-gray-900"
+    class="absolute -right-3 top-6 w-7 h-7 rounded-full bg-gradient-to-br from-[var(--accent-gradient-from)] to-[var(--accent-gradient-to)] border-2 border-[var(--accent-color-dark)] dark:border-[var(--accent-color-light)] shadow-lg hover:shadow-xl hover:shadow-[var(--accent-color)]/50 transition-all duration-200 flex items-center justify-center z-50 hover:scale-110 hover:brightness-110 active:scale-95 focus:outline-none focus:ring-2 focus:ring-[var(--accent-color)] focus:ring-offset-2 dark:focus:ring-offset-gray-900"
     [title]="isExpanded() ? 'Collapse sidebar' : 'Expand sidebar'"
     [attr.aria-label]="isExpanded() ? 'Collapse sidebar to show only icons' : 'Expand sidebar to show full navigation'"
     [attr.aria-expanded]="isExpanded()"
     aria-controls="sidebar-navigation"
   >
-    <i [class]="'fas text-xs text-gray-600 dark:text-gray-300 transition-transform duration-300 ' + (isExpanded() ? 'fa-chevron-left' : 'fa-chevron-right')" aria-hidden="true"></i>
+    <i [class]="'fas text-xs text-white transition-transform duration-300 ' + (isExpanded() ? 'fa-chevron-left' : 'fa-chevron-right')" aria-hidden="true"></i>
   </button>
 
   <!-- Sidebar Header -->
@@ -66,7 +66,7 @@
     id="sidebar-navigation" 
     class="flex-1 overflow-y-auto overflow-x-hidden py-4 scrollbar-thin min-h-0" 
     [class.px-2]="!isExpanded()" 
-    [class.px-3]="isExpanded()"
+    [class.px-4]="isExpanded()"
     [attr.aria-label]="isExpanded() ? 'Full navigation menu' : 'Icon navigation menu'"
   >
     @if (isExpanded()) {
@@ -80,30 +80,31 @@
       ></p-tree>
     } @else {
       <!-- Collapsed view - show clickable topic icons -->
-      <div class="space-y-1" role="list" [attr.aria-label]="'Quick navigation icons for ' + config.title">
+      <div class="space-y-2" role="list" [attr.aria-label]="'Quick navigation icons for ' + config.title">
         @for (node of treeNodes; track node.label) {
           @if (node.children && node.children.length > 0) {
             <!-- Parent node with children -->
-            <div class="space-y-1" role="group" [attr.aria-label]="node.label + ' topics'">
+            <div class="space-y-2 mb-4 last:mb-0" role="group" [attr.aria-label]="node.label + ' topics'">
               @for (child of node.children; track child.label) {
                 @if (child.data) {
                   <div class="relative group" role="listitem">
                     <button
                       type="button"
                       (click)="onCollapsedNodeClick(child)"
-                      class="w-full p-2 rounded-lg hover:bg-white/10 dark:hover:bg-gray-700/50 transition-all duration-200 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-accent-light focus:ring-offset-2 focus:ring-offset-transparent dark:focus:ring-accent-dark"
+                      class="w-full p-3 rounded-xl hover:bg-gradient-to-r hover:from-[var(--accent-color)]/10 hover:to-[var(--accent-color-dark)]/10 dark:hover:from-[var(--accent-color-light)]/20 dark:hover:to-[var(--accent-color)]/20 transition-all duration-200 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-[var(--accent-color)] focus:ring-offset-2 focus:ring-offset-transparent group-hover:scale-105 active:scale-95"
                       [title]="child.label"
                       [attr.aria-label]="'Navigate to ' + child.label"
                       tabindex="0"
                     >
-                      <i [class]="getIconClass(child)" class="text-gray-600 dark:text-gray-300 text-sm" aria-hidden="true"></i>
+                      <i [class]="getIconClass(child)" class="text-[var(--accent-color)] dark:text-[var(--accent-color-light)] text-lg transition-colors duration-200 group-hover:text-[var(--accent-color-dark)] dark:group-hover:text-[var(--accent-color)]" aria-hidden="true"></i>
                     </button>
-                    <!-- Tooltip on hover -->
+                    <!-- Enhanced Tooltip on hover -->
                     <div 
-                      class="absolute left-full ml-2 top-1/2 -translate-y-1/2 px-3 py-2 bg-gray-900 dark:bg-gray-700 text-white text-xs rounded-lg shadow-lg opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-200 whitespace-nowrap z-50"
+                      class="absolute left-full ml-3 top-1/2 -translate-y-1/2 px-3 py-2 bg-gradient-to-r from-[var(--accent-color-dark)] to-[var(--accent-color)] dark:from-[var(--accent-color)] dark:to-[var(--accent-color-light)] text-white text-xs font-medium rounded-lg shadow-xl opacity-0 group-hover:opacity-100 pointer-events-none transition-all duration-200 whitespace-nowrap z-50 transform group-hover:translate-x-1"
                       role="tooltip"
                       [attr.aria-hidden]="true"
                     >
+                      <div class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1 w-2 h-2 bg-gradient-to-r from-[var(--accent-color-dark)] to-[var(--accent-color)] dark:from-[var(--accent-color)] dark:to-[var(--accent-color-light)] rotate-45"></div>
                       {{ child.label }}
                     </div>
                   </div>

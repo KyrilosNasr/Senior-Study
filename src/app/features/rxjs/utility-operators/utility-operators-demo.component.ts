@@ -2,8 +2,8 @@ import { Component, signal, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CardModule } from 'primeng/card';
 import { Tabs, Tab, TabList, TabPanel, TabPanels } from 'primeng/tabs';
-import { ButtonModule } from 'primeng/button';
 import { MessageModule } from 'primeng/message';
+import { EnhancedButtonComponent } from '../../../shared/components/enhanced-button/enhanced-button.component';
 import { ApiService } from '../shared/services/api.service';
 import { of } from 'rxjs';
 import { tap, finalize, delay, timeout, catchError } from 'rxjs/operators';
@@ -19,7 +19,7 @@ import { tap, finalize, delay, timeout, catchError } from 'rxjs/operators';
     TabList,
     TabPanel,
     TabPanels,
-    ButtonModule,
+    EnhancedButtonComponent,
     MessageModule
   ],
   templateUrl: './utility-operators-demo.component.html',

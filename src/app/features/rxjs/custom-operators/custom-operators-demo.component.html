@@ -119,12 +119,12 @@
         <!-- Retry Demo -->
         <div class="border-2 border-gray-200 dark:border-gray-700 rounded-lg p-5">
           <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">Retry with Exponential Backoff</h3>
-          <p-button
+          <app-enhanced-button
             label="Test Retry (Will fail 2 times, then succeed)"
             icon="pi pi-refresh"
-            (click)="testRetry()"
+            (buttonClick)="testRetry()"
             class="mb-4"
-          ></p-button>
+          ></app-enhanced-button>
           
           @if (successMessage()) {
             <p-message severity="success" [text]="successMessage()"></p-message>
@@ -137,12 +137,12 @@
         <!-- Logging Demo -->
         <div class="border-2 border-gray-200 dark:border-gray-700 rounded-lg p-5">
           <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">Contextual Logging</h3>
-          <p-button
+          <app-enhanced-button
             label="Test Logging"
             icon="pi pi-info-circle"
-            (click)="testLogging()"
+            (buttonClick)="testLogging()"
             class="mb-4"
-          ></p-button>
+          ></app-enhanced-button>
           
           @if (retryLogs().length > 0) {
             <div class="bg-gray-100 dark:bg-gray-700 p-5 rounded">

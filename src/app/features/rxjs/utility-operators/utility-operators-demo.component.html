@@ -121,12 +121,12 @@
           <p class="text-sm text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-2">
             Logs values without modifying the stream. Check the logs below.
           </p>
-          <p-button
+          <app-enhanced-button
             label="Test tap()"
             icon="pi pi-info-circle"
-            (click)="testTap()"
+            (buttonClick)="testTap()"
             class="mb-4"
-          ></p-button>
+          ></app-enhanced-button>
           @if (tapLogs().length > 0) {
             <div class="bg-gray-100 dark:bg-gray-700 p-5 rounded">
               <p class="text-xs font-semibold mb-2">Tap Logs:</p>
@@ -145,13 +145,12 @@
           <p class="text-sm text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-2">
             Ensures cleanup code always runs, even on error or completion.
           </p>
-          <p-button
+          <app-enhanced-button
             label="Test finalize()"
             icon="pi pi-check"
-            (click)="testFinalize()"
-            severity="success"
+            (buttonClick)="testFinalize()"
             class="mb-4"
-          ></p-button>
+          ></app-enhanced-button>
           @if (isLoading()) {
             <div class="bg-yellow-50 dark:bg-yellow-900/20 p-5 rounded mb-2">
               <p class="text-sm">Loading...</p>
@@ -170,12 +169,12 @@
           <p class="text-sm text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-2">
             Delays emissions by 2 seconds.
           </p>
-          <p-button
+          <app-enhanced-button
             label="Test delay(2000ms)"
             icon="pi pi-clock"
-            (click)="testDelay()"
+            (buttonClick)="testDelay()"
             class="mb-4"
-          ></p-button>
+          ></app-enhanced-button>
           @if (delayResult()) {
             <div class="bg-blue-50 dark:bg-blue-900/20 p-5 rounded">
               <p class="text-sm">{{ delayResult() }}</p>
@@ -189,13 +188,12 @@
           <p class="text-sm text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-2">
             Simulates a slow request that times out after 2 seconds.
           </p>
-          <p-button
+          <app-enhanced-button
             label="Test timeout(2000ms)"
             icon="pi pi-exclamation-triangle"
-            (click)="testTimeout()"
-            severity="danger"
+            (buttonClick)="testTimeout()"
             class="mb-4"
-          ></p-button>
+          ></app-enhanced-button>
           @if (timeoutResult()) {
             <div class="bg-red-50 dark:bg-red-900/20 p-5 rounded">
               <p class="text-sm">{{ timeoutResult() }}</p>
@@ -236,3 +234,5 @@
     </div>
   </p-card>
 </div>
+
+

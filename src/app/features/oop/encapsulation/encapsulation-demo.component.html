@@ -148,13 +148,14 @@
               ></p-inputNumber>
             </div>
           </div>
-          <p-button
-            label="Create Account"
-            icon="pi pi-plus"
+          <button
             (click)="createAccount()"
             [disabled]="!accountNumber().trim()"
-            class="btn-modern"
-          ></p-button>
+            class="btn-modern px-8 py-4 rounded-xl font-semibold text-base sm:text-lg flex items-center justify-center gap-3 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 active:scale-100 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+          >
+            <i class="fas fa-plus-circle text-lg sm:text-xl" aria-hidden="true"></i>
+            <span>Create Account</span>
+          </button>
         </div>
 
         <!-- Account Operations -->
@@ -189,14 +190,14 @@
                   [showButtons]="true"
                   class="w-full"
                 ></p-inputNumber>
-                <p-button
-                  label="Deposit"
-                  icon="pi pi-arrow-down"
-                  severity="success"
+                <button
                   (click)="deposit()"
                   [disabled]="depositAmount() <= 0"
-                  class="w-full"
-                ></p-button>
+                  class="btn-modern w-full px-6 py-3 rounded-xl font-semibold text-base flex items-center justify-center gap-3 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 active:scale-100 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+                >
+                  <i class="fas fa-arrow-down text-lg" aria-hidden="true"></i>
+                  <span>Deposit</span>
+                </button>
               </div>
               <div class="space-y-3">
                 <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300">
@@ -208,14 +209,14 @@
                   [showButtons]="true"
                   class="w-full"
                 ></p-inputNumber>
-                <p-button
-                  label="Withdraw"
-                  icon="pi pi-arrow-up"
-                  severity="danger"
+                <button
                   (click)="withdraw()"
                   [disabled]="withdrawAmount() <= 0"
-                  class="w-full"
-                ></p-button>
+                  class="btn-modern w-full px-6 py-3 rounded-xl font-semibold text-base flex items-center justify-center gap-3 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 active:scale-100 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+                >
+                  <i class="fas fa-arrow-up text-lg" aria-hidden="true"></i>
+                  <span>Withdraw</span>
+                </button>
               </div>
             </div>
           </div>

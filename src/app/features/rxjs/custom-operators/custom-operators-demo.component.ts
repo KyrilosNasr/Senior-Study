@@ -2,8 +2,8 @@ import { Component, signal, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CardModule } from 'primeng/card';
 import { Tabs, Tab, TabList, TabPanel, TabPanels } from 'primeng/tabs';
-import { ButtonModule } from 'primeng/button';
 import { MessageModule } from 'primeng/message';
+import { EnhancedButtonComponent } from '../../../shared/components/enhanced-button/enhanced-button.component';
 import { ApiService } from '../shared/services/api.service';
 import { retryWithBackoff } from '../shared/operators/retry-with-backoff.operator';
 import { logWithContext } from '../shared/operators/log-with-context.operator';
@@ -20,7 +20,7 @@ import { catchError, of } from 'rxjs';
     TabList,
     TabPanel,
     TabPanels,
-    ButtonModule,
+    EnhancedButtonComponent,
     MessageModule
   ],
   templateUrl: './custom-operators-demo.component.html',

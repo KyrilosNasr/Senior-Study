@@ -121,12 +121,12 @@
         <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">
           Creates an observable from static values. Emits synchronously, then completes.
         </p>
-        <p-button
+        <app-enhanced-button
           label="Test of()"
           icon="pi pi-play"
-          (click)="testOf()"
+          (buttonClick)="testOf()"
           class="mb-4"
-        ></p-button>
+        ></app-enhanced-button>
         @if (ofResult()) {
           <div class="bg-gray-100 dark:bg-gray-700 p-4 rounded">
             <p class="text-sm">{{ ofResult() }}</p>
@@ -140,12 +140,12 @@
         <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">
           Converts a promise or array to an observable. Handles async operations reactively.
         </p>
-        <p-button
+        <app-enhanced-button
           label="Test from()"
           icon="pi pi-play"
-          (click)="testFrom()"
+          (buttonClick)="testFrom()"
           class="mb-4"
-        ></p-button>
+        ></app-enhanced-button>
         @if (fromResult()) {
           <div class="bg-gray-100 dark:bg-gray-700 p-4 rounded">
             <p class="text-sm">{{ fromResult() }}</p>

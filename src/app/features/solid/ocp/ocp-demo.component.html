@@ -160,12 +160,13 @@
 
         <!-- Action Button -->
         <div class="flex flex-col sm:flex-row gap-4 items-stretch sm:items-center">
-          <p-button
-            label="Process Payment"
-            icon="pi pi-check"
+          <button
             (click)="processPayment()"
-            class="btn-modern flex-1 sm:flex-initial"
-          ></p-button>
+            class="btn-modern flex-1 sm:flex-initial px-8 py-4 rounded-xl font-semibold text-base sm:text-lg flex items-center justify-center gap-3 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 active:scale-100"
+          >
+            <i class="fas fa-check-circle text-lg sm:text-xl" aria-hidden="true"></i>
+            <span>Process Payment</span>
+          </button>
         </div>
 
         <!-- Payment Result -->

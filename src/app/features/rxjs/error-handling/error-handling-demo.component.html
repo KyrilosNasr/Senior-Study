@@ -117,13 +117,12 @@
           <p class="text-sm text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-2">
             Simulates a failed request that recovers with fallback data.
           </p>
-          <p-button
+          <app-enhanced-button
             label="Test catchError()"
             icon="pi pi-shield"
-            (click)="testCatchError()"
-            severity="success"
+            (buttonClick)="testCatchError()"
             class="mb-4"
-          ></p-button>
+          ></app-enhanced-button>
           @if (catchErrorResult()) {
             <div class="bg-green-50 dark:bg-green-900/20 p-5 rounded">
               <p class="text-sm">{{ catchErrorResult() }}</p>
@@ -137,12 +136,12 @@
           <p class="text-sm text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-2">
             Retries failed request 3 times before giving up.
           </p>
-          <p-button
+          <app-enhanced-button
             label="Test retry(3)"
             icon="pi pi-refresh"
-            (click)="testRetry()"
+            (buttonClick)="testRetry()"
             class="mb-4"
-          ></p-button>
+          ></app-enhanced-button>
           @if (retryResult()) {
             <div class="bg-blue-50 dark:bg-blue-900/20 p-5 rounded mb-2">
               <p class="text-sm font-semibold">{{ retryResult() }}</p>
@@ -166,12 +165,12 @@
           <p class="text-sm text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-2">
             Custom retry with delay and logging.
           </p>
-          <p-button
+          <app-enhanced-button
             label="Test retryWhen()"
             icon="pi pi-cog"
-            (click)="testRetryWhen()"
+            (buttonClick)="testRetryWhen()"
             class="mb-4"
-          ></p-button>
+          ></app-enhanced-button>
           @if (retryWhenResult()) {
             <div class="bg-purple-50 dark:bg-purple-900/20 p-5 rounded">
               <p class="text-sm">{{ retryWhenResult() }}</p>
@@ -185,12 +184,12 @@
           <p class="text-sm text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-2">
             Retries with exponentially increasing delays (500ms, 1000ms, 2000ms).
           </p>
-          <p-button
+          <app-enhanced-button
             label="Test retryWithBackoff()"
             icon="pi pi-bolt"
-            (click)="testRetryWithBackoff()"
+            (buttonClick)="testRetryWithBackoff()"
             class="mb-4"
-          ></p-button>
+          ></app-enhanced-button>
           @if (retryBackoffResult()) {
             <div class="bg-orange-50 dark:bg-orange-900/20 p-5 rounded">
               <p class="text-sm">{{ retryBackoffResult() }}</p>

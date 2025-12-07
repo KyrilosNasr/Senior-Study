@@ -5,13 +5,14 @@ import { ButtonModule } from 'primeng/button';
 import { TreeNode } from 'primeng/api';
 import { SidebarComponent, SidebarConfig } from '../../shared/components/sidebar/sidebar.component';
 import { ThemeService } from '../../core/services/theme.service';
+import { PageHeaderComponent } from '../../shared/components/page-header/page-header.component';
 import { ThemeToggleComponent } from '../../shared/components/theme-toggle/theme-toggle.component';
 import { getIconForLabel } from '../../shared/config/icon-mapping.config';
 
 @Component({
   selector: 'app-typescript-layout',
   standalone: true,
-  imports: [CommonModule, RouterModule, RouterOutlet, ButtonModule, SidebarComponent, ThemeToggleComponent],
+  imports: [CommonModule, RouterModule, RouterOutlet, ButtonModule, SidebarComponent, PageHeaderComponent, ThemeToggleComponent],
   templateUrl: './typescript-layout.component.html',
   styleUrl: './typescript-layout.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -23,15 +24,14 @@ export class TypeScriptLayoutComponent {
   @ViewChild(SidebarComponent) sidebarComponent = signal<SidebarComponent | undefined>(undefined);
 
   sidebarVisible = signal(false);
+  sidebarExpanded = signal(true);
 
   readonly contentGradient = computed(() => {
     return this.themeService.getGradientClasses('to-br', 'subtle');
   });
 
   readonly mainContentClass = computed(() => {
-    const sidebar = this.sidebarComponent();
-    if (!sidebar) return 'lg:ml-64';
-    return sidebar.isExpanded() ? 'lg:ml-64' : 'lg:ml-16';
+    return this.sidebarExpanded() ? 'lg:ml-64' : 'lg:ml-16';
   });
 
   sidebarConfig: SidebarConfig = {

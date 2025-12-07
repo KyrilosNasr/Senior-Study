@@ -119,21 +119,19 @@
         <div class="border-2 border-red-200 dark:border-red-800 rounded-lg p-5">
           <h3 class="text-lg font-semibold text-red-800 dark:text-red-200 mb-4">❌ Leaky Subscription</h3>
           <div class="mb-4">
-            <p-button
+            <app-enhanced-button
               label="Start (Leaky)"
               icon="pi pi-play"
-              (click)="startLeaky()"
+              (buttonClick)="startLeaky()"
               [disabled]="isLeakyActive()"
-              severity="danger"
               class="mr-2"
-            ></p-button>
-            <p-button
+            ></app-enhanced-button>
+            <app-enhanced-button
               label="Stop"
               icon="pi pi-stop"
-              (click)="stopLeaky()"
+              (buttonClick)="stopLeaky()"
               [disabled]="!isLeakyActive()"
-              severity="danger"
-            ></p-button>
+            ></app-enhanced-button>
           </div>
           <div class="bg-red-50 dark:bg-red-900/20 p-5 rounded">
             <p class="text-2xl font-bold">{{ leakyCount() }}</p>
@@ -144,21 +142,19 @@
         <div class="border-2 border-green-200 dark:border-green-800 rounded-lg p-5">
           <h3 class="text-lg font-semibold text-green-800 dark:text-green-200 mb-4">✅ Safe Subscription</h3>
           <div class="mb-4">
-            <p-button
+            <app-enhanced-button
               label="Start (Safe)"
               icon="pi pi-play"
-              (click)="startSafe()"
+              (buttonClick)="startSafe()"
               [disabled]="isSafeActive()"
-              severity="success"
               class="mr-2"
-            ></p-button>
-            <p-button
+            ></app-enhanced-button>
+            <app-enhanced-button
               label="Stop"
               icon="pi pi-stop"
-              (click)="stopSafe()"
+              (buttonClick)="stopSafe()"
               [disabled]="!isSafeActive()"
-              severity="success"
-            ></p-button>
+            ></app-enhanced-button>
           </div>
           <div class="bg-green-50 dark:bg-green-900/20 p-5 rounded">
             <p class="text-2xl font-bold">{{ safeCount() }}</p>
