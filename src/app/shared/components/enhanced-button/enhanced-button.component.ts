@@ -1,9 +1,6 @@
 import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-/**
- * Icon mapping from PrimeNG icons to FontAwesome icons
- */
 const ICON_MAP: Record<string, string> = {
   'pi pi-plus': 'fa-plus-circle',
   'pi pi-check': 'fa-check-circle',
@@ -47,7 +44,6 @@ const ICON_MAP: Record<string, string> = {
   standalone: true,
   imports: [CommonModule],
   templateUrl: './enhanced-button.component.html',
-  styleUrl: './enhanced-button.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EnhancedButtonComponent {
@@ -58,25 +54,17 @@ export class EnhancedButtonComponent {
   @Input() size: 'sm' | 'md' | 'lg' = 'md';
   @Output() buttonClick = new EventEmitter<void>();
 
-  /**
-   * Get the FontAwesome icon class from PrimeNG icon or direct FontAwesome class
-   */
   getIconClass(): string {
     if (!this.icon) return '';
     
-    // If it's already a FontAwesome class, return it
     if (this.icon.startsWith('fa')) {
       return this.icon;
     }
     
-    // Map PrimeNG icon to FontAwesome
     const faIcon = ICON_MAP[this.icon] || 'fa-circle';
     return `fas ${faIcon}`;
   }
 
-  /**
-   * Get size classes based on size input
-   */
   getSizeClasses(): string {
     switch (this.size) {
       case 'sm':
@@ -88,9 +76,6 @@ export class EnhancedButtonComponent {
     }
   }
 
-  /**
-   * Get icon size classes based on button size
-   */
   getIconSizeClasses(): string {
     switch (this.size) {
       case 'sm':
@@ -102,9 +87,6 @@ export class EnhancedButtonComponent {
     }
   }
 
-  /**
-   * Handle button click
-   */
   onClick(): void {
     if (!this.disabled) {
       this.buttonClick.emit();

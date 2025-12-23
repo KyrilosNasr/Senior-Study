@@ -10,12 +10,6 @@ export interface DemoTab {
   badgeColor?: 'blue' | 'green' | 'purple' | 'orange' | 'pink' | 'teal' | 'indigo' | 'yellow';
 }
 
-/**
- * Demo Tabs Component
- * 
- * Reusable tabs component for demo pages. Provides consistent tab structure
- * with support for icons, badges, and content projection.
- */
 @Component({
   selector: 'app-demo-tabs',
   standalone: true,
@@ -27,7 +21,6 @@ export interface DemoTab {
     TabPanels
 ],
   templateUrl: './demo-tabs.component.html',
-  styleUrl: './demo-tabs.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DemoTabsComponent {
@@ -36,9 +29,6 @@ export class DemoTabsComponent {
 
   activeTab = signal<string | number>(this.initialValue);
 
-  /**
-   * Get badge CSS classes based on color
-   */
   getBadgeClasses(color?: string): string {
     const baseClasses = 'px-2 py-0.5 rounded text-xs font-semibold ml-2';
     

@@ -27,10 +27,6 @@ import {
 } from '../../types/form-field.types';
 import { FormFieldRendererComponent } from './form-field-renderer.component';
 
-/**
- * Dynamic form component that renders forms based on configuration
- * Uses PrimeNG components for all input types
- */
 @Component({
   selector: 'app-dynamic-form',
   standalone: true,
@@ -42,7 +38,6 @@ import { FormFieldRendererComponent } from './form-field-renderer.component';
     FormFieldRendererComponent
   ],
   templateUrl: './dynamic-form.component.html',
-  styleUrl: './dynamic-form.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DynamicFormComponent<T = Record<string, unknown>> implements OnInit {
@@ -61,9 +56,6 @@ export class DynamicFormComponent<T = Record<string, unknown>> implements OnInit
     this.buildForm();
   }
 
-  /**
-   * Build the reactive form from configuration
-   */
   private buildForm(): void {
     const formControls: Record<string, unknown> = {};
 
@@ -84,15 +76,11 @@ export class DynamicFormComponent<T = Record<string, unknown>> implements OnInit
     const formGroup = this.fb.group(formControls);
     this.form.set(formGroup);
 
-    // Emit value changes
     formGroup.valueChanges.subscribe(value => {
       this.formValueChange.emit(value as Partial<T>);
     });
   }
 
-  /**
-   * Get default value based on field type
-   */
   private getDefaultValueForType(type: FormFieldConfig['type']): unknown {
     switch (type) {
       case 'checkbox':
@@ -107,9 +95,6 @@ export class DynamicFormComponent<T = Record<string, unknown>> implements OnInit
     }
   }
 
-  /**
-   * Get responsive grid classes
-   */
   private getGridClasses(): string {
     const columns = this.config.columns || {};
     const mobile = columns.mobile || 1;
@@ -119,24 +104,15 @@ export class DynamicFormComponent<T = Record<string, unknown>> implements OnInit
     return `grid grid-cols-${mobile} sm:grid-cols-${tablet} md:grid-cols-${desktop} gap-4`;
   }
 
-  /**
-   * Get field control
-   */
   getFieldControl(key: string): FormControl {
     const form = this.form();
     return form?.get(key) as FormControl;
   }
 
-  /**
-   * Track by function for fields
-   */
   trackByKey(index: number, field: FormFieldConfig): string {
     return field.key;
   }
 
-  /**
-   * Handle form submission
-   */
   onSubmit(): void {
     const form = this.form();
     if (!form) return;
@@ -149,7 +125,6 @@ export class DynamicFormComponent<T = Record<string, unknown>> implements OnInit
       };
       this.formSubmit.emit(result);
     } else {
-      // Mark all fields as touched to show validation errors
       Object.keys(form.controls).forEach(key => {
         form.get(key)?.markAsTouched();
       });
@@ -164,9 +139,6 @@ export class DynamicFormComponent<T = Record<string, unknown>> implements OnInit
     }
   }
 
-  /**
-   * Collect all validation errors
-   */
   private collectValidationErrors(): Array<{ key: string; message: string }> {
     const form = this.form();
     if (!form) return [];
@@ -195,16 +167,10 @@ export class DynamicFormComponent<T = Record<string, unknown>> implements OnInit
     return errors;
   }
 
-  /**
-   * Handle cancel action
-   */
   onCancel(): void {
     this.formCancel.emit();
   }
 
-  /**
-   * Reset form to initial values
-   */
   reset(): void {
     const form = this.form();
     if (form) {
@@ -213,17 +179,11 @@ export class DynamicFormComponent<T = Record<string, unknown>> implements OnInit
     }
   }
 
-  /**
-   * Get form value
-   */
   getValue(): Partial<T> {
     const form = this.form();
     return form ? (form.value as Partial<T>) : {};
   }
 
-  /**
-   * Check if form is valid
-   */
   isValid(): boolean {
     const form = this.form();
     return form ? form.valid : false;

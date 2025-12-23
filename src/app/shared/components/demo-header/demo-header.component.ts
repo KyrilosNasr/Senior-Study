@@ -3,18 +3,11 @@ import { CommonModule } from '@angular/common';
 import { CardModule } from 'primeng/card';
 import { DemoBadge } from '../../types/common.types';
 
-/**
- * Demo Header Component
- * 
- * Reusable header card component for demo pages with title, description, and optional feature badges.
- * Follows the consistent styling pattern used across demo components.
- */
 @Component({
   selector: 'app-demo-header',
   standalone: true,
   imports: [CommonModule, CardModule],
   templateUrl: './demo-header.component.html',
-  styleUrl: './demo-header.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DemoHeaderComponent {
@@ -22,9 +15,6 @@ export class DemoHeaderComponent {
   @Input({ required: true }) description!: string;
   @Input() badges?: DemoBadge[];
 
-  /**
-   * Get badge CSS classes based on color
-   */
   getBadgeClasses(color?: string): string {
     const baseClasses = 'px-3 py-1 rounded-full text-xs font-semibold';
     

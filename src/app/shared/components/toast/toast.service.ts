@@ -10,20 +10,10 @@ export interface ToastOptions {
   closable?: boolean;
 }
 
-/**
- * Service for displaying toast notifications using PrimeNG Toast
- * Provides convenience methods for different toast types
- */
 @Injectable()
 export class ToastService {
   constructor(private messageService: MessageService) {}
 
-  /**
-   * Show success toast notification
-   * @param message - Main message text
-   * @param summary - Optional summary/title
-   * @param options - Additional toast options
-   */
   success(message: string, summary?: string, options?: ToastOptions): void {
     this.messageService.add({
       severity: 'success',
@@ -34,12 +24,6 @@ export class ToastService {
     });
   }
 
-  /**
-   * Show info toast notification
-   * @param message - Main message text
-   * @param summary - Optional summary/title
-   * @param options - Additional toast options
-   */
   info(message: string, summary?: string, options?: ToastOptions): void {
     this.messageService.add({
       severity: 'info',
@@ -50,12 +34,6 @@ export class ToastService {
     });
   }
 
-  /**
-   * Show warning toast notification
-   * @param message - Main message text
-   * @param summary - Optional summary/title
-   * @param options - Additional toast options
-   */
   warn(message: string, summary?: string, options?: ToastOptions): void {
     this.messageService.add({
       severity: 'warn',
@@ -66,12 +44,6 @@ export class ToastService {
     });
   }
 
-  /**
-   * Show error toast notification
-   * @param message - Main message text
-   * @param summary - Optional summary/title
-   * @param options - Additional toast options
-   */
   error(message: string, summary?: string, options?: ToastOptions): void {
     this.messageService.add({
       severity: 'error',
@@ -82,13 +54,6 @@ export class ToastService {
     });
   }
 
-  /**
-   * Show custom toast notification
-   * @param severity - Toast severity level
-   * @param message - Main message text
-   * @param summary - Optional summary/title
-   * @param options - Additional toast options
-   */
   show(severity: ToastSeverity, message: string, summary?: string, options?: ToastOptions): void {
     this.messageService.add({
       severity,
@@ -99,16 +64,10 @@ export class ToastService {
     });
   }
 
-  /**
-   * Clear all toast notifications
-   */
   clear(): void {
     this.messageService.clear();
   }
 
-  /**
-   * Get default summary based on severity
-   */
   private getDefaultSummary(severity: ToastSeverity): string {
     const summaries: Record<ToastSeverity, string> = {
       success: 'Success',

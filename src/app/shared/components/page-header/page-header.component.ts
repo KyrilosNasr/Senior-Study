@@ -7,7 +7,6 @@ import { ThemeToggleComponent } from '../theme-toggle/theme-toggle.component';
   standalone: true,
   imports: [CommonModule, ThemeToggleComponent],
   templateUrl: './page-header.component.html',
-  styleUrl: './page-header.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PageHeaderComponent {

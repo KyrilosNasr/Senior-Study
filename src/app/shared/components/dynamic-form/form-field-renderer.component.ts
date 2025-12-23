@@ -19,7 +19,6 @@ import {
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { DestroyRef, inject } from '@angular/core';
 
-// PrimeNG Imports
 import { InputTextModule } from 'primeng/inputtext';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { DatePickerModule } from 'primeng/datepicker';
@@ -35,10 +34,6 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 import { FormFieldConfig, FormFieldType } from '../../types/form-field.types';
 import { SelectOption } from '../../types/common.types';
 
-/**
- * Polymorphic form field renderer component
- * Renders different PrimeNG input components based on field type
- */
 @Component({
   selector: 'app-form-field-renderer',
   standalone: true,
@@ -285,7 +280,6 @@ export class FormFieldRendererComponent
       );
     }
 
-    // Subscribe to control value changes
     this.control.valueChanges
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(() => {
@@ -294,7 +288,6 @@ export class FormFieldRendererComponent
   }
 
   ngOnDestroy(): void {
-    // Cleanup handled by takeUntilDestroyed
   }
 
   getInputType(): string {
@@ -345,7 +338,6 @@ export class FormFieldRendererComponent
     return errors;
   }
 
-  // ControlValueAccessor implementation
   private onChange = (value: unknown): void => {};
   private onTouched = (): void => {};
 
