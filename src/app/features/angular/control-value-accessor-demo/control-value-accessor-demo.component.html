@@ -1,0 +1,154 @@
+<div class="space-y-6">
+  <!-- Header Card -->
+  <p-card>
+    <div class="space-y-4">
+      <h1 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-gray-100">
+        ControlValueAccessor Demo
+      </h1>
+      <p class="text-gray-600 dark:text-gray-400">
+        Demonstrates custom form controls using ControlValueAccessor interface. The FormFieldRendererComponent
+        implements ControlValueAccessor to work seamlessly with Angular Reactive Forms.
+      </p>
+    </div>
+  </p-card>
+
+  <!-- Demo Tabs -->
+  <p-tabs value="0">
+    <p-tablist class="flex flex-wrap gap-2 mb-6">
+      <p-tab value="0" label="Overview"></p-tab>
+      <p-tab value="1" label="Dynamic Form"></p-tab>
+      <p-tab value="2" label="Code Examples"></p-tab>
+    </p-tablist>
+
+    <p-tabpanels>
+      <!-- Overview -->
+      <p-tabpanel value="0">
+        <div class="space-y-6">
+          <p-card>
+            <div class="space-y-4">
+              <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">
+                What is ControlValueAccessor?
+              </h2>
+              <div class="prose dark:prose-invert max-w-none">
+                <p class="text-gray-700 dark:text-gray-300">
+                  ControlValueAccessor is an interface that allows custom form controls to integrate
+                  seamlessly with Angular's Reactive Forms and Template-driven Forms. It provides a bridge
+                  between form controls and custom components.
+                </p>
+                <ul class="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+                  <li>Enables custom components to work with formControl and ngModel</li>
+                  <li>Provides writeValue() to set component value from form</li>
+                  <li>Provides registerOnChange() to notify form of value changes</li>
+                  <li>Provides registerOnTouched() to mark form as touched</li>
+                  <li>Allows setDisabledState() for disabled state management</li>
+                </ul>
+              </div>
+            </div>
+          </p-card>
+
+          <p-card>
+            <div class="space-y-4">
+              <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">
+                Implementation in FormFieldRendererComponent
+              </h2>
+              <p class="text-gray-700 dark:text-gray-300">
+                The FormFieldRendererComponent implements ControlValueAccessor, allowing it to be used
+                directly with Angular's form controls. This enables the dynamic form to work with reactive forms
+                without any additional configuration.
+              </p>
+            </div>
+          </p-card>
+        </div>
+      </p-tabpanel>
+
+      <!-- Dynamic Form -->
+      <p-tabpanel value="1">
+        <p-card>
+          <div class="space-y-4">
+            <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">
+              Dynamic Form with ControlValueAccessor
+            </h2>
+            <p class="text-gray-600 dark:text-gray-400">
+              This form uses FormFieldRendererComponent which implements ControlValueAccessor internally.
+              Each field is a custom form control that integrates seamlessly with Angular Reactive Forms.
+            </p>
+            <app-dynamic-form
+              [config]="dynamicFormConfig"
+              (formSubmit)="onDynamicFormSubmit($event)"
+            />
+          </div>
+        </p-card>
+      </p-tabpanel>
+
+      <!-- Code Examples -->
+      <p-tabpanel value="2">
+        <p-card>
+          <div class="space-y-6">
+            <div>
+              <h3 class="text-lg font-semibold mb-2 text-gray-900 dark:text-gray-100">
+                ControlValueAccessor Interface
+              </h3>
+              <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>interface ControlValueAccessor &#123;
+  writeValue(value: any): void;
+  registerOnChange(fn: any): void;
+  registerOnTouched(fn: any): void;
+  setDisabledState?(isDisabled: boolean): void;
+&#125;</code></pre>
+            </div>
+
+            <div>
+              <h3 class="text-lg font-semibold mb-2 text-gray-900 dark:text-gray-100">
+                Implementation Example
+              </h3>
+              <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>@Component(&#123;
+  providers: [&#123;
+    provide: NG_VALUE_ACCESSOR,
+    useExisting: forwardRef(() => FormFieldRendererComponent),
+    multi: true
+  &#125;]
+&#125;)
+export class FormFieldRendererComponent
+  implements ControlValueAccessor &#123;
+  
+  private onChange = (value: any) => &#123;&#125;;
+  private onTouched = () => &#123;&#125;;
+
+  writeValue(value: any): void &#123;
+    this.control.setValue(value, &#123; emitEvent: false &#125;);
+  &#125;
+
+  registerOnChange(fn: any): void &#123;
+    this.onChange = fn;
+  &#125;
+
+  registerOnTouched(fn: any): void &#123;
+    this.onTouched = fn;
+  &#125;
+
+  setDisabledState(isDisabled: boolean): void &#123;
+    if (isDisabled) &#123;
+      this.control.disable();
+    &#125; else &#123;
+      this.control.enable();
+    &#125;
+  &#125;
+&#125;</code></pre>
+            </div>
+
+            <div>
+              <h3 class="text-lg font-semibold mb-2 text-gray-900 dark:text-gray-100">
+                Usage in Template
+              </h3>
+              <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>&lt;form [formGroup]="form"&gt;
+  &lt;app-form-field-renderer
+    [fieldConfig]="field"
+    [control]="form.get('name')"
+  /&gt;
+&lt;/form&gt;</code></pre>
+            </div>
+          </div>
+        </p-card>
+      </p-tabpanel>
+    </p-tabpanels>
+  </p-tabs>
+</div>

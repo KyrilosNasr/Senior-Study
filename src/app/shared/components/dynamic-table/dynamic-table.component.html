@@ -1,0 +1,412 @@
+<div class="w-full space-y-4">
+  <!-- Toolbar: Global Filter, Column Toggle, Export, Clear Filters -->
+  @if (config.globalFilter || config.exportable || config.columnToggle?.enabled || config.advancedFilter) {
+    <div class="flex flex-col sm:flex-row gap-3 items-start sm:items-center justify-between p-4 bg-gray-50 dark:bg-gray-800/50 rounded-lg border border-gray-200 dark:border-gray-700">
+      <div class="flex flex-col sm:flex-row gap-3 flex-1 w-full sm:w-auto">
+        @if (config.globalFilter) {
+          <span class="p-input-icon-left w-full sm:w-auto flex-1 sm:flex-initial">
+            <i class="pi pi-search text-gray-400"></i>
+            <input
+              type="text"
+              pInputText
+              [value]="globalFilterValue()"
+              (input)="onGlobalFilter($event)"
+              placeholder="Search across all columns..."
+              class="w-full pl-10"
+            />
+          </span>
+        }
+        @if (config.advancedFilter && hasActiveFilters()) {
+          <p-button
+            severity="secondary"
+            [outlined]="true"
+            (onClick)="clearFilters(dt)"
+            class="w-full sm:w-auto"
+          >
+            <i [class]="getFontAwesomeIcon('pi pi-filter-slash')" class="mr-2"></i>
+            <span>Clear Filters</span>
+          </p-button>
+        }
+        @if (config.columnToggle?.enabled) {
+          <p-button
+            severity="secondary"
+            [outlined]="true"
+            (onClick)="columnToggleMenu.toggle($event)"
+            class="w-full sm:w-auto"
+          >
+            <i [class]="getFontAwesomeIcon('pi pi-list')" class="mr-2"></i>
+            <span>Columns</span>
+          </p-button>
+        }
+      </div>
+      <div class="flex gap-2 w-full sm:w-auto">
+        @if (config.exportable) {
+          <p-button
+            severity="secondary"
+            [outlined]="true"
+            (onClick)="exportCSV()"
+            class="w-full sm:w-auto"
+          >
+            <i [class]="getFontAwesomeIcon('pi pi-download')" class="mr-2"></i>
+            <span>Export</span>
+          </p-button>
+        }
+        @if (config.selection?.enabled && selectedRows().length > 0) {
+          <p-button
+            severity="info"
+            [outlined]="true"
+            class="w-full sm:w-auto"
+          >
+            <i [class]="getFontAwesomeIcon('pi pi-check-square')" class="mr-2"></i>
+            <span>Selected: {{ selectedRows().length }}</span>
+          </p-button>
+        }
+      </div>
+    </div>
+  }
+
+  <!-- Column Toggle Menu -->
+  @if (config.columnToggle?.enabled) {
+    <p-menu #columnToggleMenu [model]="[]" [popup]="true" />
+  }
+
+  <!-- Table -->
+  <div class="overflow-x-auto rounded-lg border border-gray-200 dark:border-gray-700 shadow-sm">
+    <p-table
+      #dt
+      [value]="filteredData()"
+      [paginator]="config.pagination !== false"
+      [rows]="config.rowsPerPage || 10"
+      [rowsPerPageOptions]="config.rowsPerPageOptions || [10, 25, 50, 100]"
+      [sortMode]="config.sortMode || 'single'"
+      [selection]="config.selection?.enabled ? selectedRows() : null"
+      [selectionMode]="config.selection?.mode || 'multiple'"
+      [dataKey]="'id'"
+      [loading]="config.loading || false"
+      [scrollable]="config.scrollable || config.virtualScroll || false"
+      [scrollHeight]="config.scrollHeight || '400px'"
+      [virtualScroll]="config.virtualScroll || false"
+      [stripedRows]="config.stripedRows !== false"
+      [showGridlines]="config.showGridlines || false"
+      [resizableColumns]="config.columnResize?.enabled || false"
+      [reorderableColumns]="config.columnReorder?.enabled || false"
+      [editMode]="config.rowEditing?.enabled && config.rowEditing?.mode === 'cell' ? 'cell' : 'row'"
+      [rowHover]="true"
+      [size]="config.size === 'large' ? 'large' : config.size === 'small' ? 'small' : undefined"
+      [stateKey]="config.stateKey"
+      [stateStorage]="config.stateStorage || 'session'"
+      [expandedRowKeys]="expandedRows()"
+      [filters]="filters()"
+      [globalFilterFields]="getFilterableColumns()"
+      (onSort)="onSort($event)"
+      (onPage)="onPageChange($event)"
+      (onRowSelect)="onSelectionChange($event)"
+      (onRowUnselect)="onSelectionChange($event)"
+      (onRowClick)="onRowClick($event)"
+      (onFilter)="onFilter($event)"
+      (onColumnResizeEnd)="onColumnResize($event)"
+      (onColReorder)="onColumnReorder($event)"
+      (onRowExpand)="onRowExpand($event)"
+      (onRowCollapse)="onRowCollapse($event)"
+      (onRowReorder)="onRowReorder($event)"
+      styleClass="p-datatable-sm p-datatable-striped"
+      [tableStyle]="{ 'min-width': '50rem' }"
+    >
+      <!-- Header Template -->
+      <ng-template pTemplate="header">
+        <tr class="bg-gray-50 dark:bg-gray-800/50">
+          @if (config.rowExpansion?.enabled) {
+            <th style="width: 3rem" class="p-3 text-center"></th>
+          }
+          @if (config.selection?.enabled && config.selection?.checkbox) {
+            <th style="width: 3rem" class="p-3 text-center">
+              <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+            </th>
+          }
+          @for (col of config.columns; track trackByField($index, col)) {
+            <th
+              [pSortableColumn]="col.sortable ? fieldToString(col.field) : undefined"
+              [style.width]="col.width"
+              [style.min-width]="col.minWidth"
+              [style.max-width]="col.maxWidth"
+              class="p-3 font-semibold text-gray-700 dark:text-gray-300 text-sm uppercase tracking-wider text-center"
+              [class.text-left]="col.align === 'left'"
+              [class.text-right]="col.align === 'right'"
+            >
+              <div class="flex items-center gap-2">
+                <span>{{ col.header }}</span>
+                @if (col.sortable) {
+                  <p-sortIcon [field]="fieldToString(col.field)"></p-sortIcon>
+                }
+                @if (col.filterable && config.advancedFilter) {
+                  <span class="ml-auto">
+                    <p-columnFilter
+                      type="text"
+                      [field]="fieldToString(col.field)"
+                      [display]="'menu'"
+                    />
+                  </span>
+                }
+              </div>
+            </th>
+          }
+          @if (config.actions && config.actions.length > 0) {
+            <th class="p-3 font-semibold text-gray-700 dark:text-gray-300 text-sm uppercase tracking-wider text-center">Actions</th>
+          }
+          @if (config.rowEditing?.enabled && config.rowEditing?.mode === 'row') {
+            <th class="p-3 font-semibold text-gray-700 dark:text-gray-300 text-sm uppercase tracking-wider text-center">Edit</th>
+          }
+        </tr>
+      </ng-template>
+
+      <!-- Body Template -->
+      <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex" let-expanded="expanded">
+        <tr 
+          [pSelectableRow]="config.selection?.enabled ? rowData : null"
+          class="hover:bg-gray-50 dark:hover:bg-gray-800/30 transition-colors border-b border-gray-100 dark:border-gray-700/50"
+          [class.cursor-pointer]="!config.rowEditing?.enabled"
+          [class.bg-blue-50]="isRowEditing(rowData)"
+          [class.dark:bg-blue-900/20]="isRowEditing(rowData)"
+        >
+          @if (config.rowExpansion?.enabled) {
+            <td class="p-3">
+              @let rowExpanded = isRowExpanded(rowData);
+              <button
+                type="button"
+                (click)="toggleRowExpansion(rowData, rowExpanded); $event.stopPropagation()"
+                class="p-button p-component p-button-text p-button-rounded p-button-sm p-button-icon-only w-8 h-8 flex items-center justify-center hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors cursor-pointer"
+                [attr.aria-label]="rowExpanded ? 'Collapse row' : 'Expand row'"
+                [attr.aria-expanded]="rowExpanded"
+              >
+                <i [class]="getFontAwesomeIcon(rowExpanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right')" class="text-sm"></i>
+              </button>
+            </td>
+          }
+          @if (config.selection?.enabled && config.selection?.checkbox) {
+            <td class="p-3">
+              <p-tableCheckbox [value]="rowData"></p-tableCheckbox>
+            </td>
+          }
+          @for (col of config.columns; track trackByField($index, col)) {
+            <td
+              [pEditableColumn]="config.rowEditing?.enabled && config.rowEditing?.mode === 'cell' && col.editable ? fieldToString(col.field) : undefined"
+              class="p-3 text-sm text-gray-900 dark:text-gray-100"
+              [class.text-left]="col.align !== 'right' && col.align !== 'center'"
+              [class.text-center]="col.align === 'center'"
+              [class.text-right]="col.align === 'right'"
+            >
+              @if (config.rowEditing?.enabled && config.rowEditing?.mode === 'cell' && col.editable) {
+                <!-- Cell Editing Mode -->
+                <p-cellEditor>
+                  <ng-template pTemplate="input">
+                    @if (col.editorType === 'text') {
+                      <input
+                        pInputText
+                        type="text"
+                        [(ngModel)]="rowData[col.field]"
+                        class="w-full"
+                      />
+                    } @else if (col.editorType === 'number') {
+                      <p-inputnumber
+                        [(ngModel)]="rowData[col.field]"
+                        [style]="{ width: '100%' }"
+                      />
+                    } @else if (col.editorType === 'date') {
+                      <p-datepicker
+                        [(ngModel)]="rowData[col.field]"
+                        [style]="{ width: '100%' }"
+                      />
+                    } @else if (col.editorType === 'select') {
+                      <p-select
+                        [(ngModel)]="rowData[col.field]"
+                        [options]="col.editorOptions || []"
+                        optionLabel="label"
+                        optionValue="value"
+                        [style]="{ width: '100%' }"
+                      />
+                    } @else if (col.editorType === 'boolean') {
+                      <p-toggleButton
+                        [(ngModel)]="rowData[col.field]"
+                      />
+                    } @else {
+                      <input
+                        pInputText
+                        type="text"
+                        [(ngModel)]="rowData[col.field]"
+                        class="w-full"
+                      />
+                    }
+                  </ng-template>
+                  <ng-template pTemplate="output">
+                    @if (col.formatter) {
+                      <span [innerHTML]="col.formatter(getFieldValue(rowData, col.field), rowData)"></span>
+                    } @else {
+                      {{ getFieldValue(rowData, col.field) }}
+                    }
+                  </ng-template>
+                </p-cellEditor>
+              } @else if (config.rowEditing?.enabled && config.rowEditing?.mode === 'row' && col.editable && isRowEditing(rowData)) {
+                <!-- Row Editing Mode -->
+                @if (col.editorType === 'text') {
+                  <input
+                    pInputText
+                    type="text"
+                    [value]="getEditingValue(rowData, fieldToString(col.field))"
+                    (input)="updateCellValue(rowData, fieldToString(col.field), $any($event.target).value)"
+                    class="w-full"
+                  />
+                } @else if (col.editorType === 'number') {
+                  <p-inputnumber
+                    [ngModel]="getEditingValue(rowData, fieldToString(col.field))"
+                    (ngModelChange)="updateCellValue(rowData, fieldToString(col.field), $event)"
+                    [style]="{ width: '100%' }"
+                  />
+                } @else if (col.editorType === 'date') {
+                  <p-datepicker
+                    [ngModel]="getEditingValue(rowData, fieldToString(col.field))"
+                    (ngModelChange)="updateCellValue(rowData, fieldToString(col.field), $event)"
+                    [style]="{ width: '100%' }"
+                  />
+                } @else if (col.editorType === 'select') {
+                  <p-select
+                    [ngModel]="getEditingValue(rowData, fieldToString(col.field))"
+                    (ngModelChange)="updateCellValue(rowData, fieldToString(col.field), $event)"
+                    [options]="col.editorOptions || []"
+                    optionLabel="label"
+                    optionValue="value"
+                    [style]="{ width: '100%' }"
+                  />
+                } @else if (col.editorType === 'boolean') {
+                  <p-toggleButton
+                    [ngModel]="getEditingValue(rowData, fieldToString(col.field))"
+                    (ngModelChange)="updateCellValue(rowData, fieldToString(col.field), $event)"
+                  />
+                } @else {
+                  <input
+                    pInputText
+                    type="text"
+                    [value]="getEditingValue(rowData, fieldToString(col.field))"
+                    (input)="updateCellValue(rowData, fieldToString(col.field), $any($event.target).value)"
+                    class="w-full"
+                  />
+                }
+              } @else {
+                <!-- Regular Cell Display -->
+                @if (col.formatter) {
+                  <span [innerHTML]="col.formatter(getFieldValue(rowData, col.field), rowData)"></span>
+                } @else {
+                  {{ getFieldValue(rowData, col.field) }}
+                }
+              }
+            </td>
+          }
+          @if (config.actions && config.actions.length > 0) {
+            <td class="p-3">
+              <div class="flex justify-center items-center">
+                <p-menu #actionMenu [model]="getMenuItems(rowData)" [popup]="true" [appendTo]="'body'" />
+                <button
+                  type="button"
+                  (click)="showActionMenu($event, rowData, actionMenu); $event.stopPropagation()"
+                  [disabled]="getMenuItems(rowData).length === 0"
+                  [title]="'Actions'"
+                  class="p-button p-component p-button-text p-button-rounded p-button-secondary p-button-sm p-button-icon-only action-menu-trigger w-10 h-10 min-w-[2.5rem] min-h-[2.5rem] flex items-center justify-center hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                  [attr.aria-label]="'Actions'"
+                >
+                  <i [class]="getFontAwesomeIcon(config.actionMenuIcon || 'pi pi-ellipsis-v')" class="text-base"></i>
+                </button>
+              </div>
+            </td>
+          }
+          @if (config.rowEditing?.enabled && config.rowEditing?.mode === 'row') {
+            <td class="p-3">
+              <div class="flex gap-2 justify-center items-center">
+                @if (isRowEditing(rowData)) {
+                  <button
+                    type="button"
+                    (click)="saveRowEdit(rowData); $event.stopPropagation()"
+                    [title]="'Save'"
+                    class="p-button p-component p-button-text p-button-rounded p-button-success p-button-sm p-button-icon-only w-10 h-10 min-w-[2.5rem] min-h-[2.5rem] flex items-center justify-center hover:bg-green-100 dark:hover:bg-green-900/30 transition-colors cursor-pointer"
+                    [attr.aria-label]="'Save'"
+                  >
+                    <i [class]="getFontAwesomeIcon('pi pi-check')" class="text-base"></i>
+                  </button>
+                  <button
+                    type="button"
+                    (click)="cancelRowEdit(rowData); $event.stopPropagation()"
+                    [title]="'Cancel'"
+                    class="p-button p-component p-button-text p-button-rounded p-button-danger p-button-sm p-button-icon-only w-10 h-10 min-w-[2.5rem] min-h-[2.5rem] flex items-center justify-center hover:bg-red-100 dark:hover:bg-red-900/30 transition-colors cursor-pointer"
+                    [attr.aria-label]="'Cancel'"
+                  >
+                    <i [class]="getFontAwesomeIcon('pi pi-times')" class="text-base"></i>
+                  </button>
+                } @else {
+                  <button
+                    type="button"
+                    (click)="startRowEdit(rowData); $event.stopPropagation()"
+                    [title]="'Edit Row'"
+                    class="p-button p-component p-button-text p-button-rounded p-button-primary p-button-sm p-button-icon-only w-10 h-10 min-w-[2.5rem] min-h-[2.5rem] flex items-center justify-center hover:bg-blue-100 dark:hover:bg-blue-900/30 transition-colors cursor-pointer"
+                    [attr.aria-label]="'Edit Row'"
+                  >
+                    <i [class]="getFontAwesomeIcon('pi pi-pencil')" class="text-base"></i>
+                  </button>
+                }
+              </div>
+            </td>
+          }
+        </tr>
+        <!-- Row Expansion Template -->
+        @if (config.rowExpansion?.enabled && isRowExpanded(rowData)) {
+          <tr>
+            <td [attr.colspan]="config.columns.length + (config.selection?.enabled ? 1 : 0) + (config.actions?.length ? 1 : 0) + (config.rowEditing?.enabled && config.rowEditing?.mode === 'row' ? 1 : 0) + 1" class="p-4 bg-gray-50 dark:bg-gray-800/30">
+              @if (config.rowExpansion?.expansionTemplateKey) {
+                <ng-container *ngTemplateOutlet="getExpansionTemplate(rowData) || null"></ng-container>
+              } @else if (getNestedConfigForRow(rowData)) {
+                <!-- Nested Table -->
+                <div class="space-y-4">
+                  <div class="flex items-center gap-2 mb-4">
+                    <i class="pi pi-table text-gray-600 dark:text-gray-400"></i>
+                    <h4 class="text-lg font-semibold text-gray-900 dark:text-gray-100">
+                      Related Data
+                    </h4>
+                  </div>
+                  <app-dynamic-table
+                    [config]="getNestedConfigForRow(rowData)!"
+                    class="nested-table"
+                  />
+                </div>
+              } @else {
+                <pre class="text-xs text-gray-600 dark:text-gray-400">{{ rowData | json }}</pre>
+              }
+            </td>
+          </tr>
+        }
+      </ng-template>
+
+      <!-- Empty State -->
+      <ng-template pTemplate="emptymessage">
+        <div class="text-center py-12">
+          <i class="pi pi-inbox text-4xl text-gray-400 dark:text-gray-500 mb-4"></i>
+          <p class="text-gray-500 dark:text-gray-400 text-lg font-medium">
+            {{ config.emptyMessage || 'No data available' }}
+          </p>
+          @if (globalFilterValue() || hasActiveFilters()) {
+            <p class="text-sm text-gray-400 dark:text-gray-500 mt-2">
+              Try adjusting your search criteria
+            </p>
+          }
+        </div>
+      </ng-template>
+
+      <!-- Loading Template -->
+      @if (config.loading) {
+        <ng-template pTemplate="loadingbody">
+          <tr>
+            <td [attr.colspan]="config.columns.length + (config.selection?.enabled ? 1 : 0) + (config.actions?.length ? 1 : 0) + (config.rowExpansion?.enabled ? 1 : 0) + (config.rowEditing?.enabled && config.rowEditing?.mode === 'row' ? 1 : 0)" class="p-8 text-center">
+              <i [class]="config.loadingIcon || 'pi pi-spin pi-spinner text-2xl text-gray-400'"></i>
+            </td>
+          </tr>
+        </ng-template>
+      }
+    </p-table>
+  </div>
+</div>

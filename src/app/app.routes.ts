@@ -21,5 +21,9 @@ export const routes: Routes = [
   {
     path: 'rxjs',
     loadChildren: () => import('./features/rxjs/rxjs.routes').then(m => m.rxjsRoutes)
+  },
+  {
+    path: 'angular',
+    loadChildren: () => import('./features/angular/angular.routes').then(m => m.angularRoutes)
   }
 ];

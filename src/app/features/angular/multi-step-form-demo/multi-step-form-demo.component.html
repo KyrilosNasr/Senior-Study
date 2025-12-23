@@ -1,0 +1,93 @@
+<div class="space-y-6">
+  <!-- Header Card -->
+  <p-card>
+    <div class="space-y-4">
+      <h1 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-gray-100">
+        Multi-Step Form Demo
+      </h1>
+      <p class="text-gray-600 dark:text-gray-400">
+        A wizard-style multi-step form built with the dynamic form component. Demonstrates step-by-step
+        form completion with progress tracking and data persistence across steps.
+      </p>
+    </div>
+  </p-card>
+
+  <!-- Multi-Step Form -->
+  <p-card>
+    <div class="space-y-6">
+      <!-- Progress Steps -->
+      <div class="w-full">
+        <p-steps [model]="stepItems()" [(activeIndex)]="activeIndex" [readonly]="false" />
+      </div>
+
+      <!-- Current Step Form -->
+      <div class="border-t border-gray-200 dark:border-gray-700 pt-6">
+        <div class="mb-4">
+          <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">
+            Step {{ currentStep() + 1 }}: {{ steps[currentStep()].label }}
+          </h2>
+          <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">
+            {{ currentStep() + 1 }} of {{ steps.length }}
+          </p>
+        </div>
+
+        <app-dynamic-form
+          [config]="currentFormConfig()"
+          [loading]="loading"
+          (formSubmit)="onStepSubmit($event)"
+          (formCancel)="onStepCancel()"
+        />
+      </div>
+
+      <!-- Form Data Preview -->
+      @if (hasFormData()) {
+        <div class="mt-6 p-4 bg-gray-50 dark:bg-gray-800/50 rounded-lg border border-gray-200 dark:border-gray-700">
+          <h3 class="text-sm font-semibold text-gray-900 dark:text-gray-100 mb-2">
+            Collected Data Preview
+          </h3>
+          <pre class="text-xs text-gray-600 dark:text-gray-400 overflow-x-auto">{{ formData() | json }}</pre>
+        </div>
+      }
+    </div>
+  </p-card>
+
+  <!-- Code Examples -->
+  <p-card>
+    <div class="space-y-6">
+      <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">
+        Code Examples
+      </h2>
+
+      <div>
+        <h3 class="text-lg font-semibold mb-2 text-gray-900 dark:text-gray-100">
+          Multi-Step Form Implementation
+        </h3>
+        <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>// Define steps
+steps: StepConfig[] = [
+  &#123;
+    label: 'Personal Information',
+    fields: [/* form fields */]
+  &#125;,
+  &#123;
+    label: 'Address Information',
+    fields: [/* form fields */]
+  &#125;
+];
+
+// Track current step
+currentStep = signal(0);
+
+// Handle step submission
+onStepSubmit(result: unknown): void &#123;
+  this.formData.update(data => (&#123; ...data, ...result &#125;));
+  if (this.isLastStep()) &#123;
+    // Final submission
+  &#125; else &#123;
+    this.currentStep.update(step => step + 1);
+  &#125;
+&#125;</code></pre>
+      </div>
+    </div>
+  </p-card>
+</div>
+

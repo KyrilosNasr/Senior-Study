@@ -43,7 +43,7 @@ export const ICON_MAP: IconMapping = {
   'Memory Leak Prevention': 'fas fa-shield-alt',
   'Backpressure': 'fas fa-compress-arrows-alt',
   'Route Guards': 'fas fa-lock',
-  'Reactive Forms': 'fas fa-edit',
+  'RxJS Reactive Forms': 'fas fa-edit',
   'WebSockets': 'fas fa-plug',
   'Advanced Caching': 'fas fa-database',
   'Race Conditions': 'fas fa-flag-checkered',
@@ -63,6 +63,19 @@ export const ICON_MAP: IconMapping = {
   'OOP Concepts': 'fas fa-object-group',
   'RxJS Patterns': 'fas fa-stream',
   'Advanced TypeScript': 'fas fa-code',
+  'Angular': 'fas fa-angular',
+  
+  // Angular Components
+  'Dynamic Form': 'fas fa-edit',
+  'Dynamic Table': 'fas fa-table',
+  'Dynamic Modal': 'fas fa-window-maximize',
+  
+  // Angular Topics
+  'Angular Signals': 'fas fa-signal',
+  'Reactive Forms': 'fas fa-edit',
+  'ControlValueAccessor': 'fas fa-plug',
+  'Multi-Step Form': 'fas fa-list-ol',
+  'Modern Control Flow': 'fas fa-code-branch',
   
   // Default fallback
   'default': 'fas fa-circle'

@@ -1,0 +1,113 @@
+# Project Rules & Guidelines
+
+This project follows strict coding standards and best practices. All AI agents and developers must adhere to these rules.
+
+## 📚 AI Rules Documentation
+
+This project includes comprehensive AI agent rules located in the `.ai-rules/` folder. These rules MUST be followed for all code changes:
+
+### Core Documentation Files
+
+1. **`.ai-rules/README.md`** - Overview and quick reference
+2. **`.ai-rules/CODING_STANDARDS.md`** - TypeScript and component standards
+3. **`.ai-rules/COMPONENT_GUIDELINES.md`** - Component development best practices
+4. **`.ai-rules/STYLING_GUIDELINES.md`** - Tailwind CSS only styling rules
+5. **`.ai-rules/PERFORMANCE_GUIDELINES.md`** - Performance optimization guidelines
+
+## 🔴 CRITICAL Rules (Must Follow)
+
+### 1. NO `any` Type - EVER
+```typescript
+// ❌ FORBIDDEN
+const data: any = response;
+
+// ✅ REQUIRED
+const data: ApiResponse<User> = response;
+```
+
+### 2. Tailwind CSS ONLY
+```html
+<!-- ❌ FORBIDDEN -->
+<div style="color: red; padding: 10px;">
+
+<!-- ✅ REQUIRED -->
+<div class="text-red-500 p-2.5">
+```
+
+### 3. Never Modify Shared Components
+```typescript
+// ❌ FORBIDDEN - Don't modify shared components
+// src/app/shared/components/button.component.ts
+
+// ✅ REQUIRED - Create feature-specific component
+// src/app/features/users/components/user-button.component.ts
+```
+
+### 4. Always Use OnPush Change Detection
+```typescript
+@Component({
+  changeDetection: ChangeDetectionStrategy.OnPush
+})
+```
+
+## 🟡 WARNING Rules (Should Follow)
+
+- Use `trackBy` in all `*ngFor` loops
+- Unsubscribe from observables in `ngOnDestroy`
+- Write tests for all components (80%+ coverage)
+- Use mobile-first responsive design
+- Add JSDoc comments to public methods
+
+## 📋 Component Checklist
+
+Before committing any component:
+- [ ] No `any` types
+- [ ] OnPush change detection
+- [ ] Standalone component
+- [ ] @Input/@Output properly typed
+- [ ] Unsubscribe in ngOnDestroy
+- [ ] trackBy in *ngFor loops
+- [ ] Tailwind CSS only (no custom CSS)
+- [ ] Responsive design (mobile-first)
+- [ ] No console.log statements
+- [ ] Tests written (80%+ coverage)
+- [ ] JSDoc comments added
+
+## 🎨 Styling Rules
+
+- **ONLY** use Tailwind CSS utilities
+- **NO** custom CSS files (except for component-specific styles when absolutely necessary)
+- **NO** inline styles
+- Use CSS variables for theme colors: `var(--accent-color)`, `var(--accent-gradient-from)`, etc.
+- Mobile-first approach with responsive breakpoints: `sm:`, `md:`, `lg:`, `xl:`, `2xl:`
+
+## 🚀 Performance Rules
+
+- Use OnPush change detection strategy
+- Unsubscribe from observables using `takeUntilDestroyed` or `DestroyRef`
+- Use `trackBy` functions in `*ngFor` loops
+- Lazy load routes and feature modules
+- Use `async` pipe when possible
+- No over-engineering - keep it simple
+
+## 📖 Reference
+
+For complete details, see:
+- `.ai-rules/README.md` - Quick reference and overview
+- `.ai-rules/CODING_STANDARDS.md` - TypeScript standards
+- `.ai-rules/COMPONENT_GUIDELINES.md` - Component patterns
+- `.ai-rules/STYLING_GUIDELINES.md` - Tailwind CSS guidelines
+- `.ai-rules/PERFORMANCE_GUIDELINES.md` - Performance best practices
+
+## 🔍 Rule Enforcement
+
+- Pre-commit hooks run `npm run lint:fix && npm run format`
+- Pre-push hooks run `npm run test:ci`
+- Manual code review against these rules
+
+---
+
+**Last Updated**: 2025-12-06  
+**Version**: 1.0  
+**Status**: Active
+

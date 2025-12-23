@@ -1,0 +1,34 @@
+<div class="w-full">
+  <form [formGroup]="form()!" (ngSubmit)="onSubmit()" class="space-y-6">
+    <div [class]="gridClasses()">
+      @for (field of config.fields; track trackByKey($index, field)) {
+        <app-form-field-renderer
+          [fieldConfig]="field"
+          [control]="getFieldControl(field.key)"
+        />
+      }
+    </div>
+
+    <div class="flex flex-col sm:flex-row gap-3 justify-end pt-4 border-t border-gray-200 dark:border-gray-700">
+      @if (config.showCancel) {
+        <p-button
+          label="{{ config.cancelLabel || 'Cancel' }}"
+          severity="secondary"
+          [outlined]="true"
+          type="button"
+          (onClick)="onCancel()"
+          [disabled]="loading()"
+          class="w-full sm:w-auto"
+        />
+      }
+      <p-button
+        label="{{ config.submitLabel || 'Submit' }}"
+        type="submit"
+        [loading]="loading()"
+        [disabled]="loading()"
+        class="w-full sm:w-auto"
+      />
+    </div>
+  </form>
+</div>
+

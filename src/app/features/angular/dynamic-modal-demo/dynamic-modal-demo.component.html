@@ -1,0 +1,123 @@
+<div class="space-y-6">
+  <!-- Header Card -->
+  <p-card>
+    <div class="space-y-4">
+      <h1 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-gray-100">
+        Dynamic Modal Component
+      </h1>
+      <p class="text-gray-600 dark:text-gray-400">
+        A flexible modal component built with PrimeNG Dialog. Supports dynamic content, custom actions,
+        loading states, and responsive design. Can be used programmatically via service or declaratively.
+      </p>
+    </div>
+  </p-card>
+
+  <!-- Demo Buttons -->
+  <p-card>
+    <div class="space-y-4">
+      <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">
+        Modal Examples
+      </h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <p-button
+          label="Info Modal"
+          icon="pi pi-info-circle"
+          (onClick)="showInfoModal()"
+          class="w-full"
+        />
+        <p-button
+          label="Confirm Modal"
+          icon="pi pi-question-circle"
+          severity="warn"
+          (onClick)="showConfirmModal()"
+          class="w-full"
+        />
+        <p-button
+          label="Custom Modal"
+          icon="pi pi-cog"
+          severity="secondary"
+          (onClick)="showCustomModal()"
+          class="w-full"
+        />
+        <p-button
+          label="Loading Modal"
+          icon="pi pi-spin pi-spinner"
+          severity="info"
+          (onClick)="showLoadingModal()"
+          class="w-full"
+        />
+        <p-button
+          label="Full Screen Modal"
+          icon="pi pi-window-maximize"
+          severity="success"
+          (onClick)="showFullScreenModal()"
+          class="w-full"
+        />
+      </div>
+
+      @if (lastResult) {
+        <div class="mt-4 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
+          <p class="text-sm text-blue-900 dark:text-blue-100">
+            <strong>Last Result:</strong> {{ lastResult }}
+          </p>
+        </div>
+      }
+    </div>
+  </p-card>
+
+  <!-- Code Examples -->
+  <p-card>
+    <div class="space-y-6">
+      <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">
+        Code Examples
+      </h2>
+
+      <div>
+        <h3 class="text-lg font-semibold mb-2 text-gray-900 dark:text-gray-100">
+          Using Modal Service
+        </h3>
+        <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>// Inject service
+private modalService = inject(DynamicModalService);
+
+// Show info modal
+this.modalService.info('Title', 'Message')
+  .then(result => &#123;
+    console.log(result);
+  &#125;);
+
+// Show confirmation
+this.modalService.confirm('Title', 'Message')
+  .then(result => &#123;
+    if (result.action === 'confirm') &#123;
+      // User confirmed
+    &#125;
+  &#125;);
+
+// Custom modal
+const config: DynamicModalConfig = &#123;
+  title: 'Custom Modal',
+  message: 'Custom content',
+  actions: [
+    &#123; label: 'Cancel', severity: 'secondary', handler: () => modalService.close() &#125;,
+    &#123; label: 'Save', severity: 'primary', handler: () => modalService.closeWithAction('save') &#125;
+  ]
+&#125;;
+this.modalService.open(config);</code></pre>
+      </div>
+
+      <div>
+        <h3 class="text-lg font-semibold mb-2 text-gray-900 dark:text-gray-100">
+          Using Component Directly
+        </h3>
+        <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>&lt;app-dynamic-modal&gt;&lt;/app-dynamic-modal&gt;
+
+// Component automatically connects to service
+// Use service methods to open modals</code></pre>
+      </div>
+    </div>
+  </p-card>
+
+  <!-- Modal Component (always rendered, controlled by service) -->
+  <app-dynamic-modal></app-dynamic-modal>
+</div>
+

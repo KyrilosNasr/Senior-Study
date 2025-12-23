@@ -1,0 +1,60 @@
+@if (config()) {
+  <p-dialog
+    [visible]="visible()"
+    [modal]="true"
+    [closable]="config()!.closable !== false"
+    [dismissableMask]="config()!.dismissableMask !== false"
+    [closeOnEscape]="config()!.closeOnEscape !== false"
+    [style]="{ width: config()!.width || 'auto', height: config()!.height || 'auto' }"
+    [styleClass]="modalClasses()"
+    (onHide)="onClose()"
+    [draggable]="false"
+    [resizable]="false"
+  >
+    <!-- Header -->
+    <ng-template pTemplate="header">
+      @if (config()!.title) {
+        <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100">
+          {{ config()!.title }}
+        </h3>
+      }
+    </ng-template>
+
+    <!-- Content -->
+    <div class="py-4">
+      @if (config()!.message) {
+        <p class="text-gray-700 dark:text-gray-300 mb-4">{{ config()!.message }}</p>
+      }
+      <ng-content></ng-content>
+    </div>
+
+    <!-- Footer with Actions -->
+    <ng-template pTemplate="footer">
+      <div class="flex flex-col sm:flex-row gap-3 justify-end">
+        @if (config() && config()!.actions && config()!.actions!.length > 0) {
+          @for (action of config()!.actions!; track action.label) {
+            <p-button
+              [label]="action.label"
+              [icon]="action.icon"
+              [severity]="getButtonSeverity(action)"
+              [loading]="action.loading || false"
+              [disabled]="isActionDisabled(action)"
+              (onClick)="onActionClick(action)"
+              [outlined]="action.severity === 'secondary'"
+              class="w-full sm:w-auto"
+            />
+          }
+        } @else {
+          <p-button
+            label="Close"
+            severity="secondary"
+            [outlined]="true"
+            (onClick)="onClose()"
+            class="w-full sm:w-auto"
+          />
+        }
+      </div>
+    </ng-template>
+  </p-dialog>
+}
+

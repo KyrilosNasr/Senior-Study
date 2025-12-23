@@ -178,6 +178,12 @@ export class RxjsLayoutComponent {
           icon: getIconForLabel('Advanced TypeScript'),
           data: '/typescript/advanced-types',
           leaf: true
+        },
+        {
+          label: 'Angular',
+          icon: 'fas fa-angular',
+          data: '/angular/dynamic-form',
+          leaf: true
         }
       ]
     }

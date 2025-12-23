@@ -1,0 +1,267 @@
+<div class="space-y-6">
+    <!-- Header Card -->
+    <p-card>
+        <div class="space-y-4">
+            <h1 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-gray-100">
+                Modern Control Flow Demo
+            </h1>
+            <p class="text-gray-600 dark:text-gray-400">
+                Demonstrates Angular's modern control flow syntax: &#64;if, &#64;for, &#64;switch, and &#64;defer.
+                These new syntaxes replace *ngIf, *ngFor, and provide better performance and developer experience.
+            </p>
+        </div>
+    </p-card>
+
+    <!-- Demo Tabs -->
+    <p-tabs value="0">
+        <p-tablist class="flex flex-wrap gap-2 mb-6">
+            <p-tab value="0" label="if/else"></p-tab>
+            <p-tab value="1" label="for"></p-tab>
+            <p-tab value="2" label="switch"></p-tab>
+            <p-tab value="3" label="defer"></p-tab>
+            <p-tab value="4" label="Code Examples"></p-tab>
+        </p-tablist>
+
+        <p-tabpanels>
+            <!-- @if/@else -->
+            <p-tabpanel value="0">
+                <div class="space-y-6">
+                    <p-card>
+                        <div class="space-y-4">
+                            <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">
+                                &#64;if / &#64;else / &#64;else if
+                            </h2>
+                            <div class="p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                                <p class="text-lg font-semibold mb-4">Count: {{ count() }}</p>
+                                <div class="flex gap-2 mb-4">
+                                    <p-button label="Increment" (onClick)="increment()" />
+                                </div>
+
+                                <!-- @if example -->
+                                @if (isEven()) {
+                                <div
+                                    class="p-4 bg-green-100 dark:bg-green-900/30 rounded-lg border border-green-200 dark:border-green-800">
+                                    <p class="text-green-800 dark:text-green-200 font-semibold">
+                                        ✓ Count is even!
+                                    </p>
+                                </div>
+                                } @else {
+                                <div
+                                    class="p-4 bg-blue-100 dark:bg-blue-900/30 rounded-lg border border-blue-200 dark:border-blue-800">
+                                    <p class="text-blue-800 dark:text-blue-200 font-semibold">
+                                        Count is odd
+                                    </p>
+                                </div>
+                                }
+
+                                <!-- @if with @else if -->
+                                <div class="mt-4">
+                                    @if (count() === 0) {
+                                    <p class="text-gray-600 dark:text-gray-400">Count is zero</p>
+                                    } @else if (count() < 5) { <p class="text-yellow-600 dark:text-yellow-400">Count is
+                                        less than 5</p>
+                                        } @else {
+                                        <p class="text-green-600 dark:text-green-400">Count is 5 or more</p>
+                                        }
+                                </div>
+                            </div>
+                        </div>
+                    </p-card>
+                </div>
+            </p-tabpanel>
+
+            <!-- @for -->
+            <p-tabpanel value="1">
+                <div class="space-y-6">
+                    <p-card>
+                        <div class="space-y-4">
+                            <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">
+                                &#64;for Loop
+                            </h2>
+                            <div class="p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                                <div class="flex items-center justify-between mb-4">
+                                    <p class="text-gray-600 dark:text-gray-400">
+                                        Items: <span class="font-semibold">{{ itemCount() }}</span>
+                                    </p>
+                                    <p-button label="Add Item" icon="pi pi-plus" (onClick)="addItem()" />
+                                </div>
+
+                                <!-- @for example -->
+                                <div class="space-y-2">
+                                    @for (item of items(); track $index) {
+                                    <div
+                                        class="flex items-center justify-between p-3 bg-white dark:bg-gray-700 rounded-lg border border-gray-200 dark:border-gray-600">
+                                        <span class="text-gray-900 dark:text-gray-100">{{ item }}</span>
+                                        <p-button icon="pi pi-trash" severity="danger" [text]="true" [size]="'small'"
+                                            (onClick)="removeItem($index)" />
+                                    </div>
+                                    } @empty {
+                                    <div class="p-4 text-center text-gray-500 dark:text-gray-400">
+                                        No items available
+                                    </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </p-card>
+                </div>
+            </p-tabpanel>
+
+            <!-- @switch -->
+            <p-tabpanel value="2">
+                <div class="space-y-6">
+                    <p-card>
+                        <div class="space-y-4">
+                            <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">
+                                &#64;switch Statement
+                            </h2>
+                            <div class="p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                                <div class="flex gap-2 mb-4">
+                                    <p-button label="Option 1"
+                                        [severity]="selectedOption() === 'option1' ? 'primary' : 'secondary'"
+                                        (onClick)="selectOption('option1')" />
+                                    <p-button label="Option 2"
+                                        [severity]="selectedOption() === 'option2' ? 'primary' : 'secondary'"
+                                        (onClick)="selectOption('option2')" />
+                                    <p-button label="Option 3"
+                                        [severity]="selectedOption() === 'option3' ? 'primary' : 'secondary'"
+                                        (onClick)="selectOption('option3')" />
+                                </div>
+
+                                <!-- @switch example -->
+                                <div class="mt-4">
+                                    @switch (selectedOption()) {
+                                    @case ('option1') {
+                                    <div
+                                        class="p-4 bg-blue-100 dark:bg-blue-900/30 rounded-lg border border-blue-200 dark:border-blue-800">
+                                        <p class="text-blue-800 dark:text-blue-200 font-semibold">
+                                            Option 1 Selected
+                                        </p>
+                                    </div>
+                                    }
+                                    @case ('option2') {
+                                    <div
+                                        class="p-4 bg-green-100 dark:bg-green-900/30 rounded-lg border border-green-200 dark:border-green-800">
+                                        <p class="text-green-800 dark:text-green-200 font-semibold">
+                                            Option 2 Selected
+                                        </p>
+                                    </div>
+                                    }
+                                    @case ('option3') {
+                                    <div
+                                        class="p-4 bg-purple-100 dark:bg-purple-900/30 rounded-lg border border-purple-200 dark:border-purple-800">
+                                        <p class="text-purple-800 dark:text-purple-200 font-semibold">
+                                            Option 3 Selected
+                                        </p>
+                                    </div>
+                                    }
+                                    @default {
+                                    <div class="p-4 bg-gray-100 dark:bg-gray-700 rounded-lg">
+                                        <p class="text-gray-600 dark:text-gray-400">No option selected</p>
+                                    </div>
+                                    }
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </p-card>
+                </div>
+            </p-tabpanel>
+
+            <!-- @defer -->
+            <p-tabpanel value="3">
+                <div class="space-y-6">
+                    <p-card>
+                        <div class="space-y-4">
+                            <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">
+                                &#64;defer Block
+                            </h2>
+                            <div class="p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                                <p-button label="Load Deferred Content" (onClick)="loadDeferred()"
+                                    [disabled]="showDeferred()" class="mb-4" />
+
+                                <!-- @defer example -->
+                                @if (showDeferred()) {
+                                <div
+                                    class="p-4 bg-green-100 dark:bg-green-900/30 rounded-lg border border-green-200 dark:border-green-800">
+                                    <p class="text-green-800 dark:text-green-200 font-semibold">
+                                        ✓ Deferred content loaded!
+                                    </p>
+                                    <p class="text-sm text-green-700 dark:text-green-300 mt-2">
+                                        This content was loaded conditionally using &#64;if
+                                    </p>
+                                    <p class="text-xs text-green-600 dark:text-green-400 mt-2">
+                                        Note: &#64;defer is typically used for lazy loading components. In this demo, we
+                                        show conditional rendering with &#64;if.
+                                    </p>
+                                </div>
+                                } @else {
+                                <div class="p-4 bg-gray-100 dark:bg-gray-700 rounded-lg">
+                                    <p class="text-gray-500 dark:text-gray-400">
+                                        Click the button above to load deferred content
+                                    </p>
+                                </div>
+                                }
+                            </div>
+                        </div>
+                    </p-card>
+                </div>
+            </p-tabpanel>
+
+            <!-- Code Examples -->
+            <p-tabpanel value="4">
+                <p-card>
+                    <div class="space-y-6">
+                        <div>
+                            <h3 class="text-lg font-semibold mb-2 text-gray-900 dark:text-gray-100">
+                                &#64;if / &#64;else
+                            </h3>
+                            <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>&#64;if (condition) &#123;
+  &lt;p&gt;Condition is true&lt;/p&gt;
+&#125; &#64;else &#123;
+  &lt;p&gt;Condition is false&lt;/p&gt;
+&#125;</code></pre>
+                        </div>
+
+                        <div>
+                            <h3 class="text-lg font-semibold mb-2 text-gray-900 dark:text-gray-100">
+                                &#64;for Loop
+                            </h3>
+              <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>{{ getForLoopExample() }}</code></pre>
+                        </div>
+
+                        <div>
+                            <h3 class="text-lg font-semibold mb-2 text-gray-900 dark:text-gray-100">
+                                &#64;switch
+                            </h3>
+                            <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>&#64;switch (value) &#123;
+  &#64;case ('option1') &#123;
+    &lt;p&gt;Option 1&lt;/p&gt;
+  &#125;
+  &#64;case ('option2') &#123;
+    &lt;p&gt;Option 2&lt;/p&gt;
+  &#125;
+  &#64;default &#123;
+    &lt;p&gt;Default&lt;/p&gt;
+  &#125;
+&#125;</code></pre>
+                        </div>
+
+                        <div>
+                            <h3 class="text-lg font-semibold mb-2 text-gray-900 dark:text-gray-100">
+                                &#64;defer
+                            </h3>
+                            <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>&#64;defer (on viewport) &#123;
+  &lt;heavy-component /&gt;
+&#125; &#64;placeholder &#123;
+  &lt;div&gt;Loading...&lt;/div&gt;
+&#125; &#64;loading (minimum 500ms) &#123;
+  &lt;div&gt;Still loading...&lt;/div&gt;
+&#125;</code></pre>
+                        </div>
+                    </div>
+                </p-card>
+            </p-tabpanel>
+        </p-tabpanels>
+    </p-tabs>
+</div>

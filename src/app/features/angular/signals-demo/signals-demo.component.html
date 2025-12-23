@@ -1,0 +1,238 @@
+<div class="space-y-6">
+  <!-- Header Card -->
+  <p-card>
+    <div class="space-y-4">
+      <h1 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-gray-100">
+        Angular Signals Demo
+      </h1>
+      <p class="text-gray-600 dark:text-gray-400">
+        Demonstrates Angular Signals with dynamic components. Learn about signals, computed values, effects,
+        and how they integrate with reactive forms, tables, and modals.
+      </p>
+    </div>
+  </p-card>
+
+  <!-- Demo Tabs -->
+  <p-tabs value="0">
+    <p-tablist class="flex flex-wrap gap-2 mb-6">
+      <p-tab value="0" label="Basic Signals"></p-tab>
+      <p-tab value="1" label="Computed Signals"></p-tab>
+      <p-tab value="2" label="With Dynamic Components"></p-tab>
+      <p-tab value="3" label="Code Examples"></p-tab>
+    </p-tablist>
+
+    <p-tabpanels>
+      <!-- Basic Signals -->
+      <p-tabpanel value="0">
+        <div class="space-y-6">
+          <p-card>
+            <div class="space-y-4">
+              <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">
+                Basic Signal Operations
+              </h2>
+              
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- Count Signal -->
+                <div class="p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                  <h3 class="text-lg font-semibold mb-2 text-gray-900 dark:text-gray-100">Count Signal</h3>
+                  <p class="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-4">{{ count() }}</p>
+                  <div class="flex gap-2">
+                    <p-button label="Increment" (onClick)="increment()" class="flex-1" />
+                    <p-button label="Decrement" (onClick)="decrement()" severity="secondary" class="flex-1" />
+                    <p-button label="Reset" (onClick)="reset()" severity="danger" class="flex-1" />
+                  </div>
+                </div>
+
+                <!-- Name Signal -->
+                <div class="p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                  <h3 class="text-lg font-semibold mb-2 text-gray-900 dark:text-gray-100">Name Signal</h3>
+                  <p class="text-lg text-gray-700 dark:text-gray-300 mb-4">{{ name() }}</p>
+                  <div class="flex gap-2">
+                    <p-button label="Set 'Angular'" (onClick)="updateName('Angular')" class="flex-1" />
+                    <p-button label="Set 'Signals'" (onClick)="updateName('Signals')" severity="secondary" class="flex-1" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </p-card>
+
+          <!-- Array Signal -->
+          <p-card>
+            <div class="space-y-4">
+              <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">
+                Array Signal Operations
+              </h2>
+              <div class="flex items-center justify-between mb-4">
+                <p class="text-gray-600 dark:text-gray-400">
+                  Items: <span class="font-semibold">{{ itemCount() }}</span>
+                </p>
+                <p-button label="Add Item" icon="pi pi-plus" (onClick)="addItem()" />
+              </div>
+              <div class="space-y-2">
+                @for (item of items(); track $index) {
+                  <div class="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                    <span class="text-gray-900 dark:text-gray-100">{{ item }}</span>
+                    <p-button
+                      icon="pi pi-trash"
+                      severity="danger"
+                      [text]="true"
+                      (onClick)="removeItem($index)"
+                    />
+                  </div>
+                }
+              </div>
+            </div>
+          </p-card>
+        </div>
+      </p-tabpanel>
+
+      <!-- Computed Signals -->
+      <p-tabpanel value="1">
+        <div class="space-y-6">
+          <p-card>
+            <div class="space-y-4">
+              <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">
+                Computed Signals
+              </h2>
+              
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
+                  <h3 class="text-sm font-semibold text-blue-900 dark:text-blue-100 mb-2">Double Count</h3>
+                  <p class="text-2xl font-bold text-blue-600 dark:text-blue-400">{{ doubleCount() }}</p>
+                  <p class="text-xs text-blue-700 dark:text-blue-300 mt-2">Computed from: count() * 2</p>
+                </div>
+
+                <div class="p-4 bg-green-50 dark:bg-green-900/20 rounded-lg border border-green-200 dark:border-green-800">
+                  <h3 class="text-sm font-semibold text-green-900 dark:text-green-100 mb-2">Greeting</h3>
+                  <p class="text-lg text-green-700 dark:text-green-300">{{ greeting() }}</p>
+                  <p class="text-xs text-green-700 dark:text-green-300 mt-2">Computed from: name()</p>
+                </div>
+              </div>
+
+              <!-- Summary Object -->
+              <div class="p-4 bg-gray-50 dark:bg-gray-800 rounded-lg mt-4">
+                <h3 class="text-lg font-semibold mb-2 text-gray-900 dark:text-gray-100">Summary Object</h3>
+                <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>{{ summary() | json }}</code></pre>
+                <p class="text-xs text-gray-500 dark:text-gray-400 mt-2">
+                  Computed object combining multiple signals
+                </p>
+              </div>
+            </div>
+          </p-card>
+        </div>
+      </p-tabpanel>
+
+      <!-- With Dynamic Components -->
+      <p-tabpanel value="2">
+        <div class="space-y-6">
+          <!-- Dynamic Form with Signals -->
+          <p-card>
+            <div class="space-y-4">
+              <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">
+                Dynamic Form with Signal Configuration
+              </h2>
+              <app-dynamic-form
+                [config]="formConfig()"
+                (formSubmit)="onFormSubmit($event)"
+              />
+            </div>
+          </p-card>
+
+          <!-- Dynamic Table with Signal Data -->
+          <p-card>
+            <div class="space-y-4">
+              <div class="flex items-center justify-between">
+                <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">
+                  Dynamic Table with Signal Data
+                </h2>
+                <p-button label="Add User" icon="pi pi-plus" (onClick)="addUser()" />
+              </div>
+              <app-dynamic-table [config]="tableConfig()" />
+            </div>
+          </p-card>
+
+          <!-- Signal Modal -->
+          <p-card>
+            <div class="space-y-4">
+              <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">
+                Modal with Signal Data
+              </h2>
+              <p-button
+                label="Show Signal Summary"
+                icon="pi pi-info-circle"
+                (onClick)="showSignalModal()"
+              />
+            </div>
+          </p-card>
+        </div>
+      </p-tabpanel>
+
+      <!-- Code Examples -->
+      <p-tabpanel value="3">
+        <p-card>
+          <div class="space-y-6">
+            <div>
+              <h3 class="text-lg font-semibold mb-2 text-gray-900 dark:text-gray-100">
+                Basic Signal
+              </h3>
+              <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>// Create a signal
+count = signal(0);
+
+// Read signal value
+const value = count();
+
+// Update signal
+count.set(10);
+count.update(value => value + 1);</code></pre>
+            </div>
+
+            <div>
+              <h3 class="text-lg font-semibold mb-2 text-gray-900 dark:text-gray-100">
+                Computed Signal
+              </h3>
+              <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>// Computed from other signals
+doubleCount = computed(() => this.count() * 2);
+
+// Complex computed
+summary = computed(() => &#123;
+  count: this.count(),
+  double: this.doubleCount(),
+  name: this.name()
+&#125;);</code></pre>
+            </div>
+
+            <div>
+              <h3 class="text-lg font-semibold mb-2 text-gray-900 dark:text-gray-100">
+                Effects
+              </h3>
+              <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>// Effect with side effects
+effect(() => &#123;
+  const count = this.count();
+  if (count > 10) &#123;
+    console.log('Count exceeded 10!', count);
+  &#125;
+&#125;);</code></pre>
+            </div>
+
+            <div>
+              <h3 class="text-lg font-semibold mb-2 text-gray-900 dark:text-gray-100">
+                Signals with Dynamic Components
+              </h3>
+              <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>// Signal-based configuration
+formConfig = signal&lt;DynamicFormConfig&gt;(&#123;
+  fields: [...],
+  submitLabel: 'Submit'
+&#125;);
+
+// Use in template
+&lt;app-dynamic-form [config]="formConfig()" /&gt;</code></pre>
+            </div>
+          </div>
+        </p-card>
+      </p-tabpanel>
+    </p-tabpanels>
+  </p-tabs>
+
+  <!-- Modal Component -->
+  <app-dynamic-modal></app-dynamic-modal>
+</div>

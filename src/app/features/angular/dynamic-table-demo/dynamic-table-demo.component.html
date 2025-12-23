@@ -1,0 +1,481 @@
+<div class="space-y-6">
+  <!-- Header Card -->
+  <p-card>
+    <div class="space-y-4">
+      <h1 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-gray-100">
+        Dynamic Table Component
+      </h1>
+      <p class="text-gray-600 dark:text-gray-400">
+        A fully customizable, feature-rich table component built with PrimeNG Table. Includes all advanced features like
+        sorting, filtering, pagination, row selection, column management, row expansion, cell editing, and more.
+      </p>
+      
+      <!-- Feature Highlights -->
+      <div class="flex flex-wrap gap-2 mt-4">
+        <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 rounded-full text-xs font-semibold">
+          <i class="pi pi-ellipsis-v mr-1"></i> Icon Menu Actions
+        </span>
+        <span class="px-3 py-1 bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300 rounded-full text-xs font-semibold">
+          <i class="pi pi-filter mr-1"></i> Advanced Filtering
+        </span>
+        <span class="px-3 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-800 dark:text-purple-300 rounded-full text-xs font-semibold">
+          <i class="pi pi-arrows-h mr-1"></i> Column Resize
+        </span>
+        <span class="px-3 py-1 bg-orange-100 dark:bg-orange-900/30 text-orange-800 dark:text-orange-300 rounded-full text-xs font-semibold">
+          <i class="pi pi-bars mr-1"></i> Column Reorder
+        </span>
+        <span class="px-3 py-1 bg-pink-100 dark:bg-pink-900/30 text-pink-800 dark:text-pink-300 rounded-full text-xs font-semibold">
+          <i class="pi pi-chevron-down mr-1"></i> Row Expansion
+        </span>
+        <span class="px-3 py-1 bg-teal-100 dark:bg-teal-900/30 text-teal-800 dark:text-teal-300 rounded-full text-xs font-semibold">
+          <i class="pi pi-pencil mr-1"></i> Cell Editing
+        </span>
+        <span class="px-3 py-1 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-800 dark:text-indigo-300 rounded-full text-xs font-semibold">
+          <i class="pi pi-list mr-1"></i> Column Toggle
+        </span>
+        <span class="px-3 py-1 bg-yellow-100 dark:bg-yellow-900/30 text-yellow-800 dark:text-yellow-300 rounded-full text-xs font-semibold">
+          <i class="pi pi-download mr-1"></i> Export CSV
+        </span>
+      </div>
+    </div>
+  </p-card>
+
+  <!-- Demo Tabs -->
+  <p-tabs [(value)]="activeTab" class="w-full">
+    <p-tablist class="flex flex-wrap gap-2 mb-6 border-b border-gray-200 dark:border-gray-700">
+      <p-tab value="0">
+        <span class="flex items-center gap-2">
+          <i class="pi pi-users text-sm"></i>
+          <span class="font-medium">Users Table</span>
+          <span class="px-2 py-0.5 bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 rounded text-xs font-semibold ml-2">
+            Full Features
+          </span>
+        </span>
+      </p-tab>
+      <p-tab value="1">
+        <span class="flex items-center gap-2">
+          <i class="pi pi-shopping-bag text-sm"></i>
+          <span class="font-medium">Products Table</span>
+        </span>
+      </p-tab>
+      <p-tab value="2">
+        <span class="flex items-center gap-2">
+          <i class="pi pi-code text-sm"></i>
+          <span class="font-medium">Code Examples</span>
+        </span>
+      </p-tab>
+      <p-tab value="3">
+        <span class="flex items-center gap-2">
+          <i class="pi pi-info-circle text-sm"></i>
+          <span class="font-medium">Features Guide</span>
+        </span>
+      </p-tab>
+    </p-tablist>
+
+    <p-tabpanels>
+      <!-- Users Table -->
+      <p-tabpanel value="0">
+        <div class="space-y-4">
+          <p-card>
+            <div class="space-y-4">
+              <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                <div>
+                  <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">
+                    Users Table - All Features Enabled
+                  </h2>
+                  <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                    This table demonstrates all available features: icon menu actions, column resizing, reordering, row expansion, advanced filtering, and more.
+                  </p>
+                </div>
+              </div>
+              
+              <!-- Feature Tips -->
+              <div class="p-4 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg">
+                <div class="flex items-start gap-3">
+                  <i class="pi pi-info-circle text-blue-600 dark:text-blue-400 mt-0.5"></i>
+                  <div class="flex-1 space-y-2 text-sm text-blue-800 dark:text-blue-300">
+                    <p class="font-semibold">Try these features:</p>
+                    <ul class="list-disc list-inside space-y-1 ml-2">
+                      <li><strong>Actions Menu:</strong> Click the <i class="pi pi-ellipsis-v text-xs"></i> icon in Actions column to see the dropdown menu with all actions</li>
+                      <li><strong>Advanced Filtering:</strong> Click the filter icon in column headers (Name, Email, Role, Status) to open advanced filter menu with operators</li>
+                      <li><strong>Clear Filters:</strong> Use the "Clear Filters" button when filters are active</li>
+                      <li><strong>Row Editing:</strong> Click the <i class="pi pi-pencil text-xs"></i> icon in Edit column to edit the entire row, then Save or Cancel</li>
+                      <li><strong>Row Expansion:</strong> Click the arrow icon to expand rows and see JSON details</li>
+                      <li><strong>Column Resize:</strong> Drag column borders to resize columns</li>
+                      <li><strong>Column Reorder:</strong> Drag column headers to reorder columns</li>
+                      <li><strong>Selection:</strong> Select multiple rows using checkboxes</li>
+                      <li><strong>Global Search:</strong> Use the search bar to filter across all columns</li>
+                      <li><strong>Conditional Actions:</strong> Notice that "Delete" is hidden for Admin users, and status actions change based on current status</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <app-dynamic-table
+                [config]="usersTableConfig"
+                [getNestedTableData]="getNestedTableData"
+                [getNestedTableConfig]="getNestedTableConfig"
+                (tableEvent)="onTableEvent($event)"
+                (rowClick)="onRowClick($event)"
+                (selectionChange)="onSelectionChange($event)"
+              />
+            </div>
+          </p-card>
+        </div>
+      </p-tabpanel>
+
+      <!-- Products Table -->
+      <p-tabpanel value="1">
+        <div class="space-y-4">
+          <p-card>
+            <div class="space-y-4">
+              <div>
+                <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">
+                  Products Table
+                </h2>
+                <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                  A simpler table configuration with column resizing, gridlines, and basic filtering enabled.
+                </p>
+              </div>
+              <app-dynamic-table
+                [config]="productsTableConfig"
+                (tableEvent)="onTableEvent($event)"
+                (rowClick)="onRowClick($event)"
+              />
+            </div>
+          </p-card>
+        </div>
+      </p-tabpanel>
+
+      <!-- Code Examples -->
+      <p-tabpanel value="2">
+        <p-card>
+          <div class="space-y-6">
+            <div>
+              <h3 class="text-lg font-semibold mb-2 text-gray-900 dark:text-gray-100">
+                Full Configuration Example
+              </h3>
+              <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>const tableConfig: DynamicTableConfig&lt;User&gt; = &#123;
+  columns: [
+    &#123; field: 'id', header: 'ID', sortable: true, width: '80px' &#125;,
+    &#123; field: 'name', header: 'Name', sortable: true, filterable: true &#125;,
+    &#123; 
+      field: 'role', 
+      header: 'Role', 
+      sortable: true,
+      filterable: true,
+      filterType: 'select',
+      filterOptions: [
+        &#123; label: 'Admin', value: 'Admin' &#125;,
+        &#123; label: 'User', value: 'User' &#125;
+      ],
+      formatter: (value) => `&lt;span class="badge"&gt;$&#123;value&#125;&lt;/span&gt;`
+    &#125;
+  ],
+  data: users,
+  pagination: true,
+  rowsPerPage: 10,
+  sortMode: 'multiple',
+  globalFilter: true,
+  advancedFilter: true,
+  selection: &#123; 
+    enabled: true, 
+    mode: 'multiple',
+    checkbox: true 
+  &#125;,
+  // Icon Menu Actions
+  actions: [
+    &#123; 
+      label: 'View', 
+      icon: 'fa fa-eye', 
+      severity: 'info',
+      handler: (row) => view(row) 
+    &#125;,
+    &#123; 
+      label: 'Edit', 
+      icon: 'pi pi-pencil', 
+      severity: 'primary',
+      handler: (row) => edit(row) 
+    &#125;,
+    &#123; separator: true &#125;,
+    &#123; 
+      label: 'Delete', 
+      icon: 'pi pi-trash', 
+      severity: 'danger',
+      handler: (row) => delete(row) 
+    &#125;
+  ],
+  actionMenuIcon: 'pi pi-ellipsis-v', // Custom icon
+  // Column Features
+  columnResize: &#123; enabled: true, mode: 'fit' &#125;,
+  columnReorder: &#123; enabled: true &#125;,
+  columnToggle: &#123; enabled: true &#125;,
+  // Row Features
+  rowExpansion: &#123; enabled: true &#125;,
+  rowEditing: &#123; enabled: true, mode: 'cell' &#125;,
+  // Styling
+  stripedRows: true,
+  showGridlines: false,
+  size: 'normal',
+  // Export
+  exportable: true,
+  exportFileName: 'users'
+&#125;;</code></pre>
+            </div>
+
+            <div>
+              <h3 class="text-lg font-semibold mb-2 text-gray-900 dark:text-gray-100">
+                Usage in Template
+              </h3>
+              <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>&lt;app-dynamic-table
+  [config]="tableConfig"
+  (tableEvent)="onTableEvent($event)"
+  (rowClick)="onRowClick($event)"
+  (selectionChange)="onSelectionChange($event)"
+/&gt;</code></pre>
+            </div>
+
+            <div>
+              <h3 class="text-lg font-semibold mb-2 text-gray-900 dark:text-gray-100">
+                Action Menu Configuration with Conditional Visibility
+              </h3>
+              <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>actions: [
+  &#123;
+    label: 'View Details',
+    icon: 'pi pi-eye',
+    severity: 'info',
+    handler: (row) => viewDetails(row)
+  &#125;,
+  &#123;
+    label: 'Edit',
+    icon: 'pi pi-pencil',
+    severity: 'primary',
+    handler: (row) => editRow(row)
+  &#125;,
+  &#123;
+    label: 'Activate',
+    icon: 'pi pi-check-circle',
+    severity: 'success',
+    visible: (row) => row.status === 'inactive', // Only show for inactive
+    handler: (row) => activateRow(row)
+  &#125;,
+  &#123;
+    label: 'Deactivate',
+    icon: 'pi pi-times-circle',
+    severity: 'warn',
+    visible: (row) => row.status === 'active', // Only show for active
+    handler: (row) => deactivateRow(row)
+  &#125;,
+  &#123; separator: true &#125;, // Adds separator line
+  &#123;
+    label: 'Delete',
+    icon: 'pi pi-trash',
+    severity: 'danger',
+    handler: (row) => deleteRow(row),
+    visible: (row) => row.role !== 'Admin', // Hide for admins
+    disabled: (row) => row.isLocked // Conditional disable
+  &#125;
+]</code></pre>
+            </div>
+
+            <div>
+              <h3 class="text-lg font-semibold mb-2 text-gray-900 dark:text-gray-100">
+                Advanced Filtering Configuration
+              </h3>
+              <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>const tableConfig: DynamicTableConfig = &#123;
+  // ... other config ...
+  advancedFilter: true, // Enable advanced filter menu
+  columns: [
+    &#123;
+      field: 'name',
+      header: 'Name',
+      filterable: true,
+      filterType: 'text' // text, number, date, select
+    &#125;,
+    &#123;
+      field: 'role',
+      header: 'Role',
+      filterable: true,
+      filterType: 'select',
+      filterOptions: [
+        &#123; label: 'Admin', value: 'Admin' &#125;,
+        &#123; label: 'User', value: 'User' &#125;
+      ]
+    &#125;
+  ]
+&#125;;
+
+// Clear filters programmatically
+clearFilters(tableRef);</code></pre>
+            </div>
+
+            <div>
+              <h3 class="text-lg font-semibold mb-2 text-gray-900 dark:text-gray-100">
+                Row Editing Configuration
+              </h3>
+              <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>rowEditing: &#123;
+  enabled: true,
+  mode: 'row', // 'cell' or 'row'
+  onSave: (row) => &#123;
+    console.log('Row saved:', row);
+    // Save to backend
+  &#125;,
+  onCancel: (row) => &#123;
+    console.log('Edit cancelled');
+  &#125;
+&#125;,
+
+// Column configuration for editing
+columns: [
+  &#123;
+    field: 'name',
+    header: 'Name',
+    editable: true,
+    editorType: 'text' // text, number, date, select, boolean
+  &#125;,
+  &#123;
+    field: 'role',
+    header: 'Role',
+    editable: true,
+    editorType: 'select',
+    editorOptions: [
+      &#123; label: 'Admin', value: 'Admin' &#125;,
+      &#123; label: 'User', value: 'User' &#125;
+    ]
+  &#125;
+]</code></pre>
+            </div>
+          </div>
+        </p-card>
+      </p-tabpanel>
+
+      <!-- Features Guide -->
+      <p-tabpanel value="3">
+        <p-card>
+          <div class="space-y-6">
+            <div>
+              <h2 class="text-xl font-semibold mb-4 text-gray-900 dark:text-gray-100">
+                Complete Features Guide
+              </h2>
+            </div>
+
+            <!-- Icon Menu Actions -->
+            <div class="p-4 bg-gray-50 dark:bg-gray-800/50 rounded-lg border border-gray-200 dark:border-gray-700">
+              <div class="flex items-center gap-3 mb-2">
+                <div class="w-10 h-10 rounded-lg bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
+                  <i class="fa fa-ellipsis-v text-blue-600 dark:text-blue-400"></i>
+                </div>
+                <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100">Icon Menu Actions</h3>
+              </div>
+              <p class="text-sm text-gray-600 dark:text-gray-400 mb-3">
+                Actions are displayed as an icon menu (ellipsis) instead of individual buttons, providing a cleaner UI and better mobile experience.
+              </p>
+              <ul class="list-disc list-inside space-y-1 text-sm text-gray-700 dark:text-gray-300 ml-4">
+                <li>Customizable menu icon (default: <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">pi-ellipsis-v</code>)</li>
+                <li>Support for separators between menu items</li>
+                <li>Conditional visibility and disabled states</li>
+                <li>Icon and severity-based styling</li>
+              </ul>
+            </div>
+
+            <!-- Advanced Filtering -->
+            <div class="p-4 bg-gray-50 dark:bg-gray-800/50 rounded-lg border border-gray-200 dark:border-gray-700">
+              <div class="flex items-center gap-3 mb-2">
+                <div class="w-10 h-10 rounded-lg bg-green-100 dark:bg-green-900/30 flex items-center justify-center">
+                  <i class="pi pi-filter text-green-600 dark:text-green-400"></i>
+                </div>
+                <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100">Advanced Filtering</h3>
+              </div>
+              <p class="text-sm text-gray-600 dark:text-gray-400 mb-3">
+                Powerful filtering with multiple operators, constraints, and filter types per column.
+              </p>
+              <ul class="list-disc list-inside space-y-1 text-sm text-gray-700 dark:text-gray-300 ml-4">
+                <li>Filter menu with operators (equals, contains, starts with, etc.)</li>
+                <li>Multiple filter constraints with AND/OR logic</li>
+                <li>Support for text, number, date, and select filters</li>
+                <li>Global search across all filterable columns</li>
+              </ul>
+            </div>
+
+            <!-- Column Management -->
+            <div class="p-4 bg-gray-50 dark:bg-gray-800/50 rounded-lg border border-gray-200 dark:border-gray-700">
+              <div class="flex items-center gap-3 mb-2">
+                <div class="w-10 h-10 rounded-lg bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center">
+                  <i class="pi pi-arrows-h text-purple-600 dark:text-purple-400"></i>
+                </div>
+                <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100">Column Management</h3>
+              </div>
+              <p class="text-sm text-gray-600 dark:text-gray-400 mb-3">
+                Full control over column display and behavior.
+              </p>
+              <ul class="list-disc list-inside space-y-1 text-sm text-gray-700 dark:text-gray-300 ml-4">
+                <li><strong>Resize:</strong> Drag column borders to adjust width (fit or expand mode)</li>
+                <li><strong>Reorder:</strong> Drag column headers to change order</li>
+                <li><strong>Toggle:</strong> Show/hide columns dynamically</li>
+                <li><strong>Frozen:</strong> Freeze columns to left or right</li>
+              </ul>
+            </div>
+
+            <!-- Row Expansion -->
+            <div class="p-4 bg-gray-50 dark:bg-gray-800/50 rounded-lg border border-gray-200 dark:border-gray-700">
+              <div class="flex items-center gap-3 mb-2">
+                <div class="w-10 h-10 rounded-lg bg-pink-100 dark:bg-pink-900/30 flex items-center justify-center">
+                  <i class="pi pi-chevron-down text-pink-600 dark:text-pink-400"></i>
+                </div>
+                <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100">Row Expansion</h3>
+              </div>
+              <p class="text-sm text-gray-600 dark:text-gray-400 mb-3">
+                Expand rows to show additional details or custom content.
+              </p>
+              <ul class="list-disc list-inside space-y-1 text-sm text-gray-700 dark:text-gray-300 ml-4">
+                <li>Click arrow icon to expand/collapse rows</li>
+                <li>Custom expansion templates via content projection</li>
+                <li>Default shows JSON representation of row data</li>
+                <li>Multiple rows can be expanded simultaneously</li>
+              </ul>
+            </div>
+
+            <!-- Cell Editing -->
+            <div class="p-4 bg-gray-50 dark:bg-gray-800/50 rounded-lg border border-gray-200 dark:border-gray-700">
+              <div class="flex items-center gap-3 mb-2">
+                <div class="w-10 h-10 rounded-lg bg-teal-100 dark:bg-teal-900/30 flex items-center justify-center">
+                  <i class="pi pi-pencil text-teal-600 dark:text-teal-400"></i>
+                </div>
+                <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100">Cell Editing</h3>
+              </div>
+              <p class="text-sm text-gray-600 dark:text-gray-400 mb-3">
+                Inline editing for table cells with various input types.
+              </p>
+              <ul class="list-disc list-inside space-y-1 text-sm text-gray-700 dark:text-gray-300 ml-4">
+                <li>Support for text, number, date, select, and boolean editors</li>
+                <li>Cell-level or row-level editing modes</li>
+                <li>Custom save/cancel handlers</li>
+                <li>Automatic value updates</li>
+              </ul>
+            </div>
+
+            <!-- Other Features -->
+            <div class="p-4 bg-gray-50 dark:bg-gray-800/50 rounded-lg border border-gray-200 dark:border-gray-700">
+              <div class="flex items-center gap-3 mb-2">
+                <div class="w-10 h-10 rounded-lg bg-indigo-100 dark:bg-indigo-900/30 flex items-center justify-center">
+                  <i class="pi pi-star text-indigo-600 dark:text-indigo-400"></i>
+                </div>
+                <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100">Additional Features</h3>
+              </div>
+              <ul class="list-disc list-inside space-y-1 text-sm text-gray-700 dark:text-gray-300 ml-4">
+                <li><strong>Sorting:</strong> Single or multiple column sorting</li>
+                <li><strong>Pagination:</strong> Configurable rows per page</li>
+                <li><strong>Selection:</strong> Single or multiple row selection with checkboxes</li>
+                <li><strong>Export:</strong> CSV export (extensible to XLSX, PDF)</li>
+                <li><strong>Virtual Scrolling:</strong> For large datasets</li>
+                <li><strong>State Management:</strong> Save/restore table state</li>
+                <li><strong>Responsive:</strong> Mobile-first design with Tailwind CSS</li>
+                <li><strong>Styling:</strong> Striped rows, gridlines, size options</li>
+              </ul>
+            </div>
+          </div>
+        </p-card>
+      </p-tabpanel>
+    </p-tabpanels>
+  </p-tabs>
+</div>

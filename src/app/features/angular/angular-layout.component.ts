@@ -1,4 +1,11 @@
-import { Component, signal, inject, computed, ViewChild, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  signal,
+  inject,
+  computed,
+  ViewChild,
+  ChangeDetectionStrategy
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule, RouterOutlet } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
@@ -10,14 +17,22 @@ import { ThemeToggleComponent } from '../../shared/components/theme-toggle/theme
 import { getIconForLabel } from '../../shared/config/icon-mapping.config';
 
 @Component({
-  selector: 'app-typescript-layout',
+  selector: 'app-angular-layout',
   standalone: true,
-  imports: [CommonModule, RouterModule, RouterOutlet, ButtonModule, SidebarComponent, PageHeaderComponent, ThemeToggleComponent],
-  templateUrl: './typescript-layout.component.html',
-  styleUrl: './typescript-layout.component.scss',
+  imports: [
+    CommonModule,
+    RouterModule,
+    RouterOutlet,
+    ButtonModule,
+    SidebarComponent,
+    PageHeaderComponent,
+    ThemeToggleComponent
+  ],
+  templateUrl: './angular-layout.component.html',
+  styleUrl: './angular-layout.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TypeScriptLayoutComponent {
+export class AngularLayoutComponent {
   private readonly router = inject(Router);
   private readonly themeService = inject(ThemeService);
 
@@ -35,64 +50,70 @@ export class TypeScriptLayoutComponent {
   });
 
   sidebarConfig: SidebarConfig = {
-    title: 'TypeScript',
-    subtitle: 'Advanced Types',
-    headerText: 'Advanced TypeScript',
-    gradientFrom: 'from-indigo-600',
-    gradientTo: 'to-blue-600 dark:from-indigo-400 dark:to-blue-400'
+    title: 'Angular',
+    subtitle: 'Dynamic Components',
+    headerText: 'Angular Components',
+    gradientFrom: 'from-blue-600',
+    gradientTo: 'to-purple-600 dark:from-blue-400 dark:to-purple-400'
   };
 
   treeNodes: TreeNode[] = [
     {
-      label: 'Advanced TypeScript',
+      label: 'Dynamic Components',
       expanded: true,
       children: [
         {
-          label: 'Advanced Types',
-          icon: getIconForLabel('Advanced Types'),
-          data: '/typescript/advanced-types',
+          label: 'Dynamic Form',
+          icon: getIconForLabel('Dynamic Form'),
+          data: '/angular/dynamic-form',
           leaf: true
         },
         {
-          label: 'Type Guards',
-          icon: getIconForLabel('Type Guards'),
-          data: '/typescript/type-guards',
+          label: 'Dynamic Table',
+          icon: getIconForLabel('Dynamic Table'),
+          data: '/angular/dynamic-table',
           leaf: true
         },
         {
-          label: 'Generics',
-          icon: getIconForLabel('Generics'),
-          data: '/typescript/generics',
+          label: 'Dynamic Modal',
+          icon: getIconForLabel('Dynamic Modal'),
+          data: '/angular/dynamic-modal',
+          leaf: true
+        }
+      ]
+    },
+    {
+      label: 'Angular Topics',
+      expanded: true,
+      children: [
+        {
+          label: 'Angular Signals',
+          icon: 'fas fa-signal',
+          data: '/angular/signals',
           leaf: true
         },
         {
-          label: 'Utility Types',
-          icon: getIconForLabel('Utility Types'),
-          data: '/typescript/utility-types',
+          label: 'Reactive Forms',
+          icon: 'fas fa-edit',
+          data: '/angular/reactive-forms',
           leaf: true
         },
         {
-          label: 'Decorators',
-          icon: getIconForLabel('Decorators'),
-          data: '/typescript/decorators',
+          label: 'ControlValueAccessor',
+          icon: 'fas fa-plug',
+          data: '/angular/control-value-accessor',
           leaf: true
         },
         {
-          label: 'TypeScript 5.x',
-          icon: getIconForLabel('TypeScript 5.x'),
-          data: '/typescript/typescript-5-features',
+          label: 'Multi-Step Form',
+          icon: 'fas fa-list-ol',
+          data: '/angular/multi-step-form',
           leaf: true
         },
         {
-          label: 'Function Types',
-          icon: getIconForLabel('Function Types'),
-          data: '/typescript/function-types',
-          leaf: true
-        },
-        {
-          label: 'Module Augmentation',
-          icon: getIconForLabel('Module Augmentation'),
-          data: '/typescript/module-augmentation',
+          label: 'Modern Control Flow',
+          icon: 'fas fa-code-branch',
+          data: '/angular/modern-control-flow',
           leaf: true
         }
       ]
@@ -114,22 +135,22 @@ export class TypeScriptLayoutComponent {
           leaf: true
         },
         {
-          label: 'RxJS Patterns',
-          icon: getIconForLabel('RxJS Patterns'),
-          data: '/rxjs/creation-operators',
+          label: 'Advanced TypeScript',
+          icon: getIconForLabel('Advanced TypeScript'),
+          data: '/typescript/advanced-types',
           leaf: true
         },
         {
-          label: 'Angular',
-          icon: 'fas fa-angular',
-          data: '/angular/dynamic-form',
+          label: 'RxJS Patterns',
+          icon: getIconForLabel('RxJS Patterns'),
+          data: '/rxjs/creation-operators',
           leaf: true
         }
       ]
     }
   ];
 
-  onNodeSelect(event: any): void {
+  onNodeSelect(event: { node: TreeNode }): void {
     if (event.node.data) {
       this.router.navigate([event.node.data]);
     }
@@ -139,6 +160,4 @@ export class TypeScriptLayoutComponent {
     this.sidebarVisible.update(v => !v);
   }
 }
-
-
 

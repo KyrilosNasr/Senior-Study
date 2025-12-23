@@ -1,0 +1,240 @@
+<div class="space-y-6">
+  <!-- Header Card -->
+  <p-card>
+    <div class="space-y-4">
+      <h1 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-gray-100">
+        Reactive Forms Demo
+      </h1>
+      <p class="text-gray-600 dark:text-gray-400">
+        Advanced reactive forms patterns with RxJS: debouncing, async validation, valueChanges,
+        and integration with dynamic forms.
+      </p>
+    </div>
+  </p-card>
+
+  <!-- Demo Tabs -->
+  <p-tabs value="0">
+    <p-tablist class="flex flex-wrap gap-2 mb-6">
+      <p-tab value="0" label="Basic Form"></p-tab>
+      <p-tab value="1" label="Debounced Search"></p-tab>
+      <p-tab value="2" label="Async Validation"></p-tab>
+      <p-tab value="3" label="ValueChanges"></p-tab>
+      <p-tab value="4" label="Dynamic Form"></p-tab>
+    </p-tablist>
+
+    <p-tabpanels>
+      <!-- Basic Form -->
+      <p-tabpanel value="0">
+        <p-card>
+          <div class="space-y-4">
+            <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">
+              Basic Reactive Form with Validation
+            </h2>
+            <form [formGroup]="basicForm" (ngSubmit)="onSubmitBasicForm()" class="space-y-4">
+              <div class="flex flex-col gap-2">
+                <label for="name" class="text-sm font-medium text-gray-700 dark:text-gray-300">
+                  Name <span class="text-red-500">*</span>
+                </label>
+                <input
+                  pInputText
+                  id="name"
+                  formControlName="name"
+                  placeholder="Enter your name"
+                  class="w-full"
+                  [class.border-red-500]="basicForm.get('name')?.invalid && basicForm.get('name')?.touched"
+                />
+                @if (getErrorMessage('name')) {
+                  <p-message severity="error" [text]="getErrorMessage('name')"></p-message>
+                }
+              </div>
+
+              <div class="flex flex-col gap-2">
+                <label for="email" class="text-sm font-medium text-gray-700 dark:text-gray-300">
+                  Email <span class="text-red-500">*</span>
+                </label>
+                <input
+                  pInputText
+                  id="email"
+                  type="email"
+                  formControlName="email"
+                  placeholder="Enter your email"
+                  class="w-full"
+                  [class.border-red-500]="basicForm.get('email')?.invalid && basicForm.get('email')?.touched"
+                />
+                @if (getErrorMessage('email')) {
+                  <p-message severity="error" [text]="getErrorMessage('email')"></p-message>
+                }
+              </div>
+
+              <div class="flex gap-3 justify-end">
+                <p-button
+                  label="Submit"
+                  type="submit"
+                  [disabled]="basicForm.invalid"
+                  class="w-full sm:w-auto"
+                />
+              </div>
+            </form>
+
+            <!-- Form State -->
+            <div class="mt-6 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
+              <h3 class="text-sm font-semibold mb-2 text-gray-900 dark:text-gray-100">Form State</h3>
+              <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>{{ formState() | json }}</code></pre>
+            </div>
+          </div>
+        </p-card>
+      </p-tabpanel>
+
+      <!-- Debounced Search -->
+      <p-tabpanel value="1">
+        <p-card>
+          <div class="space-y-4">
+            <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">
+              Debounced Search with RxJS
+            </h2>
+            <form [formGroup]="searchForm" class="space-y-4">
+              <div class="flex flex-col gap-2">
+                <label for="search" class="text-sm font-medium text-gray-700 dark:text-gray-300">
+                  Search
+                </label>
+                <input
+                  pInputText
+                  id="search"
+                  formControlName="search"
+                  placeholder="Type to search (debounced 300ms)..."
+                  class="w-full"
+                />
+                @if (searchLoading()) {
+                  <p class="text-sm text-gray-500 dark:text-gray-400">Searching...</p>
+                }
+              </div>
+            </form>
+
+            <!-- Search Results -->
+            <div class="mt-4">
+              <h3 class="text-sm font-semibold mb-2 text-gray-900 dark:text-gray-100">Results</h3>
+              @if (searchResults().length > 0) {
+                <div class="space-y-2">
+                  @for (result of searchResults(); track result) {
+                    <div class="p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                      <p class="text-gray-900 dark:text-gray-100">{{ result }}</p>
+                    </div>
+                  }
+                </div>
+              } @else if (searchForm.get('search')?.value && !searchLoading()) {
+                <p class="text-gray-500 dark:text-gray-400">No results found</p>
+              } @else {
+                <p class="text-gray-500 dark:text-gray-400">Start typing to search...</p>
+              }
+            </div>
+          </div>
+        </p-card>
+      </p-tabpanel>
+
+      <!-- Async Validation -->
+      <p-tabpanel value="2">
+        <p-card>
+          <div class="space-y-4">
+            <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">
+              Async Username Validation
+            </h2>
+            <form [formGroup]="asyncForm" class="space-y-4">
+              <div class="flex flex-col gap-2">
+                <label for="username" class="text-sm font-medium text-gray-700 dark:text-gray-300">
+                  Username <span class="text-red-500">*</span>
+                </label>
+                <input
+                  pInputText
+                  id="username"
+                  formControlName="username"
+                  placeholder="Enter username (try: admin, user, test)"
+                  class="w-full"
+                  [class.border-red-500]="asyncForm.get('username')?.invalid && asyncForm.get('username')?.touched"
+                />
+                @if (asyncForm.get('username')?.pending) {
+                  <p class="text-sm text-blue-500">Validating username...</p>
+                }
+                @if (getAsyncError('username')) {
+                  <p-message severity="error" [text]="getAsyncError('username')"></p-message>
+                }
+                @if (asyncForm.get('username')?.valid && asyncForm.get('username')?.touched) {
+                  <p-message severity="success" text="Username is available"></p-message>
+                }
+              </div>
+            </form>
+          </div>
+        </p-card>
+      </p-tabpanel>
+
+      <!-- ValueChanges -->
+      <p-tabpanel value="3">
+        <p-card>
+          <div class="space-y-4">
+            <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">
+              ValueChanges Pattern
+            </h2>
+            <form [formGroup]="valueChangesForm" class="space-y-4">
+              <div class="flex flex-col gap-2">
+                <label for="firstName" class="text-sm font-medium text-gray-700 dark:text-gray-300">
+                  First Name
+                </label>
+                <input
+                  pInputText
+                  id="firstName"
+                  formControlName="firstName"
+                  placeholder="Enter first name"
+                  class="w-full"
+                />
+              </div>
+
+              <div class="flex flex-col gap-2">
+                <label for="lastName" class="text-sm font-medium text-gray-700 dark:text-gray-300">
+                  Last Name
+                </label>
+                <input
+                  pInputText
+                  id="lastName"
+                  formControlName="lastName"
+                  placeholder="Enter last name"
+                  class="w-full"
+                />
+              </div>
+
+              <div class="flex flex-col gap-2">
+                <label for="fullName" class="text-sm font-medium text-gray-700 dark:text-gray-300">
+                  Full Name (Computed)
+                </label>
+                <input
+                  pInputText
+                  id="fullName"
+                  formControlName="fullName"
+                  class="w-full bg-gray-50 dark:bg-gray-800"
+                  readonly
+                />
+                <p class="text-xs text-gray-500 dark:text-gray-400">
+                  Automatically computed from first and last name using valueChanges
+                </p>
+              </div>
+            </form>
+          </div>
+        </p-card>
+      </p-tabpanel>
+
+      <!-- Dynamic Form -->
+      <p-tabpanel value="4">
+        <p-card>
+          <div class="space-y-4">
+            <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">
+              Dynamic Form Integration
+            </h2>
+            <app-dynamic-form
+              [config]="dynamicFormConfig"
+              (formSubmit)="onDynamicFormSubmit($event)"
+            />
+          </div>
+        </p-card>
+      </p-tabpanel>
+    </p-tabpanels>
+  </p-tabs>
+</div>
+

@@ -94,6 +94,12 @@ export class OopLayoutComponent {
           icon: getIconForLabel('RxJS Patterns'),
           data: '/rxjs/creation-operators',
           leaf: true
+        },
+        {
+          label: 'Angular',
+          icon: 'fas fa-angular',
+          data: '/angular/dynamic-form',
+          leaf: true
         }
       ]
     }
