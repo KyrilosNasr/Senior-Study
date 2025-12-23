@@ -82,6 +82,9 @@ export class ReactiveFormsDemoComponent {
   searchResults = signal<string[]>([]);
   searchLoading = signal(false);
 
+  // Active tab signal
+  activeTab = signal(0);
+
   constructor() {
     this.setupDebouncedSearch();
     this.setupValueChanges();

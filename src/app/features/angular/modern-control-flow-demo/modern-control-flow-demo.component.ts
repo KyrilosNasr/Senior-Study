@@ -26,6 +26,7 @@ import { Tabs, Tab, TabList, TabPanel, TabPanels } from 'primeng/tabs';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ModernControlFlowDemoComponent {
+  activeTab = signal(0);
   // Signals for demo
   count = signal(0);
   items = signal<string[]>(['Item 1', 'Item 2', 'Item 3']);

@@ -13,18 +13,28 @@
     </p-card>
 
     <!-- Demo Tabs -->
-    <p-tabs value="0">
-        <p-tablist class="flex flex-wrap gap-2 mb-6">
-            <p-tab value="0" label="if/else"></p-tab>
-            <p-tab value="1" label="for"></p-tab>
-            <p-tab value="2" label="switch"></p-tab>
-            <p-tab value="3" label="defer"></p-tab>
-            <p-tab value="4" label="Code Examples"></p-tab>
+    <p-tabs [(value)]="activeTab" class="w-full">
+        <p-tablist class="flex flex-wrap gap-2 mb-6 border-b border-gray-200 dark:border-gray-700">
+            <p-tab [value]="'0'">
+                <span class="font-medium">if/else</span>
+            </p-tab>
+            <p-tab [value]="'1'">
+                <span class="font-medium">for</span>
+            </p-tab>
+            <p-tab [value]="'2'">
+                <span class="font-medium">switch</span>
+            </p-tab>
+            <p-tab [value]="'3'">
+                <span class="font-medium">defer</span>
+            </p-tab>
+            <p-tab [value]="'4'">
+                <span class="font-medium">Code Examples</span>
+            </p-tab>
         </p-tablist>
 
         <p-tabpanels>
             <!-- @if/@else -->
-            <p-tabpanel value="0">
+            <p-tabpanel [value]="'0'">
                 <div class="space-y-6">
                     <p-card>
                         <div class="space-y-4">
@@ -71,7 +81,7 @@
             </p-tabpanel>
 
             <!-- @for -->
-            <p-tabpanel value="1">
+            <p-tabpanel [value]="'1'">
                 <div class="space-y-6">
                     <p-card>
                         <div class="space-y-4">
@@ -108,7 +118,7 @@
             </p-tabpanel>
 
             <!-- @switch -->
-            <p-tabpanel value="2">
+            <p-tabpanel [value]="'2'">
                 <div class="space-y-6">
                     <p-card>
                         <div class="space-y-4">
@@ -169,7 +179,7 @@
             </p-tabpanel>
 
             <!-- @defer -->
-            <p-tabpanel value="3">
+            <p-tabpanel [value]="'3'">
                 <div class="space-y-6">
                     <p-card>
                         <div class="space-y-4">
@@ -209,7 +219,7 @@
             </p-tabpanel>
 
             <!-- Code Examples -->
-            <p-tabpanel value="4">
+            <p-tabpanel [value]="'4'">
                 <p-card>
                     <div class="space-y-6">
                         <div>

@@ -6,6 +6,9 @@ import { Tabs, Tab, TabList, TabPanel, TabPanels } from 'primeng/tabs';
 
 import { DynamicModalComponent } from '../../../shared/components/dynamic-modal/dynamic-modal.component';
 import { DynamicModalService } from '../../../shared/components/dynamic-modal/dynamic-modal.service';
+import { DemoHeaderComponent } from '../../../shared/components/demo-header/demo-header.component';
+import { CodeExampleComponent } from '../../../shared/components/code-example/code-example.component';
+import { ResultDisplayComponent } from '../../../shared/components/result-display/result-display.component';
 import { DynamicModalConfig, ModalResult } from '../../../shared/types/modal-config.types';
 
 @Component({
@@ -15,8 +18,11 @@ import { DynamicModalConfig, ModalResult } from '../../../shared/types/modal-con
     CommonModule,
     CardModule,
     ButtonModule,
-    DynamicModalComponent
-],
+    DynamicModalComponent,
+    DemoHeaderComponent,
+    CodeExampleComponent,
+    ResultDisplayComponent
+  ],
   templateUrl: './dynamic-modal-demo.component.html',
   styleUrl: './dynamic-modal-demo.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -159,5 +165,39 @@ export class DynamicModalDemoComponent {
       this.lastResult = 'Full screen modal closed.';
     });
   }
+
+  // Code examples for the Code Examples section
+  readonly serviceExampleCode = `// Inject service
+private modalService = inject(DynamicModalService);
+
+// Show info modal
+this.modalService.info('Title', 'Message')
+  .then(result => {
+    console.log(result);
+  });
+
+// Show confirmation
+this.modalService.confirm('Title', 'Message')
+  .then(result => {
+    if (result.action === 'confirm') {
+      // User confirmed
+    }
+  });
+
+// Custom modal
+const config: DynamicModalConfig = {
+  title: 'Custom Modal',
+  message: 'Custom content',
+  actions: [
+    { label: 'Cancel', severity: 'secondary', handler: () => modalService.close() },
+    { label: 'Save', severity: 'primary', handler: () => modalService.closeWithAction('save') }
+  ]
+};
+this.modalService.open(config);`;
+
+  readonly componentExampleCode = `<app-dynamic-modal></app-dynamic-modal>
+
+// Component automatically connects to service
+// Use service methods to open modals`;
 }
 

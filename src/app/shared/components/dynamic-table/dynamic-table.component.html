@@ -31,7 +31,7 @@
           <p-button
             severity="secondary"
             [outlined]="true"
-            (onClick)="columnToggleMenu.toggle($event)"
+            (onClick)="columnToggleMenu?.toggle($event)"
             class="w-full sm:w-auto"
           >
             <i [class]="getFontAwesomeIcon('pi pi-list')" class="mr-2"></i>
@@ -141,9 +141,14 @@
                 @if (col.filterable && config.advancedFilter) {
                   <span class="ml-auto">
                     <p-columnFilter
-                      type="text"
+                      [type]="col.filterType || 'text'"
                       [field]="fieldToString(col.field)"
                       [display]="'menu'"
+                      [showMenu]="true"
+                      [showOperator]="true"
+                      [showMatchModes]="true"
+                      [showAddButton]="true"
+                      [matchModeOptions]="getFilterMatchModeOptions(col.filterType || 'text')"
                     />
                   </span>
                 }
@@ -195,109 +200,15 @@
               [class.text-center]="col.align === 'center'"
               [class.text-right]="col.align === 'right'"
             >
-              @if (config.rowEditing?.enabled && config.rowEditing?.mode === 'cell' && col.editable) {
-                <!-- Cell Editing Mode -->
-                <p-cellEditor>
-                  <ng-template pTemplate="input">
-                    @if (col.editorType === 'text') {
-                      <input
-                        pInputText
-                        type="text"
-                        [(ngModel)]="rowData[col.field]"
-                        class="w-full"
-                      />
-                    } @else if (col.editorType === 'number') {
-                      <p-inputnumber
-                        [(ngModel)]="rowData[col.field]"
-                        [style]="{ width: '100%' }"
-                      />
-                    } @else if (col.editorType === 'date') {
-                      <p-datepicker
-                        [(ngModel)]="rowData[col.field]"
-                        [style]="{ width: '100%' }"
-                      />
-                    } @else if (col.editorType === 'select') {
-                      <p-select
-                        [(ngModel)]="rowData[col.field]"
-                        [options]="col.editorOptions || []"
-                        optionLabel="label"
-                        optionValue="value"
-                        [style]="{ width: '100%' }"
-                      />
-                    } @else if (col.editorType === 'boolean') {
-                      <p-toggleButton
-                        [(ngModel)]="rowData[col.field]"
-                      />
-                    } @else {
-                      <input
-                        pInputText
-                        type="text"
-                        [(ngModel)]="rowData[col.field]"
-                        class="w-full"
-                      />
-                    }
-                  </ng-template>
-                  <ng-template pTemplate="output">
-                    @if (col.formatter) {
-                      <span [innerHTML]="col.formatter(getFieldValue(rowData, col.field), rowData)"></span>
-                    } @else {
-                      {{ getFieldValue(rowData, col.field) }}
-                    }
-                  </ng-template>
-                </p-cellEditor>
-              } @else if (config.rowEditing?.enabled && config.rowEditing?.mode === 'row' && col.editable && isRowEditing(rowData)) {
-                <!-- Row Editing Mode -->
-                @if (col.editorType === 'text') {
-                  <input
-                    pInputText
-                    type="text"
-                    [value]="getEditingValue(rowData, fieldToString(col.field))"
-                    (input)="updateCellValue(rowData, fieldToString(col.field), $any($event.target).value)"
-                    class="w-full"
-                  />
-                } @else if (col.editorType === 'number') {
-                  <p-inputnumber
-                    [ngModel]="getEditingValue(rowData, fieldToString(col.field))"
-                    (ngModelChange)="updateCellValue(rowData, fieldToString(col.field), $event)"
-                    [style]="{ width: '100%' }"
-                  />
-                } @else if (col.editorType === 'date') {
-                  <p-datepicker
-                    [ngModel]="getEditingValue(rowData, fieldToString(col.field))"
-                    (ngModelChange)="updateCellValue(rowData, fieldToString(col.field), $event)"
-                    [style]="{ width: '100%' }"
-                  />
-                } @else if (col.editorType === 'select') {
-                  <p-select
-                    [ngModel]="getEditingValue(rowData, fieldToString(col.field))"
-                    (ngModelChange)="updateCellValue(rowData, fieldToString(col.field), $event)"
-                    [options]="col.editorOptions || []"
-                    optionLabel="label"
-                    optionValue="value"
-                    [style]="{ width: '100%' }"
-                  />
-                } @else if (col.editorType === 'boolean') {
-                  <p-toggleButton
-                    [ngModel]="getEditingValue(rowData, fieldToString(col.field))"
-                    (ngModelChange)="updateCellValue(rowData, fieldToString(col.field), $event)"
-                  />
-                } @else {
-                  <input
-                    pInputText
-                    type="text"
-                    [value]="getEditingValue(rowData, fieldToString(col.field))"
-                    (input)="updateCellValue(rowData, fieldToString(col.field), $any($event.target).value)"
-                    class="w-full"
-                  />
-                }
-              } @else {
-                <!-- Regular Cell Display -->
-                @if (col.formatter) {
-                  <span [innerHTML]="col.formatter(getFieldValue(rowData, col.field), rowData)"></span>
-                } @else {
-                  {{ getFieldValue(rowData, col.field) }}
-                }
-              }
+              <app-table-cell-editor
+                [column]="col"
+                [rowData]="rowData"
+                [cellEditingMode]="config.rowEditing?.enabled && config.rowEditing?.mode === 'cell' && col.editable || false"
+                [rowEditingMode]="config.rowEditing?.enabled && config.rowEditing?.mode === 'row' && col.editable || false"
+                [isRowEditing]="isRowEditing(rowData)"
+                [editingValue]="getEditingValue(rowData, fieldToString(col.field))"
+                (valueChange)="updateCellValue(rowData, $event.field, $event.value)"
+              />
             </td>
           }
           @if (config.actions && config.actions.length > 0) {
@@ -309,10 +220,22 @@
                   (click)="showActionMenu($event, rowData, actionMenu); $event.stopPropagation()"
                   [disabled]="getMenuItems(rowData).length === 0"
                   [title]="'Actions'"
-                  class="p-button p-component p-button-text p-button-rounded p-button-secondary p-button-sm p-button-icon-only action-menu-trigger w-10 h-10 min-w-[2.5rem] min-h-[2.5rem] flex items-center justify-center hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                  class="w-10 h-10 min-w-[2.5rem] min-h-[2.5rem] rounded-lg flex items-center justify-center 
+                         bg-gray-50 dark:bg-gray-800/50 
+                         hover:bg-gradient-to-br hover:from-gray-100 hover:to-gray-200 
+                         dark:hover:from-gray-700 dark:hover:to-gray-600
+                         border border-gray-200 dark:border-gray-700
+                         hover:border-gray-300 dark:hover:border-gray-600
+                         hover:shadow-md transition-all duration-200
+                         focus:outline-none focus:ring-2 focus:ring-gray-400 dark:focus:ring-gray-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800
+                         disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-gray-50 disabled:hover:border-gray-200
+                         group cursor-pointer"
                   [attr.aria-label]="'Actions'"
                 >
-                  <i [class]="getFontAwesomeIcon(config.actionMenuIcon || 'pi pi-ellipsis-v')" class="text-base"></i>
+                  <i [class]="getFontAwesomeIcon(config.actionMenuIcon || 'pi pi-ellipsis-v')" 
+                     class="text-base text-gray-600 dark:text-gray-400 
+                            group-hover:text-gray-900 dark:group-hover:text-gray-100 
+                            transition-colors duration-200"></i>
                 </button>
               </div>
             </td>

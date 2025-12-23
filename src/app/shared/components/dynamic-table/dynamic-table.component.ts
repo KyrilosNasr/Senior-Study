@@ -10,8 +10,7 @@ import {
   TemplateRef,
   ContentChildren,
   QueryList,
-  ViewChild,
-  ElementRef
+  ViewChild
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -29,6 +28,7 @@ import { MultiSelectModule } from 'primeng/multiselect';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 import { MenuItem } from 'primeng/api';
+import { TableCellEditorComponent } from './components/table-cell-editor.component';
 
 import {
   DynamicTableConfig,
@@ -38,10 +38,41 @@ import {
   FilterMetadata
 } from '../../types/table-config.types';
 import { SortOrder } from '../../types/common.types';
+import {
+  PrimeNGTable,
+  PrimeNGMenu,
+  PrimeNGColumnToggleMenu
+} from '../../types/primeng-table.types';
+import { getFontAwesomeIcon } from '../../utils/icon-mapper.util';
+import { getFieldValue, getRowId, fieldToString } from '../../utils/table-data.util';
+import { TableExportService } from '../../services/table-export.service';
+import { TableMenuBuilderService } from '../../services/table-menu-builder.service';
+import { TableRowEditingService } from '../../services/table-row-editing.service';
+import { TableRowExpansionService } from '../../services/table-row-expansion.service';
+import { TableFilterManagementService } from '../../services/table-filter-management.service';
 
 /**
- * Generic dynamic table component using PrimeNG Table
- * Supports filtering, sorting, pagination, selection, and custom actions
+ * Dynamic Table Component
+ * 
+ * A powerful, feature-rich table component built on PrimeNG Table.
+ * Supports pagination, sorting, filtering, row selection, editing, expansion, and more.
+ * 
+ * @example
+ * ```typescript
+ * const config: DynamicTableConfig<User> = {
+ *   columns: [
+ *     { field: 'name', header: 'Name', sortable: true },
+ *     { field: 'email', header: 'Email', filterable: true }
+ *   ],
+ *   data: users,
+ *   pagination: true,
+ *   actions: [
+ *     { label: 'Edit', icon: 'pi pi-pencil', handler: (user) => editUser(user) },
+ *     { label: 'Delete', icon: 'pi pi-trash', handler: (user) => deleteUser(user), 
+ *       confirmDialog: true, confirmMessage: 'Are you sure?' }
+ *   ]
+ * };
+ * ```
  */
 @Component({
   selector: 'app-dynamic-table',
@@ -59,47 +90,105 @@ import { SortOrder } from '../../types/common.types';
     DatePickerModule,
     MultiSelectModule,
     InputNumberModule,
-    ToggleButtonModule
+    ToggleButtonModule,
+    TableCellEditorComponent
+  ],
+  providers: [
+    TableExportService,
+    TableMenuBuilderService,
+    TableRowEditingService,
+    TableRowExpansionService,
+    TableFilterManagementService
   ],
   templateUrl: './dynamic-table.component.html',
   styleUrl: './dynamic-table.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DynamicTableComponent<T = unknown> {
+  // ============================================================================
+  // INPUTS & OUTPUTS
+  // ============================================================================
+  
+  /** Table configuration - required */
   @Input({ required: true }) config!: DynamicTableConfig<T>;
+  
+  /** Emits table events (sort, filter, page change, etc.) */
   @Output() tableEvent = new EventEmitter<TableEventData<T>>();
+  
+  /** Emits when a row is clicked */
   @Output() rowClick = new EventEmitter<T>();
+  
+  /** Emits when row selection changes */
   @Output() selectionChange = new EventEmitter<T | T[]>();
-
-  constructor(private cdr: ChangeDetectorRef) {}
-
-  // Content projection for custom templates
-  @ContentChildren('cellTemplate') cellTemplates?: QueryList<TemplateRef<unknown>>;
-  @ContentChildren('headerTemplate') headerTemplates?: QueryList<TemplateRef<unknown>>;
-
-  // Menu references - use ElementRef for proper typing
-  actionMenuRefs = new Map<T, any>();
-  @ViewChild('columnToggleMenu') columnToggleMenu?: any;
-  @ViewChild('dt') table?: any;
-  selectedRowForMenu = signal<T | null>(null);
-  menuItems = signal<MenuItem[]>([]);
   
-  // Row editing state
-  editingRowKeys = signal<Record<string, boolean>>({});
-  editingCells = signal<Record<string, Record<string, unknown>>>({});
-
-  // State
-  selectedRows = signal<T[]>([]);
-  globalFilterValue = signal('');
-  first = signal(0);
-  rows = signal(10);
-  expandedRows = signal<Record<string | number, boolean>>({});
-  filters = signal<Record<string, FilterMetadata>>({});
-  
-  // Nested table data getter - can be overridden by parent component
+  /** Optional: Function to get nested table data for row expansion */
   @Input() getNestedTableData?: (row: T) => unknown[];
+  
+  /** Optional: Function to get nested table config for row expansion */
   @Input() getNestedTableConfig?: (row: T) => DynamicTableConfig<unknown>;
 
+  // ============================================================================
+  // CONTENT PROJECTION
+  // ============================================================================
+  
+  /** Custom cell templates via content projection */
+  @ContentChildren('cellTemplate') cellTemplates?: QueryList<TemplateRef<unknown>>;
+  
+  /** Custom header templates via content projection */
+  @ContentChildren('headerTemplate') headerTemplates?: QueryList<TemplateRef<unknown>>;
+
+  // ============================================================================
+  // VIEW CHILDREN & REFERENCES
+  // ============================================================================
+  
+  /** Reference to PrimeNG table component */
+  @ViewChild('dt') table?: PrimeNGTable;
+  
+  /** Reference to column toggle menu */
+  @ViewChild('columnToggleMenu') columnToggleMenu?: PrimeNGColumnToggleMenu;
+  
+  /** Map of action menus per row */
+  actionMenuRefs = new Map<T, PrimeNGMenu>();
+  
+  /** Currently selected row for menu display */
+  selectedRowForMenu = signal<T | null>(null);
+  
+  /** Menu items for action menu */
+  menuItems = signal<MenuItem[]>([]);
+
+  // ============================================================================
+  // STATE MANAGEMENT (Signals)
+  // ============================================================================
+  
+  /** Currently selected rows */
+  selectedRows = signal<T[]>([]);
+  
+  /** Pagination: first row index */
+  first = signal(0);
+  
+  /** Pagination: rows per page */
+  rows = signal(10);
+  
+  /** Row editing state: which rows are being edited */
+  editingRowKeys = signal<Record<string, boolean>>({});
+  
+  /** Cell editing state: cell values being edited */
+  editingCells = signal<Record<string, Record<string, unknown>>>({});
+  
+  /** Row expansion state: which rows are expanded */
+  expandedRows = signal<Record<string | number, boolean>>({});
+  
+  /** Global filter search value */
+  globalFilterValue = signal('');
+  
+  /** Column filters state */
+  filters = signal<Record<string, FilterMetadata>>({});
+
+  // ============================================================================
+  // COMPUTED VALUES
+  // ============================================================================
+  
+  /** Filtered data based on global filter */
   filteredData = computed(() => {
     const data = this.config.data || [];
     const globalFilter = this.globalFilterValue().toLowerCase();
@@ -110,36 +199,54 @@ export class DynamicTableComponent<T = unknown> {
 
     return data.filter(row => {
       return this.config.columns.some(column => {
-        const value = this.getFieldValue(row, column.field);
+        const value = getFieldValue(row, column.field);
         return String(value).toLowerCase().includes(globalFilter);
       });
     });
   });
 
+  // ============================================================================
+  // CONSTRUCTOR & DEPENDENCIES
+  // ============================================================================
+  
+  constructor(
+    private cdr: ChangeDetectorRef,
+    private exportService: TableExportService,
+    private menuBuilder: TableMenuBuilderService,
+    private editingService: TableRowEditingService,
+    private expansionService: TableRowExpansionService,
+    private filterService: TableFilterManagementService
+  ) {}
 
-  /**
-   * Track by function for rows
-   */
+  // ============================================================================
+  // UTILITY METHODS (TrackBy, Field Access)
+  // ============================================================================
+  
+  /** TrackBy function for rows */
   trackByIndex(index: number): number {
     return index;
   }
 
-  /**
-   * Track by function for columns
-   */
+  /** TrackBy function for columns */
   trackByField(index: number, column: TableColumn<T>): string {
     return String(column.field);
   }
 
-  /**
-   * Convert field to string for template use
-   */
-  fieldToString(field: string | keyof T): string {
-    return String(field);
-  }
+  /** Convert field to string (for PrimeNG compatibility) */
+  fieldToString = fieldToString;
+  
+  /** Get field value from row */
+  getFieldValue = getFieldValue;
+  
+  /** Get FontAwesome icon class */
+  getFontAwesomeIcon = getFontAwesomeIcon;
 
+  // ============================================================================
+  // TABLE EVENTS (Sort, Page, Filter, Selection, Row Click)
+  // ============================================================================
+  
   /**
-   * Handle sorting
+   * Handle sort event
    */
   onSort(event: { field: string; order: number }): void {
     this.tableEvent.emit({
@@ -151,7 +258,7 @@ export class DynamicTableComponent<T = unknown> {
   }
 
   /**
-   * Handle pagination
+   * Handle page change event
    */
   onPageChange(event: { first: number; rows: number }): void {
     this.first.set(event.first);
@@ -167,7 +274,7 @@ export class DynamicTableComponent<T = unknown> {
   }
 
   /**
-   * Handle global filter
+   * Handle global filter input
    */
   onGlobalFilter(event: Event): void {
     const value = (event.target as HTMLInputElement).value;
@@ -179,29 +286,45 @@ export class DynamicTableComponent<T = unknown> {
   }
 
   /**
-   * Handle row selection
+   * Handle column filter changes
+   */
+  onFilter(event: unknown): void {
+    this.filterService.onFilter(event, this.filters, (filters) => {
+      this.tableEvent.emit({
+        type: 'filter',
+        filters,
+        data: this.config.data
+      });
+      if (this.config.onFilter) {
+        this.config.onFilter({ filters });
+      }
+    });
+  }
+
+  /**
+   * Handle row selection change
    */
   onSelectionChange(event: { data?: T | T[]; type?: string; originalEvent?: Event }): void {
-    // Read the actual selection from PrimeNG table (it manages the selection state)
-    // Use setTimeout to ensure PrimeNG has updated its internal selection
     setTimeout(() => {
-      const tableSelection = this.table?.selection || [];
-      
-      // Sync our signal with table's selection
+      const tableSelection = (this.table?.selection || []) as T[];
       this.selectedRows.set(tableSelection);
       
       const selectionMode = this.config.selection?.mode || 'multiple';
-      const data = selectionMode === 'single' ? (tableSelection[0] || null) : tableSelection;
-      this.selectionChange.emit(data as T | T[]);
-      this.tableEvent.emit({
-        type: 'select',
-        data
-      });
+      const data = selectionMode === 'single' 
+        ? (tableSelection[0] || undefined) 
+        : tableSelection;
+      if (data !== undefined) {
+        this.selectionChange.emit(data as T | T[]);
+        this.tableEvent.emit({
+          type: 'select',
+          data: data as T | T[]
+        });
+      }
     }, 0);
   }
 
   /**
-   * Handle row click
+   * Handle row click event
    */
   onRowClick(event: unknown): void {
     const rowEvent = event as { data?: T };
@@ -213,122 +336,66 @@ export class DynamicTableComponent<T = unknown> {
     });
   }
 
+  // ============================================================================
+  // ACTIONS MENU
+  // ============================================================================
+  
   /**
-   * Convert PrimeNG icon to FontAwesome icon
-   */
-  getFontAwesomeIcon(primeIcon?: string): string {
-    if (!primeIcon) return 'fas fa-ellipsis-v';
-    
-    // If already FontAwesome, return as is
-    if (primeIcon.startsWith('fa')) {
-      return primeIcon.startsWith('fas ') || primeIcon.startsWith('far ') || primeIcon.startsWith('fab ') 
-        ? primeIcon 
-        : `fas ${primeIcon}`;
-    }
-    
-    // Map PrimeNG icons to FontAwesome
-    const iconMap: Record<string, string> = {
-      'pi pi-ellipsis-v': 'fa-ellipsis-v',
-      'pi pi-ellipsis-h': 'fa-ellipsis-h',
-      'pi pi-eye': 'fa-eye',
-      'pi pi-pencil': 'fa-pencil-alt',
-      'pi pi-copy': 'fa-copy',
-      'pi pi-check-circle': 'fa-check-circle',
-      'pi pi-times-circle': 'fa-times-circle',
-      'pi pi-trash': 'fa-trash',
-      'pi pi-plus': 'fa-plus',
-      'pi pi-minus': 'fa-minus',
-      'pi pi-search': 'fa-search',
-      'pi pi-filter': 'fa-filter',
-      'pi pi-filter-slash': 'fa-filter-circle-xmark',
-      'pi pi-download': 'fa-download',
-      'pi pi-upload': 'fa-upload',
-      'pi pi-save': 'fa-save',
-      'pi pi-times': 'fa-times',
-      'pi pi-check': 'fa-check',
-      'pi pi-check-square': 'fa-square-check',
-      'pi pi-list': 'fa-list',
-      'pi pi-info-circle': 'fa-info-circle',
-      'pi pi-exclamation-triangle': 'fa-exclamation-triangle',
-      'pi pi-chevron-down': 'fa-chevron-down',
-      'pi pi-chevron-right': 'fa-chevron-right',
-      'pi pi-chevron-up': 'fa-chevron-up',
-      'pi pi-chevron-left': 'fa-chevron-left'
-    };
-    
-    const faIcon = iconMap[primeIcon] || 'fa-ellipsis-v';
-    return `fas ${faIcon}`;
-  }
-
-  /**
-   * Get menu items for a row
+   * Get menu items for a specific row
+   * Note: Confirmation dialogs are handled automatically by TableMenuBuilderService
    */
   getMenuItems(row: T): MenuItem[] {
     if (!this.config.actions || this.config.actions.length === 0) {
       return [];
     }
-
-    const filtered = this.config.actions.filter(action => {
-      // Filter out actions that are not visible
-      if (action.visible && !action.visible(row)) {
-        return false;
-      }
-      return true;
-    });
     
-    const menuItems = filtered.map(action => ({
-      label: action.label,
-      icon: action.icon ? this.getFontAwesomeIcon(action.icon) : undefined,
-      command: () => {
-        if (action.disabled && action.disabled(row)) {
-          return;
-        }
-        action.handler(row);
+    return this.menuBuilder.buildMenuItems(
+      this.config.actions,
+      row,
+      (action, rowData) => {
         this.tableEvent.emit({
           type: 'action',
-          data: row
+          data: rowData
         });
-      },
-      disabled: action.disabled ? action.disabled(row) : false,
-      separator: action.separator
-    }));
-    
-    return menuItems;
+      }
+    );
   }
   
   /**
    * Check if row has any visible actions
    */
   hasVisibleActions(row: T): boolean {
-    return this.getMenuItems(row).length > 0;
+    if (!this.config.actions || this.config.actions.length === 0) {
+      return false;
+    }
+    return this.menuBuilder.hasVisibleActions(this.config.actions, row);
   }
 
   /**
    * Show action menu for a row
    */
-  showActionMenu(event: MouseEvent, row: T, menuRef?: any): void {
+  showActionMenu(event: MouseEvent, row: T, menuRef?: PrimeNGMenu): void {
     event.stopPropagation();
     this.selectedRowForMenu.set(row);
     const menuItems = this.getMenuItems(row);
     this.menuItems.set(menuItems);
     
-    // Use the menu reference passed from template, or get from map
-    let menu = menuRef || this.actionMenuRefs.get(row);
-    
+    const menu = menuRef || this.actionMenuRefs.get(row);
     if (menu && typeof menu.toggle === 'function') {
       menu.toggle(event);
     }
   }
   
   /**
-   * Register action menu reference
+   * Register action menu reference for a row
    */
-  registerActionMenu(row: T, menuRef: any): void {
+  registerActionMenu(row: T, menuRef: PrimeNGMenu): void {
     this.actionMenuRefs.set(row, menuRef);
   }
 
   /**
-   * Handle action menu item click (legacy support)
+   * Handle direct action click (for backward compatibility)
+   * Note: Confirmation dialogs should be handled via confirmDialog property in TableAction
    */
   onActionClick(action: TableAction<T>, row: T): void {
     if (action.visible && !action.visible(row)) {
@@ -344,105 +411,171 @@ export class DynamicTableComponent<T = unknown> {
     });
   }
 
+  // ============================================================================
+  // ROW EXPANSION
+  // ============================================================================
+  
   /**
-   * Check if action is visible
+   * Handle row expand event
    */
-  isActionVisible(action: TableAction<T>, row: T): boolean {
-    return action.visible ? action.visible(row) : true;
-  }
-
-  /**
-   * Check if action is disabled
-   */
-  isActionDisabled(action: TableAction<T>, row: T): boolean {
-    return action.disabled ? action.disabled(row) : false;
-  }
-
-  /**
-   * Export table data to CSV
-   */
-  exportCSV(): void {
-    const data = this.filteredData();
-    const headers = this.config.columns
-      .filter(col => col.exportable !== false)
-      .map(col => col.header);
-
-    const rows = data.map(row =>
-      this.config.columns
-        .filter(col => col.exportable !== false)
-        .map(col => {
-          const value = this.getFieldValue(row, col.field);
-          if (col.exportFormatter) {
-            return col.exportFormatter(value, row);
-          }
-          return String(value || '');
-        })
+  onRowExpand(event: { data: T }): void {
+    this.expansionService.expandRow(
+      event.data,
+      this.config.columns,
+      this.expandedRows,
+      this.table,
+      (row) => {
+        this.cdr.markForCheck();
+        this.tableEvent.emit({
+          type: 'expand',
+          data: row
+        });
+      }
     );
-
-    const csvContent = [
-      headers.join(','),
-      ...rows.map(row => row.map(cell => `"${cell}"`).join(','))
-    ].join('\n');
-
-    const blob = new Blob([csvContent], { type: 'text/csv' });
-    const url = window.URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = `${this.config.exportFileName || 'export'}.csv`;
-    link.click();
-    window.URL.revokeObjectURL(url);
   }
 
   /**
-   * Get column template if exists
+   * Handle row collapse event
    */
-  getColumnTemplate(column: TableColumn<T>): TemplateRef<unknown> | null {
-    if (!column.cellTemplateKey || !this.cellTemplates) {
-      return null;
-    }
-    // This would need to be implemented with a more sophisticated template lookup
-    return null;
+  onRowCollapse(event: { data: T }): void {
+    this.expansionService.collapseRow(
+      event.data,
+      this.config.columns,
+      this.expandedRows,
+      this.table,
+      (row: T) => {
+        this.cdr.markForCheck();
+        this.tableEvent.emit({
+          type: 'collapse',
+          data: row
+        });
+      }
+    );
+  }
+  
+  /**
+   * Toggle row expansion
+   */
+  toggleRowExpansion(row: T, currentExpanded: boolean): void {
+    this.expansionService.toggleRowExpansion(
+      row,
+      currentExpanded,
+      this.config.columns,
+      this.expandedRows,
+      this.table,
+      (expandedRow: T) => {
+        setTimeout(() => this.cdr.markForCheck(), 0);
+        this.tableEvent.emit({
+          type: 'expand',
+          data: expandedRow
+        });
+      },
+      (collapsedRow: T) => {
+        setTimeout(() => this.cdr.markForCheck(), 0);
+        this.tableEvent.emit({
+          type: 'collapse',
+          data: collapsedRow
+        });
+      }
+    );
+  }
+  
+  /**
+   * Get nested table data for a row
+   */
+  getNestedDataForRow(row: T): unknown[] {
+    return this.expansionService.getNestedDataForRow(row, this.getNestedTableData);
+  }
+  
+  /**
+   * Get nested table config for a row
+   */
+  getNestedConfigForRow(row: T): DynamicTableConfig<unknown> | null {
+    return this.expansionService.getNestedConfigForRow(row, this.getNestedTableConfig);
   }
 
   /**
-   * Get field value for display
+   * Check if a row is expanded
    */
-  getFieldValue(obj: T, field: string | keyof T): unknown {
-    if (typeof field === 'string' && field.includes('.')) {
-      return field.split('.').reduce((o: unknown, k: string) => {
-        return (o as Record<string, unknown>)?.[k];
-      }, obj);
-    }
-    return (obj as Record<string, unknown>)[field as string];
+  isRowExpanded(row: T): boolean {
+    return this.expansionService.isRowExpanded(row, this.config.columns, this.expandedRows);
   }
 
+  // ============================================================================
+  // ROW EDITING
+  // ============================================================================
+  
   /**
-   * Handle filter change
+   * Update cell value during editing
    */
-  onFilter(event: unknown): void {
-    const filterEvent = event as { filters?: Record<string, FilterMetadata | undefined> };
-    const filters: Record<string, FilterMetadata> = {};
-    if (filterEvent.filters) {
-      Object.keys(filterEvent.filters).forEach(key => {
-        const metadata = filterEvent.filters![key];
-        if (metadata) {
-          filters[key] = metadata;
-        }
-      });
-    }
-    this.filters.set(filters);
-    this.tableEvent.emit({
-      type: 'filter',
-      filters,
-      data: this.config.data
+  updateCellValue(row: T, field: string, value: unknown): void {
+    this.editingService.updateCellValue(row, field, value, this.config.columns, this.editingCells);
+  }
+  
+  /**
+   * Start editing a row
+   */
+  startRowEdit(row: T): void {
+    this.editingService.startRowEdit(row, this.config.columns, this.editingRowKeys, this.editingCells);
+  }
+  
+  /**
+   * Save row edits
+   */
+  saveRowEdit(row: T): void {
+    const updatedRow = this.editingService.saveRowEdit(row, this.config.columns, this.editingCells);
+    
+    const rowRecord = row as Record<string, unknown>;
+    const updatedRecord = updatedRow as Record<string, unknown>;
+    Object.keys(updatedRecord).forEach(key => {
+      rowRecord[key] = updatedRecord[key];
     });
-    if (this.config.onFilter) {
-      this.config.onFilter({ filters });
+    
+    const rowId = getRowId(row, this.config.columns);
+    this.editingService.clearEditingState(rowId, this.editingRowKeys, this.editingCells);
+    
+    if (this.config.rowEditing?.onSave) {
+      this.config.rowEditing.onSave(row);
+    }
+    
+    this.tableEvent.emit({
+      type: 'edit',
+      data: row
+    });
+  }
+  
+  /**
+   * Cancel row editing
+   */
+  cancelRowEdit(row: T): void {
+    const rowId = getRowId(row, this.config.columns);
+    this.editingService.clearEditingState(rowId, this.editingRowKeys, this.editingCells);
+    
+    if (this.config.rowEditing?.onCancel) {
+      this.config.rowEditing.onCancel(row);
     }
   }
-
+  
   /**
-   * Handle column resize
+   * Check if a row is being edited
+   */
+  isRowEditing(row: T): boolean {
+    return this.editingService.isRowEditing(row, this.config.columns, this.editingRowKeys);
+  }
+  
+  /**
+   * Get editing value for a cell
+   */
+  getEditingValue(row: T, field: string): unknown {
+    return this.editingService.getEditingValue(row, field, this.config.columns, this.editingCells);
+  }
+
+  // ============================================================================
+  // COLUMN MANAGEMENT
+  // ============================================================================
+  
+  /**
+   * Handle column resize event
    */
   onColumnResize(event: unknown): void {
     this.tableEvent.emit({
@@ -452,7 +585,7 @@ export class DynamicTableComponent<T = unknown> {
   }
 
   /**
-   * Handle column reorder
+   * Handle column reorder event
    */
   onColumnReorder(event: { columns?: unknown[] }): void {
     const columns = (event.columns || []).map(c => String(c));
@@ -467,342 +600,65 @@ export class DynamicTableComponent<T = unknown> {
   }
 
   /**
-   * Handle row expansion
-   */
-  onRowExpand(event: { data: T }): void {
-    const rowId = this.getRowId(event.data);
-    this.expandedRows.update(rows => ({ ...rows, [rowId]: true }));
-    // Sync with PrimeNG table
-    if (this.table && this.table.expandedRowKeys) {
-      this.table.expandedRowKeys = { ...this.table.expandedRowKeys, [rowId]: true };
-    }
-    this.cdr.markForCheck();
-    this.tableEvent.emit({
-      type: 'expand',
-      data: event.data
-    });
-  }
-
-  /**
-   * Handle row collapse
-   */
-  onRowCollapse(event: { data: T }): void {
-    const rowId = this.getRowId(event.data);
-    this.expandedRows.update(rows => {
-      const newRows = { ...rows };
-      delete newRows[rowId];
-      return newRows;
-    });
-    // Sync with PrimeNG table
-    if (this.table && this.table.expandedRowKeys) {
-      const updatedKeys = { ...this.table.expandedRowKeys };
-      delete updatedKeys[rowId];
-      this.table.expandedRowKeys = updatedKeys;
-    }
-    this.cdr.markForCheck();
-    this.tableEvent.emit({
-      type: 'collapse',
-      data: event.data
-    });
-  }
-  
-  /**
-   * Toggle row expansion
-   */
-  toggleRowExpansion(row: T, currentExpanded: boolean): void {
-    const rowId = this.getRowId(row);
-    
-    if (currentExpanded) {
-      // Collapse
-      this.expandedRows.update(rows => {
-        const newRows = { ...rows };
-        delete newRows[rowId];
-        return newRows;
-      });
-      // Update PrimeNG table's expandedRowKeys directly
-      setTimeout(() => {
-        if (this.table) {
-          const currentKeys = this.table.expandedRowKeys || {};
-          const updatedKeys = { ...currentKeys };
-          delete updatedKeys[rowId];
-          this.table.expandedRowKeys = updatedKeys;
-          this.cdr.markForCheck();
-        }
-      }, 0);
-      this.tableEvent.emit({
-        type: 'collapse',
-        data: row
-      });
-    } else {
-      // Expand
-      this.expandedRows.update(rows => ({ ...rows, [rowId]: true }));
-      // Update PrimeNG table's expandedRowKeys directly
-      setTimeout(() => {
-        if (this.table) {
-          const currentKeys = this.table.expandedRowKeys || {};
-          this.table.expandedRowKeys = { ...currentKeys, [rowId]: true };
-          this.cdr.markForCheck();
-        }
-      }, 0);
-      this.tableEvent.emit({
-        type: 'expand',
-        data: row
-      });
-    }
-  }
-  
-  /**
-   * Get nested table data for a row
-   */
-  getNestedDataForRow(row: T): unknown[] {
-    if (this.getNestedTableData) {
-      return this.getNestedTableData(row);
-    }
-    return [];
-  }
-  
-  /**
-   * Get nested table config for a row
-   */
-  getNestedConfigForRow(row: T): DynamicTableConfig<unknown> | null {
-    if (this.getNestedTableConfig) {
-      return this.getNestedTableConfig(row);
-    }
-    return null;
-  }
-
-  /**
-   * Get row ID for tracking (returns the value used as dataKey in PrimeNG table)
-   */
-  private getRowId(row: T): string | number {
-    // PrimeNG uses dataKey value, which is 'id' in our case
-    const id = this.getFieldValue(row, 'id');
-    // Return the actual ID value (number or string) for PrimeNG compatibility
-    if (id !== null && id !== undefined) {
-      return id as string | number;
-    }
-    // Fallback: try to find any field named 'id' in columns
-    const idField = this.config.columns.find(col => 
-      String(col.field).toLowerCase().includes('id')
-    )?.field;
-    if (idField) {
-      const fallbackId = this.getFieldValue(row, idField);
-      if (fallbackId !== null && fallbackId !== undefined) {
-        return fallbackId as string | number;
-      }
-    }
-    // Last resort: use string representation
-    return String(JSON.stringify(row));
-  }
-
-  /**
-   * Check if row is expanded
-   */
-  isRowExpanded(row: T): boolean {
-    const rowId = this.getRowId(row);
-    return this.expandedRows()[rowId] || false;
-  }
-
-  /**
-   * Get expansion template (placeholder for content projection)
-   */
-  getExpansionTemplate(row: T): TemplateRef<unknown> | null {
-    // This would be implemented with content projection
-    return null;
-  }
-
-  /**
-   * Get filterable columns for global filter
+   * Get filterable columns
    */
   getFilterableColumns(): string[] {
-    return this.config.columns
-      .filter(c => c.filterable)
-      .map(c => this.fieldToString(c.field));
+    return this.filterService.getFilterableColumns(this.config.columns);
   }
   
   /**
    * Get filter match modes for a column
    */
   getFilterMatchModes(col: TableColumn<T>): Array<{ label: string; value: string }> {
-    const textModes = [
-      { label: 'Starts With', value: 'startsWith' },
-      { label: 'Contains', value: 'contains' },
-      { label: 'Not Contains', value: 'notContains' },
-      { label: 'Ends With', value: 'endsWith' },
-      { label: 'Equals', value: 'equals' },
-      { label: 'Not Equals', value: 'notEquals' }
-    ];
-    
-    const numberModes = [
-      { label: 'Equals', value: 'equals' },
-      { label: 'Not Equals', value: 'notEquals' },
-      { label: 'Less Than', value: 'lt' },
-      { label: 'Less Than or Equal', value: 'lte' },
-      { label: 'Greater Than', value: 'gt' },
-      { label: 'Greater Than or Equal', value: 'gte' }
-    ];
-    
-    const dateModes = [
-      { label: 'Date Is', value: 'dateIs' },
-      { label: 'Date Is Not', value: 'dateIsNot' },
-      { label: 'Date Before', value: 'dateBefore' },
-      { label: 'Date After', value: 'dateAfter' }
-    ];
-    
-    switch (col.filterType) {
-      case 'number':
-        return numberModes;
-      case 'date':
-        return dateModes;
-      case 'select':
-        return [{ label: 'Equals', value: 'equals' }];
-      default:
-        return textModes;
-    }
+    return this.filterService.getFilterMatchModes(col);
   }
 
   /**
-   * Update cell value for editing
+   * Get filter match mode options based on filter type
    */
-  updateCellValue(row: T, field: string, value: unknown): void {
-    const rowId = this.getRowId(row);
-    const fieldStr = String(field);
-    
-    // Store in editing cells
-    this.editingCells.update(cells => {
-      const rowCells = cells[rowId] || {};
-      return {
-        ...cells,
-        [rowId]: {
-          ...rowCells,
-          [fieldStr]: value
-        }
-      };
-    });
-  }
-  
-  /**
-   * Start editing a row
-   */
-  startRowEdit(row: T): void {
-    const rowId = this.getRowId(row);
-    this.editingRowKeys.update(keys => ({ ...keys, [rowId]: true }));
-    
-    // Initialize editing cells with current values
-    const rowCells: Record<string, unknown> = {};
-    this.config.columns.forEach(col => {
-      if (col.editable) {
-        rowCells[String(col.field)] = this.getFieldValue(row, col.field);
-      }
-    });
-    this.editingCells.update(cells => ({
-      ...cells,
-      [rowId]: rowCells
-    }));
-  }
-  
-  /**
-   * Save row edits
-   */
-  saveRowEdit(row: T): void {
-    const rowId = this.getRowId(row);
-    const editedCells = this.editingCells()[rowId] || {};
-    
-    // Apply edits to row
-    Object.keys(editedCells).forEach(field => {
-      if (typeof field === 'string' && field.includes('.')) {
-        const keys = field.split('.');
-        let obj: Record<string, unknown> = row as Record<string, unknown>;
-        for (let i = 0; i < keys.length - 1; i++) {
-          obj = obj[keys[i]] as Record<string, unknown>;
-        }
-        obj[keys[keys.length - 1]] = editedCells[field];
-      } else {
-        (row as Record<string, unknown>)[field] = editedCells[field];
-      }
-    });
-    
-    // Clear editing state
-    this.editingRowKeys.update(keys => {
-      const newKeys = { ...keys };
-      delete newKeys[rowId];
-      return newKeys;
-    });
-    this.editingCells.update(cells => {
-      const newCells = { ...cells };
-      delete newCells[rowId];
-      return newCells;
-    });
-    
-    if (this.config.rowEditing?.onSave) {
-      this.config.rowEditing.onSave(row);
-    }
-    
-    this.tableEvent.emit({
-      type: 'edit',
-      data: row
-    });
-  }
-  
-  /**
-   * Cancel row edits
-   */
-  cancelRowEdit(row: T): void {
-    const rowId = this.getRowId(row);
-    this.editingRowKeys.update(keys => {
-      const newKeys = { ...keys };
-      delete newKeys[rowId];
-      return newKeys;
-    });
-    this.editingCells.update(cells => {
-      const newCells = { ...cells };
-      delete newCells[rowId];
-      return newCells;
-    });
-    
-    if (this.config.rowEditing?.onCancel) {
-      this.config.rowEditing.onCancel(row);
+  getFilterMatchModeOptions(filterType?: string): { label: string; value: string }[] {
+    switch (filterType) {
+      case 'number':
+        return [
+          { label: 'Equals', value: 'equals' },
+          { label: 'Not Equals', value: 'notEquals' },
+          { label: 'Less Than', value: 'lt' },
+          { label: 'Less Than or Equal', value: 'lte' },
+          { label: 'Greater Than', value: 'gt' },
+          { label: 'Greater Than or Equal', value: 'gte' },
+          { label: 'Between', value: 'between' }
+        ];
+      case 'date':
+        return [
+          { label: 'Date Is', value: 'dateIs' },
+          { label: 'Date Is Not', value: 'dateIsNot' },
+          { label: 'Date Before', value: 'dateBefore' },
+          { label: 'Date After', value: 'dateAfter' }
+        ];
+      case 'select':
+        return [
+          { label: 'Equals', value: 'equals' },
+          { label: 'Not Equals', value: 'notEquals' },
+          { label: 'In', value: 'in' }
+        ];
+      default: // text
+        return [
+          { label: 'Contains', value: 'contains' },
+          { label: 'Not Contains', value: 'notContains' },
+          { label: 'Starts With', value: 'startsWith' },
+          { label: 'Ends With', value: 'endsWith' },
+          { label: 'Equals', value: 'equals' },
+          { label: 'Not Equals', value: 'notEquals' }
+        ];
     }
   }
+
+  // ============================================================================
+  // ROW REORDER
+  // ============================================================================
   
   /**
-   * Check if row is being edited
-   */
-  isRowEditing(row: T): boolean {
-    const rowId = this.getRowId(row);
-    return this.editingRowKeys()[rowId] || false;
-  }
-  
-  /**
-   * Get editing value for a cell
-   */
-  getEditingValue(row: T, field: string): unknown {
-    const rowId = this.getRowId(row);
-    const editedCells = this.editingCells()[rowId];
-    if (editedCells && editedCells[field]) {
-      return editedCells[field];
-    }
-    return this.getFieldValue(row, field);
-  }
-  
-  /**
-   * Clear all filters
-   */
-  clearFilters(table?: any): void {
-    if (table && typeof table.clear === 'function') {
-      table.clear();
-    }
-    this.filters.set({});
-    this.globalFilterValue.set('');
-    this.tableEvent.emit({
-      type: 'filter',
-      filters: {},
-      data: this.config.data
-    });
-  }
-  
-  /**
-   * Handle row reorder
+   * Handle row reorder event
    */
   onRowReorder(event: unknown): void {
     const reorderEvent = event as { dragIndex?: number; dropIndex?: number };
@@ -814,8 +670,6 @@ export class DynamicTableComponent<T = unknown> {
     const draggedItem = data[reorderEvent.dragIndex];
     data.splice(reorderEvent.dragIndex, 1);
     data.splice(reorderEvent.dropIndex, 0, draggedItem);
-    
-    // Update config data
     this.config.data = data;
     
     if (this.config.rowReorder?.onReorder) {
@@ -827,13 +681,57 @@ export class DynamicTableComponent<T = unknown> {
       data: data
     });
   }
+
+  // ============================================================================
+  // EXPORT & FILTER UTILITIES
+  // ============================================================================
   
   /**
-   * Check if any filters are active
+   * Export table data to CSV
+   */
+  exportCSV(): void {
+    const data = this.filteredData();
+    this.exportService.exportTable(this.config, data);
+  }
+
+  /**
+   * Clear all filters
+   */
+  clearFilters(table?: PrimeNGTable): void {
+    this.filterService.clearFilters(table, this.filters, this.globalFilterValue, () => {
+      this.tableEvent.emit({
+        type: 'filter',
+        filters: {},
+        data: this.config.data
+      });
+    });
+  }
+
+  /**
+   * Check if there are active filters
    */
   hasActiveFilters(): boolean {
-    const filterKeys = Object.keys(this.filters());
-    return filterKeys.length > 0 || this.globalFilterValue().length > 0;
+    return this.filterService.hasActiveFilters(this.filters, this.globalFilterValue);
+  }
+
+  // ============================================================================
+  // TEMPLATE HELPERS (Unused but kept for future use)
+  // ============================================================================
+  
+  /**
+   * Get column template (for future content projection support)
+   */
+  getColumnTemplate(column: TableColumn<T>): TemplateRef<unknown> | null {
+    if (!column.cellTemplateKey || !this.cellTemplates) {
+      return null;
+    }
+    return null;
+  }
+
+  /**
+   * Get expansion template (for future content projection support)
+   */
+  getExpansionTemplate(row: T): TemplateRef<unknown> | null {
+    return null;
   }
 }
-

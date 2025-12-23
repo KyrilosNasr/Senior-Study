@@ -89,6 +89,12 @@ export interface TableAction<T = unknown> {
   disabled?: (row: T) => boolean;
   separator?: boolean; // Add separator before this item
   command?: (event?: unknown) => void; // Alternative to handler for menu compatibility
+  // Confirmation dialog support
+  confirmDialog?: boolean; // Show confirmation dialog before executing handler
+  confirmMessage?: string | ((row: T) => string); // Custom confirmation message (can be dynamic based on row)
+  confirmTitle?: string | ((row: T) => string); // Custom confirmation title (default: 'Confirm Action')
+  confirmLabel?: string; // Custom confirm button label (default: 'Confirm')
+  cancelLabel?: string; // Custom cancel button label (default: 'Cancel')
 }
 
 /**

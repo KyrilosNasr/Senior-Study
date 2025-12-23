@@ -13,17 +13,25 @@
   </p-card>
 
   <!-- Demo Tabs -->
-  <p-tabs value="0">
-    <p-tablist class="flex flex-wrap gap-2 mb-6">
-      <p-tab value="0" label="Basic Signals"></p-tab>
-      <p-tab value="1" label="Computed Signals"></p-tab>
-      <p-tab value="2" label="With Dynamic Components"></p-tab>
-      <p-tab value="3" label="Code Examples"></p-tab>
+  <p-tabs [(value)]="activeTab" class="w-full">
+    <p-tablist class="flex flex-wrap gap-2 mb-6 border-b border-gray-200 dark:border-gray-700">
+      <p-tab [value]="'0'">
+        <span class="font-medium">Basic Signals</span>
+      </p-tab>
+      <p-tab [value]="'1'">
+        <span class="font-medium">Computed Signals</span>
+      </p-tab>
+      <p-tab [value]="'2'">
+        <span class="font-medium">With Dynamic Components</span>
+      </p-tab>
+      <p-tab [value]="'3'">
+        <span class="font-medium">Code Examples</span>
+      </p-tab>
     </p-tablist>
 
     <p-tabpanels>
       <!-- Basic Signals -->
-      <p-tabpanel value="0">
+      <p-tabpanel [value]="'0'">
         <div class="space-y-6">
           <p-card>
             <div class="space-y-4">
@@ -87,7 +95,7 @@
       </p-tabpanel>
 
       <!-- Computed Signals -->
-      <p-tabpanel value="1">
+      <p-tabpanel [value]="'1'">
         <div class="space-y-6">
           <p-card>
             <div class="space-y-4">
@@ -123,7 +131,7 @@
       </p-tabpanel>
 
       <!-- With Dynamic Components -->
-      <p-tabpanel value="2">
+      <p-tabpanel [value]="'2'">
         <div class="space-y-6">
           <!-- Dynamic Form with Signals -->
           <p-card>
@@ -168,7 +176,7 @@
       </p-tabpanel>
 
       <!-- Code Examples -->
-      <p-tabpanel value="3">
+      <p-tabpanel [value]="'3'">
         <p-card>
           <div class="space-y-6">
             <div>

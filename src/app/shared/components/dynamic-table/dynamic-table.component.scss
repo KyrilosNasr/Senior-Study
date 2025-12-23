@@ -1,3 +1,25 @@
 // Dynamic table component styles
 // Uses Tailwind CSS only - no custom styles needed
 
+// Ensure nested table pagination is visible
+::ng-deep .nested-table {
+  .p-paginator {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    
+    .p-paginator-rpp-options {
+      display: inline-flex;
+      align-items: center;
+      margin-left: auto;
+    }
+  }
+  
+  // Ensure filter menus are visible above nested content
+  .p-columnfilter-menu {
+    z-index: 1100;
+  }
+}
+

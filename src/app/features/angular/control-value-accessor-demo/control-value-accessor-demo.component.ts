@@ -33,6 +33,7 @@ import { DynamicFormConfig } from '../../../shared/types/form-field.types';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ControlValueAccessorDemoComponent {
+  activeTab = signal(0);
   private readonly fb = inject(FormBuilder);
 
   // Form using custom ControlValueAccessor components

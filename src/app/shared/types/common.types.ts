@@ -25,3 +25,9 @@ export interface SortMeta {
   order: SortOrder;
 }
 
+export interface DemoBadge {
+  label: string;
+  icon?: string;
+  color?: 'blue' | 'green' | 'purple' | 'orange' | 'pink' | 'teal' | 'indigo' | 'yellow';
+}
+

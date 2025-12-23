@@ -13,16 +13,22 @@
   </p-card>
 
   <!-- Demo Tabs -->
-  <p-tabs value="0">
-    <p-tablist class="flex flex-wrap gap-2 mb-6">
-      <p-tab value="0" label="Overview"></p-tab>
-      <p-tab value="1" label="Dynamic Form"></p-tab>
-      <p-tab value="2" label="Code Examples"></p-tab>
+  <p-tabs [(value)]="activeTab" class="w-full">
+    <p-tablist class="flex flex-wrap gap-2 mb-6 border-b border-gray-200 dark:border-gray-700">
+      <p-tab [value]="'0'">
+        <span class="font-medium">Overview</span>
+      </p-tab>
+      <p-tab [value]="'1'">
+        <span class="font-medium">Dynamic Form</span>
+      </p-tab>
+      <p-tab [value]="'2'">
+        <span class="font-medium">Code Examples</span>
+      </p-tab>
     </p-tablist>
 
     <p-tabpanels>
       <!-- Overview -->
-      <p-tabpanel value="0">
+      <p-tabpanel [value]="'0'">
         <div class="space-y-6">
           <p-card>
             <div class="space-y-4">
@@ -62,7 +68,7 @@
       </p-tabpanel>
 
       <!-- Dynamic Form -->
-      <p-tabpanel value="1">
+      <p-tabpanel [value]="'1'">
         <p-card>
           <div class="space-y-4">
             <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">
@@ -81,7 +87,7 @@
       </p-tabpanel>
 
       <!-- Code Examples -->
-      <p-tabpanel value="2">
+      <p-tabpanel [value]="'2'">
         <p-card>
           <div class="space-y-6">
             <div>

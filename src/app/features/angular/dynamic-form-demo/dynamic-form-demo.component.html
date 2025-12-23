@@ -1,123 +1,69 @@
 <div class="space-y-6">
+  <app-dynamic-modal />
+  <app-toast />
+  
   <!-- Header Card -->
-  <p-card>
-    <div class="space-y-4">
-      <h1 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-gray-100">
-        Dynamic Form Component
-      </h1>
-      <p class="text-gray-600 dark:text-gray-400">
-        A fully responsive, customizable form component built with PrimeNG. Supports all common input types
-        with built-in validation, responsive grid layout, and easy configuration.
-      </p>
-    </div>
-  </p-card>
+  <app-demo-header
+    title="Dynamic Form Component"
+    description="A fully responsive, customizable form component built with PrimeNG. Supports all common input types with built-in validation, responsive grid layout, and easy configuration."
+  />
 
   <!-- Demo Tabs -->
-  <p-tabs value="0">
-    <p-tablist class="flex flex-wrap gap-2 mb-6">
-      <p-tab value="0" label="User Registration"></p-tab>
-      <p-tab value="1" label="Product Form"></p-tab>
-      <p-tab value="2" label="Code Examples"></p-tab>
-    </p-tablist>
+  <app-demo-tabs [tabs]="tabs" [initialValue]="'0'">
+    <!-- User Registration Form -->
+    <app-demo-tabpanel [value]="'0'">
+      <app-demo-section title="User Registration Form">
+        <app-dynamic-form
+          [config]="userFormConfig"
+          [loading]="loading"
+          (formSubmit)="onFormSubmit($event)"
+          (formCancel)="onFormCancel()"
+        />
 
-    <p-tabpanels>
-      <!-- User Registration Form -->
-      <p-tabpanel value="0">
-        <p-card>
-          <div class="space-y-4">
-            <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">
-              User Registration Form
-            </h2>
-            <app-dynamic-form
-              [config]="userFormConfig"
-              [loading]="loading"
-              (formSubmit)="onFormSubmit($event)"
-              (formCancel)="onFormCancel()"
-            />
+        @if (formResult()) {
+          <app-result-display
+            [result]="formResult()!"
+            label="Form Result"
+            [success]="formResult()!.valid"
+          />
+        }
+      </app-demo-section>
+    </app-demo-tabpanel>
 
-            @if (formResult()) {
-              <div class="mt-4 p-4 rounded-lg" [class.bg-green-50]="formResult()!.valid" [class.bg-red-50]="!formResult()!.valid">
-                <h3 class="font-semibold mb-2">Form Result:</h3>
-                <pre class="text-sm overflow-x-auto">{{ formResult()! | json }}</pre>
-              </div>
-            }
-          </div>
-        </p-card>
-      </p-tabpanel>
+    <!-- Product Form -->
+    <app-demo-tabpanel [value]="'1'">
+      <app-demo-section title="Product Form">
+        <app-dynamic-form
+          [config]="productFormConfig"
+          [loading]="loading"
+          (formSubmit)="onFormSubmit($event)"
+          (formCancel)="onFormCancel()"
+        />
 
-      <!-- Product Form -->
-      <p-tabpanel value="1">
-        <p-card>
-          <div class="space-y-4">
-            <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">
-              Product Form
-            </h2>
-            <app-dynamic-form
-              [config]="productFormConfig"
-              [loading]="loading"
-              (formSubmit)="onFormSubmit($event)"
-              (formCancel)="onFormCancel()"
-            />
+        @if (formResult()) {
+          <app-result-display
+            [result]="formResult()!"
+            label="Form Result"
+            [success]="formResult()!.valid"
+          />
+        }
+      </app-demo-section>
+    </app-demo-tabpanel>
 
-            @if (formResult()) {
-              <div class="mt-4 p-4 rounded-lg" [class.bg-green-50]="formResult()!.valid" [class.bg-red-50]="!formResult()!.valid">
-                <h3 class="font-semibold mb-2">Form Result:</h3>
-                <pre class="text-sm overflow-x-auto">{{ formResult()! | json }}</pre>
-              </div>
-            }
-          </div>
-        </p-card>
-      </p-tabpanel>
+    <!-- Code Examples -->
+    <app-demo-tabpanel [value]="'2'">
+      <app-demo-section spacing="lg">
+        <app-code-example
+          title="Configuration Example"
+          [code]="configExampleCode"
+        />
 
-      <!-- Code Examples -->
-      <p-tabpanel value="2">
-        <p-card>
-          <div class="space-y-6">
-            <div>
-              <h3 class="text-lg font-semibold mb-2 text-gray-900 dark:text-gray-100">
-                Configuration Example
-              </h3>
-              <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>const formConfig: DynamicFormConfig = &#123;
-  fields: [
-    &#123;
-      key: 'email',
-      type: 'email',
-      label: 'Email Address',
-      placeholder: 'Enter your email',
-      required: true,
-      validators: [Validators.email]
-    &#125;,
-    &#123;
-      key: 'country',
-      type: 'select',
-      label: 'Country',
-      options: [
-        &#123; label: 'United States', value: 'US' &#125;,
-        &#123; label: 'United Kingdom', value: 'UK' &#125;
-      ]
-    &#125;
-  ],
-  columns: &#123; mobile: 1, tablet: 2, desktop: 3 &#125;,
-  submitLabel: 'Submit',
-  showCancel: true
-&#125;;</code></pre>
-            </div>
-
-            <div>
-              <h3 class="text-lg font-semibold mb-2 text-gray-900 dark:text-gray-100">
-                Usage in Template
-              </h3>
-              <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>&lt;app-dynamic-form
-  [config]="formConfig"
-  [loading]="loading"
-  (formSubmit)="onFormSubmit($event)"
-  (formCancel)="onFormCancel()"
-/&gt;</code></pre>
-            </div>
-          </div>
-        </p-card>
-      </p-tabpanel>
-    </p-tabpanels>
-  </p-tabs>
+        <app-code-example
+          title="Usage in Template"
+          [code]="templateExampleCode"
+        />
+      </app-demo-section>
+    </app-demo-tabpanel>
+  </app-demo-tabs>
 </div>
 

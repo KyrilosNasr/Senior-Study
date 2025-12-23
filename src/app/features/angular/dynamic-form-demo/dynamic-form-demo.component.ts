@@ -1,10 +1,18 @@
 import { Component, signal, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CardModule } from 'primeng/card';
-import { Tabs, Tab, TabList, TabPanel, TabPanels } from 'primeng/tabs';
 import { Validators } from '@angular/forms';
 
 import { DynamicFormComponent } from '../../../shared/components/dynamic-form/dynamic-form.component';
+import { DynamicModalComponent } from '../../../shared/components/dynamic-modal/dynamic-modal.component';
+import { ToastComponent } from '../../../shared/components/toast/toast.component';
+import { DemoHeaderComponent } from '../../../shared/components/demo-header/demo-header.component';
+import { DemoTabsComponent, DemoTab } from '../../../shared/components/demo-tabs/demo-tabs.component';
+import { DemoTabpanelComponent } from '../../../shared/components/demo-tabs/demo-tabpanel.component';
+import { DemoSectionComponent } from '../../../shared/components/demo-section/demo-section.component';
+import { CodeExampleComponent } from '../../../shared/components/code-example/code-example.component';
+import { ResultDisplayComponent } from '../../../shared/components/result-display/result-display.component';
+import { ToastService } from '../../../shared/components/toast/toast.service';
+import { MessageService } from 'primeng/api';
 import {
   DynamicFormConfig,
   FormSubmitResult
@@ -16,13 +24,19 @@ import { SelectOption } from '../../../shared/types/common.types';
   standalone: true,
   imports: [
     CommonModule,
-    CardModule,
-    Tabs,
-    Tab,
-    TabList,
-    TabPanel,
-    TabPanels,
-    DynamicFormComponent
+    DynamicFormComponent,
+    DynamicModalComponent,
+    ToastComponent,
+    DemoHeaderComponent,
+    DemoTabsComponent,
+    DemoTabpanelComponent,
+    DemoSectionComponent,
+    CodeExampleComponent,
+    ResultDisplayComponent
+  ],
+  providers: [
+    MessageService,
+    ToastService
   ],
   templateUrl: './dynamic-form-demo.component.html',
   styleUrl: './dynamic-form-demo.component.scss',
@@ -31,6 +45,15 @@ import { SelectOption } from '../../../shared/types/common.types';
 export class DynamicFormDemoComponent {
   loading = signal(false);
   formResult = signal<FormSubmitResult | null>(null);
+
+  /**
+   * Tabs configuration for demo-tabs component
+   */
+  readonly tabs: DemoTab[] = [
+    { value: '0', label: 'User Registration' },
+    { value: '1', label: 'Product Form' },
+    { value: '2', label: 'Code Examples' }
+  ];
 
   // User Registration Form Config
   userFormConfig: DynamicFormConfig = {
@@ -209,5 +232,38 @@ export class DynamicFormDemoComponent {
   onFormCancel(): void {
     this.formResult.set(null);
   }
+
+  // Code examples for the Code Examples tab
+  readonly configExampleCode = `const formConfig: DynamicFormConfig = {
+  fields: [
+    {
+      key: 'email',
+      type: 'email',
+      label: 'Email Address',
+      placeholder: 'Enter your email',
+      required: true,
+      validators: [Validators.email]
+    },
+    {
+      key: 'country',
+      type: 'select',
+      label: 'Country',
+      options: [
+        { label: 'United States', value: 'US' },
+        { label: 'United Kingdom', value: 'UK' }
+      ]
+    }
+  ],
+  columns: { mobile: 1, tablet: 2, desktop: 3 },
+  submitLabel: 'Submit',
+  showCancel: true
+};`;
+
+  readonly templateExampleCode = `<app-dynamic-form
+  [config]="formConfig"
+  [loading]="loading"
+  (formSubmit)="onFormSubmit($event)"
+  (formCancel)="onFormCancel()"
+/>`;
 }
 
