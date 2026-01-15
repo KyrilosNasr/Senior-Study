@@ -1,15 +1,19 @@
-import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy, TemplateRef, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TabPanel } from 'primeng/tabs';
 
 @Component({
   selector: 'app-demo-tabpanel',
   standalone: true,
-  imports: [CommonModule, TabPanel],
-  templateUrl: './demo-tabpanel.component.html',
+  imports: [CommonModule],
+  template: `
+    <ng-template #content>
+      <ng-content />
+    </ng-template>
+  `,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DemoTabpanelComponent {
   @Input({ required: true }) value!: string | number;
+  @ViewChild('content', { static: true }) contentTemplate!: TemplateRef<unknown>;
 }
 

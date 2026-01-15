@@ -1,6 +1,7 @@
-import { Component, Input, signal, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, signal, ChangeDetectionStrategy, ContentChildren, QueryList, AfterContentInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Tabs, Tab, TabList, TabPanels } from 'primeng/tabs';
+import { Tabs, Tab, TabList, TabPanels, TabPanel } from 'primeng/tabs';
+import { DemoTabpanelComponent } from './demo-tabpanel.component';
 
 export interface DemoTab {
   value: string;
@@ -18,16 +19,24 @@ export interface DemoTab {
     Tabs,
     Tab,
     TabList,
-    TabPanels
+    TabPanels,
+    TabPanel
 ],
   templateUrl: './demo-tabs.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DemoTabsComponent {
+export class DemoTabsComponent implements AfterContentInit {
   @Input({ required: true }) tabs!: DemoTab[];
   @Input() initialValue: string | number = 0;
 
+  @ContentChildren(DemoTabpanelComponent) tabPanels!: QueryList<DemoTabpanelComponent>;
+
   activeTab = signal<string | number>(this.initialValue);
+  panelsList = signal<DemoTabpanelComponent[]>([]);
+
+  ngAfterContentInit(): void {
+    this.panelsList.set(this.tabPanels.toArray());
+  }
 
   getBadgeClasses(color?: string): string {
     const baseClasses = 'px-2 py-0.5 rounded text-xs font-semibold ml-2';

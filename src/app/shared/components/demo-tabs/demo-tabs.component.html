@@ -18,7 +18,16 @@
   </p-tablist>
 
   <p-tabpanels>
-    <ng-content />
+    @for (panel of panelsList(); track panel.value) {
+      <p-tabpanel [value]="panel.value">
+        <ng-container [ngTemplateOutlet]="panel.contentTemplate" />
+      </p-tabpanel>
+    }
   </p-tabpanels>
 </p-tabs>
+
+<!-- Hidden content projection to collect child panels -->
+<div class="hidden">
+  <ng-content />
+</div>
 
