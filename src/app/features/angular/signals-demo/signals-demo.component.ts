@@ -43,7 +43,7 @@ interface User {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SignalsDemoComponent {
-  activeTab = signal(0);
+  activeTab = signal('0');
   private readonly modalService = inject(DynamicModalService);
 
   // Basic Signals

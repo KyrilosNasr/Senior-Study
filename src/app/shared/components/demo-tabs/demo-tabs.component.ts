@@ -1,4 +1,4 @@
-import { Component, Input, signal, ChangeDetectionStrategy, ContentChildren, QueryList, AfterContentInit } from '@angular/core';
+import { Component, Input, signal, ChangeDetectionStrategy, ContentChildren, QueryList, AfterContentInit, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Tabs, Tab, TabList, TabPanels, TabPanel } from 'primeng/tabs';
 import { DemoTabpanelComponent } from './demo-tabpanel.component';
@@ -25,14 +25,19 @@ export interface DemoTab {
   templateUrl: './demo-tabs.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DemoTabsComponent implements AfterContentInit {
+export class DemoTabsComponent implements AfterContentInit, OnInit {
   @Input({ required: true }) tabs!: DemoTab[];
-  @Input() initialValue: string | number = 0;
+  @Input() initialValue: string | number = '0';
 
   @ContentChildren(DemoTabpanelComponent) tabPanels!: QueryList<DemoTabpanelComponent>;
 
-  activeTab = signal<string | number>(this.initialValue);
+  activeTab = signal<string | number>('0');
   panelsList = signal<DemoTabpanelComponent[]>([]);
+
+  ngOnInit(): void {
+    // Set the active tab from the initialValue input
+    this.activeTab.set(this.initialValue.toString());
+  }
 
   ngAfterContentInit(): void {
     this.panelsList.set(this.tabPanels.toArray());

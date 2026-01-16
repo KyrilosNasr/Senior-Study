@@ -32,6 +32,9 @@ interface StepConfig {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MultiStepFormDemoComponent {
+  // Expose Math to template for percentage calculation
+  Math = Math;
+  
   currentStep = signal(0);
   formData = signal<Record<string, unknown>>({});
   loading = signal(false);

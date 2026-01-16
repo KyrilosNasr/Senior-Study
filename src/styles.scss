@@ -1,4 +1,8 @@
 @use "tailwindcss";
+
+/* Configure Tailwind v4 dark mode to use .dark class on html element */
+@custom-variant dark (&:where(.dark, .dark *));
+
 @import '@fortawesome/fontawesome-free/css/all.css';
 
 /* You can add global styles to this file, and also import other style files */
@@ -37,7 +41,8 @@
   --accent-gradient-to: rgb(37, 99, 235);
 }
 
-.dark .accent-blue {
+:root.dark .accent-blue,
+html.dark .accent-blue {
   --accent-color: rgb(96, 165, 250);
   --accent-color-light: rgb(147, 197, 253);
   --accent-color-dark: rgb(59, 130, 246);
@@ -53,7 +58,8 @@
   --accent-gradient-to: rgb(22, 163, 74);
 }
 
-.dark .accent-green {
+:root.dark .accent-green,
+html.dark .accent-green {
   --accent-color: rgb(74, 222, 128);
   --accent-color-light: rgb(134, 239, 172);
   --accent-color-dark: rgb(34, 197, 94);
@@ -69,7 +75,8 @@
   --accent-gradient-to: rgb(147, 51, 234);
 }
 
-.dark .accent-purple {
+:root.dark .accent-purple,
+html.dark .accent-purple {
   --accent-color: rgb(192, 132, 252);
   --accent-color-light: rgb(221, 214, 254);
   --accent-color-dark: rgb(168, 85, 247);
@@ -85,7 +92,8 @@
   --accent-gradient-to: rgb(234, 88, 12);
 }
 
-.dark .accent-orange {
+:root.dark .accent-orange,
+html.dark .accent-orange {
   --accent-color: rgb(251, 146, 60);
   --accent-color-light: rgb(254, 215, 170);
   --accent-color-dark: rgb(249, 115, 22);
@@ -101,7 +109,8 @@
   --accent-gradient-to: rgb(15, 118, 110);
 }
 
-.dark .accent-teal {
+:root.dark .accent-teal,
+html.dark .accent-teal {
   --accent-color: rgb(45, 212, 191);
   --accent-color-light: rgb(94, 234, 212);
   --accent-color-dark: rgb(20, 184, 166);
@@ -117,7 +126,8 @@
   --accent-gradient-to: rgb(219, 39, 119);
 }
 
-.dark .accent-pink {
+:root.dark .accent-pink,
+html.dark .accent-pink {
   --accent-color: rgb(244, 114, 182);
   --accent-color-light: rgb(249, 168, 212);
   --accent-color-dark: rgb(236, 72, 153);
@@ -133,7 +143,8 @@
   --accent-gradient-to: rgb(220, 38, 38);
 }
 
-.dark .accent-red {
+:root.dark .accent-red,
+html.dark .accent-red {
   --accent-color: rgb(248, 113, 113);
   --accent-color-light: rgb(254, 202, 202);
   --accent-color-dark: rgb(239, 68, 68);
@@ -149,7 +160,8 @@
   --accent-gradient-to: rgb(79, 70, 229);
 }
 
-.dark .accent-indigo {
+:root.dark .accent-indigo,
+html.dark .accent-indigo {
   --accent-color: rgb(129, 140, 248);
   --accent-color-light: rgb(165, 180, 252);
   --accent-color-dark: rgb(99, 102, 241);
@@ -165,7 +177,8 @@
   --accent-gradient-to: rgb(8, 145, 178);
 }
 
-.dark .accent-cyan {
+:root.dark .accent-cyan,
+html.dark .accent-cyan {
   --accent-color: rgb(34, 211, 238);
   --accent-color-light: rgb(103, 232, 249);
   --accent-color-dark: rgb(6, 182, 212);
@@ -181,7 +194,8 @@
   --accent-gradient-to: rgb(217, 119, 6);
 }
 
-.dark .accent-amber {
+:root.dark .accent-amber,
+html.dark .accent-amber {
   --accent-color: rgb(251, 191, 36);
   --accent-color-light: rgb(253, 224, 71);
   --accent-color-dark: rgb(245, 158, 11);
@@ -203,7 +217,8 @@ body {
   transition: background 0.3s ease, color 0.3s ease;
 }
 
-.dark body {
+:root.dark body,
+html.dark body {
   color: rgb(229, 231, 235); /* gray-200 */
 }
 
@@ -253,7 +268,8 @@ pre {
   border: 1px solid rgb(31, 41, 55); /* gray-800 */
 }
 
-.dark pre {
+:root.dark pre,
+html.dark pre {
   background-color: rgb(17, 24, 39) !important;
   color: rgb(243, 244, 246) !important;
   border-color: rgb(55, 65, 81); /* gray-700 */
@@ -280,7 +296,8 @@ code:not(pre code) {
   border: 1px solid rgb(229, 231, 235); /* gray-200 */
 }
 
-.dark code:not(pre code) {
+:root.dark code:not(pre code),
+html.dark code:not(pre code) {
   background-color: rgb(31, 41, 55); /* gray-800 */
   color: rgb(243, 244, 246); /* gray-100 */
   border-color: rgb(55, 65, 81); /* gray-700 */
@@ -346,7 +363,8 @@ pre::-webkit-scrollbar-thumb:hover {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.dark .p-card {
+:root.dark .p-card,
+html.dark .p-card {
   border-color: rgb(55, 65, 81); /* gray-700 */
 }
 
@@ -360,7 +378,8 @@ pre::-webkit-scrollbar-thumb:hover {
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
-.dark .card-hover:hover {
+:root.dark .card-hover:hover,
+html.dark .card-hover:hover {
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
 }
 
@@ -369,7 +388,8 @@ pre::-webkit-scrollbar-thumb:hover {
   border-color: rgb(229, 231, 235) !important;
 }
 
-.dark .border-gray-200 {
+:root.dark .border-gray-200,
+html.dark .border-gray-200 {
   border-color: rgb(55, 65, 81) !important;
 }
 
@@ -378,7 +398,8 @@ pre::-webkit-scrollbar-thumb:hover {
   color: rgb(75, 85, 99) !important; /* gray-600 for better contrast */
 }
 
-.dark .text-gray-400 {
+:root.dark .text-gray-400,
+html.dark .text-gray-400 {
   color: rgb(209, 213, 219) !important; /* gray-300 for better contrast in dark mode */
 }
 
@@ -627,100 +648,100 @@ pre::-webkit-scrollbar-thumb:hover {
       }
     }
   }
-  
-  /* Dark mode styles */
-  .dark & {
-    .p-tree-container {
-      .p-treenode {
-        &:not(.p-treenode-leaf) {
-          .p-treenode-content {
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.12) 0%, rgba(147, 51, 234, 0.12) 100%);
-            display: flex;
-            align-items: center;
-            min-height: 2.75rem;
-            
-            &:hover {
-              background: linear-gradient(135deg, rgba(59, 130, 246, 0.18) 0%, rgba(147, 51, 234, 0.18) 100%);
-              border-left-color: rgb(96, 165, 250);
-            }
-            
-            .p-treenode-label {
-              color: rgb(229, 231, 235);
-              line-height: 1.4;
-              white-space: normal;
-              word-wrap: break-word;
-              flex: 1;
-            }
-            
-            .p-tree-toggler {
-              color: rgb(156, 163, 175);
-              
-              &:hover {
-                background-color: rgba(96, 165, 250, 0.2);
-                color: rgb(96, 165, 250);
-              }
-            }
+}
+
+/* Dark mode styles for modern tree - using :root.dark selector */
+:root.dark .modern-tree.p-tree {
+  .p-tree-container {
+    .p-treenode {
+      &:not(.p-treenode-leaf) {
+        .p-treenode-content {
+          background: linear-gradient(135deg, rgba(59, 130, 246, 0.12) 0%, rgba(147, 51, 234, 0.12) 100%);
+          display: flex;
+          align-items: center;
+          min-height: 2.75rem;
+          
+          &:hover {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.18) 0%, rgba(147, 51, 234, 0.18) 100%);
+            border-left-color: rgb(96, 165, 250);
           }
           
-          &.p-treenode-expanded .p-treenode-content {
-            border-left-color: rgb(96, 165, 250);
+          .p-treenode-label {
+            color: rgb(229, 231, 235);
+            line-height: 1.4;
+            white-space: normal;
+            word-wrap: break-word;
+            flex: 1;
+          }
+          
+          .p-tree-toggler {
+            color: rgb(156, 163, 175);
+            
+            &:hover {
+              background-color: rgba(96, 165, 250, 0.2);
+              color: rgb(96, 165, 250);
+            }
           }
         }
         
-        &.p-treenode-leaf {
-          .p-treenode-content {
-            display: flex;
-            align-items: center;
-            min-height: 2.5rem;
-            
-            &::before {
-              background-color: rgb(107, 114, 128);
-            }
-            
-            &:hover {
-              background-color: rgb(55, 65, 81);
-              
-              &::before {
-                background-color: rgb(96, 165, 250);
-              }
-            }
-            
-            .p-treenode-label {
-              color: rgb(209, 213, 219);
-              line-height: 1.5;
-              white-space: normal;
-              word-wrap: break-word;
-              flex: 1;
-            }
-            
-            .p-treenode-icon {
-              color: rgb(156, 163, 175);
-              transition: color 0.2s ease;
-            }
-            
-            &:hover .p-treenode-icon {
-              color: rgb(96, 165, 250);
-            }
+        &.p-treenode-expanded .p-treenode-content {
+          border-left-color: rgb(96, 165, 250);
+        }
+      }
+      
+      &.p-treenode-leaf {
+        .p-treenode-content {
+          display: flex;
+          align-items: center;
+          min-height: 2.5rem;
+          
+          &::before {
+            background-color: rgb(107, 114, 128);
           }
           
-          &.p-highlight .p-treenode-content {
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.25) 0%, rgba(147, 51, 234, 0.25) 100%);
-            border-left-color: rgb(96, 165, 250);
-            
-            .p-treenode-label {
-              color: rgb(147, 197, 253);
-              line-height: 1.5;
-              white-space: normal;
-              word-wrap: break-word;
-            }
-            
-            .p-treenode-icon {
-              color: rgb(96, 165, 250);
-            }
+          &:hover {
+            background-color: rgb(55, 65, 81);
             
             &::before {
               background-color: rgb(96, 165, 250);
             }
+          }
+          
+          .p-treenode-label {
+            color: rgb(209, 213, 219);
+            line-height: 1.5;
+            white-space: normal;
+            word-wrap: break-word;
+            flex: 1;
+          }
+          
+          .p-treenode-icon {
+            color: rgb(156, 163, 175);
+            transition: color 0.2s ease;
+          }
+          
+          &:hover .p-treenode-icon {
+            color: rgb(96, 165, 250);
+          }
+        }
+        
+        &.p-highlight .p-treenode-content {
+          background: linear-gradient(135deg, rgba(59, 130, 246, 0.25) 0%, rgba(147, 51, 234, 0.25) 100%);
+          border-left-color: rgb(96, 165, 250);
+          
+          .p-treenode-label {
+            color: rgb(147, 197, 253);
+            line-height: 1.5;
+            white-space: normal;
+            word-wrap: break-word;
+          }
+          
+          .p-treenode-icon {
+            color: rgb(96, 165, 250);
+          }
+          
+          &::before {
+            background-color: rgb(96, 165, 250);
           }
         }
       }
@@ -734,7 +755,8 @@ pre::-webkit-scrollbar-thumb:hover {
   scrollbar-color: rgb(209, 213, 219) transparent;
 }
 
-.dark .scrollbar-thin {
+:root.dark .scrollbar-thin,
+html.dark .scrollbar-thin {
   scrollbar-color: rgb(75, 85, 99) transparent;
 }
 
@@ -988,7 +1010,8 @@ pre::-webkit-scrollbar-thumb:hover {
               0 0 0 1px rgba(0, 0, 0, 0.05);
 }
 
-.dark .shadow-modern {
+:root.dark .shadow-modern,
+html.dark .shadow-modern {
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 
               0 4px 6px -2px rgba(0, 0, 0, 0.2),
               0 0 0 1px rgba(255, 255, 255, 0.05);
@@ -1000,7 +1023,8 @@ pre::-webkit-scrollbar-thumb:hover {
               0 0 0 1px rgba(0, 0, 0, 0.05);
 }
 
-.dark .shadow-modern-lg {
+:root.dark .shadow-modern-lg,
+html.dark .shadow-modern-lg {
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 
               0 10px 10px -5px rgba(0, 0, 0, 0.2),
               0 0 0 1px rgba(255, 255, 255, 0.05);
@@ -1018,7 +1042,8 @@ pre::-webkit-scrollbar-thumb:hover {
               0 0 0 1px rgba(0, 0, 0, 0.05);
 }
 
-.dark .hover-lift:hover {
+:root.dark .hover-lift:hover,
+html.dark .hover-lift:hover {
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 
               0 10px 10px -5px rgba(0, 0, 0, 0.2),
               0 0 0 1px rgba(255, 255, 255, 0.05);

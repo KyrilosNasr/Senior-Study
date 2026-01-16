@@ -1,250 +1,356 @@
-<div class="space-y-6">
-  <!-- Header Card -->
-  <p-card>
-    <div class="space-y-4">
-      <h1 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-gray-100">
-        Reactive Forms Demo
-      </h1>
-      <p class="text-gray-600 dark:text-gray-400">
-        Advanced reactive forms patterns with RxJS: debouncing, async validation, valueChanges,
-        and integration with dynamic forms.
-      </p>
+<div class="container-responsive space-y-responsive">
+  <!-- Hero Header -->
+  <div class="card-modern padding-responsive hover-lift slide-in-up">
+    <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+      <div class="flex-1">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br from-green-500 to-teal-600 flex items-center justify-center shadow-lg">
+            <i class="fas fa-edit text-white text-xl sm:text-2xl"></i>
+          </div>
+          <div>
+            <span class="badge-modern text-xs sm:text-sm">Angular Topics</span>
+          </div>
+        </div>
+        <h1 class="heading-responsive text-gradient mb-4">
+          Reactive Forms
+        </h1>
+        <p class="text-responsive text-gray-700 dark:text-gray-300">
+          Advanced reactive forms patterns with RxJS: debouncing, async validation, valueChanges,
+          and integration with dynamic forms.
+        </p>
+      </div>
+      <div class="hidden lg:block">
+        <div class="w-32 h-32 rounded-2xl bg-gradient-to-br from-green-500/20 to-teal-600/20 flex items-center justify-center">
+          <i class="fas fa-file-signature text-6xl text-green-500"></i>
+        </div>
+      </div>
     </div>
-  </p-card>
+  </div>
 
   <!-- Demo Tabs -->
-  <p-tabs [(value)]="activeTab" class="w-full">
-    <p-tablist class="flex flex-wrap gap-2 mb-6 border-b border-gray-200 dark:border-gray-700">
-      <p-tab [value]="'0'">
-        <span class="font-medium">Basic Form</span>
-      </p-tab>
-      <p-tab [value]="'1'">
-        <span class="font-medium">Debounced Search</span>
-      </p-tab>
-      <p-tab [value]="'2'">
-        <span class="font-medium">Async Validation</span>
-      </p-tab>
-      <p-tab [value]="'3'">
-        <span class="font-medium">ValueChanges</span>
-      </p-tab>
-      <p-tab [value]="'4'">
-        <span class="font-medium">Dynamic Form</span>
-      </p-tab>
-    </p-tablist>
+  <p-card class="card-modern hover-lift slide-in-up">
+    <div class="padding-responsive">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center">
+          <i class="fas fa-play-circle text-white"></i>
+        </div>
+        <h2 class="subheading-responsive text-gray-900 dark:text-gray-100">Interactive Demos</h2>
+      </div>
 
-    <p-tabpanels>
-      <!-- Basic Form -->
-      <p-tabpanel [value]="'0'">
-        <p-card>
-          <div class="space-y-4">
-            <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">
-              Basic Reactive Form with Validation
-            </h2>
-            <form [formGroup]="basicForm" (ngSubmit)="onSubmitBasicForm()" class="space-y-4">
-              <div class="flex flex-col gap-2">
-                <label for="name" class="text-sm font-medium text-gray-700 dark:text-gray-300">
-                  Name <span class="text-red-500">*</span>
-                </label>
-                <input
-                  pInputText
-                  id="name"
-                  formControlName="name"
-                  placeholder="Enter your name"
-                  class="w-full"
-                  [class.border-red-500]="basicForm.get('name')?.invalid && basicForm.get('name')?.touched"
-                />
-                @if (getErrorMessage('name')) {
-                  <p-message severity="error" [text]="getErrorMessage('name')"></p-message>
-                }
+      <p-tabs [(value)]="activeTab" class="w-full">
+        <p-tablist class="flex flex-wrap gap-2 mb-6">
+          <p-tab [value]="'0'" class="flex items-center gap-2">
+            <i class="fas fa-file-alt text-blue-500"></i>
+            <span class="text-sm sm:text-base font-semibold">Basic Form</span>
+          </p-tab>
+          <p-tab [value]="'1'" class="flex items-center gap-2">
+            <i class="fas fa-search text-green-500"></i>
+            <span class="text-sm sm:text-base font-semibold">Debounced Search</span>
+          </p-tab>
+          <p-tab [value]="'2'" class="flex items-center gap-2">
+            <i class="fas fa-check-double text-purple-500"></i>
+            <span class="text-sm sm:text-base font-semibold">Async Validation</span>
+          </p-tab>
+          <p-tab [value]="'3'" class="flex items-center gap-2">
+            <i class="fas fa-sync text-orange-500"></i>
+            <span class="text-sm sm:text-base font-semibold">ValueChanges</span>
+          </p-tab>
+          <p-tab [value]="'4'" class="flex items-center gap-2">
+            <i class="fas fa-layer-group text-teal-500"></i>
+            <span class="text-sm sm:text-base font-semibold">Dynamic Form</span>
+          </p-tab>
+        </p-tablist>
+
+        <p-tabpanels>
+          <!-- Basic Form -->
+          <p-tabpanel [value]="'0'">
+            <div class="glass rounded-xl p-6 border-l-4 border-blue-500">
+              <div class="flex items-center gap-3 mb-6">
+                <i class="fas fa-file-alt text-blue-500 text-xl"></i>
+                <h3 class="text-lg sm:text-xl font-semibold text-gray-900 dark:text-gray-100">
+                  Basic Reactive Form with Validation
+                </h3>
               </div>
+              
+              <form [formGroup]="basicForm" (ngSubmit)="onSubmitBasicForm()" class="space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div class="space-y-2">
+                    <label for="name" class="block text-sm font-semibold text-gray-700 dark:text-gray-300">
+                      <i class="fas fa-user text-accent mr-2"></i>Name <span class="text-red-500">*</span>
+                    </label>
+                    <input
+                      pInputText
+                      id="name"
+                      formControlName="name"
+                      placeholder="Enter your name"
+                      class="input-modern w-full"
+                      [class.border-red-500]="basicForm.get('name')?.invalid && basicForm.get('name')?.touched"
+                    />
+                    @if (getErrorMessage('name')) {
+                      <p-message severity="error" [text]="getErrorMessage('name')" class="w-full"></p-message>
+                    }
+                  </div>
 
-              <div class="flex flex-col gap-2">
-                <label for="email" class="text-sm font-medium text-gray-700 dark:text-gray-300">
-                  Email <span class="text-red-500">*</span>
-                </label>
-                <input
-                  pInputText
-                  id="email"
-                  type="email"
-                  formControlName="email"
-                  placeholder="Enter your email"
-                  class="w-full"
-                  [class.border-red-500]="basicForm.get('email')?.invalid && basicForm.get('email')?.touched"
-                />
-                @if (getErrorMessage('email')) {
-                  <p-message severity="error" [text]="getErrorMessage('email')"></p-message>
-                }
+                  <div class="space-y-2">
+                    <label for="email" class="block text-sm font-semibold text-gray-700 dark:text-gray-300">
+                      <i class="fas fa-envelope text-accent mr-2"></i>Email <span class="text-red-500">*</span>
+                    </label>
+                    <input
+                      pInputText
+                      id="email"
+                      type="email"
+                      formControlName="email"
+                      placeholder="Enter your email"
+                      class="input-modern w-full"
+                      [class.border-red-500]="basicForm.get('email')?.invalid && basicForm.get('email')?.touched"
+                    />
+                    @if (getErrorMessage('email')) {
+                      <p-message severity="error" [text]="getErrorMessage('email')" class="w-full"></p-message>
+                    }
+                  </div>
+                </div>
+
+                <div class="flex gap-3 justify-end">
+                  <button
+                    type="submit"
+                    [disabled]="basicForm.invalid"
+                    class="btn-modern px-6 py-3 rounded-xl font-semibold flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    <i class="fas fa-paper-plane"></i>
+                    Submit
+                  </button>
+                </div>
+              </form>
+
+              <!-- Form State -->
+              <div class="mt-6 card-modern p-4">
+                <div class="flex items-center gap-2 mb-3">
+                  <i class="fas fa-info-circle text-accent"></i>
+                  <h4 class="text-sm font-semibold text-gray-900 dark:text-gray-100">Form State</h4>
+                </div>
+                <div class="code-block-modern">
+                  <pre class="overflow-x-auto text-sm"><code>{{ formState() | json }}</code></pre>
+                </div>
               </div>
-
-              <div class="flex gap-3 justify-end">
-                <p-button
-                  label="Submit"
-                  type="submit"
-                  [disabled]="basicForm.invalid"
-                  class="w-full sm:w-auto"
-                />
-              </div>
-            </form>
-
-            <!-- Form State -->
-            <div class="mt-6 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
-              <h3 class="text-sm font-semibold mb-2 text-gray-900 dark:text-gray-100">Form State</h3>
-              <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>{{ formState() | json }}</code></pre>
             </div>
-          </div>
-        </p-card>
-      </p-tabpanel>
+          </p-tabpanel>
 
-      <!-- Debounced Search -->
-      <p-tabpanel [value]="'1'">
-        <p-card>
-          <div class="space-y-4">
-            <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">
-              Debounced Search with RxJS
-            </h2>
-            <form [formGroup]="searchForm" class="space-y-4">
-              <div class="flex flex-col gap-2">
-                <label for="search" class="text-sm font-medium text-gray-700 dark:text-gray-300">
-                  Search
-                </label>
-                <input
-                  pInputText
-                  id="search"
-                  formControlName="search"
-                  placeholder="Type to search (debounced 300ms)..."
-                  class="w-full"
-                />
-                @if (searchLoading()) {
-                  <p class="text-sm text-gray-500 dark:text-gray-400">Searching...</p>
-                }
+          <!-- Debounced Search -->
+          <p-tabpanel [value]="'1'">
+            <div class="glass rounded-xl p-6 border-l-4 border-green-500">
+              <div class="flex items-center gap-3 mb-6">
+                <i class="fas fa-search text-green-500 text-xl"></i>
+                <h3 class="text-lg sm:text-xl font-semibold text-gray-900 dark:text-gray-100">
+                  Debounced Search with RxJS
+                </h3>
               </div>
-            </form>
-
-            <!-- Search Results -->
-            <div class="mt-4">
-              <h3 class="text-sm font-semibold mb-2 text-gray-900 dark:text-gray-100">Results</h3>
-              @if (searchResults().length > 0) {
+              
+              <form [formGroup]="searchForm" class="space-y-6">
                 <div class="space-y-2">
-                  @for (result of searchResults(); track result) {
-                    <div class="p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
-                      <p class="text-gray-900 dark:text-gray-100">{{ result }}</p>
+                  <label for="search" class="block text-sm font-semibold text-gray-700 dark:text-gray-300">
+                    <i class="fas fa-search text-accent mr-2"></i>Search
+                  </label>
+                  <input
+                    pInputText
+                    id="search"
+                    formControlName="search"
+                    placeholder="Type to search (debounced 300ms)..."
+                    class="input-modern w-full"
+                  />
+                  @if (searchLoading()) {
+                    <div class="flex items-center gap-2 text-blue-500">
+                      <i class="fas fa-spinner fa-spin"></i>
+                      <span class="text-sm">Searching...</span>
                     </div>
                   }
                 </div>
-              } @else if (searchForm.get('search')?.value && !searchLoading()) {
-                <p class="text-gray-500 dark:text-gray-400">No results found</p>
-              } @else {
-                <p class="text-gray-500 dark:text-gray-400">Start typing to search...</p>
-              }
+              </form>
+
+              <!-- Search Results -->
+              <div class="mt-6">
+                <div class="flex items-center gap-2 mb-4">
+                  <i class="fas fa-list text-accent"></i>
+                  <h4 class="text-sm font-semibold text-gray-900 dark:text-gray-100">Results</h4>
+                </div>
+                @if (searchResults().length > 0) {
+                  <div class="space-y-2">
+                    @for (result of searchResults(); track result) {
+                      <div class="card-modern p-4 hover-lift flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-full bg-gradient-to-br from-green-500 to-teal-500 flex items-center justify-center text-white">
+                          <i class="fas fa-check text-sm"></i>
+                        </div>
+                        <span class="text-gray-900 dark:text-gray-100 font-medium">{{ result }}</span>
+                      </div>
+                    }
+                  </div>
+                } @else if (searchForm.get('search')?.value && !searchLoading()) {
+                  <div class="card-modern p-4 text-center">
+                    <i class="fas fa-search text-gray-400 text-2xl mb-2"></i>
+                    <p class="text-gray-500 dark:text-gray-400">No results found</p>
+                  </div>
+                } @else {
+                  <div class="card-modern p-4 text-center">
+                    <i class="fas fa-keyboard text-gray-400 text-2xl mb-2"></i>
+                    <p class="text-gray-500 dark:text-gray-400">Start typing to search...</p>
+                  </div>
+                }
+              </div>
             </div>
-          </div>
-        </p-card>
-      </p-tabpanel>
+          </p-tabpanel>
 
-      <!-- Async Validation -->
-      <p-tabpanel [value]="'2'">
-        <p-card>
-          <div class="space-y-4">
-            <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">
-              Async Username Validation
-            </h2>
-            <form [formGroup]="asyncForm" class="space-y-4">
-              <div class="flex flex-col gap-2">
-                <label for="username" class="text-sm font-medium text-gray-700 dark:text-gray-300">
-                  Username <span class="text-red-500">*</span>
-                </label>
-                <input
-                  pInputText
-                  id="username"
-                  formControlName="username"
-                  placeholder="Enter username (try: admin, user, test)"
-                  class="w-full"
-                  [class.border-red-500]="asyncForm.get('username')?.invalid && asyncForm.get('username')?.touched"
-                />
-                @if (asyncForm.get('username')?.pending) {
-                  <p class="text-sm text-blue-500">Validating username...</p>
-                }
-                @if (getAsyncError('username')) {
-                  <p-message severity="error" [text]="getAsyncError('username')"></p-message>
-                }
-                @if (asyncForm.get('username')?.valid && asyncForm.get('username')?.touched) {
-                  <p-message severity="success" text="Username is available"></p-message>
-                }
+          <!-- Async Validation -->
+          <p-tabpanel [value]="'2'">
+            <div class="glass rounded-xl p-6 border-l-4 border-purple-500">
+              <div class="flex items-center gap-3 mb-6">
+                <i class="fas fa-check-double text-purple-500 text-xl"></i>
+                <h3 class="text-lg sm:text-xl font-semibold text-gray-900 dark:text-gray-100">
+                  Async Username Validation
+                </h3>
               </div>
-            </form>
-          </div>
-        </p-card>
-      </p-tabpanel>
+              
+              <form [formGroup]="asyncForm" class="space-y-6">
+                <div class="space-y-2">
+                  <label for="username" class="block text-sm font-semibold text-gray-700 dark:text-gray-300">
+                    <i class="fas fa-user text-accent mr-2"></i>Username <span class="text-red-500">*</span>
+                  </label>
+                  <input
+                    pInputText
+                    id="username"
+                    formControlName="username"
+                    placeholder="Enter username (try: admin, user, test)"
+                    class="input-modern w-full"
+                    [class.border-red-500]="asyncForm.get('username')?.invalid && asyncForm.get('username')?.touched"
+                  />
+                  @if (asyncForm.get('username')?.pending) {
+                    <div class="flex items-center gap-2 text-blue-500">
+                      <i class="fas fa-spinner fa-spin"></i>
+                      <span class="text-sm">Validating username...</span>
+                    </div>
+                  }
+                  @if (getAsyncError('username')) {
+                    <p-message severity="error" [text]="getAsyncError('username')" class="w-full"></p-message>
+                  }
+                  @if (asyncForm.get('username')?.valid && asyncForm.get('username')?.touched) {
+                    <p-message severity="success" text="Username is available" class="w-full"></p-message>
+                  }
+                </div>
+              </form>
 
-      <!-- ValueChanges -->
-      <p-tabpanel [value]="'3'">
-        <p-card>
-          <div class="space-y-4">
-            <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">
-              ValueChanges Pattern
-            </h2>
-            <form [formGroup]="valueChangesForm" class="space-y-4">
-              <div class="flex flex-col gap-2">
-                <label for="firstName" class="text-sm font-medium text-gray-700 dark:text-gray-300">
-                  First Name
-                </label>
-                <input
-                  pInputText
-                  id="firstName"
-                  formControlName="firstName"
-                  placeholder="Enter first name"
-                  class="w-full"
-                />
-              </div>
-
-              <div class="flex flex-col gap-2">
-                <label for="lastName" class="text-sm font-medium text-gray-700 dark:text-gray-300">
-                  Last Name
-                </label>
-                <input
-                  pInputText
-                  id="lastName"
-                  formControlName="lastName"
-                  placeholder="Enter last name"
-                  class="w-full"
-                />
-              </div>
-
-              <div class="flex flex-col gap-2">
-                <label for="fullName" class="text-sm font-medium text-gray-700 dark:text-gray-300">
-                  Full Name (Computed)
-                </label>
-                <input
-                  pInputText
-                  id="fullName"
-                  formControlName="fullName"
-                  class="w-full bg-gray-50 dark:bg-gray-800"
-                  readonly
-                />
-                <p class="text-xs text-gray-500 dark:text-gray-400">
-                  Automatically computed from first and last name using valueChanges
+              <div class="mt-6 card-modern p-4 border-l-4 border-yellow-500">
+                <div class="flex items-center gap-2 mb-2">
+                  <i class="fas fa-lightbulb text-yellow-500"></i>
+                  <span class="text-sm font-semibold text-gray-900 dark:text-gray-100">Tip</span>
+                </div>
+                <p class="text-sm text-gray-600 dark:text-gray-400">
+                  Try entering "admin", "user", or "test" - these usernames are already taken!
                 </p>
               </div>
-            </form>
-          </div>
-        </p-card>
-      </p-tabpanel>
+            </div>
+          </p-tabpanel>
 
-      <!-- Dynamic Form -->
-      <p-tabpanel [value]="'4'">
-        <p-card>
-          <div class="space-y-4">
-            <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">
-              Dynamic Form Integration
-            </h2>
-            <app-dynamic-form
-              [config]="dynamicFormConfig"
-              (formSubmit)="onDynamicFormSubmit($event)"
-            />
-          </div>
-        </p-card>
-      </p-tabpanel>
-    </p-tabpanels>
-  </p-tabs>
+          <!-- ValueChanges -->
+          <p-tabpanel [value]="'3'">
+            <div class="glass rounded-xl p-6 border-l-4 border-orange-500">
+              <div class="flex items-center gap-3 mb-6">
+                <i class="fas fa-sync text-orange-500 text-xl"></i>
+                <h3 class="text-lg sm:text-xl font-semibold text-gray-900 dark:text-gray-100">
+                  ValueChanges Pattern
+                </h3>
+              </div>
+              
+              <form [formGroup]="valueChangesForm" class="space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div class="space-y-2">
+                    <label for="firstName" class="block text-sm font-semibold text-gray-700 dark:text-gray-300">
+                      <i class="fas fa-user text-accent mr-2"></i>First Name
+                    </label>
+                    <input
+                      pInputText
+                      id="firstName"
+                      formControlName="firstName"
+                      placeholder="Enter first name"
+                      class="input-modern w-full"
+                    />
+                  </div>
+
+                  <div class="space-y-2">
+                    <label for="lastName" class="block text-sm font-semibold text-gray-700 dark:text-gray-300">
+                      <i class="fas fa-user text-accent mr-2"></i>Last Name
+                    </label>
+                    <input
+                      pInputText
+                      id="lastName"
+                      formControlName="lastName"
+                      placeholder="Enter last name"
+                      class="input-modern w-full"
+                    />
+                  </div>
+                </div>
+
+                <div class="space-y-2">
+                  <label for="fullName" class="block text-sm font-semibold text-gray-700 dark:text-gray-300">
+                    <i class="fas fa-id-card text-accent mr-2"></i>Full Name (Computed)
+                  </label>
+                  <input
+                    pInputText
+                    id="fullName"
+                    formControlName="fullName"
+                    class="input-modern w-full bg-gray-100 dark:bg-gray-700"
+                    readonly
+                  />
+                  <p class="text-xs text-gray-500 dark:text-gray-400 flex items-center gap-2">
+                    <i class="fas fa-info-circle"></i>
+                    Automatically computed from first and last name using valueChanges
+                  </p>
+                </div>
+              </form>
+            </div>
+          </p-tabpanel>
+
+          <!-- Dynamic Form -->
+          <p-tabpanel [value]="'4'">
+            <div class="glass rounded-xl p-6 border-l-4 border-teal-500">
+              <div class="flex items-center gap-3 mb-6">
+                <i class="fas fa-layer-group text-teal-500 text-xl"></i>
+                <h3 class="text-lg sm:text-xl font-semibold text-gray-900 dark:text-gray-100">
+                  Dynamic Form Integration
+                </h3>
+              </div>
+              <app-dynamic-form
+                [config]="dynamicFormConfig"
+                (formSubmit)="onDynamicFormSubmit($event)"
+              />
+            </div>
+          </p-tabpanel>
+        </p-tabpanels>
+      </p-tabs>
+    </div>
+  </p-card>
+
+  <!-- Key Takeaways -->
+  <p-card class="card-modern hover-lift slide-in-up">
+    <div class="padding-responsive">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-teal-500 to-cyan-600 flex items-center justify-center">
+          <i class="fas fa-graduation-cap text-white"></i>
+        </div>
+        <h2 class="subheading-responsive text-gray-900 dark:text-gray-100">Key Takeaways</h2>
+      </div>
+      
+      <ul class="list-modern">
+        <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+          Use FormBuilder for cleaner form creation
+        </li>
+        <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+          Debounce input with RxJS for better performance
+        </li>
+        <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+          Async validators enable server-side validation
+        </li>
+        <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
+          ValueChanges enables reactive form updates
+        </li>
+      </ul>
+    </div>
+  </p-card>
 </div>
-
