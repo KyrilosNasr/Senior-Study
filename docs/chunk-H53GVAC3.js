@@ -1,0 +1,1 @@
+import{B as c,D as i,E as l,W as n,X as p,ca as b,l as a}from"./chunk-2VW4HCOQ.js";var f=class r{pollData(e,t=5e3,o){let s=o?e().pipe(i(o)):a;return c(t).pipe(n(()=>e()),p(s),l(m=>(console.error("Polling error:",m),a)))}static \u0275fac=function(t){return new(t||r)};static \u0275prov=b({token:r,factory:r.\u0275fac})};export{f as a};

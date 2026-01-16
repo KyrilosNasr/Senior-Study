@@ -178,7 +178,7 @@
               @let rowExpanded = isRowExpanded(rowData);
               <button
                 type="button"
-                (click)="toggleRowExpansion(rowData, rowExpanded); $event.stopPropagation()"
+                (click)="toggleRowExpansion(rowData); $event.stopPropagation()"
                 class="p-button p-component p-button-text p-button-rounded p-button-sm p-button-icon-only w-8 h-8 flex items-center justify-center hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors cursor-pointer"
                 [attr.aria-label]="rowExpanded ? 'Collapse row' : 'Expand row'"
                 [attr.aria-expanded]="rowExpanded"
@@ -281,9 +281,7 @@
         @if (config.rowExpansion?.enabled && isRowExpanded(rowData)) {
           <tr>
             <td [attr.colspan]="config.columns.length + (config.selection?.enabled ? 1 : 0) + (config.actions?.length ? 1 : 0) + (config.rowEditing?.enabled && config.rowEditing?.mode === 'row' ? 1 : 0) + 1" class="p-4 bg-gray-50 dark:bg-gray-800/30">
-              @if (config.rowExpansion?.expansionTemplateKey) {
-                <ng-container *ngTemplateOutlet="getExpansionTemplate(rowData) || null"></ng-container>
-              } @else if (getNestedConfigForRow(rowData)) {
+              @if (getNestedConfigForRow(rowData)) {
                 <!-- Nested Table -->
                 <div class="space-y-4">
                   <div class="flex items-center gap-2 mb-4">

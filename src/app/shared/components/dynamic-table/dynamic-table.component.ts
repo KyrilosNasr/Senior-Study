@@ -10,7 +10,8 @@ import {
   TemplateRef,
   ContentChildren,
   QueryList,
-  ViewChild
+  ViewChild,
+  inject
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -46,9 +47,7 @@ import { getFontAwesomeIcon } from '../../utils/icon-mapper.util';
 import { getFieldValue, getRowId, fieldToString } from '../../utils/table-data.util';
 import { TableExportService } from '../../services/table-export.service';
 import { TableMenuBuilderService } from '../../services/table-menu-builder.service';
-import { TableRowEditingService } from '../../services/table-row-editing.service';
-import { TableRowExpansionService } from '../../services/table-row-expansion.service';
-import { TableFilterManagementService } from '../../services/table-filter-management.service';
+import { TableStateService } from './services/table-state.service';
 
 @Component({
   selector: 'app-dynamic-table',
@@ -72,9 +71,7 @@ import { TableFilterManagementService } from '../../services/table-filter-manage
   providers: [
     TableExportService,
     TableMenuBuilderService,
-    TableRowEditingService,
-    TableRowExpansionService,
-    TableFilterManagementService
+    TableStateService
   ],
   templateUrl: './dynamic-table.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -99,11 +96,16 @@ export class DynamicTableComponent<T = unknown> {
   selectedRows = signal<T[]>([]);
   first = signal(0);
   rows = signal(10);
-  editingRowKeys = signal<Record<string, boolean>>({});
-  editingCells = signal<Record<string, Record<string, unknown>>>({});
-  expandedRows = signal<Record<string | number, boolean>>({});
-  globalFilterValue = signal('');
-  filters = signal<Record<string, FilterMetadata>>({});
+
+  // Inject state service
+  private readonly state = inject(TableStateService<T>);
+
+  // Expose state signals to template
+  readonly expandedRows = this.state.expandedRows;
+  readonly editingRowKeys = this.state.editingRowKeys;
+  readonly editingCells = this.state.editingCells;
+  readonly globalFilterValue = this.state.globalFilterValue;
+  readonly filters = this.state.filters;
 
   filteredData = computed(() => {
     const data = this.config.data || [];
@@ -124,10 +126,7 @@ export class DynamicTableComponent<T = unknown> {
   constructor(
     private cdr: ChangeDetectorRef,
     private exportService: TableExportService,
-    private menuBuilder: TableMenuBuilderService,
-    private editingService: TableRowEditingService,
-    private expansionService: TableRowExpansionService,
-    private filterService: TableFilterManagementService
+    private menuBuilder: TableMenuBuilderService
   ) {}
 
   trackByIndex(index: number): number {
@@ -166,7 +165,7 @@ export class DynamicTableComponent<T = unknown> {
 
   onGlobalFilter(event: Event): void {
     const value = (event.target as HTMLInputElement).value;
-    this.globalFilterValue.set(value);
+    this.state.setGlobalFilter(value);
     this.tableEvent.emit({
       type: 'filter',
       data: this.filteredData()
@@ -174,16 +173,16 @@ export class DynamicTableComponent<T = unknown> {
   }
 
   onFilter(event: unknown): void {
-    this.filterService.onFilter(event, this.filters, (filters) => {
-      this.tableEvent.emit({
-        type: 'filter',
-        filters,
-        data: this.config.data
-      });
-      if (this.config.onFilter) {
-        this.config.onFilter({ filters });
-      }
+    this.state.onFilter(event);
+    const filters = this.state.filters();
+    this.tableEvent.emit({
+      type: 'filter',
+      filters,
+      data: this.config.data
     });
+    if (this.config.onFilter) {
+      this.config.onFilter({ filters });
+    }
   }
 
   onSelectionChange(event: { data?: T | T[]; type?: string; originalEvent?: Event }): void {
@@ -270,92 +269,70 @@ export class DynamicTableComponent<T = unknown> {
   }
 
   onRowExpand(event: { data: T }): void {
-    this.expansionService.expandRow(
-      event.data,
-      this.config.columns,
-      this.expandedRows,
-      this.table,
-      (row) => {
-        this.cdr.markForCheck();
-        this.tableEvent.emit({
-          type: 'expand',
-          data: row
-        });
-      }
-    );
+    const rowId = getRowId(event.data, this.config.columns);
+    this.state.expandRow(rowId, this.table);
+    this.cdr.markForCheck();
+    this.tableEvent.emit({
+      type: 'expand',
+      data: event.data
+    });
   }
 
   onRowCollapse(event: { data: T }): void {
-    this.expansionService.collapseRow(
-      event.data,
-      this.config.columns,
-      this.expandedRows,
-      this.table,
-      (row: T) => {
-        this.cdr.markForCheck();
-        this.tableEvent.emit({
-          type: 'collapse',
-          data: row
-        });
-      }
-    );
+    const rowId = getRowId(event.data, this.config.columns);
+    this.state.collapseRow(rowId, this.table);
+    this.cdr.markForCheck();
+    this.tableEvent.emit({
+      type: 'collapse',
+      data: event.data
+    });
   }
 
-  toggleRowExpansion(row: T, currentExpanded: boolean): void {
-    this.expansionService.toggleRowExpansion(
-      row,
-      currentExpanded,
-      this.config.columns,
-      this.expandedRows,
-      this.table,
-      (expandedRow: T) => {
-        setTimeout(() => this.cdr.markForCheck(), 0);
-        this.tableEvent.emit({
-          type: 'expand',
-          data: expandedRow
-        });
-      },
-      (collapsedRow: T) => {
-        setTimeout(() => this.cdr.markForCheck(), 0);
-        this.tableEvent.emit({
-          type: 'collapse',
-          data: collapsedRow
-        });
-      }
-    );
+  toggleRowExpansion(row: T): void {
+    const rowId = getRowId(row, this.config.columns);
+    const expanded = this.state.toggleExpansion(rowId, this.table);
+    this.cdr.markForCheck();
+    this.tableEvent.emit({
+      type: expanded ? 'expand' : 'collapse',
+      data: row
+    });
   }
 
   getNestedDataForRow(row: T): unknown[] {
-    return this.expansionService.getNestedDataForRow(row, this.getNestedTableData);
+    return this.getNestedTableData?.(row) ?? [];
   }
 
   getNestedConfigForRow(row: T): DynamicTableConfig<unknown> | null {
-    return this.expansionService.getNestedConfigForRow(row, this.getNestedTableConfig);
+    return this.getNestedTableConfig?.(row) ?? null;
   }
 
   isRowExpanded(row: T): boolean {
-    return this.expansionService.isRowExpanded(row, this.config.columns, this.expandedRows);
+    const rowId = getRowId(row, this.config.columns);
+    return this.state.isExpanded(rowId);
   }
 
   updateCellValue(row: T, field: string, value: unknown): void {
-    this.editingService.updateCellValue(row, field, value, this.config.columns, this.editingCells);
+    const rowId = getRowId(row, this.config.columns);
+    this.state.updateCellValue(String(rowId), field, value);
   }
 
   startRowEdit(row: T): void {
-    this.editingService.startRowEdit(row, this.config.columns, this.editingRowKeys, this.editingCells);
+    const rowId = getRowId(row, this.config.columns);
+    this.state.startEdit(String(rowId), row, this.config.columns);
   }
 
   saveRowEdit(row: T): void {
-    const updatedRow = this.editingService.saveRowEdit(row, this.config.columns, this.editingCells);
+    const rowId = getRowId(row, this.config.columns);
+    const updatedRow = this.state.saveEdit(String(rowId), row, this.config.columns);
     
+    // Apply updates to original row
     const rowRecord = row as Record<string, unknown>;
     const updatedRecord = updatedRow as Record<string, unknown>;
     Object.keys(updatedRecord).forEach(key => {
       rowRecord[key] = updatedRecord[key];
     });
     
-    const rowId = getRowId(row, this.config.columns);
-    this.editingService.clearEditingState(rowId, this.editingRowKeys, this.editingCells);
+    this.state.cancelEdit(String(rowId));
     
     if (this.config.rowEditing?.onSave) {
       this.config.rowEditing.onSave(row);
@@ -369,7 +346,7 @@ export class DynamicTableComponent<T = unknown> {
 
   cancelRowEdit(row: T): void {
     const rowId = getRowId(row, this.config.columns);
-    this.editingService.clearEditingState(rowId, this.editingRowKeys, this.editingCells);
+    this.state.cancelEdit(String(rowId));
     
     if (this.config.rowEditing?.onCancel) {
       this.config.rowEditing.onCancel(row);
@@ -377,11 +354,13 @@ export class DynamicTableComponent<T = unknown> {
   }
 
   isRowEditing(row: T): boolean {
-    return this.editingService.isRowEditing(row, this.config.columns, this.editingRowKeys);
+    const rowId = getRowId(row, this.config.columns);
+    return this.state.isEditing(String(rowId));
   }
 
   getEditingValue(row: T, field: string): unknown {
-    return this.editingService.getEditingValue(row, field, this.config.columns, this.editingCells);
+    const rowId = getRowId(row, this.config.columns);
+    return this.state.getEditingValue(String(rowId), field, row);
   }
 
   onColumnResize(event: unknown): void {
@@ -404,48 +383,15 @@ export class DynamicTableComponent<T = unknown> {
   }
 
   getFilterableColumns(): string[] {
-    return this.filterService.getFilterableColumns(this.config.columns);
+    return this.state.getFilterableColumns(this.config.columns);
   }
 
   getFilterMatchModes(col: TableColumn<T>): Array<{ label: string; value: string }> {
-    return this.filterService.getFilterMatchModes(col);
+    return this.state.getFilterMatchModes(col);
   }
 
-  getFilterMatchModeOptions(filterType?: string): { label: string; value: string }[] {
-    switch (filterType) {
-      case 'number':
-        return [
-          { label: 'Equals', value: 'equals' },
-          { label: 'Not Equals', value: 'notEquals' },
-          { label: 'Less Than', value: 'lt' },
-          { label: 'Less Than or Equal', value: 'lte' },
-          { label: 'Greater Than', value: 'gt' },
-          { label: 'Greater Than or Equal', value: 'gte' },
-          { label: 'Between', value: 'between' }
-        ];
-      case 'date':
-        return [
-          { label: 'Date Is', value: 'dateIs' },
-          { label: 'Date Is Not', value: 'dateIsNot' },
-          { label: 'Date Before', value: 'dateBefore' },
-          { label: 'Date After', value: 'dateAfter' }
-        ];
-      case 'select':
-        return [
-          { label: 'Equals', value: 'equals' },
-          { label: 'Not Equals', value: 'notEquals' },
-          { label: 'In', value: 'in' }
-        ];
-      default: // text
-        return [
-          { label: 'Contains', value: 'contains' },
-          { label: 'Not Contains', value: 'notContains' },
-          { label: 'Starts With', value: 'startsWith' },
-          { label: 'Ends With', value: 'endsWith' },
-          { label: 'Equals', value: 'equals' },
-          { label: 'Not Equals', value: 'notEquals' }
-        ];
-    }
+  getFilterMatchModeOptions(filterType?: string): Array<{ label: string; value: string }> {
+    return this.state.getFilterMatchModeOptions(filterType);
   }
 
   onRowReorder(event: unknown): void {
@@ -476,27 +422,16 @@ export class DynamicTableComponent<T = unknown> {
   }
 
   clearFilters(table?: PrimeNGTable): void {
-    this.filterService.clearFilters(table, this.filters, this.globalFilterValue, () => {
-      this.tableEvent.emit({
-        type: 'filter',
-        filters: {},
-        data: this.config.data
-      });
+    this.state.clearFilters(table);
+    this.tableEvent.emit({
+      type: 'filter',
+      filters: {},
+      data: this.config.data
     });
   }
 
   hasActiveFilters(): boolean {
-    return this.filterService.hasActiveFilters(this.filters, this.globalFilterValue);
+    return this.state.hasActiveFilters();
   }
 
-  getColumnTemplate(column: TableColumn<T>): TemplateRef<unknown> | null {
-    if (!column.cellTemplateKey || !this.cellTemplates) {
-      return null;
-    }
-    return null;
-  }
-
-  getExpansionTemplate(row: T): TemplateRef<unknown> | null {
-    return null;
-  }
 }
