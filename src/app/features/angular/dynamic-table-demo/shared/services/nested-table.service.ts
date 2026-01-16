@@ -85,9 +85,7 @@ export class NestedTableService {
         }
       ],
       data: this.getNestedTableData(user),
-      pagination: true,
-      rowsPerPage: 5,
-      rowsPerPageOptions: [5, 10],
+      pagination: false,
       sortMode: 'multiple',
       globalFilter: true,
       advancedFilter: true,
