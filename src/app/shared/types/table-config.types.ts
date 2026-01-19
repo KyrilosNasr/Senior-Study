@@ -3,20 +3,20 @@ import { SelectOption, SortOrder } from './common.types';
 /**
  * Filter operator types for advanced filtering
  */
-export type FilterOperator = 
-  | 'equals' 
-  | 'notEquals' 
-  | 'contains' 
-  | 'notContains' 
-  | 'startsWith' 
-  | 'endsWith' 
-  | 'lt' 
-  | 'lte' 
-  | 'gt' 
-  | 'gte' 
-  | 'dateIs' 
-  | 'dateIsNot' 
-  | 'dateBefore' 
+export type FilterOperator =
+  | 'equals'
+  | 'notEquals'
+  | 'contains'
+  | 'notContains'
+  | 'startsWith'
+  | 'endsWith'
+  | 'lt'
+  | 'lte'
+  | 'gt'
+  | 'gte'
+  | 'dateIs'
+  | 'dateIsNot'
+  | 'dateBefore'
   | 'dateAfter'
   | 'between'
   | 'in';
@@ -214,6 +214,9 @@ export interface DynamicTableConfig<T = unknown> {
   // State management
   stateKey?: string; // For stateful table
   stateStorage?: 'session' | 'local';
+  // Server-side (Lazy) loading
+  lazy?: boolean;
+  totalRecords?: number;
   // Events
   onRowClick?: (row: T) => void;
   onRowSelect?: (row: T | T[]) => void;

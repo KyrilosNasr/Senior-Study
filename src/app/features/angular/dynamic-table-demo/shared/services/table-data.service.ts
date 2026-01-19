@@ -11,46 +11,21 @@ export class TableDataService {
    * Sample users data
    */
   readonly users: readonly User[] = [
-    {
-      id: 1,
-      name: 'John Doe',
-      email: 'john@example.com',
-      role: 'Admin',
-      status: 'active',
-      createdAt: new Date('2024-01-15')
-    },
-    {
-      id: 2,
-      name: 'Jane Smith',
-      email: 'jane@example.com',
-      role: 'User',
-      status: 'active',
-      createdAt: new Date('2024-02-20')
-    },
-    {
-      id: 3,
-      name: 'Bob Johnson',
-      email: 'bob@example.com',
-      role: 'User',
-      status: 'inactive',
-      createdAt: new Date('2024-03-10')
-    },
-    {
-      id: 4,
-      name: 'Alice Williams',
-      email: 'alice@example.com',
-      role: 'Moderator',
-      status: 'active',
-      createdAt: new Date('2024-01-05')
-    },
-    {
-      id: 5,
-      name: 'Charlie Brown',
-      email: 'charlie@example.com',
-      role: 'User',
-      status: 'active',
-      createdAt: new Date('2024-04-12')
-    }
+    { id: 1, name: 'John Doe', email: 'john@example.com', role: 'Admin', status: 'active', createdAt: new Date('2024-01-15') },
+    { id: 2, name: 'Jane Smith', email: 'jane@example.com', role: 'User', status: 'active', createdAt: new Date('2024-02-20') },
+    { id: 3, name: 'Bob Johnson', email: 'bob@example.com', role: 'User', status: 'inactive', createdAt: new Date('2024-03-10') },
+    { id: 4, name: 'Alice Williams', email: 'alice@example.com', role: 'Moderator', status: 'active', createdAt: new Date('2024-01-05') },
+    { id: 5, name: 'Charlie Brown', email: 'charlie@example.com', role: 'User', status: 'active', createdAt: new Date('2024-04-12') },
+    { id: 6, name: 'David Miller', email: 'david@example.com', role: 'Admin', status: 'active', createdAt: new Date('2024-05-01') },
+    { id: 7, name: 'Eva Davis', email: 'eva@example.com', role: 'User', status: 'inactive', createdAt: new Date('2024-05-15') },
+    { id: 8, name: 'Frank Wilson', email: 'frank@example.com', role: 'Moderator', status: 'active', createdAt: new Date('2024-06-02') },
+    { id: 9, name: 'Grace Lee', email: 'grace@example.com', role: 'User', status: 'active', createdAt: new Date('2024-06-20') },
+    { id: 10, name: 'Henry Taylor', email: 'henry@example.com', role: 'User', status: 'active', createdAt: new Date('2024-07-05') },
+    { id: 11, name: 'Ivy Martin', email: 'ivy@example.com', role: 'Moderator', status: 'active', createdAt: new Date('2024-07-15') },
+    { id: 12, name: 'Jack Anderson', email: 'jack@example.com', role: 'User', status: 'inactive', createdAt: new Date('2024-08-01') },
+    { id: 13, name: 'Kelly White', email: 'kelly@example.com', role: 'Admin', status: 'active', createdAt: new Date('2024-08-10') },
+    { id: 14, name: 'Liam Harris', email: 'liam@example.com', role: 'User', status: 'active', createdAt: new Date('2024-08-20') },
+    { id: 15, name: 'Mia Clark', email: 'mia@example.com', role: 'User', status: 'active', createdAt: new Date('2024-09-01') }
   ] as const;
 
   /**

@@ -1,12 +1,12 @@
 import {
   Component,
-  Input,
   Output,
   EventEmitter,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   signal,
   computed,
+  input,
   TemplateRef,
   ContentChildren,
   QueryList,
@@ -46,7 +46,6 @@ import {
 import { getFontAwesomeIcon } from '../../utils/icon-mapper.util';
 import { getFieldValue, getRowId, fieldToString } from '../../utils/table-data.util';
 import { TableExportService } from '../../services/table-export.service';
-import { TableMenuBuilderService } from '../../services/table-menu-builder.service';
 import { TableStateService } from './services/table-state.service';
 
 @Component({
@@ -70,19 +69,18 @@ import { TableStateService } from './services/table-state.service';
   ],
   providers: [
     TableExportService,
-    TableMenuBuilderService,
     TableStateService
   ],
   templateUrl: './dynamic-table.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DynamicTableComponent<T = unknown> {
-  @Input({ required: true }) config!: DynamicTableConfig<T>;
+  config = input.required<DynamicTableConfig<T>>();
   @Output() tableEvent = new EventEmitter<TableEventData<T>>();
   @Output() rowClick = new EventEmitter<T>();
   @Output() selectionChange = new EventEmitter<T | T[]>();
-  @Input() getNestedTableData?: (row: T) => unknown[];
-  @Input() getNestedTableConfig?: (row: T) => DynamicTableConfig<unknown>;
+  getNestedTableData = input<(row: T) => unknown[]>();
+  getNestedTableConfig = input<(row: T) => DynamicTableConfig<unknown>>();
 
   @ContentChildren('cellTemplate') cellTemplates?: QueryList<TemplateRef<unknown>>;
   @ContentChildren('headerTemplate') headerTemplates?: QueryList<TemplateRef<unknown>>;
@@ -107,16 +105,70 @@ export class DynamicTableComponent<T = unknown> {
   readonly globalFilterValue = this.state.globalFilterValue;
   readonly filters = this.state.filters;
 
+  // Feature Flags - Computed for better readability in HTML
+  readonly showToolbar = computed(() =>
+    this.config().globalFilter ||
+    this.config().exportable ||
+    this.config().columnToggle?.enabled ||
+    this.config().advancedFilter
+  );
+
+  readonly isSelectionEnabled = computed(() => !!this.config().selection?.enabled);
+  readonly isCheckboxSelection = computed(() => !!this.config().selection?.checkbox);
+  readonly isExpansionEnabled = computed(() => !!this.config().rowExpansion?.enabled);
+  readonly isRowEditingEnabled = computed(() => !!this.config().rowEditing?.enabled);
+  readonly isRowEditingMode = computed(() => !!this.config().rowEditing?.enabled && this.config().rowEditing?.mode === 'row');
+  readonly isCellEditingMode = computed(() => !!this.config().rowEditing?.enabled && this.config().rowEditing?.mode === 'cell');
+  readonly hasActions = computed(() => (this.config().actions?.length ?? 0) > 0);
+
+  // Computed for loading state
+  readonly loading = computed(() => this.config().loading || false);
+
+  // Computed for Table Data
+  readonly tableValue = computed(() => (this.config().lazy ? this.config().data : this.filteredData()) || []);
+
+  // The "Principal" way: Centralized Colspan Calculation
+  readonly totalColspan = computed(() => {
+    let count = this.config().columns.length;
+    if (this.isSelectionEnabled() && this.isCheckboxSelection()) count++;
+    if (this.isExpansionEnabled()) count++;
+    if (this.hasActions()) count++;
+    if (this.isRowEditingEnabled() && this.isRowEditingMode()) count++;
+    return count;
+  });
+
+  // Table Configuration Groups
+  readonly paginationSettings = computed(() => ({
+    enabled: this.config().pagination !== false,
+    rows: this.config().rowsPerPage || 10,
+    options: this.config().rowsPerPageOptions || [10, 25, 50, 100]
+  }));
+
+  readonly scrollingSettings = computed(() => ({
+    scrollable: this.config().scrollable || this.config().virtualScroll || false,
+    height: this.config().scrollHeight || '400px',
+    virtual: this.config().virtualScroll || false
+  }));
+
+  readonly featureSettings = computed(() => ({
+    resizable: this.config().columnResize?.enabled || false,
+    reorderable: this.config().columnReorder?.enabled || false,
+    striped: this.config().stripedRows !== false,
+    gridlines: this.config().showGridlines || false
+  }));
+
+  readonly editSettings = computed(() => ({
+    mode: this.isRowEditingEnabled() && this.isCellEditingMode() ? 'cell' : 'row' as 'cell' | 'row'
+  }));
+
   filteredData = computed(() => {
-    const data = this.config.data || [];
+    const data = this.config().data || [];
     const globalFilter = this.globalFilterValue().toLowerCase();
 
-    if (!globalFilter && !this.config.globalFilter) {
-      return data;
-    }
+    if (!globalFilter) return data;
 
     return data.filter(row => {
-      return this.config.columns.some(column => {
+      return this.config().columns.some(column => {
         const value = getFieldValue(row, column.field);
         return String(value).toLowerCase().includes(globalFilter);
       });
@@ -125,313 +177,155 @@ export class DynamicTableComponent<T = unknown> {
 
   constructor(
     private cdr: ChangeDetectorRef,
-    private exportService: TableExportService,
-    private menuBuilder: TableMenuBuilderService
-  ) {}
+    private exportService: TableExportService
+  ) { }
 
-  trackByIndex(index: number): number {
-    return index;
-  }
-
-  trackByField(index: number, column: TableColumn<T>): string {
-    return String(column.field);
-  }
-
+  // ==================== Utilities ====================
+  trackByIndex = (index: number) => index;
+  trackByField = (index: number, col: TableColumn<T>) => String(col.field);
   fieldToString = fieldToString;
   getFieldValue = getFieldValue;
   getFontAwesomeIcon = getFontAwesomeIcon;
 
+  private emitEvent(type: TableEventData<T>['type'], data?: any, extra?: Partial<TableEventData<T>>): void {
+    this.tableEvent.emit({ type, data, ...extra });
+  }
+
+  // ==================== Table Events ====================
   onSort(event: { field: string; order: number }): void {
-    this.tableEvent.emit({
-      type: 'sort',
-      field: event.field,
-      order: event.order as SortOrder,
-      data: this.config.data
-    });
+    this.emitEvent('sort', this.config().data, { field: event.field, order: event.order as SortOrder });
   }
 
   onPageChange(event: { first: number; rows: number }): void {
     this.first.set(event.first);
     this.rows.set(event.rows);
-    const page = Math.floor(event.first / event.rows) + 1;
-    this.tableEvent.emit({
-      type: 'page',
-      page,
+    this.emitEvent('page', this.config().data, {
+      page: Math.floor(event.first / event.rows) + 1,
       first: event.first,
-      rows: event.rows,
-      data: this.config.data
+      rows: event.rows
     });
   }
 
   onGlobalFilter(event: Event): void {
     const value = (event.target as HTMLInputElement).value;
     this.state.setGlobalFilter(value);
-    this.tableEvent.emit({
-      type: 'filter',
-      data: this.filteredData()
-    });
-  }
 
-  onFilter(event: unknown): void {
-    this.state.onFilter(event);
-    const filters = this.state.filters();
-    this.tableEvent.emit({
-      type: 'filter',
-      filters,
-      data: this.config.data
-    });
-    if (this.config.onFilter) {
-      this.config.onFilter({ filters });
+    if (this.config().lazy) {
+      this.emitEvent('filter', value);
+    } else {
+      this.emitEvent('filter', this.filteredData());
     }
   }
 
-  onSelectionChange(event: { data?: T | T[]; type?: string; originalEvent?: Event }): void {
+  onFilter(event: any): void {
+    this.state.onFilter(event);
+    const filters = this.state.filters();
+    this.config().onFilter?.({ filters });
+    this.emitEvent('filter', this.config().data, { filters });
+  }
+
+  onSelectionChange(event: any): void {
     setTimeout(() => {
-      const tableSelection = (this.table?.selection || []) as T[];
-      this.selectedRows.set(tableSelection);
-      
-      const selectionMode = this.config.selection?.mode || 'multiple';
-      const data = selectionMode === 'single' 
-        ? (tableSelection[0] || undefined) 
-        : tableSelection;
+      const selection = (this.table?.selection || []) as T[];
+      this.selectedRows.set(selection);
+      const data = (this.config().selection?.mode === 'single') ? (selection[0] || undefined) : selection;
       if (data !== undefined) {
-        this.selectionChange.emit(data as T | T[]);
-        this.tableEvent.emit({
-          type: 'select',
-          data: data as T | T[]
-        });
+        this.selectionChange.emit(data as any);
+        this.emitEvent('select', data as any);
       }
     }, 0);
   }
 
-  onRowClick(event: unknown): void {
-    const rowEvent = event as { data?: T };
-    if (!rowEvent?.data) return;
-    this.rowClick.emit(rowEvent.data);
-    this.tableEvent.emit({
-      type: 'rowClick',
-      data: rowEvent.data
-    });
+  onRowClick(event: any): void {
+    if (event?.data) {
+      this.rowClick.emit(event.data);
+      this.emitEvent('rowClick', event.data);
+    }
   }
 
-  getMenuItems(row: T): MenuItem[] {
-    if (!this.config.actions || this.config.actions.length === 0) {
-      return [];
-    }
-    
-    return this.menuBuilder.buildMenuItems(
-      this.config.actions,
-      row,
-      (action, rowData) => {
-        this.tableEvent.emit({
-          type: 'action',
-          data: rowData
-        });
-      }
-    );
+  // ==================== Row Operations (Expansion/Editing) ====================
+  private getRowId = (row: T) => getRowId(row, this.config().columns);
+
+  toggleRowExpansion(row: T): void {
+    const expanded = this.state.toggleExpansion(this.getRowId(row), this.table);
+    this.emitEvent(expanded ? 'expand' : 'collapse', row);
+    this.cdr.markForCheck();
   }
-  
-  hasVisibleActions(row: T): boolean {
-    if (!this.config.actions || this.config.actions.length === 0) {
-      return false;
-    }
-    return this.menuBuilder.hasVisibleActions(this.config.actions, row);
+
+  onRowExpand(event: { data: T }): void {
+    this.state.expandRow(this.getRowId(event.data), this.table);
+    this.emitEvent('expand', event.data);
+    this.cdr.markForCheck();
   }
+
+  onRowCollapse(event: { data: T }): void {
+    this.state.collapseRow(this.getRowId(event.data), this.table);
+    this.emitEvent('collapse', event.data);
+    this.cdr.markForCheck();
+  }
+
+  startRowEdit = (row: T) => this.state.startEdit(String(this.getRowId(row)), row, this.config().columns);
+  cancelRowEdit = (row: T) => (this.state.cancelEdit(String(this.getRowId(row))), this.config().rowEditing?.onCancel?.(row));
+
+  saveRowEdit(row: T): void {
+    const id = String(this.getRowId(row));
+    const updated = this.state.saveEdit(id, row, this.config().columns);
+    Object.assign(row as any, updated);
+    this.state.cancelEdit(id);
+    this.config().rowEditing?.onSave?.(row);
+    this.emitEvent('edit', row);
+  }
+
+  isRowEditing = (row: T) => this.state.isEditing(String(this.getRowId(row)));
+  getEditingValue = (row: T, field: string) => this.state.getEditingValue(String(this.getRowId(row)), field, row);
+  updateCellValue = (row: T, field: string, val: any) => this.state.updateCellValue(String(this.getRowId(row)), field, val);
+  isRowExpanded = (row: T) => this.state.isExpanded(this.getRowId(row));
+
+  // ==================== Action Menu ====================
+  getMenuItems = (row: T) => this.state.buildMenuItems(this.config().actions || [], row, (data) => this.emitEvent('action', data));
+  hasVisibleActions = (row: T) => this.state.hasVisibleActions(this.config().actions || [], row);
 
   showActionMenu(event: MouseEvent, row: T, menuRef?: PrimeNGMenu): void {
     event.stopPropagation();
     this.selectedRowForMenu.set(row);
-    const menuItems = this.getMenuItems(row);
-    this.menuItems.set(menuItems);
-    
-    const menu = menuRef || this.actionMenuRefs.get(row);
-    if (menu && typeof menu.toggle === 'function') {
-      menu.toggle(event);
-    }
-  }
-  
-  registerActionMenu(row: T, menuRef: PrimeNGMenu): void {
-    this.actionMenuRefs.set(row, menuRef);
+    this.menuItems.set(this.getMenuItems(row));
+    (menuRef || this.actionMenuRefs.get(row))?.toggle(event);
   }
 
-  onActionClick(action: TableAction<T>, row: T): void {
-    if (action.visible && !action.visible(row)) {
-      return;
-    }
-    if (action.disabled && action.disabled(row)) {
-      return;
-    }
-    action.handler(row);
-    this.tableEvent.emit({
-      type: 'action',
-      data: row
-    });
+  // ==================== Miscellaneous ====================
+  onColumnResize(event?: any): void {
+    this.emitEvent('resize', this.config().data);
   }
-
-  onRowExpand(event: { data: T }): void {
-    const rowId = getRowId(event.data, this.config.columns);
-    this.state.expandRow(rowId, this.table);
-    this.cdr.markForCheck();
-    this.tableEvent.emit({
-      type: 'expand',
-      data: event.data
-    });
-  }
-
-  onRowCollapse(event: { data: T }): void {
-    const rowId = getRowId(event.data, this.config.columns);
-    this.state.collapseRow(rowId, this.table);
-    this.cdr.markForCheck();
-    this.tableEvent.emit({
-      type: 'collapse',
-      data: event.data
-    });
-  }
-
-  toggleRowExpansion(row: T): void {
-    const rowId = getRowId(row, this.config.columns);
-    const expanded = this.state.toggleExpansion(rowId, this.table);
-    this.cdr.markForCheck();
-    this.tableEvent.emit({
-      type: expanded ? 'expand' : 'collapse',
-      data: row
-    });
-  }
-
-  getNestedDataForRow(row: T): unknown[] {
-    return this.getNestedTableData?.(row) ?? [];
-  }
-
-  getNestedConfigForRow(row: T): DynamicTableConfig<unknown> | null {
-    return this.getNestedTableConfig?.(row) ?? null;
-  }
-
-  isRowExpanded(row: T): boolean {
-    const rowId = getRowId(row, this.config.columns);
-    return this.state.isExpanded(rowId);
-  }
-
-  updateCellValue(row: T, field: string, value: unknown): void {
-    const rowId = getRowId(row, this.config.columns);
-    this.state.updateCellValue(String(rowId), field, value);
-  }
-
-  startRowEdit(row: T): void {
-    const rowId = getRowId(row, this.config.columns);
-    this.state.startEdit(String(rowId), row, this.config.columns);
-  }
-
-  saveRowEdit(row: T): void {
-    const rowId = getRowId(row, this.config.columns);
-    const updatedRow = this.state.saveEdit(String(rowId), row, this.config.columns);
-    
-    // Apply updates to original row
-    const rowRecord = row as Record<string, unknown>;
-    const updatedRecord = updatedRow as Record<string, unknown>;
-    Object.keys(updatedRecord).forEach(key => {
-      rowRecord[key] = updatedRecord[key];
-    });
-    
-    this.state.cancelEdit(String(rowId));
-    
-    if (this.config.rowEditing?.onSave) {
-      this.config.rowEditing.onSave(row);
-    }
-    
-    this.tableEvent.emit({
-      type: 'edit',
-      data: row
-    });
-  }
-
-  cancelRowEdit(row: T): void {
-    const rowId = getRowId(row, this.config.columns);
-    this.state.cancelEdit(String(rowId));
-    
-    if (this.config.rowEditing?.onCancel) {
-      this.config.rowEditing.onCancel(row);
-    }
-  }
-
-  isRowEditing(row: T): boolean {
-    const rowId = getRowId(row, this.config.columns);
-    return this.state.isEditing(String(rowId));
-  }
-
-  getEditingValue(row: T, field: string): unknown {
-    const rowId = getRowId(row, this.config.columns);
-    return this.state.getEditingValue(String(rowId), field, row);
-  }
-
-  onColumnResize(event: unknown): void {
-    this.tableEvent.emit({
-      type: 'resize',
-      data: this.config.data
-    });
-  }
-
-  onColumnReorder(event: { columns?: unknown[] }): void {
+  onColumnReorder(event: { columns?: any[] }): void {
     const columns = (event.columns || []).map(c => String(c));
-    this.tableEvent.emit({
-      type: 'reorder',
-      columns,
-      data: this.config.data
-    });
-    if (this.config.columnReorder?.onReorder) {
-      this.config.columnReorder.onReorder({ columns });
-    }
+    this.config().columnReorder?.onReorder?.({ columns });
+    this.emitEvent('reorder', this.config().data, { columns });
   }
 
-  getFilterableColumns(): string[] {
-    return this.state.getFilterableColumns(this.config.columns);
+  onRowReorder(event: any): void {
+    const { dragIndex, dropIndex } = event;
+    if (dragIndex === undefined || dropIndex === undefined) return;
+    const data = [...this.config().data];
+    const [draggedItem] = data.splice(dragIndex, 1);
+    data.splice(dropIndex, 0, draggedItem);
+    // Note: Since config is a signal input, we can't mutate it directly like this
+    // The parent should handle the reorder, but for now we emit the event
+    this.config().rowReorder?.onReorder?.({ rows: data });
+    this.emitEvent('reorder', data);
   }
 
-  getFilterMatchModes(col: TableColumn<T>): Array<{ label: string; value: string }> {
-    return this.state.getFilterMatchModes(col);
-  }
-
-  getFilterMatchModeOptions(filterType?: string): Array<{ label: string; value: string }> {
-    return this.state.getFilterMatchModeOptions(filterType);
-  }
-
-  onRowReorder(event: unknown): void {
-    const reorderEvent = event as { dragIndex?: number; dropIndex?: number };
-    if (reorderEvent.dragIndex === undefined || reorderEvent.dropIndex === undefined) {
-      return;
-    }
-    
-    const data = [...this.config.data];
-    const draggedItem = data[reorderEvent.dragIndex];
-    data.splice(reorderEvent.dragIndex, 1);
-    data.splice(reorderEvent.dropIndex, 0, draggedItem);
-    this.config.data = data;
-    
-    if (this.config.rowReorder?.onReorder) {
-      this.config.rowReorder.onReorder({ rows: data });
-    }
-    
-    this.tableEvent.emit({
-      type: 'reorder',
-      data: data
-    });
-  }
-
-  exportCSV(): void {
-    const data = this.filteredData();
-    this.exportService.exportTable(this.config, data);
-  }
+  exportCSV = () => this.exportService.exportTable(this.config(), this.filteredData());
 
   clearFilters(table?: PrimeNGTable): void {
     this.state.clearFilters(table);
-    this.tableEvent.emit({
-      type: 'filter',
-      filters: {},
-      data: this.config.data
-    });
+    this.emitEvent('filter', this.config().data, { filters: {} });
   }
 
-  hasActiveFilters(): boolean {
-    return this.state.hasActiveFilters();
-  }
-
+  getNestedDataForRow = (row: T) => this.getNestedTableData()?.(row) ?? [];
+  getNestedConfigForRow = (row: T) => this.getNestedTableConfig()?.(row) ?? null;
+  getFilterableColumns = () => this.state.getFilterableColumns(this.config().columns);
+  getFilterMatchModes = (col: TableColumn<T>) => this.state.getFilterMatchModes(col);
+  getFilterMatchModeOptions = (type?: string) => this.state.getFilterMatchModeOptions(type);
+  hasActiveFilters = () => this.state.hasActiveFilters();
+  registerActionMenu = (row: T, menu: PrimeNGMenu) => this.actionMenuRefs.set(row, menu);
 }

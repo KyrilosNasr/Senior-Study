@@ -99,17 +99,17 @@ export class TableConfigService {
         enabled: true,
         mode: 'row',
         onSave: (row) => {
-          console.log('Row saved:', row);
+
           this.toastService.success('Row saved successfully!', 'Saved');
         },
         onCancel: (row) => {
-          console.log('Edit cancelled for:', row);
+
         }
       },
       rowReorder: {
         enabled: true,
         onReorder: (event) => {
-          console.log('Rows reordered:', event.rows);
+
         }
       },
       stripedRows: true,
