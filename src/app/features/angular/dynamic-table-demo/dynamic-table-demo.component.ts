@@ -210,36 +210,35 @@ export class DynamicTableDemoComponent {
    * Demo table configurations
    * Using computed to ensure reactivity when serverSideConfig or other dependencies change
    */
-  readonly demoTables = computed<DemoTableConfig[]>(() => [
-    {
-      id: 'users',
-      title: 'Users Table',
-      description: 'A comprehensive table demonstrating all available features including icon menu actions, column resizing, reordering, row expansion, advanced filtering, and more.',
-      icon: 'pi-users',
-      badge: 'Full Features',
-      badgeColor: 'blue',
-      config: this.usersConfig as unknown as DemoTableConfig['config'],
-      getNestedTableData: this.nestedTableService.getNestedTableData.bind(this.nestedTableService),
-      getNestedTableConfig: this.nestedTableService.getNestedTableConfig.bind(this.nestedTableService)
-    },
-    {
-      id: 'products',
-      title: 'Products Table',
-      description: 'A simpler table configuration with column resizing, gridlines, and basic filtering enabled.',
-      icon: 'pi-shopping-bag',
-      config: this.productsConfig as unknown as DemoTableConfig['config']
-    },
-    {
-      id: 'server-side',
-      title: 'Server-Side Table',
-      description: 'Demonstrating integration with TableController for lazy loading, server-side pagination, and remote data fetching.',
-      icon: 'pi-server',
-      badge: 'TableController',
-      badgeColor: 'purple',
-      config: this.serverSideConfig() as unknown as DemoTableConfig['config'],
-      getNestedTableData: this.nestedTableService.getNestedTableData.bind(this.nestedTableService),
-      getNestedTableConfig: this.nestedTableService.getNestedTableConfig.bind(this.nestedTableService)
-    }
+  readonly demoTables = computed<DemoTableConfig[]>(() => [{
+    id: 'server-side',
+    title: 'Server-Side Table',
+    description: 'Demonstrating integration with TableController for lazy loading, server-side pagination, and remote data fetching.',
+    icon: 'pi-server',
+    badge: 'TableController',
+    badgeColor: 'purple',
+    config: this.serverSideConfig() as unknown as DemoTableConfig['config'],
+    getNestedTableData: this.nestedTableService.getNestedTableData.bind(this.nestedTableService),
+    getNestedTableConfig: this.nestedTableService.getNestedTableConfig.bind(this.nestedTableService)
+  },
+  {
+    id: 'products',
+    title: 'Products Table',
+    description: 'A simpler table configuration with column resizing, gridlines, and basic filtering enabled.',
+    icon: 'pi-shopping-bag',
+    config: this.productsConfig as unknown as DemoTableConfig['config']
+  },
+  {
+    id: 'users',
+    title: 'Users Table',
+    description: 'A comprehensive table demonstrating all available features including icon menu actions, column resizing, reordering, row expansion, advanced filtering, and more.',
+    icon: 'pi-users',
+    badge: 'Full Features',
+    badgeColor: 'blue',
+    config: this.usersConfig as unknown as DemoTableConfig['config'],
+    getNestedTableData: this.nestedTableService.getNestedTableData.bind(this.nestedTableService),
+    getNestedTableConfig: this.nestedTableService.getNestedTableConfig.bind(this.nestedTableService)
+  }
   ]);
 
   constructor() {
