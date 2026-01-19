@@ -1,27 +1,29 @@
 <p-tabs [(value)]="activeTab" class="w-full">
   <p-tablist class="flex flex-wrap gap-2 mb-6 border-b border-gray-200 dark:border-gray-700">
     @for (tab of tabs; track tab.value) {
-      <p-tab [value]="tab.value">
-        <span class="flex items-center gap-2">
-          @if (tab.icon) {
-            <i [class]="'pi ' + tab.icon + ' text-sm'"></i>
-          }
-          <span class="font-medium">{{ tab.label }}</span>
-          @if (tab.badge) {
-            <span [class]="getBadgeClasses(tab.badgeColor)">
-              {{ tab.badge }}
-            </span>
-          }
+    <p-tab [value]="tab.value">
+      <span class="flex items-center gap-2">
+        @if (tab.icon) {
+        <i [class]="'pi ' + tab.icon + ' text-sm'"></i>
+        }
+        <span class="font-medium">{{ tab.label }}</span>
+        @if (tab.badge) {
+        <span [class]="getBadgeClasses(tab.badgeColor)">
+          {{ tab.badge }}
         </span>
-      </p-tab>
+        }
+      </span>
+    </p-tab>
     }
   </p-tablist>
 
   <p-tabpanels>
     @for (panel of panelsList(); track panel.value) {
-      <p-tabpanel [value]="panel.value">
-        <ng-container [ngTemplateOutlet]="panel.contentTemplate" />
-      </p-tabpanel>
+    <p-tabpanel [value]="panel.value">
+      @if (activeTab() === panel.value) {
+      <ng-container [ngTemplateOutlet]="panel.contentTemplate" />
+      }
+    </p-tabpanel>
     }
   </p-tabpanels>
 </p-tabs>
@@ -30,4 +32,3 @@
 <div class="hidden">
   <ng-content />
 </div>
-

@@ -42,10 +42,12 @@
   </div>
   }
 
-  <!-- Column Toggle Menu -->
   @if (config().columnToggle?.enabled) {
   <p-menu #columnToggleMenu [model]="[]" [popup]="true" />
   }
+
+  <!-- Shared Action Menu -->
+  <p-menu #sharedActionMenu [model]="activeRowMenuItems()" [popup]="true" appendTo="body" />
 
   <!-- Table Content Wrapper -->
   <div class="overflow-x-auto rounded-lg border border-gray-200 dark:border-gray-700 shadow-sm">
@@ -60,7 +62,7 @@
       [reorderableColumns]="featureSettings().reorderable" [editMode]="editSettings().mode" [rowHover]="true"
       [size]="config().size === 'large' ? 'large' : config().size === 'small' ? 'small' : undefined"
       [stateKey]="config().stateKey" [stateStorage]="config().stateStorage || 'session'"
-      [expandedRowKeys]="expandedRows()" [filters]="filters()" [globalFilterFields]="getFilterableColumns()"
+      [expandedRowKeys]="expandedRows()" [filters]="filters()" [globalFilterFields]="filterableColumns()"
       (onSort)="onSort($event)" (onPage)="onPageChange($event)" (onRowSelect)="onSelectionChange($event)"
       (onRowUnselect)="onSelectionChange($event)" (onRowClick)="onRowClick($event)" (onFilter)="onFilter($event)"
       (onColumnResizeEnd)="onColumnResize($event)" (onColReorder)="onColumnReorder($event)"
@@ -153,9 +155,9 @@
           @if (hasActions()) {
           <td class="p-3">
             <div class="flex justify-center items-center">
-              <p-menu #actionMenu [model]="getMenuItems(rowData)" [popup]="true" [appendTo]="'body'" />
-              <button type="button" (click)="showActionMenu($event, rowData, actionMenu); $event.stopPropagation()"
-                [disabled]="getMenuItems(rowData).length === 0" [title]="'Actions'" class="w-10 h-10 min-w-[2.5rem] min-h-[2.5rem] rounded-lg flex items-center justify-center 
+              <button type="button"
+                (click)="showActionMenu($event, rowData, sharedActionMenu); $event.stopPropagation()"
+                [disabled]="!hasVisibleActions(rowData)" [title]="'Actions'" class="w-10 h-10 min-w-[2.5rem] min-h-[2.5rem] rounded-lg flex items-center justify-center 
                          bg-gray-50 dark:bg-gray-800/50 
                          hover:bg-gradient-to-br hover:from-gray-100 hover:to-gray-200 
                          dark:hover:from-gray-700 dark:hover:to-gray-600

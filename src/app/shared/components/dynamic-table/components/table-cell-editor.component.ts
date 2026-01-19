@@ -17,6 +17,7 @@ import { TableModule } from 'primeng/table';
 
 import { TableColumn } from '../../../types/table-config.types';
 import { getFieldValue, fieldToString } from '../../../utils/table-data.util';
+import { TableFormatPipe } from '../pipes/table-format.pipe';
 
 @Component({
   selector: 'app-table-cell-editor',
@@ -29,7 +30,8 @@ import { getFieldValue, fieldToString } from '../../../utils/table-data.util';
     DatePickerModule,
     SelectModule,
     ToggleButtonModule,
-    TableModule
+    TableModule,
+    TableFormatPipe
   ],
   templateUrl: './table-cell-editor.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -42,17 +44,16 @@ export class TableCellEditorComponent<T = unknown> {
   @Input() isRowEditing = false;
   @Input() editingValue?: unknown;
   @Output() valueChange = new EventEmitter<{ field: string; value: unknown }>();
-  
-  getFieldValue = getFieldValue;
+
   fieldToString = fieldToString;
-  
+
   getDisplayValue(): unknown {
     if (this.rowEditingMode && this.isRowEditing && this.editingValue !== undefined) {
       return this.editingValue;
     }
     return getFieldValue(this.rowData, this.column.field);
   }
-  
+
   onValueChange(value: unknown): void {
     const fieldStr = fieldToString(this.column.field);
     this.valueChange.emit({ field: fieldStr, value });

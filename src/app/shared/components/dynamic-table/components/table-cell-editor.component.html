@@ -1,104 +1,51 @@
 @if (cellEditingMode && column.editable) {
-  <!-- Cell Editing Mode (PrimeNG p-cellEditor) -->
-  <p-cellEditor>
-    <ng-template pTemplate="input">
-      @if (column.editorType === 'text') {
-        <input
-          pInputText
-          type="text"
-          [(ngModel)]="cellValue"
-          class="w-full"
-        />
-      } @else if (column.editorType === 'number') {
-        <p-inputnumber
-          [(ngModel)]="cellValue"
-          [style]="{ width: '100%' }"
-        />
-      } @else if (column.editorType === 'date') {
-        <p-datepicker
-          [(ngModel)]="cellValue"
-          [style]="{ width: '100%' }"
-        />
-      } @else if (column.editorType === 'select') {
-        <p-select
-          [(ngModel)]="cellValue"
-          [options]="column.editorOptions || []"
-          optionLabel="label"
-          optionValue="value"
-          [style]="{ width: '100%' }"
-        />
-      } @else if (column.editorType === 'boolean') {
-        <p-toggleButton
-          [(ngModel)]="cellValue"
-        />
-      } @else {
-        <input
-          pInputText
-          type="text"
-          [(ngModel)]="cellValue"
-          class="w-full"
-        />
-      }
-    </ng-template>
-    <ng-template pTemplate="output">
-      @if (column.formatter) {
-        <span [innerHTML]="column.formatter(getFieldValue(rowData, column.field), rowData)"></span>
-      } @else {
-        {{ getFieldValue(rowData, column.field) }}
-      }
-    </ng-template>
-  </p-cellEditor>
+<!-- Cell Editing Mode (PrimeNG p-cellEditor) -->
+<p-cellEditor>
+  <ng-template pTemplate="input">
+    @if (column.editorType === 'text') {
+    <input pInputText type="text" [(ngModel)]="cellValue" class="w-full" />
+    } @else if (column.editorType === 'number') {
+    <p-inputnumber [(ngModel)]="cellValue" [style]="{ width: '100%' }" />
+    } @else if (column.editorType === 'date') {
+    <p-datepicker [(ngModel)]="cellValue" [style]="{ width: '100%' }" />
+    } @else if (column.editorType === 'select') {
+    <p-select [(ngModel)]="cellValue" [options]="column.editorOptions || []" optionLabel="label" optionValue="value"
+      [style]="{ width: '100%' }" />
+    } @else if (column.editorType === 'boolean') {
+    <p-toggleButton [(ngModel)]="cellValue" />
+    } @else {
+    <input pInputText type="text" [(ngModel)]="cellValue" class="w-full" />
+    }
+  </ng-template>
+  <ng-template pTemplate="output">
+    @if (column.formatter) {
+    <span [innerHTML]="rowData | tableFormat: column"></span>
+    } @else {
+    {{ rowData | tableFormat: column }}
+    }
+  </ng-template>
+</p-cellEditor>
 } @else if (rowEditingMode && column.editable && isRowEditing) {
-  <!-- Row Editing Mode -->
-  @if (column.editorType === 'text') {
-    <input
-      pInputText
-      type="text"
-      [value]="getDisplayValue()"
-      (input)="onInput($event)"
-      class="w-full"
-    />
-  } @else if (column.editorType === 'number') {
-    <p-inputnumber
-      [ngModel]="getDisplayValue()"
-      (ngModelChange)="onValueChange($event)"
-      [style]="{ width: '100%' }"
-    />
-  } @else if (column.editorType === 'date') {
-    <p-datepicker
-      [ngModel]="getDisplayValue()"
-      (ngModelChange)="onValueChange($event)"
-      [style]="{ width: '100%' }"
-    />
-  } @else if (column.editorType === 'select') {
-    <p-select
-      [ngModel]="getDisplayValue()"
-      (ngModelChange)="onValueChange($event)"
-      [options]="column.editorOptions || []"
-      optionLabel="label"
-      optionValue="value"
-      [style]="{ width: '100%' }"
-    />
-  } @else if (column.editorType === 'boolean') {
-    <p-toggleButton
-      [ngModel]="getDisplayValue()"
-      (ngModelChange)="onValueChange($event)"
-    />
-  } @else {
-    <input
-      pInputText
-      type="text"
-      [value]="getDisplayValue()"
-      (input)="onInput($event)"
-      class="w-full"
-    />
-  }
+<!-- Row Editing Mode -->
+@if (column.editorType === 'text') {
+<input pInputText type="text" [value]="getDisplayValue()" (input)="onInput($event)" class="w-full" />
+} @else if (column.editorType === 'number') {
+<p-inputnumber [ngModel]="getDisplayValue()" (ngModelChange)="onValueChange($event)" [style]="{ width: '100%' }" />
+} @else if (column.editorType === 'date') {
+<p-datepicker [ngModel]="getDisplayValue()" (ngModelChange)="onValueChange($event)" [style]="{ width: '100%' }" />
+} @else if (column.editorType === 'select') {
+<p-select [ngModel]="getDisplayValue()" (ngModelChange)="onValueChange($event)" [options]="column.editorOptions || []"
+  optionLabel="label" optionValue="value" [style]="{ width: '100%' }" />
+} @else if (column.editorType === 'boolean') {
+<p-toggleButton [ngModel]="getDisplayValue()" (ngModelChange)="onValueChange($event)" />
 } @else {
-  <!-- Regular Cell Display -->
-  @if (column.formatter) {
-    <span [innerHTML]="column.formatter(getFieldValue(rowData, column.field), rowData)"></span>
-  } @else {
-    {{ getFieldValue(rowData, column.field) }}
-  }
+<input pInputText type="text" [value]="getDisplayValue()" (input)="onInput($event)" class="w-full" />
 }
-
+} @else {
+<!-- Regular Cell Display -->
+@if (column.formatter) {
+<span [innerHTML]="rowData | tableFormat: column"></span>
+} @else {
+{{ rowData | tableFormat: column }}
+}
+}

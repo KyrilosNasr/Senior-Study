@@ -87,9 +87,9 @@ export class DynamicTableComponent<T = unknown> {
 
   @ViewChild('dt') table?: PrimeNGTable;
   @ViewChild('columnToggleMenu') columnToggleMenu?: PrimeNGColumnToggleMenu;
-  actionMenuRefs = new Map<T, PrimeNGMenu>();
   selectedRowForMenu = signal<T | null>(null);
-  menuItems = signal<MenuItem[]>([]);
+  activeRowMenuItems = signal<MenuItem[]>([]);
+  menuItems = signal<MenuItem[]>([]); // Deprecated, using activeRowMenuItems instead
 
   selectedRows = signal<T[]>([]);
   first = signal(0);
@@ -136,6 +136,11 @@ export class DynamicTableComponent<T = unknown> {
     if (this.isRowEditingEnabled() && this.isRowEditingMode()) count++;
     return count;
   });
+
+  // Filterable Columns computed
+  readonly filterableColumns = computed(() =>
+    this.config().columns.filter(c => c.filterable).map(c => fieldToString(c.field))
+  );
 
   // Table Configuration Groups
   readonly paginationSettings = computed(() => ({
@@ -249,19 +254,16 @@ export class DynamicTableComponent<T = unknown> {
   toggleRowExpansion(row: T): void {
     const expanded = this.state.toggleExpansion(this.getRowId(row), this.table);
     this.emitEvent(expanded ? 'expand' : 'collapse', row);
-    this.cdr.markForCheck();
   }
 
   onRowExpand(event: { data: T }): void {
     this.state.expandRow(this.getRowId(event.data), this.table);
     this.emitEvent('expand', event.data);
-    this.cdr.markForCheck();
   }
 
   onRowCollapse(event: { data: T }): void {
     this.state.collapseRow(this.getRowId(event.data), this.table);
     this.emitEvent('collapse', event.data);
-    this.cdr.markForCheck();
   }
 
   startRowEdit = (row: T) => this.state.startEdit(String(this.getRowId(row)), row, this.config().columns);
@@ -285,11 +287,16 @@ export class DynamicTableComponent<T = unknown> {
   getMenuItems = (row: T) => this.state.buildMenuItems(this.config().actions || [], row, (data) => this.emitEvent('action', data));
   hasVisibleActions = (row: T) => this.state.hasVisibleActions(this.config().actions || [], row);
 
-  showActionMenu(event: MouseEvent, row: T, menuRef?: PrimeNGMenu): void {
+  showActionMenu(event: MouseEvent, row: T, menuRef?: PrimeNGTable | any): void {
     event.stopPropagation();
     this.selectedRowForMenu.set(row);
-    this.menuItems.set(this.getMenuItems(row));
-    (menuRef || this.actionMenuRefs.get(row))?.toggle(event);
+    const items = this.getMenuItems(row);
+    this.activeRowMenuItems.set(items);
+
+    // For PrimeNG 18+ the menu needs the model before toggling
+    if (menuRef) {
+      setTimeout(() => menuRef.toggle(event), 0);
+    }
   }
 
   // ==================== Miscellaneous ====================
@@ -323,9 +330,8 @@ export class DynamicTableComponent<T = unknown> {
 
   getNestedDataForRow = (row: T) => this.getNestedTableData()?.(row) ?? [];
   getNestedConfigForRow = (row: T) => this.getNestedTableConfig()?.(row) ?? null;
-  getFilterableColumns = () => this.state.getFilterableColumns(this.config().columns);
   getFilterMatchModes = (col: TableColumn<T>) => this.state.getFilterMatchModes(col);
   getFilterMatchModeOptions = (type?: string) => this.state.getFilterMatchModeOptions(type);
   hasActiveFilters = () => this.state.hasActiveFilters();
-  registerActionMenu = (row: T, menu: PrimeNGMenu) => this.actionMenuRefs.set(row, menu);
+  registerActionMenu = (row: T, menu: PrimeNGMenu) => { }; // No longer needed for single menu
 }
