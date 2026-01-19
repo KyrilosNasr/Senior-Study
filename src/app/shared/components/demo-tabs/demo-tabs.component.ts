@@ -1,4 +1,4 @@
-import { Component, Input, signal, ChangeDetectionStrategy, ContentChildren, QueryList, AfterContentInit, OnInit } from '@angular/core';
+import { Component, Input, signal, ChangeDetectionStrategy, ContentChildren, QueryList, AfterContentInit, OnInit, model } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Tabs, Tab, TabList, TabPanels, TabPanel } from 'primeng/tabs';
 import { DemoTabpanelComponent } from './demo-tabpanel.component';
@@ -21,7 +21,7 @@ export interface DemoTab {
     TabList,
     TabPanels,
     TabPanel
-],
+  ],
   templateUrl: './demo-tabs.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -31,7 +31,7 @@ export class DemoTabsComponent implements AfterContentInit, OnInit {
 
   @ContentChildren(DemoTabpanelComponent) tabPanels!: QueryList<DemoTabpanelComponent>;
 
-  activeTab = signal<string | number>('0');
+  activeTab = model<string | number>('0');
   panelsList = signal<DemoTabpanelComponent[]>([]);
 
   ngOnInit(): void {
@@ -45,7 +45,7 @@ export class DemoTabsComponent implements AfterContentInit, OnInit {
 
   getBadgeClasses(color?: string): string {
     const baseClasses = 'px-2 py-0.5 rounded text-xs font-semibold ml-2';
-    
+
     switch (color) {
       case 'blue':
         return `${baseClasses} bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300`;
