@@ -12,7 +12,7 @@ export interface ToastOptions {
 
 @Injectable()
 export class ToastService {
-  constructor(private messageService: MessageService) {}
+  constructor(private messageService: MessageService) { }
 
   success(message: string, summary?: string, options?: ToastOptions): void {
     this.messageService.add({

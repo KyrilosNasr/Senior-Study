@@ -139,23 +139,37 @@ export class TableStateService<T> {
 
   // ==================== Action Menu Logic ====================
   buildMenuItems(actions: TableAction<T>[], row: T, onActionClick?: (data: T) => void): MenuItem[] {
-    return (actions || [])
+    const items: MenuItem[] = [];
+
+    (actions || [])
       .filter(a => !a.visible || a.visible(row))
-      .map(action => ({
-        label: action.label,
-        icon: action.icon ? getFontAwesomeIcon(action.icon) : undefined,
-        disabled: action.disabled ? action.disabled(row) : false,
-        separator: action.separator,
-        command: () => {
-          if (action.disabled && action.disabled(row)) return;
-          if (action.confirmDialog) {
-            this.handleActionWithConfirmation(action, row, onActionClick);
-          } else {
-            action.handler(row);
-            onActionClick?.(row);
+      .forEach(action => {
+        // If the action itself is a separator or its label is 'Separator'
+        if (action.separator || action.label === 'Separator') {
+          items.push({ separator: true });
+          // If it was just a placeholder separator, don't add the item itself
+          if (action.label === 'Separator' && !action.icon && !action.confirmDialog) {
+            return;
           }
         }
-      }));
+
+        items.push({
+          label: action.label,
+          icon: action.icon ? getFontAwesomeIcon(action.icon) : undefined,
+          disabled: action.disabled ? action.disabled(row) : false,
+          command: () => {
+            if (action.disabled && action.disabled(row)) return;
+            if (action.confirmDialog) {
+              this.handleActionWithConfirmation(action, row, onActionClick);
+            } else {
+              action.handler(row);
+              onActionClick?.(row);
+            }
+          }
+        });
+      });
+
+    return items;
   }
 
   hasVisibleActions = (actions: TableAction<T>[], row: T) => (actions || []).some(a => !a.visible || a.visible(row));

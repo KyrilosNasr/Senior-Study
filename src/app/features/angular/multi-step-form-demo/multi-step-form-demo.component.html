@@ -4,7 +4,8 @@
     <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
       <div class="flex-1">
         <div class="flex items-center gap-3 mb-4">
-          <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br from-orange-500 to-red-600 flex items-center justify-center shadow-lg">
+          <div
+            class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br from-[var(--accent-gradient-from)] to-[var(--accent-gradient-to)] flex items-center justify-center shadow-lg">
             <i class="fas fa-list-ol text-white text-xl sm:text-2xl"></i>
           </div>
           <div>
@@ -20,8 +21,9 @@
         </p>
       </div>
       <div class="hidden lg:block">
-        <div class="w-32 h-32 rounded-2xl bg-gradient-to-br from-orange-500/20 to-red-600/20 flex items-center justify-center">
-          <i class="fas fa-tasks text-6xl text-orange-500"></i>
+        <div
+          class="w-32 h-32 rounded-2xl bg-[var(--accent-color)]/10 dark:bg-[var(--accent-color)]/20 flex items-center justify-center backdrop-blur-sm border border-[var(--accent-color)]/20">
+          <i class="fas fa-tasks text-6xl text-accent"></i>
         </div>
       </div>
     </div>
@@ -31,9 +33,9 @@
   <p-card class="card-modern hover-lift slide-in-up">
     <div class="padding-responsive space-y-6">
       <!-- Progress Steps -->
-      <div class="glass rounded-xl p-6 border-l-4 border-orange-500">
+      <div class="glass rounded-xl p-6 border-l-4 border-accent">
         <div class="flex items-center gap-3 mb-6">
-          <i class="fas fa-route text-orange-500 text-xl"></i>
+          <i class="fas fa-route text-accent text-xl"></i>
           <h3 class="text-lg sm:text-xl font-semibold text-gray-900 dark:text-gray-100">Progress</h3>
         </div>
         <div class="w-full">
@@ -42,10 +44,11 @@
       </div>
 
       <!-- Current Step Form -->
-      <div class="glass rounded-xl p-6 border-l-4 border-blue-500">
+      <div class="glass rounded-xl p-6 border-l-4 border-accent">
         <div class="flex items-center justify-between mb-6">
           <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+            <div
+              class="w-10 h-10 rounded-lg bg-gradient-to-br from-[var(--accent-gradient-from)] to-[var(--accent-gradient-to)] flex items-center justify-center shadow-sm">
               <span class="text-white font-bold">{{ currentStep() + 1 }}</span>
             </div>
             <div>
@@ -62,27 +65,23 @@
           </span>
         </div>
 
-        <app-dynamic-form
-          [config]="currentFormConfig()"
-          [loading]="loading"
-          (formSubmit)="onStepSubmit($event)"
-          (formCancel)="onStepCancel()"
-        />
+        <app-dynamic-form [config]="currentFormConfig()" [loading]="loading" (formSubmit)="onStepSubmit($event)"
+          (formCancel)="onStepCancel()" />
       </div>
 
       <!-- Form Data Preview -->
       @if (hasFormData()) {
-        <div class="glass rounded-xl p-6 border-l-4 border-green-500 fade-in">
-          <div class="flex items-center gap-3 mb-4">
-            <i class="fas fa-database text-green-500 text-xl"></i>
-            <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100">
-              Collected Data Preview
-            </h3>
-          </div>
-          <div class="code-block-modern">
-            <pre class="text-sm overflow-x-auto"><code>{{ formData() | json }}</code></pre>
-          </div>
+      <div class="glass rounded-xl p-6 border-l-4 border-accent fade-in">
+        <div class="flex items-center gap-3 mb-4">
+          <i class="fas fa-database text-accent text-xl"></i>
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100">
+            Collected Data Preview
+          </h3>
         </div>
+        <div class="code-block-modern">
+          <pre class="text-sm overflow-x-auto"><code>{{ formData() | json }}</code></pre>
+        </div>
+      </div>
       }
     </div>
   </p-card>
@@ -91,15 +90,16 @@
   <p-card class="card-modern hover-lift slide-in-up">
     <div class="padding-responsive">
       <div class="flex items-center gap-3 mb-6">
-        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-green-500 to-teal-600 flex items-center justify-center">
+        <div
+          class="w-10 h-10 rounded-lg bg-gradient-to-br from-[var(--accent-gradient-from)] to-[var(--accent-gradient-to)] flex items-center justify-center shadow-md">
           <i class="fas fa-code text-white"></i>
         </div>
         <h2 class="subheading-responsive text-gray-900 dark:text-gray-100">Code Examples</h2>
       </div>
 
-      <div class="glass rounded-xl p-6 border-l-4 border-purple-500">
+      <div class="glass rounded-xl p-6 border-l-4 border-accent">
         <div class="flex items-center gap-2 mb-4">
-          <i class="fas fa-file-code text-purple-500"></i>
+          <i class="fas fa-file-code text-accent"></i>
           <h4 class="text-lg font-semibold text-gray-900 dark:text-gray-100">Multi-Step Form Implementation</h4>
         </div>
         <div class="code-block-modern">
@@ -136,12 +136,13 @@ onStepSubmit(result: unknown): void &#123;
   <p-card class="card-modern hover-lift slide-in-up">
     <div class="padding-responsive">
       <div class="flex items-center gap-3 mb-6">
-        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-teal-500 to-cyan-600 flex items-center justify-center">
+        <div
+          class="w-10 h-10 rounded-lg bg-gradient-to-br from-[var(--accent-gradient-from)] to-[var(--accent-gradient-to)] flex items-center justify-center shadow-md">
           <i class="fas fa-graduation-cap text-white"></i>
         </div>
-        <h2 class="subheading-responsive text-gray-900 dark:text-gray-100">Key Takeaways</h2>
+        <h2 class="subheading-responsive text-accent">Key Takeaways</h2>
       </div>
-      
+
       <ul class="list-modern">
         <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
           Break complex forms into manageable steps

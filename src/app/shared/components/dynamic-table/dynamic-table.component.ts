@@ -287,15 +287,27 @@ export class DynamicTableComponent<T = unknown> {
   getMenuItems = (row: T) => this.state.buildMenuItems(this.config().actions || [], row, (data) => this.emitEvent('action', data));
   hasVisibleActions = (row: T) => this.state.hasVisibleActions(this.config().actions || [], row);
 
-  showActionMenu(event: MouseEvent, row: T, menuRef?: PrimeNGTable | any): void {
+  showActionMenu(event: MouseEvent, row: T, menuRef?: any): void {
     event.stopPropagation();
+
+    // Capture target element now while the event is active
+    const target = event.currentTarget || event.target;
+
     this.selectedRowForMenu.set(row);
     const items = this.getMenuItems(row);
     this.activeRowMenuItems.set(items);
 
-    // For PrimeNG 18+ the menu needs the model before toggling
     if (menuRef) {
-      setTimeout(() => menuRef.toggle(event), 0);
+      // Small timeout to ensure signal update has propagated to the menu's [model]
+      setTimeout(() => {
+        // Toggle uses the target for positioning
+        menuRef.toggle({
+          currentTarget: target,
+          target: target,
+          preventDefault: () => { },
+          stopPropagation: () => { }
+        });
+      }, 0);
     }
   }
 

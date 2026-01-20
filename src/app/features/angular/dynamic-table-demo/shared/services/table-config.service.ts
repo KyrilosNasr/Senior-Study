@@ -228,9 +228,8 @@ export class TableConfigService {
       },
       {
         label: 'Separator',
-        handler: () => {
-          // Empty handler for separator
-        }
+        separator: true,
+        handler: () => { }
       },
       {
         label: 'Activate',
@@ -260,9 +259,8 @@ export class TableConfigService {
       },
       {
         label: 'Separator',
-        handler: () => {
-          // Empty handler for separator
-        }
+        separator: true,
+        handler: () => { }
       },
       {
         label: 'Delete',

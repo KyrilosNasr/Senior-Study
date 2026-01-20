@@ -114,8 +114,8 @@
       <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex" let-expanded="expanded">
         <tr [pSelectableRow]="isSelectionEnabled() ? rowData : null"
           class="hover:bg-gray-50 dark:hover:bg-gray-800/30 transition-colors border-b border-gray-100 dark:border-gray-700/50"
-          [class.cursor-pointer]="!isRowEditingEnabled()" [class.bg-blue-50]="isRowEditing(rowData)"
-          [class.dark:bg-blue-900/20]="isRowEditing(rowData)">
+          [class.cursor-pointer]="!isRowEditingEnabled()" [class.bg-accent-light/20]="isRowEditing(rowData)"
+          [class.dark:bg-accent-dark/20]="isRowEditing(rowData)">
           <!-- expansion toggle -->
           @if (isExpansionEnabled()) {
           <td class="p-3">
@@ -192,7 +192,7 @@
               </button>
               } @else {
               <button type="button" (click)="startRowEdit(rowData); $event.stopPropagation()" [title]="'Edit Row'"
-                class="p-button p-component p-button-text p-button-rounded p-button-primary p-button-sm p-button-icon-only w-10 h-10 min-w-[2.5rem] min-h-[2.5rem] flex items-center justify-center hover:bg-blue-100 dark:hover:bg-blue-900/30 transition-colors cursor-pointer"
+                class="p-button p-component p-button-text p-button-rounded p-button-primary p-button-sm p-button-icon-only w-10 h-10 min-w-[2.5rem] min-h-[2.5rem] flex items-center justify-center hover:bg-accent-light/10 dark:hover:bg-accent-dark/10 transition-colors cursor-pointer"
                 [attr.aria-label]="'Edit Row'">
                 <i [class]="getFontAwesomeIcon('pi pi-pencil')" class="text-base"></i>
               </button>

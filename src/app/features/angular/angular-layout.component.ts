@@ -41,6 +41,8 @@ export class AngularLayoutComponent {
   sidebarVisible = signal(false);
   sidebarExpanded = signal(true);
 
+  readonly accentClass = computed(() => `accent-${this.themeService.accentColor()}`);
+
   readonly contentGradient = computed(() => {
     return this.themeService.getGradientClasses('to-br', 'subtle');
   });
@@ -53,8 +55,8 @@ export class AngularLayoutComponent {
     title: 'Angular',
     subtitle: 'Dynamic Components',
     headerText: 'Angular Components',
-    gradientFrom: 'from-blue-600',
-    gradientTo: 'to-purple-600 dark:from-blue-400 dark:to-purple-400'
+    gradientFrom: 'from-[var(--accent-gradient-from)]',
+    gradientTo: 'to-[var(--accent-gradient-to)] dark:from-[var(--accent-gradient-from)] dark:to-[var(--accent-gradient-to)]'
   };
 
   treeNodes: TreeNode[] = [

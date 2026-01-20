@@ -25,16 +25,26 @@
   --spacing-3xl: 4rem;
 
   /* Accent color variables - default to blue */
-  --accent-color: rgb(59, 130, 246); /* blue-500 */
+  --accent-color-rgb: 59, 130, 246;
+  --accent-color: rgb(var(--accent-color-rgb)); /* blue-500 */
   --accent-color-light: rgb(96, 165, 250); /* blue-400 */
   --accent-color-dark: rgb(37, 99, 235); /* blue-600 */
   --accent-gradient-from: rgb(59, 130, 246);
   --accent-gradient-to: rgb(37, 99, 235);
+  
+  /* Text and Sidebar variables */
+  --sidebar-text-color: rgb(31, 41, 55);
+}
+
+:root.dark,
+html.dark {
+  --sidebar-text-color: rgb(243, 244, 246);
 }
 
 /* Accent color variants */
 .accent-blue {
-  --accent-color: rgb(59, 130, 246);
+  --accent-color-rgb: 59, 130, 246;
+  --accent-color: rgb(var(--accent-color-rgb));
   --accent-color-light: rgb(96, 165, 250);
   --accent-color-dark: rgb(37, 99, 235);
   --accent-gradient-from: rgb(59, 130, 246);
@@ -43,7 +53,8 @@
 
 :root.dark .accent-blue,
 html.dark .accent-blue {
-  --accent-color: rgb(96, 165, 250);
+  --accent-color-rgb: 96, 165, 250;
+  --accent-color: rgb(var(--accent-color-rgb));
   --accent-color-light: rgb(147, 197, 253);
   --accent-color-dark: rgb(59, 130, 246);
   --accent-gradient-from: rgb(96, 165, 250);
@@ -51,7 +62,8 @@ html.dark .accent-blue {
 }
 
 .accent-green {
-  --accent-color: rgb(34, 197, 94);
+  --accent-color-rgb: 34, 197, 94;
+  --accent-color: rgb(var(--accent-color-rgb));
   --accent-color-light: rgb(74, 222, 128);
   --accent-color-dark: rgb(22, 163, 74);
   --accent-gradient-from: rgb(34, 197, 94);
@@ -60,7 +72,8 @@ html.dark .accent-blue {
 
 :root.dark .accent-green,
 html.dark .accent-green {
-  --accent-color: rgb(74, 222, 128);
+  --accent-color-rgb: 74, 222, 128;
+  --accent-color: rgb(var(--accent-color-rgb));
   --accent-color-light: rgb(134, 239, 172);
   --accent-color-dark: rgb(34, 197, 94);
   --accent-gradient-from: rgb(74, 222, 128);
@@ -68,7 +81,8 @@ html.dark .accent-green {
 }
 
 .accent-purple {
-  --accent-color: rgb(168, 85, 247);
+  --accent-color-rgb: 168, 85, 247;
+  --accent-color: rgb(var(--accent-color-rgb));
   --accent-color-light: rgb(192, 132, 252);
   --accent-color-dark: rgb(147, 51, 234);
   --accent-gradient-from: rgb(168, 85, 247);
@@ -77,7 +91,8 @@ html.dark .accent-green {
 
 :root.dark .accent-purple,
 html.dark .accent-purple {
-  --accent-color: rgb(192, 132, 252);
+  --accent-color-rgb: 192, 132, 252;
+  --accent-color: rgb(var(--accent-color-rgb));
   --accent-color-light: rgb(221, 214, 254);
   --accent-color-dark: rgb(168, 85, 247);
   --accent-gradient-from: rgb(192, 132, 252);
@@ -85,7 +100,8 @@ html.dark .accent-purple {
 }
 
 .accent-orange {
-  --accent-color: rgb(249, 115, 22);
+  --accent-color-rgb: 249, 115, 22;
+  --accent-color: rgb(var(--accent-color-rgb));
   --accent-color-light: rgb(251, 146, 60);
   --accent-color-dark: rgb(234, 88, 12);
   --accent-gradient-from: rgb(249, 115, 22);
@@ -94,7 +110,8 @@ html.dark .accent-purple {
 
 :root.dark .accent-orange,
 html.dark .accent-orange {
-  --accent-color: rgb(251, 146, 60);
+  --accent-color-rgb: 251, 146, 60;
+  --accent-color: rgb(var(--accent-color-rgb));
   --accent-color-light: rgb(254, 215, 170);
   --accent-color-dark: rgb(249, 115, 22);
   --accent-gradient-from: rgb(251, 146, 60);
@@ -398,14 +415,45 @@ html.dark .border-gray-200 {
   color: rgb(75, 85, 99) !important; /* gray-600 for better contrast */
 }
 
+:root.dark .text-gray-900,
+html.dark .text-gray-900 {
+  color: rgb(243, 244, 246) !important; /* gray-100 */
+}
+
+:root.dark .text-gray-800,
+html.dark .text-gray-800 {
+  color: rgb(229, 231, 235) !important; /* gray-200 */
+}
+
+:root.dark .text-gray-700,
+html.dark .text-gray-700 {
+  color: rgb(209, 213, 219) !important; /* gray-300 */
+}
+
+:root.dark .text-gray-600,
+html.dark .text-gray-600 {
+  color: rgb(156, 163, 175) !important; /* gray-400 */
+}
+
 :root.dark .text-gray-400,
 html.dark .text-gray-400 {
   color: rgb(209, 213, 219) !important; /* gray-300 for better contrast in dark mode */
 }
 
+/* Support for accent color utilities */
+.text-accent { color: var(--accent-color) !important; }
+.text-accent-light { color: var(--accent-color-light) !important; }
+.text-accent-dark { color: var(--accent-color-dark) !important; }
+.bg-accent { background-color: var(--accent-color) !important; }
+.bg-accent-light { background-color: var(--accent-color-light) !important; }
+.bg-accent-dark { background-color: var(--accent-color-dark) !important; }
+.border-accent { border-color: var(--accent-color) !important; }
+.border-accent-light { border-color: var(--accent-color-light) !important; }
+.border-accent-dark { border-color: var(--accent-color-dark) !important; }
+
 /* Enhanced focus states for accessibility */
 *:focus-visible {
-  outline: 2px solid rgb(59, 130, 246); /* blue-500 */
+  outline: 2px solid var(--accent-color);
   outline-offset: 2px;
   border-radius: 0.25rem;
 }
@@ -504,8 +552,8 @@ html.dark .text-gray-400 {
           margin-bottom: 0.25rem;
           background: linear-gradient(135deg, var(--accent-gradient-from) 0%, var(--accent-gradient-to) 100%);
           background: linear-gradient(135deg, 
-            rgba(59, 130, 246, 0.08) 0%, 
-            rgba(37, 99, 235, 0.08) 100%);
+            rgba(var(--accent-color-rgb, 59, 130, 246), 0.08) 0%, 
+            rgba(var(--accent-color-rgb, 37, 99, 235), 0.08) 100%);
           border-left: 2px solid transparent;
           transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
           display: flex;
@@ -514,8 +562,8 @@ html.dark .text-gray-400 {
           
           &:hover {
             background: linear-gradient(135deg, 
-              rgba(59, 130, 246, 0.12) 0%, 
-              rgba(37, 99, 235, 0.12) 100%);
+              rgba(var(--accent-color-rgb, 59, 130, 246), 0.12) 0%, 
+              rgba(var(--accent-color-rgb, 37, 99, 235), 0.12) 100%);
             border-left-color: var(--accent-color-light);
             transform: translateX(2px);
           }
@@ -523,7 +571,7 @@ html.dark .text-gray-400 {
           .p-treenode-label {
             font-size: 0.875rem;
             font-weight: 600;
-            color: rgb(31, 41, 55);
+            color: var(--sidebar-text-color, rgb(31, 41, 55));
             letter-spacing: 0.01em;
             line-height: 1.4;
             white-space: normal;
@@ -550,8 +598,8 @@ html.dark .text-gray-400 {
         &.p-treenode-expanded .p-treenode-content {
           border-left-color: var(--accent-color);
           background: linear-gradient(135deg, 
-            rgba(59, 130, 246, 0.12) 0%, 
-            rgba(37, 99, 235, 0.12) 100%);
+            rgba(var(--accent-color-rgb, 59, 130, 246), 0.12) 0%, 
+            rgba(var(--accent-color-rgb, 37, 99, 235), 0.12) 100%);
         }
       }
       
