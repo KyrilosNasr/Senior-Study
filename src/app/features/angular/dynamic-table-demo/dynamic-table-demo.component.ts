@@ -4,11 +4,8 @@ import { CommonModule } from '@angular/common';
 import { DynamicTableComponent } from '../../../shared/components/dynamic-table/dynamic-table.component';
 import { DynamicModalComponent } from '../../../shared/components/dynamic-modal/dynamic-modal.component';
 import { ToastComponent } from '../../../shared/components/toast/toast.component';
-import { DemoHeaderComponent } from '../../../shared/components/demo-header/demo-header.component';
-import { DemoTabsComponent, DemoTab } from '../../../shared/components/demo-tabs/demo-tabs.component';
-import { DemoTabpanelComponent } from '../../../shared/components/demo-tabs/demo-tabpanel.component';
-import { DemoSectionComponent } from '../../../shared/components/demo-section/demo-section.component';
 import { ToastService } from '../../../shared/components/toast/toast.service';
+import { DemoTab } from '../../../shared/components/demo-tabs/demo-tabs.component';
 import { MessageService } from 'primeng/api';
 import { TableEventData } from '../../../shared/types/table-config.types';
 import { DemoBadge } from '../../../shared/types/common.types';
@@ -19,19 +16,21 @@ import { DYNAMIC_TABLE_DEMO_PROVIDERS } from './shared/providers/dynamic-table-d
 import { TableController } from '../../../shared/utils/table-controller';
 import { of, delay } from 'rxjs';
 import { DynamicTableConfig } from '../../../shared/types/table-config.types';
+import { CardModule } from 'primeng/card';
+import { TabsModule } from 'primeng/tabs';
+
 
 @Component({
   selector: 'app-dynamic-table-demo',
   standalone: true,
   imports: [
     CommonModule,
+    CardModule,
+    TabsModule,
     DynamicTableComponent,
+
     DynamicModalComponent,
-    ToastComponent,
-    DemoHeaderComponent,
-    DemoTabsComponent,
-    DemoTabpanelComponent,
-    DemoSectionComponent
+    ToastComponent
   ],
   providers: [
     MessageService,

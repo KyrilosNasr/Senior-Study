@@ -118,7 +118,6 @@ export class SignalsDemoComponent {
     // Effect with cleanup
     effect(() => {
       const name = this.name();
-      console.log('Name changed to:', name);
     });
   }
 

@@ -15,18 +15,18 @@ export class ThemeService {
   private readonly THEME_LINK_ID = 'primeng-theme';
 
   // PrimeNG theme mappings
-  private readonly primeNGThemes: Record<AccentColor, PrimeNGThemeConfig> = {
-    blue: { light: 'lara-light-blue', dark: 'lara-dark-blue' },
-    green: { light: 'lara-light-green', dark: 'lara-dark-green' },
-    purple: { light: 'lara-light-purple', dark: 'lara-dark-purple' },
-    orange: { light: 'lara-light-orange', dark: 'lara-dark-orange' },
-    teal: { light: 'lara-light-teal', dark: 'lara-dark-teal' },
-    pink: { light: 'lara-light-pink', dark: 'lara-dark-pink' },
-    red: { light: 'lara-light-red', dark: 'lara-dark-red' },
-    indigo: { light: 'lara-light-indigo', dark: 'lara-dark-indigo' },
-    cyan: { light: 'lara-light-cyan', dark: 'lara-dark-cyan' },
-    amber: { light: 'lara-light-amber', dark: 'lara-dark-amber' }
-  };
+  // private readonly primeNGThemes: Record<AccentColor, PrimeNGThemeConfig> = {
+  //   blue: { light: 'lara-light-blue', dark: 'lara-dark-blue' },
+  //   green: { light: 'lara-light-green', dark: 'lara-dark-green' },
+  //   purple: { light: 'lara-light-purple', dark: 'lara-dark-purple' },
+  //   orange: { light: 'lara-light-orange', dark: 'lara-dark-orange' },
+  //   teal: { light: 'lara-light-teal', dark: 'lara-dark-teal' },
+  //   pink: { light: 'lara-light-pink', dark: 'lara-dark-pink' },
+  //   red: { light: 'lara-light-red', dark: 'lara-dark-red' },
+  //   indigo: { light: 'lara-light-indigo', dark: 'lara-dark-indigo' },
+  //   cyan: { light: 'lara-light-cyan', dark: 'lara-dark-cyan' },
+  //   amber: { light: 'lara-light-amber', dark: 'lara-dark-amber' }
+  // };
 
   private readonly accentColorsArray: AccentColor[] = [
     'blue', 'green', 'purple', 'orange', 'teal',
@@ -43,7 +43,7 @@ export class ThemeService {
   }
 
   constructor() {
-    this.initializePrimeNGThemeLink();
+    // this.initializePrimeNGThemeLink();
     this.applyTheme();
 
     // Reactive theme application with transition handling
@@ -67,30 +67,30 @@ export class ThemeService {
     this.accentColor.set(color);
   }
 
-  /**
-   * Initialize PrimeNG theme link element in document head
-   * Critical for dynamic theme switching without bundling both themes
-   */
-  private initializePrimeNGThemeLink(): void {
-    if (typeof document === 'undefined') return;
+  // /**
+  //  * Initialize PrimeNG theme link element in document head
+  //  * Critical for dynamic theme switching without bundling both themes
+  //  */
+  // private initializePrimeNGThemeLink(): void {
+  //   if (typeof document === 'undefined') return;
 
-    let themeLink = document.getElementById(this.THEME_LINK_ID) as HTMLLinkElement;
+  //   let themeLink = document.getElementById(this.THEME_LINK_ID) as HTMLLinkElement;
 
-    if (!themeLink) {
-      themeLink = document.createElement('link');
-      themeLink.id = this.THEME_LINK_ID;
-      themeLink.rel = 'stylesheet';
-      themeLink.type = 'text/css';
+  //   if (!themeLink) {
+  //     themeLink = document.createElement('link');
+  //     themeLink.id = this.THEME_LINK_ID;
+  //     themeLink.rel = 'stylesheet';
+  //     themeLink.type = 'text/css';
 
-      // Insert before other stylesheets for proper cascade
-      const firstStylesheet = document.querySelector('link[rel="stylesheet"]');
-      if (firstStylesheet) {
-        firstStylesheet.parentNode?.insertBefore(themeLink, firstStylesheet);
-      } else {
-        document.head.appendChild(themeLink);
-      }
-    }
-  }
+  //     // Insert before other stylesheets for proper cascade
+  //     const firstStylesheet = document.querySelector('link[rel="stylesheet"]');
+  //     if (firstStylesheet) {
+  //       firstStylesheet.parentNode?.insertBefore(themeLink, firstStylesheet);
+  //     } else {
+  //       document.head.appendChild(themeLink);
+  //     }
+  //   }
+  // }
 
   /**
    * Apply theme with optimized transition handling
@@ -107,7 +107,7 @@ export class ThemeService {
     const color = this.accentColor();
 
     // 1. Update PrimeNG theme dynamically
-    this.loadPrimeNGTheme(mode, color);
+    // this.loadPrimeNGTheme(mode, color);
 
     // 2. Apply Tailwind dark mode class
     if (mode === 'dark') {
@@ -133,34 +133,34 @@ export class ThemeService {
     });
   }
 
-  /**
-   * Dynamically load PrimeNG theme CSS
-   * Performance optimization: Only loads the required theme
-   */
-  private loadPrimeNGTheme(mode: ThemeMode, color: AccentColor): void {
-    const themeLink = document.getElementById(this.THEME_LINK_ID) as HTMLLinkElement;
-    if (!themeLink) return;
+  // /**
+  //  * Dynamically load PrimeNG theme CSS
+  //  * Performance optimization: Only loads the required theme
+  //  */
+  // private loadPrimeNGTheme(mode: ThemeMode, color: AccentColor): void {
+  //   const themeLink = document.getElementById(this.THEME_LINK_ID) as HTMLLinkElement;
+  //   if (!themeLink) return;
 
-    const themeConfig = this.primeNGThemes[color];
-    const themeName = mode === 'dark' ? themeConfig.dark : themeConfig.light;
-    const themePath = `node_modules/primeng/resources/themes/${themeName}/theme.css`;
+  //   const themeConfig = this.primeNGThemes[color];
+  //   const themeName = mode === 'dark' ? themeConfig.dark : themeConfig.light;
+  //   const themePath = `node_modules/primeng/resources/themes/${themeName}/theme.css`;
 
-    // Only update if theme actually changed (performance optimization)
-    if (themeLink.href.includes(themeName)) return;
+  //   // Only update if theme actually changed (performance optimization)
+  //   if (themeLink.href.includes(themeName)) return;
 
-    // Preload new theme to prevent FOUC
-    const preloadLink = document.createElement('link');
-    preloadLink.rel = 'preload';
-    preloadLink.as = 'style';
-    preloadLink.href = themePath;
+  //   // Preload new theme to prevent FOUC
+  //   const preloadLink = document.createElement('link');
+  //   preloadLink.rel = 'preload';
+  //   preloadLink.as = 'style';
+  //   preloadLink.href = themePath;
 
-    preloadLink.onload = () => {
-      themeLink.href = themePath;
-      preloadLink.remove();
-    };
+  //   preloadLink.onload = () => {
+  //     themeLink.href = themePath;
+  //     preloadLink.remove();
+  //   };
 
-    document.head.appendChild(preloadLink);
-  }
+  //   document.head.appendChild(preloadLink);
+  // }
 
   /**
    * Apply body background with atomic class updates

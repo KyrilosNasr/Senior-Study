@@ -5,16 +5,14 @@ import {
   forwardRef,
   OnInit,
   OnDestroy,
-  signal,
-  computed
+  signal
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   ControlValueAccessor,
   FormControl,
   NG_VALUE_ACCESSOR,
-  ReactiveFormsModule,
-  Validators
+  ReactiveFormsModule
 } from '@angular/forms';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { DestroyRef, inject } from '@angular/core';
@@ -31,7 +29,7 @@ import { ToggleButtonModule } from 'primeng/togglebutton';
 import { MessageModule } from 'primeng/message';
 import { RadioButtonModule } from 'primeng/radiobutton';
 
-import { FormFieldConfig, FormFieldType } from '../../types/form-field.types';
+import { FormFieldConfig } from '../../types/form-field.types';
 import { SelectOption } from '../../types/common.types';
 
 @Component({
@@ -77,7 +75,6 @@ import { SelectOption } from '../../types/common.types';
           [type]="getInputType()"
           [formControl]="control"
           [placeholder]="fieldConfig.placeholder || ''"
-          [disabled]="fieldConfig.disabled || false"
           class="w-full"
         />
       }
@@ -88,7 +85,6 @@ import { SelectOption } from '../../types/common.types';
           [id]="fieldConfig.key"
           [formControl]="control"
           [placeholder]="fieldConfig.placeholder || ''"
-          [disabled]="fieldConfig.disabled || false"
           [min]="fieldConfig.min"
           [max]="fieldConfig.max"
           [step]="fieldConfig.step || 1"
@@ -104,7 +100,6 @@ import { SelectOption } from '../../types/common.types';
           [id]="fieldConfig.key"
           [formControl]="control"
           [placeholder]="fieldConfig.placeholder || ''"
-          [disabled]="fieldConfig.disabled || false"
           [rows]="fieldConfig.rows || 3"
           class="w-full"
         ></textarea>
@@ -119,7 +114,6 @@ import { SelectOption } from '../../types/common.types';
           optionLabel="label"
           optionValue="value"
           [placeholder]="fieldConfig.placeholder || 'Select an option'"
-          [disabled]="fieldConfig.disabled || false"
           styleClass="w-full"
         />
       }
@@ -133,7 +127,6 @@ import { SelectOption } from '../../types/common.types';
           optionLabel="label"
           optionValue="value"
           [placeholder]="fieldConfig.placeholder || 'Select options'"
-          [disabled]="fieldConfig.disabled || false"
           styleClass="w-full"
         />
       }
@@ -145,7 +138,6 @@ import { SelectOption } from '../../types/common.types';
             [id]="fieldConfig.key"
             [formControl]="control"
             [binary]="true"
-            [disabled]="fieldConfig.disabled || false"
           />
           <label [for]="fieldConfig.key" class="text-sm text-gray-600 dark:text-gray-400">
             {{ fieldConfig.placeholder || fieldConfig.label }}
@@ -159,7 +151,6 @@ import { SelectOption } from '../../types/common.types';
           <p-toggleButton
             [id]="fieldConfig.key"
             [formControl]="control"
-            [disabled]="fieldConfig.disabled || false"
           />
           <label [for]="fieldConfig.key" class="text-sm text-gray-600 dark:text-gray-400">
             {{ fieldConfig.placeholder || fieldConfig.label }}
@@ -177,7 +168,7 @@ import { SelectOption } from '../../types/common.types';
                 [name]="fieldConfig.key"
                 [value]="option.value"
                 [formControl]="control"
-                [disabled]="(fieldConfig.disabled || false) || (option.disabled || false)"
+                [disabled]="option.disabled || false"
               />
               <label
                 [for]="fieldConfig.key + '-' + option.value"
@@ -200,7 +191,6 @@ import { SelectOption } from '../../types/common.types';
           [minDate]="fieldConfig.minDate"
           [maxDate]="fieldConfig.maxDate"
           [placeholder]="fieldConfig.placeholder || 'Select date'"
-          [disabled]="fieldConfig.disabled || false"
           styleClass="w-full"
         />
       }
@@ -213,7 +203,6 @@ import { SelectOption } from '../../types/common.types';
           [timeOnly]="true"
           [dateFormat]="fieldConfig.dateFormat || 'HH:mm'"
           [placeholder]="fieldConfig.placeholder || 'Select time'"
-          [disabled]="fieldConfig.disabled || false"
           styleClass="w-full"
         />
       }
@@ -225,7 +214,6 @@ import { SelectOption } from '../../types/common.types';
           mode="basic"
           [accept]="fieldConfig.accept"
           [maxFileSize]="fieldConfig.maxFileSize || 1000000"
-          [disabled]="fieldConfig.disabled || false"
           (onSelect)="onFileSelect($event)"
           styleClass="w-full"
         />
@@ -239,7 +227,6 @@ import { SelectOption } from '../../types/common.types';
           [suggestions]="autocompleteSuggestions()"
           (completeMethod)="onAutocompleteSearch($event)"
           [placeholder]="fieldConfig.placeholder || 'Start typing...'"
-          [disabled]="fieldConfig.disabled || false"
           optionLabel="label"
           [dropdown]="true"
           styleClass="w-full"
@@ -264,8 +251,7 @@ import { SelectOption } from '../../types/common.types';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FormFieldRendererComponent
-  implements ControlValueAccessor, OnInit, OnDestroy
-{
+  implements ControlValueAccessor, OnInit, OnDestroy {
   @Input({ required: true }) fieldConfig!: FormFieldConfig;
   @Input() control!: FormControl;
 
@@ -275,7 +261,7 @@ export class FormFieldRendererComponent
   ngOnInit(): void {
     if (!this.control) {
       this.control = new FormControl(
-        this.fieldConfig.defaultValue,
+        { value: this.fieldConfig.defaultValue, disabled: this.fieldConfig.disabled || false },
         this.fieldConfig.validators || []
       );
     }
@@ -338,8 +324,8 @@ export class FormFieldRendererComponent
     return errors;
   }
 
-  private onChange = (value: unknown): void => {};
-  private onTouched = (): void => {};
+  private onChange = (value: unknown): void => { };
+  private onTouched = (): void => { };
 
   writeValue(value: unknown): void {
     if (this.control && value !== this.control.value) {

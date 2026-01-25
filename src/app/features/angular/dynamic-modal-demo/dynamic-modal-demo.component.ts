@@ -19,7 +19,6 @@ import { DynamicModalConfig, ModalResult } from '../../../shared/types/modal-con
     CardModule,
     ButtonModule,
     DynamicModalComponent,
-    DemoHeaderComponent,
     CodeExampleComponent,
     ResultDisplayComponent
   ],

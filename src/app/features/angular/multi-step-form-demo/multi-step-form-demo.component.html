@@ -1,6 +1,7 @@
-<div class="container-responsive space-y-responsive">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
   <!-- Hero Header -->
-  <div class="card-modern padding-responsive hover-lift slide-in-up">
+  <div
+    class="bg-white dark:bg-gray-900/50 backdrop-blur-sm border border-gray-200 dark:border-gray-800 rounded-2xl p-6 sm:p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md slide-in-up">
     <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
       <div class="flex-1">
         <div class="flex items-center gap-3 mb-4">
@@ -9,13 +10,16 @@
             <i class="fas fa-list-ol text-white text-xl sm:text-2xl"></i>
           </div>
           <div>
-            <span class="badge-modern text-xs sm:text-sm">Angular Topics</span>
+            <span
+              class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-[var(--accent-color)]/10 text-[var(--accent-color)]">Angular
+              Topics</span>
           </div>
         </div>
-        <h1 class="heading-responsive text-gradient mb-4">
+        <h1
+          class="text-3xl sm:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-[var(--accent-gradient-from)] to-[var(--accent-gradient-to)] bg-clip-text text-transparent mb-4">
           Multi-Step Form
         </h1>
-        <p class="text-responsive text-gray-700 dark:text-gray-300">
+        <p class="text-base sm:text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
           A wizard-style multi-step form built with the dynamic form component. Demonstrates step-by-step
           form completion with progress tracking and data persistence across steps.
         </p>
@@ -30,13 +34,15 @@
   </div>
 
   <!-- Multi-Step Form -->
-  <p-card class="card-modern hover-lift slide-in-up">
-    <div class="padding-responsive space-y-6">
+  <p-card styleClass="p-0 overflow-hidden border-none bg-transparent shadow-none slide-in-up">
+    <div
+      class="bg-white dark:bg-gray-900/50 border border-gray-200 dark:border-gray-800 rounded-2xl p-4 sm:p-6 lg:p-8 transition-all duration-300 shadow-sm space-y-8">
+
       <!-- Progress Steps -->
-      <div class="glass rounded-xl p-6 border-l-4 border-accent">
-        <div class="flex items-center gap-3 mb-6">
+      <div class="bg-gray-50/50 dark:bg-gray-800/20 rounded-2xl p-6 border border-gray-200 dark:border-gray-700/50">
+        <div class="flex items-center gap-3 mb-8">
           <i class="fas fa-route text-accent text-xl"></i>
-          <h3 class="text-lg sm:text-xl font-semibold text-gray-900 dark:text-gray-100">Progress</h3>
+          <h3 class="text-lg sm:text-xl font-semibold text-gray-900 dark:text-gray-100">Step Navigation</h3>
         </div>
         <div class="w-full">
           <p-steps [model]="stepItems()" [(activeIndex)]="activeIndex" [readonly]="false" />
@@ -44,15 +50,16 @@
       </div>
 
       <!-- Current Step Form -->
-      <div class="glass rounded-xl p-6 border-l-4 border-accent">
-        <div class="flex items-center justify-between mb-6">
-          <div class="flex items-center gap-3">
+      <div
+        class="bg-gray-50/50 dark:bg-gray-800/20 rounded-2xl p-6 border border-gray-200 dark:border-gray-700/50 border-l-4 border-l-[var(--accent-color)]">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+          <div class="flex items-center gap-4">
             <div
-              class="w-10 h-10 rounded-lg bg-gradient-to-br from-[var(--accent-gradient-from)] to-[var(--accent-gradient-to)] flex items-center justify-center shadow-sm">
-              <span class="text-white font-bold">{{ currentStep() + 1 }}</span>
+              class="w-12 h-12 rounded-xl bg-gradient-to-br from-[var(--accent-gradient-from)] to-[var(--accent-gradient-to)] flex items-center justify-center shadow-md">
+              <span class="text-white font-bold text-lg">{{ currentStep() + 1 }}</span>
             </div>
             <div>
-              <h3 class="text-lg sm:text-xl font-semibold text-gray-900 dark:text-gray-100">
+              <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100">
                 {{ steps[currentStep()].label }}
               </h3>
               <p class="text-sm text-gray-500 dark:text-gray-400">
@@ -60,103 +67,88 @@
               </p>
             </div>
           </div>
-          <span class="badge-modern">
-            {{ Math.round(((currentStep() + 1) / steps.length) * 100) }}% Complete
-          </span>
+          <div class="flex items-center gap-3">
+            <span class="text-sm font-semibold text-gray-500 dark:text-gray-400">
+              {{ Math.round(((currentStep() + 1) / steps.length) * 100) }}% Complete
+            </span>
+            <div class="w-24 h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+              <div
+                class="h-full bg-[var(--accent-color)] transition-all duration-500 shadow-[0_0_10px_var(--accent-color)]"
+                [style.width.%]="Math.round(((currentStep() + 1) / steps.length) * 100)"></div>
+            </div>
+          </div>
         </div>
 
-        <app-dynamic-form [config]="currentFormConfig()" [loading]="loading" (formSubmit)="onStepSubmit($event)"
-          (formCancel)="onStepCancel()" />
+        <div
+          class="bg-white dark:bg-gray-900 rounded-2xl p-6 sm:p-8 border border-gray-200 dark:border-gray-800 shadow-sm transition-all">
+          <app-dynamic-form [config]="currentFormConfig()" [loading]="loading" (formSubmit)="onStepSubmit($event)"
+            (formCancel)="onStepCancel()" />
+        </div>
       </div>
 
       <!-- Form Data Preview -->
       @if (hasFormData()) {
-      <div class="glass rounded-xl p-6 border-l-4 border-accent fade-in">
-        <div class="flex items-center gap-3 mb-4">
-          <i class="fas fa-database text-accent text-xl"></i>
-          <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100">
+      <div
+        class="bg-gray-50/50 dark:bg-gray-800/20 rounded-2xl p-6 border border-gray-200 dark:border-gray-700/50 border-l-4 border-l-emerald-500 animate-fade-in shadow-inner">
+        <div class="flex items-center gap-3 mb-6 text-gray-900 dark:text-gray-100">
+          <i class="fas fa-database text-emerald-500 text-xl"></i>
+          <h3 class="text-lg font-bold">
             Collected Data Preview
           </h3>
         </div>
-        <div class="code-block-modern">
-          <pre class="text-sm overflow-x-auto"><code>{{ formData() | json }}</code></pre>
+        <div
+          class="bg-gray-900 rounded-xl p-6 overflow-x-auto text-sm text-emerald-400 font-mono shadow-2xl border border-emerald-500/20">
+          <pre><code>{{ formData() | json }}</code></pre>
         </div>
       </div>
       }
     </div>
   </p-card>
 
-  <!-- Code Examples -->
-  <p-card class="card-modern hover-lift slide-in-up">
-    <div class="padding-responsive">
-      <div class="flex items-center gap-3 mb-6">
-        <div
-          class="w-10 h-10 rounded-lg bg-gradient-to-br from-[var(--accent-gradient-from)] to-[var(--accent-gradient-to)] flex items-center justify-center shadow-md">
-          <i class="fas fa-code text-white"></i>
-        </div>
-        <h2 class="subheading-responsive text-gray-900 dark:text-gray-100">Code Examples</h2>
-      </div>
-
-      <div class="glass rounded-xl p-6 border-l-4 border-accent">
-        <div class="flex items-center gap-2 mb-4">
-          <i class="fas fa-file-code text-accent"></i>
-          <h4 class="text-lg font-semibold text-gray-900 dark:text-gray-100">Multi-Step Form Implementation</h4>
-        </div>
-        <div class="code-block-modern">
-          <pre class="overflow-x-auto text-sm"><code>// Define steps
-steps: StepConfig[] = [
-  &#123;
-    label: 'Personal Information',
-    fields: [/* form fields */]
-  &#125;,
-  &#123;
-    label: 'Address Information',
-    fields: [/* form fields */]
-  &#125;
-];
-
-// Track current step
-currentStep = signal(0);
-
-// Handle step submission
-onStepSubmit(result: unknown): void &#123;
-  this.formData.update(data =&gt; (&#123; ...data, ...result &#125;));
-  if (this.isLastStep()) &#123;
-    // Final submission
-  &#125; else &#123;
-    this.currentStep.update(step =&gt; step + 1);
-  &#125;
-&#125;</code></pre>
-        </div>
-      </div>
-    </div>
-  </p-card>
-
   <!-- Key Takeaways -->
-  <p-card class="card-modern hover-lift slide-in-up">
-    <div class="padding-responsive">
-      <div class="flex items-center gap-3 mb-6">
-        <div
-          class="w-10 h-10 rounded-lg bg-gradient-to-br from-[var(--accent-gradient-from)] to-[var(--accent-gradient-to)] flex items-center justify-center shadow-md">
-          <i class="fas fa-graduation-cap text-white"></i>
-        </div>
-        <h2 class="subheading-responsive text-accent">Key Takeaways</h2>
+  <div
+    class="bg-white dark:bg-gray-900/50 backdrop-blur-sm border border-gray-200 dark:border-gray-800 rounded-2xl p-6 sm:p-8 transition-all duration-300 shadow-sm hover:shadow-md slide-in-up">
+    <div class="flex items-center gap-3 mb-8">
+      <div
+        class="w-10 h-10 rounded-lg bg-gradient-to-br from-[var(--accent-gradient-from)] to-[var(--accent-gradient-to)] flex items-center justify-center shadow-md">
+        <i class="fas fa-graduation-cap text-white"></i>
       </div>
-
-      <ul class="list-modern">
-        <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
-          Break complex forms into manageable steps
-        </li>
-        <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
-          Use signals to track current step and form data
-        </li>
-        <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
-          Validate each step before proceeding
-        </li>
-        <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
-          Persist data across steps for final submission
-        </li>
-      </ul>
+      <h2 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-gray-100">Key Takeaways</h2>
     </div>
-  </p-card>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div
+        class="bg-gray-50 dark:bg-gray-800/50 border border-gray-100 dark:border-gray-700/50 p-4 rounded-xl flex items-start gap-4 transition-all hover:border-[var(--accent-color)]/30 group">
+        <div
+          class="w-8 h-8 rounded-full bg-[var(--accent-color)]/10 text-[var(--accent-color)] flex items-center justify-center shrink-0 group-hover:bg-[var(--accent-color)] group-hover:text-white transition-colors">
+          <i class="fas fa-check text-sm"></i>
+        </div>
+        <p class="text-gray-800 dark:text-gray-200 font-medium pt-1">Break complex forms into manageable steps</p>
+      </div>
+      <div
+        class="bg-gray-50 dark:bg-gray-800/50 border border-gray-100 dark:border-gray-700/50 p-4 rounded-xl flex items-start gap-4 transition-all hover:border-[var(--accent-color)]/30 group">
+        <div
+          class="w-8 h-8 rounded-full bg-[var(--accent-color)]/10 text-[var(--accent-color)] flex items-center justify-center shrink-0 group-hover:bg-[var(--accent-color)] group-hover:text-white transition-colors">
+          <i class="fas fa-check text-sm"></i>
+        </div>
+        <p class="text-gray-800 dark:text-gray-200 font-medium pt-1">Use signals to track current step and form data</p>
+      </div>
+      <div
+        class="bg-gray-50 dark:bg-gray-800/50 border border-gray-100 dark:border-gray-700/50 p-4 rounded-xl flex items-start gap-4 transition-all hover:border-[var(--accent-color)]/30 group">
+        <div
+          class="w-8 h-8 rounded-full bg-[var(--accent-color)]/10 text-[var(--accent-color)] flex items-center justify-center shrink-0 group-hover:bg-[var(--accent-color)] group-hover:text-white transition-colors">
+          <i class="fas fa-check text-sm"></i>
+        </div>
+        <p class="text-gray-800 dark:text-gray-200 font-medium pt-1">Validate each step before proceeding</p>
+      </div>
+      <div
+        class="bg-gray-50 dark:bg-gray-800/50 border border-gray-100 dark:border-gray-700/50 p-4 rounded-xl flex items-start gap-4 transition-all hover:border-[var(--accent-color)]/30 group">
+        <div
+          class="w-8 h-8 rounded-full bg-[var(--accent-color)]/10 text-[var(--accent-color)] flex items-center justify-center shrink-0 group-hover:bg-[var(--accent-color)] group-hover:text-white transition-colors">
+          <i class="fas fa-check text-sm"></i>
+        </div>
+        <p class="text-gray-800 dark:text-gray-200 font-medium pt-1">Persist data across steps for final submission</p>
+      </div>
+    </div>
+  </div>
 </div>

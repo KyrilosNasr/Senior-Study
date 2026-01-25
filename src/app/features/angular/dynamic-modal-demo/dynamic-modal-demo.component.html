@@ -1,82 +1,143 @@
-<div class="space-y-6">
-  <!-- Header Card -->
-  <app-demo-header
-    title="Dynamic Modal Component"
-    description="A flexible modal component built with PrimeNG Dialog. Supports dynamic content, custom actions, loading states, and responsive design. Can be used programmatically via service or declaratively."
-  />
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+  <!-- Hero Header -->
+  <div
+    class="bg-white dark:bg-gray-900/50 backdrop-blur-sm border border-gray-200 dark:border-gray-800 rounded-2xl p-6 sm:p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md slide-in-up">
+    <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+      <div class="flex-1">
+        <div class="flex items-center gap-3 mb-4">
+          <div
+            class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br from-[var(--accent-gradient-from)] to-[var(--accent-gradient-to)] flex items-center justify-center shadow-lg">
+            <i class="fas fa-window-restore text-white text-xl sm:text-2xl"></i>
+          </div>
+          <div>
+            <span
+              class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-[var(--accent-color)]/10 text-[var(--accent-color)]">Angular
+              Topics</span>
+          </div>
+        </div>
+        <h1
+          class="text-3xl sm:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-[var(--accent-gradient-from)] to-[var(--accent-gradient-to)] bg-clip-text text-transparent mb-4">
+          Dynamic Modal Component
+        </h1>
+        <p class="text-base sm:text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
+          A versatile dialog system built on PrimeNG. Effortlessly manage dynamic content,
+          custom actions, and responsive modal states programmatically or declaratively.
+        </p>
+      </div>
+      <div class="hidden lg:block">
+        <div
+          class="w-32 h-32 rounded-2xl bg-[var(--accent-color)]/10 dark:bg-[var(--accent-color)]/20 flex items-center justify-center backdrop-blur-sm border border-[var(--accent-color)]/20">
+          <i class="fas fa-external-link-alt text-6xl text-accent"></i>
+        </div>
+      </div>
+    </div>
+  </div>
 
-  <!-- Demo Buttons -->
-  <p-card>
-    <div class="space-y-4">
-      <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">
-        Modal Examples
-      </h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        <p-button
-          label="Info Modal"
-          icon="pi pi-info-circle"
-          (onClick)="showInfoModal()"
-          class="w-full"
-        />
-        <p-button
-          label="Confirm Modal"
-          icon="pi pi-question-circle"
-          severity="warn"
-          (onClick)="showConfirmModal()"
-          class="w-full"
-        />
-        <p-button
-          label="Custom Modal"
-          icon="pi pi-cog"
-          severity="secondary"
-          (onClick)="showCustomModal()"
-          class="w-full"
-        />
-        <p-button
-          label="Loading Modal"
-          icon="pi pi-spin pi-spinner"
-          severity="info"
-          (onClick)="showLoadingModal()"
-          class="w-full"
-        />
-        <p-button
-          label="Full Screen Modal"
-          icon="pi pi-window-maximize"
-          severity="success"
-          (onClick)="showFullScreenModal()"
-          class="w-full"
-        />
+  <!-- Modal Examples -->
+  <p-card styleClass="p-0 overflow-hidden border-none bg-transparent shadow-none slide-in-up">
+    <div
+      class="bg-white dark:bg-gray-900/50 border border-gray-200 dark:border-gray-800 rounded-2xl p-4 sm:p-6 lg:p-8 transition-all duration-300 shadow-sm space-y-8">
+      <div class="flex items-center gap-3 mb-4">
+        <div
+          class="w-10 h-10 rounded-lg bg-gradient-to-br from-[var(--accent-gradient-from)] to-[var(--accent-gradient-to)] flex items-center justify-center shadow-md">
+          <i class="fas fa-mouse-pointer text-white"></i>
+        </div>
+        <h2 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-gray-100">Interactive Examples</h2>
       </div>
 
-      @if (lastResult) {
-        <app-result-display
-          [result]="lastResult"
-          label="Last Result"
-        />
-      }
+      <div class="bg-gray-50/50 dark:bg-gray-800/20 rounded-2xl p-6 border border-gray-200 dark:border-gray-700/50">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div
+            class="bg-white dark:bg-gray-900 p-6 rounded-xl border border-gray-200 dark:border-gray-800 shadow-sm hover:border-blue-500/50 transition-all group">
+            <div
+              class="w-10 h-10 rounded-lg bg-blue-500/10 text-blue-500 flex items-center justify-center mb-4 group-hover:bg-blue-500 group-hover:text-white transition-all">
+              <i class="fas fa-info-circle"></i>
+            </div>
+            <h4 class="text-lg font-bold text-gray-900 dark:text-gray-100 mb-2">Information</h4>
+            <p class="text-sm text-gray-500 dark:text-gray-400 mb-4">Simple informational modal with a single close
+              action.</p>
+            <p-button label="Show Info" (onClick)="showInfoModal()" class="w-full" size="small" />
+          </div>
+
+          <div
+            class="bg-white dark:bg-gray-900 p-6 rounded-xl border border-gray-200 dark:border-gray-800 shadow-sm hover:border-amber-500/50 transition-all group">
+            <div
+              class="w-10 h-10 rounded-lg bg-amber-500/10 text-amber-500 flex items-center justify-center mb-4 group-hover:bg-amber-500 group-hover:text-white transition-all">
+              <i class="fas fa-question-circle"></i>
+            </div>
+            <h4 class="text-lg font-bold text-gray-900 dark:text-gray-100 mb-2">Confirmation</h4>
+            <p class="text-sm text-gray-500 dark:text-gray-400 mb-4">Confirmation dialog with primary and secondary
+              actions.</p>
+            <p-button label="Show Confirm" severity="warn" (onClick)="showConfirmModal()" class="w-full" size="small" />
+          </div>
+
+          <div
+            class="bg-white dark:bg-gray-900 p-6 rounded-xl border border-gray-200 dark:border-gray-800 shadow-sm hover:border-purple-500/50 transition-all group">
+            <div
+              class="w-10 h-10 rounded-lg bg-purple-500/10 text-purple-500 flex items-center justify-center mb-4 group-hover:bg-purple-500 group-hover:text-white transition-all">
+              <i class="fas fa-cog"></i>
+            </div>
+            <h4 class="text-lg font-bold text-gray-900 dark:text-gray-100 mb-2">Customized</h4>
+            <p class="text-sm text-gray-500 dark:text-gray-400 mb-4">Modal with customized header, footer and styling.
+            </p>
+            <p-button label="Show Custom" severity="secondary" (onClick)="showCustomModal()" class="w-full"
+              size="small" />
+          </div>
+
+          <div
+            class="bg-white dark:bg-gray-900 p-6 rounded-xl border border-gray-200 dark:border-gray-800 shadow-sm hover:border-emerald-500/50 transition-all group">
+            <div
+              class="w-10 h-10 rounded-lg bg-emerald-500/10 text-emerald-500 flex items-center justify-center mb-4 group-hover:bg-emerald-500 group-hover:text-white transition-all">
+              <i class="fas fa-spinner"></i>
+            </div>
+            <h4 class="text-lg font-bold text-gray-900 dark:text-gray-100 mb-2">Loading State</h4>
+            <p class="text-sm text-gray-500 dark:text-gray-400 mb-4">demonstrates async operations within the modal.</p>
+            <p-button label="Show Loading" severity="info" (onClick)="showLoadingModal()" class="w-full" size="small" />
+          </div>
+
+          <div
+            class="bg-white dark:bg-gray-900 p-6 rounded-xl border border-gray-200 dark:border-gray-800 shadow-sm hover:border-indigo-500/50 transition-all group">
+            <div
+              class="w-10 h-10 rounded-lg bg-indigo-500/10 text-indigo-500 flex items-center justify-center mb-4 group-hover:bg-indigo-500 group-hover:text-white transition-all">
+              <i class="fas fa-expand"></i>
+            </div>
+            <h4 class="text-lg font-bold text-gray-900 dark:text-gray-100 mb-2">Full Screen</h4>
+            <p class="text-sm text-gray-500 dark:text-gray-400 mb-4">A full-screen modal mode for complex layouts.</p>
+            <p-button label="Show Full" severity="success" (onClick)="showFullScreenModal()" class="w-full"
+              size="small" />
+          </div>
+        </div>
+
+        @if (lastResult) {
+        <div
+          class="mt-8 animate-fade-in shadow-inner p-4 bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800">
+          <app-result-display [result]="lastResult" label="Interaction Result" />
+        </div>
+        }
+      </div>
     </div>
   </p-card>
 
   <!-- Code Examples -->
-  <p-card>
-    <div class="space-y-6">
-      <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">
-        Code Examples
-      </h2>
+  <p-card styleClass="p-0 overflow-hidden border-none bg-transparent shadow-none slide-in-up">
+    <div
+      class="bg-white dark:bg-gray-900/50 border border-gray-200 dark:border-gray-800 rounded-2xl p-4 sm:p-6 lg:p-8 transition-all duration-300 shadow-sm">
+      <div class="flex items-center gap-3 mb-8">
+        <div
+          class="w-10 h-10 rounded-lg bg-gradient-to-br from-[var(--accent-gradient-from)] to-[var(--accent-gradient-to)] flex items-center justify-center shadow-md">
+          <i class="fas fa-code text-white"></i>
+        </div>
+        <h2 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-gray-100">Implementation Guide</h2>
+      </div>
 
-      <app-code-example
-        title="Using Modal Service"
-        [code]="serviceExampleCode"
-      />
+      <div class="space-y-8">
+        <app-code-example title="Service-based Usage (Recommended)" [code]="serviceExampleCode" />
 
-      <app-code-example
-        title="Using Component Directly"
-        [code]="componentExampleCode"
-      />
+        <app-code-example title="Declarative Usage" [code]="componentExampleCode" />
+      </div>
     </div>
   </p-card>
 
   <!-- Modal Component (always rendered, controlled by service) -->
   <app-dynamic-modal></app-dynamic-modal>
 </div>
-

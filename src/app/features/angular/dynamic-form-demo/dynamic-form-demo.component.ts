@@ -13,6 +13,8 @@ import { CodeExampleComponent } from '../../../shared/components/code-example/co
 import { ResultDisplayComponent } from '../../../shared/components/result-display/result-display.component';
 import { ToastService } from '../../../shared/components/toast/toast.service';
 import { MessageService } from 'primeng/api';
+import { CardModule } from 'primeng/card';
+import { TabsModule } from 'primeng/tabs';
 import {
   DynamicFormConfig,
   FormSubmitResult
@@ -24,13 +26,11 @@ import { SelectOption } from '../../../shared/types/common.types';
   standalone: true,
   imports: [
     CommonModule,
+    CardModule,
+    TabsModule,
     DynamicFormComponent,
     DynamicModalComponent,
     ToastComponent,
-    DemoHeaderComponent,
-    DemoTabsComponent,
-    DemoTabpanelComponent,
-    DemoSectionComponent,
     CodeExampleComponent,
     ResultDisplayComponent
   ],

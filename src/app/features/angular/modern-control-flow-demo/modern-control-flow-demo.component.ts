@@ -1,20 +1,31 @@
 import { Component, ChangeDetectionStrategy, signal, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
+import { ToggleButtonModule } from 'primeng/togglebutton';
+import { SelectButtonModule } from 'primeng/selectbutton';
 import { Tabs, Tab, TabList, TabPanel, TabPanels } from 'primeng/tabs';
+
+interface DemoItem {
+  id: string;
+  name: string;
+}
 
 /**
  * Modern Control Flow Demo Component
- * Demonstrates Angular's modern control flow syntax (@if, @for, @switch, @defer)
+ * Demonstrates Angular's modern control flow syntax (@if, @for, @switch)
  */
 @Component({
   selector: 'app-modern-control-flow-demo',
   standalone: true,
   imports: [
     CommonModule,
+    FormsModule,
     CardModule,
     ButtonModule,
+    ToggleButtonModule,
+    SelectButtonModule,
     Tabs,
     Tab,
     TabList,
@@ -27,61 +38,50 @@ import { Tabs, Tab, TabList, TabPanel, TabPanels } from 'primeng/tabs';
 })
 export class ModernControlFlowDemoComponent {
   activeTab = signal('0');
-  // Signals for demo
-  count = signal(0);
-  items = signal<string[]>(['Item 1', 'Item 2', 'Item 3']);
-  selectedOption = signal<'option1' | 'option2' | 'option3'>('option1');
-  showDeferred = signal(false);
+
+  // @if demo signals
+  showContent = signal(true);
+
+  // @for demo signals
+  items = signal<DemoItem[]>([
+    { id: '1', name: 'Angular 17+' },
+    { id: '2', name: 'Signals API' },
+    { id: '3', name: 'Modern Control Flow' }
+  ]);
+
+  // @switch demo signals
+  currentRole = signal('admin');
+  userRoles = signal([
+    { label: 'Admin', value: 'admin' },
+    { label: 'Editor', value: 'editor' },
+    { label: 'Viewer', value: 'viewer' }
+  ]);
 
   // Computed values
-  isEven = computed(() => this.count() % 2 === 0);
   itemCount = computed(() => this.items().length);
 
   /**
-   * Increment count
-   */
-  increment(): void {
-    this.count.update(v => v + 1);
-  }
-
-  /**
-   * Add item
+   * Add item to @for list
    */
   addItem(): void {
-    this.items.update(items => [...items, `Item ${items.length + 1}`]);
+    const id = Math.random().toString(36).substring(7);
+    const names = ['Server-Side Rendering', 'Hydration', 'Deferrable Views', 'Zoneless Change Detection'];
+    const name = names[Math.floor(Math.random() * names.length)];
+    this.items.update(items => [...items, { id, name: `${name} (${id})` }]);
   }
 
   /**
-   * Remove item
+   * Remove item from @for list
    */
-  removeItem(index: number): void {
-    this.items.update(items => items.filter((_, i) => i !== index));
+  removeItem(id: string): void {
+    this.items.update(items => items.filter(item => item.id !== id));
   }
 
   /**
-   * Select option
+   * Clear all items
    */
-  selectOption(option: 'option1' | 'option2' | 'option3'): void {
-    this.selectedOption.set(option);
-  }
-
-  /**
-   * Load deferred content
-   */
-  loadDeferred(): void {
-    this.showDeferred.set(true);
-  }
-
-  /**
-   * Get code example for @for loop
-   * This method returns the code as a string to avoid template parsing issues
-   */
-  getForLoopExample(): string {
-    return `@for (item of items; track item.id) {
-  <div>{{ item.name }}</div>
-} @empty {
-  <p>No items</p>
-}`;
+  clearItems(): void {
+    this.items.set([]);
   }
 }
 

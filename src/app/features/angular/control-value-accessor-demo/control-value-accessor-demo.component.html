@@ -1,6 +1,7 @@
-<div class="container-responsive space-y-responsive">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
   <!-- Hero Header -->
-  <div class="card-modern padding-responsive hover-lift slide-in-up">
+  <div
+    class="bg-white dark:bg-gray-900/50 backdrop-blur-sm border border-gray-200 dark:border-gray-800 rounded-2xl p-6 sm:p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md slide-in-up">
     <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
       <div class="flex-1">
         <div class="flex items-center gap-3 mb-4">
@@ -9,15 +10,18 @@
             <i class="fas fa-plug text-white text-xl sm:text-2xl"></i>
           </div>
           <div>
-            <span class="badge-modern text-xs sm:text-sm">Angular Topics</span>
+            <span
+              class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-[var(--accent-color)]/10 text-[var(--accent-color)]">Angular
+              Topics</span>
           </div>
         </div>
-        <h1 class="heading-responsive text-gradient mb-4">
+        <h1
+          class="text-3xl sm:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-[var(--accent-gradient-from)] to-[var(--accent-gradient-to)] bg-clip-text text-transparent mb-4">
           ControlValueAccessor
         </h1>
-        <p class="text-responsive text-gray-700 dark:text-gray-300">
-          Demonstrates custom form controls using ControlValueAccessor interface. The FormFieldRendererComponent
-          implements ControlValueAccessor to work seamlessly with Angular Reactive Forms.
+        <p class="text-base sm:text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
+          Master custom form controls by implementing the ControlValueAccessor interface,
+          enabling seamless integration with Angular's Reactive and Template-driven forms.
         </p>
       </div>
       <div class="hidden lg:block">
@@ -29,19 +33,20 @@
     </div>
   </div>
 
-  <!-- Demo Tabs -->
-  <p-card class="card-modern hover-lift slide-in-up">
-    <div class="padding-responsive">
-      <div class="flex items-center gap-3 mb-6">
+  <!-- Interactive Demo -->
+  <p-card styleClass="p-0 overflow-hidden border-none bg-transparent shadow-none slide-in-up">
+    <div
+      class="bg-white dark:bg-gray-900/50 border border-gray-200 dark:border-gray-800 rounded-2xl p-4 sm:p-6 lg:p-8 transition-all duration-300 shadow-sm">
+      <div class="flex items-center gap-3 mb-8">
         <div
           class="w-10 h-10 rounded-lg bg-gradient-to-br from-[var(--accent-gradient-from)] to-[var(--accent-gradient-to)] flex items-center justify-center shadow-md">
           <i class="fas fa-play-circle text-white"></i>
         </div>
-        <h2 class="subheading-responsive text-accent">Learn & Practice</h2>
+        <h2 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-gray-100">Learn & Practice</h2>
       </div>
 
       <p-tabs [(value)]="activeTab" class="w-full">
-        <p-tablist class="flex flex-wrap gap-2 mb-6">
+        <p-tablist class="flex flex-wrap gap-2 mb-8 border-b dark:border-gray-800">
           <p-tab [value]="'0'" class="flex items-center gap-2">
             <i class="fas fa-info-circle text-accent"></i>
             <span class="text-sm sm:text-base font-semibold">Overview</span>
@@ -52,60 +57,77 @@
           </p-tab>
           <p-tab [value]="'2'" class="flex items-center gap-2">
             <i class="fas fa-code text-accent"></i>
-            <span class="text-sm sm:text-base font-semibold">Code Examples</span>
+            <span class="text-sm sm:text-base font-semibold">Code</span>
           </p-tab>
         </p-tablist>
 
-        <p-tabpanels>
+        <p-tabpanels class="pt-2">
           <!-- Overview -->
           <p-tabpanel [value]="'0'">
-            <div class="space-y-6">
-              <div class="glass rounded-xl p-6 border-l-4 border-accent">
-                <div class="flex items-center gap-3 mb-4">
+            <div class="space-y-8 text-gray-600 dark:text-gray-400">
+              <div
+                class="bg-gray-50/50 dark:bg-gray-800/20 rounded-2xl p-6 border border-gray-200 dark:border-gray-700/50 border-l-4 border-l-[var(--accent-color)]">
+                <div class="flex items-center gap-3 mb-4 text-gray-900 dark:text-gray-100">
                   <i class="fas fa-lightbulb text-accent text-xl"></i>
-                  <h3 class="text-lg sm:text-xl font-semibold text-gray-900 dark:text-gray-100">
-                    What is ControlValueAccessor?
-                  </h3>
+                  <h3 class="text-lg sm:text-xl font-semibold">What is ControlValueAccessor?</h3>
                 </div>
-                <p class="text-responsive text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
+                <p class="leading-relaxed mb-8">
                   ControlValueAccessor is an interface that allows custom form controls to integrate
                   seamlessly with Angular's Reactive Forms and Template-driven Forms. It provides a bridge
                   between form controls and custom components.
                 </p>
 
-                <div class="card-modern p-6">
-                  <div class="flex items-center gap-3 mb-4">
-                    <i class="fas fa-star text-accent text-xl"></i>
-                    <h4 class="text-lg font-semibold text-gray-900 dark:text-gray-100">Key Features</h4>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div
+                    class="bg-white dark:bg-gray-900 rounded-xl p-5 border border-gray-200 dark:border-gray-800 shadow-sm border-t-4 border-t-[var(--accent-color)]">
+                    <h4 class="text-sm font-bold text-accent uppercase tracking-wider mb-4">Core Contract</h4>
+                    <ul class="space-y-3">
+                      <li class="flex items-start gap-2">
+                        <i class="fas fa-check-circle text-accent mt-1 text-xs"></i>
+                        <span class="text-sm text-gray-700 dark:text-gray-300">Synchronize data between form and
+                          UI</span>
+                      </li>
+                      <li class="flex items-start gap-2">
+                        <i class="fas fa-check-circle text-accent mt-1 text-xs"></i>
+                        <span class="text-sm text-gray-700 dark:text-gray-300">Handle component disabled states</span>
+                      </li>
+                      <li class="flex items-start gap-2">
+                        <i class="fas fa-check-circle text-accent mt-1 text-xs"></i>
+                        <span class="text-sm text-gray-700 dark:text-gray-300">Standardize validation feedback</span>
+                      </li>
+                    </ul>
                   </div>
-                  <ul class="list-modern">
-                    <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
-                      Enables custom components to work with formControl and ngModel
-                    </li>
-                    <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
-                      Provides writeValue() to set component value from form
-                    </li>
-                    <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
-                      Provides registerOnChange() to notify form of value changes
-                    </li>
-                    <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
-                      Provides registerOnTouched() to mark form as touched
-                    </li>
-                    <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
-                      Allows setDisabledState() for disabled state management
-                    </li>
-                  </ul>
+
+                  <div
+                    class="bg-white dark:bg-gray-900 rounded-xl p-5 border border-gray-200 dark:border-gray-800 shadow-sm border-t-4 border-t-purple-500">
+                    <h4 class="text-sm font-bold text-purple-500 uppercase tracking-wider mb-4">API Methods</h4>
+                    <ul class="space-y-3">
+                      <li class="flex items-start gap-2">
+                        <code class="text-xs bg-purple-500/10 text-purple-500 px-1.5 py-0.5 rounded">writeValue()</code>
+                        <span class="text-sm text-gray-700 dark:text-gray-300">Form to Component</span>
+                      </li>
+                      <li class="flex items-start gap-2">
+                        <code
+                          class="text-xs bg-purple-500/10 text-purple-500 px-1.5 py-0.5 rounded">registerOnChange()</code>
+                        <span class="text-sm text-gray-700 dark:text-gray-300">Component to Form</span>
+                      </li>
+                      <li class="flex items-start gap-2">
+                        <code
+                          class="text-xs bg-purple-500/10 text-purple-500 px-1.5 py-0.5 rounded">registerOnTouched()</code>
+                        <span class="text-sm text-gray-700 dark:text-gray-300">Track user interaction</span>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
               </div>
 
-              <div class="glass rounded-xl p-6 border-l-4 border-accent">
-                <div class="flex items-center gap-3 mb-4">
-                  <i class="fas fa-cogs text-accent text-xl"></i>
-                  <h3 class="text-lg sm:text-xl font-semibold text-gray-900 dark:text-gray-100">
-                    Implementation in FormFieldRendererComponent
-                  </h3>
+              <div
+                class="bg-gray-50/50 dark:bg-gray-800/20 rounded-2xl p-6 border border-gray-200 dark:border-gray-700/50 border-l-4 border-l-purple-500">
+                <div class="flex items-center gap-3 mb-4 text-gray-900 dark:text-gray-100">
+                  <i class="fas fa-cogs text-purple-500 text-xl"></i>
+                  <h3 class="text-lg sm:text-xl font-semibold">FormFieldRendererComponent</h3>
                 </div>
-                <p class="text-responsive text-gray-700 dark:text-gray-300 leading-relaxed">
+                <p class="leading-relaxed">
                   The FormFieldRendererComponent implements ControlValueAccessor, allowing it to be used
                   directly with Angular's form controls. This enables the dynamic form to work with reactive forms
                   without any additional configuration.
@@ -116,39 +138,45 @@
 
           <!-- Dynamic Form -->
           <p-tabpanel [value]="'1'">
-            <div class="glass rounded-xl p-6 border-l-4 border-accent">
-              <div class="flex items-center gap-3 mb-6">
+            <div
+              class="bg-gray-50/50 dark:bg-gray-800/20 rounded-2xl p-6 border border-gray-200 dark:border-gray-700/50 border-l-4 border-l-[var(--accent-color)]">
+              <div class="flex items-center gap-3 mb-6 text-gray-900 dark:text-gray-100">
                 <i class="fas fa-file-alt text-accent text-xl"></i>
-                <h3 class="text-lg sm:text-xl font-semibold text-gray-900 dark:text-gray-100">
-                  Dynamic Form with ControlValueAccessor
-                </h3>
+                <h3 class="text-lg sm:text-xl font-semibold">Demonstration Form</h3>
               </div>
-              <p class="text-responsive text-gray-600 dark:text-gray-400 mb-6">
+              <p class="text-gray-600 dark:text-gray-400 mb-8 leading-relaxed">
                 This form uses FormFieldRendererComponent which implements ControlValueAccessor internally.
                 Each field is a custom form control that integrates seamlessly with Angular Reactive Forms.
               </p>
-              <app-dynamic-form [config]="dynamicFormConfig" (formSubmit)="onDynamicFormSubmit($event)" />
+
+              <div
+                class="bg-white dark:bg-gray-900 rounded-2xl p-6 sm:p-8 border border-gray-200 dark:border-gray-800 shadow-sm">
+                <app-dynamic-form [config]="dynamicFormConfig" (formSubmit)="onDynamicFormSubmit($event)" />
+              </div>
             </div>
           </p-tabpanel>
 
           <!-- Code Examples -->
           <p-tabpanel [value]="'2'">
-            <div class="space-y-6">
-              <div class="glass rounded-xl p-6 border-l-4 border-accent">
-                <div class="flex items-center gap-3 mb-6">
-                  <i class="fas fa-code text-accent text-xl"></i>
-                  <h3 class="text-lg sm:text-xl font-semibold text-gray-900 dark:text-gray-100">Code Examples</h3>
-                </div>
+            <div
+              class="bg-gray-50/50 dark:bg-gray-800/20 rounded-2xl p-6 border border-gray-200 dark:border-gray-700/50 border-l-4 border-l-[var(--accent-color)]">
+              <div class="flex items-center gap-3 mb-8 text-gray-900 dark:text-gray-100">
+                <i class="fas fa-code text-accent text-xl"></i>
+                <h3 class="text-lg sm:text-xl font-semibold">Implementation Reference</h3>
+              </div>
 
-                <div class="space-y-6">
-                  <div>
-                    <div class="flex items-center gap-2 mb-3">
-                      <i class="fas fa-file-code text-accent"></i>
-                      <h4 class="text-lg font-semibold text-gray-900 dark:text-gray-100">ControlValueAccessor Interface
-                      </h4>
+              <div class="space-y-10">
+                <div>
+                  <h4 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4 flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-blue-500"></span>Interface Structure
+                  </h4>
+                  <div class="relative group">
+                    <div
+                      class="absolute -inset-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl blur opacity-20 group-hover:opacity-30 transition duration-1000">
                     </div>
-                    <div class="code-block-modern">
-                      <pre class="overflow-x-auto text-sm"><code>interface ControlValueAccessor &#123;
+                    <div
+                      class="relative bg-gray-900 rounded-xl p-6 overflow-x-auto text-sm text-gray-300 font-mono shadow-2xl">
+                      <pre><code>interface ControlValueAccessor &#123;
   writeValue(value: any): void;
   registerOnChange(fn: any): void;
   registerOnTouched(fn: any): void;
@@ -156,61 +184,50 @@
 &#125;</code></pre>
                     </div>
                   </div>
+                </div>
 
-                  <div>
-                    <div class="flex items-center gap-2 mb-3">
-                      <i class="fas fa-cog text-accent"></i>
-                      <h4 class="text-lg font-semibold text-gray-900 dark:text-gray-100">Implementation Example</h4>
+                <div>
+                  <h4 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4 flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-purple-500"></span>Provider Configuration
+                  </h4>
+                  <div class="relative group">
+                    <div
+                      class="absolute -inset-1 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl blur opacity-20 group-hover:opacity-30 transition duration-1000">
                     </div>
-                    <div class="code-block-modern">
-                      <pre class="overflow-x-auto text-sm"><code>@Component(&#123;
+                    <div
+                      class="relative bg-gray-900 rounded-xl p-6 overflow-x-auto text-sm text-gray-300 font-mono shadow-2xl">
+                      <pre><code>&#64;Component(&#123;
   providers: [&#123;
     provide: NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() =&gt; FormFieldRendererComponent),
+    useExisting: forwardRef(() =&gt; CustomInputComponent),
     multi: true
   &#125;]
-&#125;)
-export class FormFieldRendererComponent
-  implements ControlValueAccessor &#123;
-  
-  private onChange = (value: any) =&gt; &#123;&#125;;
-  private onTouched = () =&gt; &#123;&#125;;
-
-  writeValue(value: any): void &#123;
-    this.control.setValue(value, &#123; emitEvent: false &#125;);
-  &#125;
-
-  registerOnChange(fn: any): void &#123;
-    this.onChange = fn;
-  &#125;
-
-  registerOnTouched(fn: any): void &#123;
-    this.onTouched = fn;
-  &#125;
-
-  setDisabledState(isDisabled: boolean): void &#123;
-    if (isDisabled) &#123;
-      this.control.disable();
-    &#125; else &#123;
-      this.control.enable();
-    &#125;
-  &#125;
-&#125;</code></pre>
+&#125;)</code></pre>
                     </div>
                   </div>
+                </div>
 
-                  <div>
-                    <div class="flex items-center gap-2 mb-3">
-                      <i class="fas fa-file-alt text-accent"></i>
-                      <h4 class="text-lg font-semibold text-gray-900 dark:text-gray-100">Usage in Template</h4>
+                <div>
+                  <h4 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4 flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500"></span>Typical Implementation
+                  </h4>
+                  <div class="relative group">
+                    <div
+                      class="absolute -inset-1 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-2xl blur opacity-20 group-hover:opacity-30 transition duration-1000">
                     </div>
-                    <div class="code-block-modern">
-                      <pre class="overflow-x-auto text-sm"><code>&lt;form [formGroup]="form"&gt;
-  &lt;app-form-field-renderer
-    [fieldConfig]="field"
-    [control]="form.get('name')"
-  /&gt;
-&lt;/form&gt;</code></pre>
+                    <div
+                      class="relative bg-gray-900 rounded-xl p-6 overflow-x-auto text-sm text-gray-300 font-mono shadow-2xl">
+                      <pre><code>writeValue(value: any): void &#123;
+  this.value = value;
+&#125;
+
+registerOnChange(fn: any): void &#123;
+  this.onChange = fn;
+&#125;
+
+registerOnTouched(fn: any): void &#123;
+  this.onTouched = fn;
+&#125;</code></pre>
                     </div>
                   </div>
                 </div>
@@ -223,30 +240,53 @@ export class FormFieldRendererComponent
   </p-card>
 
   <!-- Key Takeaways -->
-  <p-card class="card-modern hover-lift slide-in-up">
-    <div class="padding-responsive">
-      <div class="flex items-center gap-3 mb-6">
-        <div
-          class="w-10 h-10 rounded-lg bg-gradient-to-br from-[var(--accent-gradient-from)] to-[var(--accent-gradient-to)] flex items-center justify-center shadow-md">
-          <i class="fas fa-graduation-cap text-white"></i>
-        </div>
-        <h2 class="subheading-responsive text-gray-900 dark:text-gray-100">Key Takeaways</h2>
+  <div
+    class="bg-white dark:bg-gray-900/50 backdrop-blur-sm border border-gray-200 dark:border-gray-800 rounded-2xl p-6 sm:p-8 transition-all duration-300 shadow-sm hover:shadow-md slide-in-up">
+    <div class="flex items-center gap-3 mb-8">
+      <div
+        class="w-10 h-10 rounded-lg bg-gradient-to-br from-[var(--accent-gradient-from)] to-[var(--accent-gradient-to)] flex items-center justify-center shadow-md">
+        <i class="fas fa-graduation-cap text-white"></i>
       </div>
-
-      <ul class="list-modern">
-        <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
-          ControlValueAccessor bridges custom components with Angular forms
-        </li>
-        <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
-          Implement four methods: writeValue, registerOnChange, registerOnTouched, setDisabledState
-        </li>
-        <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
-          Use NG_VALUE_ACCESSOR provider to register your component
-        </li>
-        <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
-          Works with both Reactive Forms and Template-driven Forms
-        </li>
-      </ul>
+      <h2 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-gray-100">Key Takeaways</h2>
     </div>
-  </p-card>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div
+        class="bg-gray-50 dark:bg-gray-800/50 border border-gray-100 dark:border-gray-700/50 p-4 rounded-xl flex items-start gap-4 transition-all hover:border-[var(--accent-color)]/30 group">
+        <div
+          class="w-8 h-8 rounded-full bg-[var(--accent-color)]/10 text-[var(--accent-color)] flex items-center justify-center shrink-0 group-hover:bg-[var(--accent-color)] group-hover:text-white transition-colors">
+          <i class="fas fa-check text-sm"></i>
+        </div>
+        <p class="text-gray-800 dark:text-gray-200 font-medium pt-1">ControlValueAccessor bridges custom components with
+          Angular forms</p>
+      </div>
+      <div
+        class="bg-gray-50 dark:bg-gray-800/50 border border-gray-100 dark:border-gray-700/50 p-4 rounded-xl flex items-start gap-4 transition-all hover:border-[var(--accent-color)]/30 group">
+        <div
+          class="w-8 h-8 rounded-full bg-[var(--accent-color)]/10 text-[var(--accent-color)] flex items-center justify-center shrink-0 group-hover:bg-[var(--accent-color)] group-hover:text-white transition-colors">
+          <i class="fas fa-check text-sm"></i>
+        </div>
+        <p class="text-gray-800 dark:text-gray-200 font-medium pt-1">Implement four methods: writeValue,
+          registerOnChange, registerOnTouched, setDisabledState</p>
+      </div>
+      <div
+        class="bg-gray-50 dark:bg-gray-800/50 border border-gray-100 dark:border-gray-700/50 p-4 rounded-xl flex items-start gap-4 transition-all hover:border-[var(--accent-color)]/30 group">
+        <div
+          class="w-8 h-8 rounded-full bg-[var(--accent-color)]/10 text-[var(--accent-color)] flex items-center justify-center shrink-0 group-hover:bg-[var(--accent-color)] group-hover:text-white transition-colors">
+          <i class="fas fa-check text-sm"></i>
+        </div>
+        <p class="text-gray-800 dark:text-gray-200 font-medium pt-1">Use NG_VALUE_ACCESSOR provider to register your
+          component</p>
+      </div>
+      <div
+        class="bg-gray-50 dark:bg-gray-800/50 border border-gray-100 dark:border-gray-700/50 p-4 rounded-xl flex items-start gap-4 transition-all hover:border-[var(--accent-color)]/30 group">
+        <div
+          class="w-8 h-8 rounded-full bg-[var(--accent-color)]/10 text-[var(--accent-color)] flex items-center justify-center shrink-0 group-hover:bg-[var(--accent-color)] group-hover:text-white transition-colors">
+          <i class="fas fa-check text-sm"></i>
+        </div>
+        <p class="text-gray-800 dark:text-gray-200 font-medium pt-1">Works with both Reactive Forms and Template-driven
+          Forms</p>
+      </div>
+    </div>
+  </div>
 </div>

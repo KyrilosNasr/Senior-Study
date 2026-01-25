@@ -8,11 +8,12 @@ import { ThemeService } from '../../core/services/theme.service';
 import { PageHeaderComponent } from '../../shared/components/page-header/page-header.component';
 import { ThemeToggleComponent } from '../../shared/components/theme-toggle/theme-toggle.component';
 import { getIconForLabel } from '../../shared/config/icon-mapping.config';
+import { Footer } from "../../shared/components/footer/footer";
 
 @Component({
   selector: 'app-typescript-layout',
   standalone: true,
-  imports: [CommonModule, RouterModule, RouterOutlet, ButtonModule, SidebarComponent, PageHeaderComponent, ThemeToggleComponent],
+  imports: [CommonModule, RouterModule, RouterOutlet, ButtonModule, SidebarComponent, PageHeaderComponent, ThemeToggleComponent, Footer],
   templateUrl: './typescript-layout.component.html',
   styleUrl: './typescript-layout.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush

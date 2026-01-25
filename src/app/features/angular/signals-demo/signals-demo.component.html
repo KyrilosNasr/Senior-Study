@@ -1,6 +1,7 @@
-<div class="container-responsive space-y-responsive">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
   <!-- Hero Header -->
-  <div class="card-modern padding-responsive hover-lift slide-in-up">
+  <div
+    class="bg-white dark:bg-gray-900/50 backdrop-blur-sm border border-gray-200 dark:border-gray-800 rounded-2xl p-6 sm:p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md slide-in-up">
     <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
       <div class="flex-1">
         <div class="flex items-center gap-3 mb-4">
@@ -9,13 +10,16 @@
             <i class="fas fa-signal text-white text-xl sm:text-2xl"></i>
           </div>
           <div>
-            <span class="badge-modern text-xs sm:text-sm">Angular Topics</span>
+            <span
+              class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-[var(--accent-color)]/10 text-[var(--accent-color)]">Angular
+              Topics</span>
           </div>
         </div>
-        <h1 class="heading-responsive text-gradient mb-4">
+        <h1
+          class="text-3xl sm:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-[var(--accent-gradient-from)] to-[var(--accent-gradient-to)] bg-clip-text text-transparent mb-4">
           Angular Signals
         </h1>
-        <p class="text-responsive text-gray-700 dark:text-gray-300">
+        <p class="text-base sm:text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
           Demonstrates Angular Signals with dynamic components. Learn about signals, computed values, effects,
           and how they integrate with reactive forms, tables, and modals.
         </p>
@@ -30,18 +34,19 @@
   </div>
 
   <!-- Demo Tabs -->
-  <p-card class="card-modern hover-lift slide-in-up">
-    <div class="padding-responsive">
-      <div class="flex items-center gap-3 mb-6">
+  <p-card styleClass="p-0 overflow-hidden border-none bg-transparent shadow-none slide-in-up">
+    <div
+      class="bg-white dark:bg-gray-900/50 border border-gray-200 dark:border-gray-800 rounded-2xl p-4 sm:p-6 lg:p-8 transition-all duration-300 shadow-sm">
+      <div class="flex items-center gap-3 mb-8">
         <div
           class="w-10 h-10 rounded-lg bg-gradient-to-br from-[var(--accent-gradient-from)] to-[var(--accent-gradient-to)] flex items-center justify-center shadow-md">
           <i class="fas fa-play-circle text-white"></i>
         </div>
-        <h2 class="subheading-responsive text-accent">Interactive Demos</h2>
+        <h2 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-gray-100">Interactive Demos</h2>
       </div>
 
       <p-tabs [(value)]="activeTab" class="w-full">
-        <p-tablist class="flex flex-wrap gap-2 mb-6">
+        <p-tablist class="flex flex-wrap gap-2 mb-8 border-b dark:border-gray-800">
           <p-tab [value]="'0'" class="flex items-center gap-2">
             <i class="fas fa-cube text-accent"></i>
             <span class="text-sm sm:text-base font-semibold">Basic Signals</span>
@@ -60,12 +65,13 @@
           </p-tab>
         </p-tablist>
 
-        <p-tabpanels>
+        <p-tabpanels class="pt-2">
           <!-- Basic Signals -->
           <p-tabpanel [value]="'0'">
             <div class="space-y-6">
-              <div class="glass rounded-xl p-6 border-l-4 border-accent">
-                <div class="flex items-center gap-3 mb-4">
+              <div
+                class="bg-gray-50/50 dark:bg-gray-800/20 rounded-2xl p-6 border border-gray-200 dark:border-gray-700/50 border-l-4 border-l-[var(--accent-color)]">
+                <div class="flex items-center gap-3 mb-6">
                   <i class="fas fa-info-circle text-accent text-xl"></i>
                   <h3 class="text-lg sm:text-xl font-semibold text-gray-900 dark:text-gray-100">Basic Signal Operations
                   </h3>
@@ -73,7 +79,8 @@
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <!-- Count Signal -->
-                  <div class="card-modern p-6 hover-lift">
+                  <div
+                    class="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl p-6 shadow-sm hover:border-[var(--accent-color)]/30 transition-all group">
                     <div class="flex items-center gap-3 mb-4">
                       <div
                         class="w-8 h-8 rounded-lg bg-gradient-to-br from-[var(--accent-gradient-from)] to-[var(--accent-gradient-to)] flex items-center justify-center shadow-sm">
@@ -81,7 +88,9 @@
                       </div>
                       <h4 class="text-lg font-semibold text-gray-900 dark:text-gray-100">Count Signal</h4>
                     </div>
-                    <p class="text-4xl font-bold text-gradient mb-6">{{ count() }}</p>
+                    <p
+                      class="text-4xl font-bold bg-gradient-to-r from-[var(--accent-gradient-from)] to-[var(--accent-gradient-to)] bg-clip-text text-transparent mb-6">
+                      {{ count() }}</p>
                     <div class="flex flex-wrap gap-2">
                       <p-button label="Increment" (onClick)="increment()" icon="pi pi-plus" class="flex-1" />
                       <p-button label="Decrement" (onClick)="decrement()" severity="secondary" icon="pi pi-minus"
@@ -92,10 +101,11 @@
                   </div>
 
                   <!-- Name Signal -->
-                  <div class="card-modern p-6 hover-lift">
+                  <div
+                    class="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl p-6 shadow-sm hover:border-[var(--accent-color)]/30 transition-all group">
                     <div class="flex items-center gap-3 mb-4">
                       <div
-                        class="w-8 h-8 rounded-lg bg-gradient-to-br from-[var(--accent-gradient-from)] to-[var(--accent-gradient-to)] flex items-center justify-center shadow-sm opacity-90">
+                        class="w-8 h-8 rounded-lg bg-gradient-to-br from-[var(--accent-gradient-from)] to-[var(--accent-gradient-to)] flex items-center justify-center shadow-sm">
                         <i class="fas fa-font text-white text-sm"></i>
                       </div>
                       <h4 class="text-lg font-semibold text-gray-900 dark:text-gray-100">Name Signal</h4>
@@ -111,21 +121,25 @@
               </div>
 
               <!-- Array Signal -->
-              <div class="glass rounded-xl p-6 border-l-4 border-accent">
-                <div class="flex items-center justify-between mb-4">
+              <div
+                class="bg-gray-50/50 dark:bg-gray-800/20 rounded-2xl p-6 border border-gray-200 dark:border-gray-700/50 border-l-4 border-l-[var(--accent-color)]">
+                <div class="flex items-center justify-between mb-6">
                   <div class="flex items-center gap-3">
                     <i class="fas fa-list text-accent text-xl"></i>
                     <h3 class="text-lg sm:text-xl font-semibold text-gray-900 dark:text-gray-100">Array Signal
                       Operations</h3>
                   </div>
-                  <span class="badge-modern">{{ itemCount() }} items</span>
+                  <span
+                    class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-[var(--accent-color)]/10 text-[var(--accent-color)]">{{
+                    itemCount() }} items</span>
                 </div>
                 <div class="flex items-center justify-end mb-4">
                   <p-button label="Add Item" icon="pi pi-plus" (onClick)="addItem()" />
                 </div>
                 <div class="space-y-2">
                   @for (item of items(); track $index) {
-                  <div class="flex items-center justify-between p-4 card-modern hover-lift">
+                  <div
+                    class="flex items-center justify-between p-4 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl shadow-sm hover:border-[var(--accent-color)]/30 transition-all">
                     <div class="flex items-center gap-3">
                       <div
                         class="w-8 h-8 rounded-full bg-gradient-to-br from-[var(--accent-gradient-from)] to-[var(--accent-gradient-to)] flex items-center justify-center text-white font-bold text-sm shadow-sm">
@@ -144,35 +158,42 @@
           <!-- Computed Signals -->
           <p-tabpanel [value]="'1'">
             <div class="space-y-6">
-              <div class="glass rounded-xl p-6 border-l-4 border-accent">
-                <div class="flex items-center gap-3 mb-6">
+              <div
+                class="bg-gray-50/50 dark:bg-gray-800/20 rounded-2xl p-6 border border-gray-200 dark:border-gray-700/50 border-l-4 border-l-[var(--accent-color)]">
+                <div class="flex items-center gap-3 mb-8">
                   <i class="fas fa-calculator text-accent text-xl"></i>
                   <h3 class="text-lg sm:text-xl font-semibold text-gray-900 dark:text-gray-100">Computed Signals</h3>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div class="card-modern p-6 hover-lift border-l-4 border-accent">
+                  <div
+                    class="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl p-6 shadow-sm border-l-4 border-l-[var(--accent-color)]">
                     <div class="flex items-center gap-3 mb-3">
                       <i class="fas fa-times text-accent"></i>
                       <h4 class="text-sm font-semibold text-gray-900 dark:text-gray-100">Double Count</h4>
                     </div>
-                    <p class="text-3xl font-bold text-gradient">{{ doubleCount() }}</p>
-                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-3 font-mono">computed(() => count() * 2)</p>
+                    <p
+                      class="text-3xl font-bold bg-gradient-to-r from-[var(--accent-gradient-from)] to-[var(--accent-gradient-to)] bg-clip-text text-transparent">
+                      {{ doubleCount() }}</p>
+                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-3 font-mono opacity-70">computed(() => count()
+                      * 2)</p>
                   </div>
 
-                  <div class="card-modern p-6 hover-lift border-l-4 border-accent-light">
+                  <div
+                    class="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl p-6 shadow-sm border-l-4 border-l-[var(--accent-color-light)]">
                     <div class="flex items-center gap-3 mb-3">
                       <i class="fas fa-comment text-accent-light"></i>
                       <h4 class="text-sm font-semibold text-gray-900 dark:text-gray-100">Greeting</h4>
                     </div>
                     <p class="text-lg text-gray-700 dark:text-gray-300 font-medium">{{ greeting() }}</p>
-                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-3 font-mono">computed(() =&gt; `Hello,
-                      $&#123;name()&#125;`)</p>
+                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-3 font-mono opacity-70">computed(() => `Hello,
+                      ${{ '{' }}name(){{ '}' }}`)</p>
                   </div>
                 </div>
 
                 <!-- Summary Object -->
-                <div class="mt-6 card-modern p-6 hover-lift">
+                <div
+                  class="mt-8 bg-white dark:bg-gray-950 rounded-xl p-6 border border-gray-200 dark:border-gray-800 shadow-sm transition-all hover:shadow-md">
                   <div class="flex items-center gap-3 mb-4">
                     <div
                       class="w-8 h-8 rounded-lg bg-gradient-to-br from-[var(--accent-gradient-from)] to-[var(--accent-gradient-to)] flex items-center justify-center shadow-sm">
@@ -180,10 +201,10 @@
                     </div>
                     <h4 class="text-lg font-semibold text-gray-900 dark:text-gray-100">Summary Object</h4>
                   </div>
-                  <div class="code-block-modern">
-                    <pre class="overflow-x-auto text-sm"><code>{{ summary() | json }}</code></pre>
+                  <div class="bg-gray-900 rounded-lg p-4 overflow-x-auto text-sm text-gray-300 font-mono">
+                    <pre><code>{{ summary() | json }}</code></pre>
                   </div>
-                  <p class="text-xs text-gray-500 dark:text-gray-400 mt-3">
+                  <p class="text-xs text-gray-500 dark:text-gray-400 mt-3 px-1">
                     <i class="fas fa-info-circle mr-2"></i>Computed object combining multiple signals
                   </p>
                 </div>
@@ -195,8 +216,9 @@
           <p-tabpanel [value]="'2'">
             <div class="space-y-6">
               <!-- Dynamic Form with Signals -->
-              <div class="glass rounded-xl p-6 border-l-4 border-accent">
-                <div class="flex items-center gap-3 mb-6">
+              <div
+                class="bg-gray-50/50 dark:bg-gray-800/20 rounded-2xl p-6 border border-gray-200 dark:border-gray-700/50 border-l-4 border-l-[var(--accent-color)]">
+                <div class="flex items-center gap-3 mb-8">
                   <div
                     class="w-10 h-10 rounded-lg bg-gradient-to-br from-[var(--accent-gradient-from)] to-[var(--accent-gradient-to)] flex items-center justify-center shadow-md">
                     <i class="fas fa-file-alt text-white"></i>
@@ -209,8 +231,9 @@
               </div>
 
               <!-- Dynamic Table with Signal Data -->
-              <div class="glass rounded-xl p-6 border-l-4 border-accent">
-                <div class="flex items-center justify-between mb-6">
+              <div
+                class="bg-gray-50/50 dark:bg-gray-800/20 rounded-2xl p-6 border border-gray-200 dark:border-gray-700/50 border-l-4 border-l-[var(--accent-color)]">
+                <div class="flex items-center justify-between mb-8">
                   <div class="flex items-center gap-3">
                     <div
                       class="w-10 h-10 rounded-lg bg-gradient-to-br from-[var(--accent-gradient-from)] to-[var(--accent-gradient-to)] flex items-center justify-center shadow-md">
@@ -226,8 +249,9 @@
               </div>
 
               <!-- Signal Modal -->
-              <div class="glass rounded-xl p-6 border-l-4 border-accent">
-                <div class="flex items-center gap-3 mb-6">
+              <div
+                class="bg-gray-50/50 dark:bg-gray-800/20 rounded-2xl p-6 border border-gray-200 dark:border-gray-700/50 border-l-4 border-l-[var(--accent-color)]">
+                <div class="flex items-center gap-3 mb-8">
                   <div
                     class="w-10 h-10 rounded-lg bg-gradient-to-br from-[var(--accent-gradient-from)] to-[var(--accent-gradient-to)] flex items-center justify-center shadow-md">
                     <i class="fas fa-window-restore text-white"></i>
@@ -236,8 +260,11 @@
                     Modal with Signal Data
                   </h3>
                 </div>
-                <p-button label="Show Signal Summary" icon="pi pi-info-circle" (onClick)="showSignalModal()"
-                  class="btn-modern" />
+                <button (click)="showSignalModal()"
+                  class="bg-gradient-to-r from-[var(--accent-gradient-from)] to-[var(--accent-gradient-to)] text-white px-6 py-3 rounded-xl font-semibold flex items-center gap-2 hover:shadow-lg transition-all active:scale-95 shadow-md">
+                  <i class="pi pi-info-circle"></i>
+                  Show Signal Summary
+                </button>
               </div>
             </div>
           </p-tabpanel>
@@ -245,20 +272,25 @@
           <!-- Code Examples -->
           <p-tabpanel [value]="'3'">
             <div class="space-y-6">
-              <div class="glass rounded-xl p-6 border-l-4 border-accent">
-                <div class="flex items-center gap-3 mb-6">
+              <div
+                class="bg-gray-50/50 dark:bg-gray-800/20 rounded-2xl p-6 border border-gray-200 dark:border-gray-700/50 border-l-4 border-l-[var(--accent-color)]">
+                <div class="flex items-center gap-3 mb-8">
                   <i class="fas fa-code text-accent text-xl"></i>
                   <h3 class="text-lg sm:text-xl font-semibold text-gray-900 dark:text-gray-100">Code Examples</h3>
                 </div>
 
-                <div class="space-y-6">
+                <div class="space-y-8">
                   <div>
                     <div class="flex items-center gap-2 mb-3">
                       <i class="fas fa-cube text-accent"></i>
                       <h4 class="text-lg font-semibold text-gray-900 dark:text-gray-100">Basic Signal</h4>
                     </div>
-                    <div class="code-block-modern">
-                      <pre class="overflow-x-auto text-sm"><code>// Create a signal
+                    <div
+                      class="bg-gray-900 rounded-xl p-6 overflow-x-auto text-sm text-gray-300 font-mono shadow-2xl border border-gray-800 relative pt-10">
+                      <div
+                        class="absolute top-0 left-0 right-0 h-8 bg-gradient-to-r from-red-500 via-yellow-500 to-green-500 opacity-20">
+                      </div>
+                      <pre><code>// Create a signal
 count = signal(0);
 
 // Read signal value
@@ -275,8 +307,12 @@ count.update(value => value + 1);</code></pre>
                       <i class="fas fa-calculator text-accent"></i>
                       <h4 class="text-lg font-semibold text-gray-900 dark:text-gray-100">Computed Signal</h4>
                     </div>
-                    <div class="code-block-modern">
-                      <pre class="overflow-x-auto text-sm"><code>// Computed from other signals
+                    <div
+                      class="bg-gray-900 rounded-xl p-6 overflow-x-auto text-sm text-gray-300 font-mono shadow-2xl border border-gray-800 relative pt-10">
+                      <div
+                        class="absolute top-0 left-0 right-0 h-8 bg-gradient-to-r from-red-500 via-yellow-500 to-green-500 opacity-20">
+                      </div>
+                      <pre><code>// Computed from other signals
 doubleCount = computed(() =&gt; this.count() * 2);
 
 // Complex computed
@@ -293,8 +329,12 @@ summary = computed(() =&gt; (&#123;
                       <i class="fas fa-bolt text-accent"></i>
                       <h4 class="text-lg font-semibold text-gray-900 dark:text-gray-100">Effects</h4>
                     </div>
-                    <div class="code-block-modern">
-                      <pre class="overflow-x-auto text-sm"><code>// Effect with side effects
+                    <div
+                      class="bg-gray-900 rounded-xl p-6 overflow-x-auto text-sm text-gray-300 font-mono shadow-2xl border border-gray-800 relative pt-10">
+                      <div
+                        class="absolute top-0 left-0 right-0 h-8 bg-gradient-to-r from-red-500 via-yellow-500 to-green-500 opacity-20">
+                      </div>
+                      <pre><code>// Effect with side effects
 effect(() =&gt; &#123;
   const count = this.count();
   if (count &gt; 10) &#123;
@@ -310,8 +350,12 @@ effect(() =&gt; &#123;
                       <h4 class="text-lg font-semibold text-gray-900 dark:text-gray-100">Signals with Dynamic Components
                       </h4>
                     </div>
-                    <div class="code-block-modern">
-                      <pre class="overflow-x-auto text-sm"><code>// Signal-based configuration
+                    <div
+                      class="bg-gray-900 rounded-xl p-6 overflow-x-auto text-sm text-gray-300 font-mono shadow-2xl border border-gray-800 relative pt-10">
+                      <div
+                        class="absolute top-0 left-0 right-0 h-8 bg-gradient-to-r from-red-500 via-yellow-500 to-green-500 opacity-20">
+                      </div>
+                      <pre><code>// Signal-based configuration
 formConfig = signal&lt;DynamicFormConfig&gt;(&#123;
   fields: [...],
   submitLabel: 'Submit'
@@ -331,32 +375,55 @@ formConfig = signal&lt;DynamicFormConfig&gt;(&#123;
   </p-card>
 
   <!-- Key Takeaways -->
-  <p-card class="card-modern hover-lift slide-in-up">
-    <div class="padding-responsive">
-      <div class="flex items-center gap-3 mb-6">
-        <div
-          class="w-10 h-10 rounded-lg bg-gradient-to-br from-[var(--accent-gradient-from)] to-[var(--accent-gradient-to)] flex items-center justify-center shadow-md">
-          <i class="fas fa-graduation-cap text-white"></i>
-        </div>
-        <h2 class="subheading-responsive text-gray-900 dark:text-gray-100">Key Takeaways</h2>
+  <div
+    class="bg-white dark:bg-gray-900/50 backdrop-blur-sm border border-gray-200 dark:border-gray-800 rounded-2xl p-6 sm:p-8 transition-all duration-300 shadow-sm hover:shadow-md slide-in-up">
+    <div class="flex items-center gap-3 mb-8">
+      <div
+        class="w-10 h-10 rounded-lg bg-gradient-to-br from-[var(--accent-gradient-from)] to-[var(--accent-gradient-to)] flex items-center justify-center shadow-md">
+        <i class="fas fa-graduation-cap text-white"></i>
       </div>
-
-      <ul class="list-modern">
-        <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
-          Signals provide fine-grained reactivity for Angular applications
-        </li>
-        <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
-          Use computed() for derived values that depend on other signals
-        </li>
-        <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
-          Effects run automatically when their dependencies change
-        </li>
-        <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
-          Signals integrate seamlessly with Angular's change detection
-        </li>
-      </ul>
+      <h2 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-gray-100">Key Takeaways</h2>
     </div>
-  </p-card>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div
+        class="bg-gray-50 dark:bg-gray-800/50 border border-gray-100 dark:border-gray-700/50 p-4 rounded-xl flex items-start gap-4 transition-all hover:border-[var(--accent-color)]/30 group">
+        <div
+          class="w-8 h-8 rounded-full bg-[var(--accent-color)]/10 text-[var(--accent-color)] flex items-center justify-center shrink-0 group-hover:bg-[var(--accent-color)] group-hover:text-white transition-colors">
+          <i class="fas fa-check text-sm"></i>
+        </div>
+        <p class="text-gray-800 dark:text-gray-200 font-medium pt-1">Signals provide fine-grained reactivity for Angular
+          applications</p>
+      </div>
+      <div
+        class="bg-gray-50 dark:bg-gray-800/50 border border-gray-100 dark:border-gray-700/50 p-4 rounded-xl flex items-start gap-4 transition-all hover:border-[var(--accent-color)]/30 group">
+        <div
+          class="w-8 h-8 rounded-full bg-[var(--accent-color)]/10 text-[var(--accent-color)] flex items-center justify-center shrink-0 group-hover:bg-[var(--accent-color)] group-hover:text-white transition-colors">
+          <i class="fas fa-check text-sm"></i>
+        </div>
+        <p class="text-gray-800 dark:text-gray-200 font-medium pt-1">Use computed() for derived values that depend on
+          other signals</p>
+      </div>
+      <div
+        class="bg-gray-50 dark:bg-gray-800/50 border border-gray-100 dark:border-gray-700/50 p-4 rounded-xl flex items-start gap-4 transition-all hover:border-[var(--accent-color)]/30 group">
+        <div
+          class="w-8 h-8 rounded-full bg-[var(--accent-color)]/10 text-[var(--accent-color)] flex items-center justify-center shrink-0 group-hover:bg-[var(--accent-color)] group-hover:text-white transition-colors">
+          <i class="fas fa-check text-sm"></i>
+        </div>
+        <p class="text-gray-800 dark:text-gray-200 font-medium pt-1">Effects run automatically when their dependencies
+          change</p>
+      </div>
+      <div
+        class="bg-gray-50 dark:bg-gray-800/50 border border-gray-100 dark:border-gray-700/50 p-4 rounded-xl flex items-start gap-4 transition-all hover:border-[var(--accent-color)]/30 group">
+        <div
+          class="w-8 h-8 rounded-full bg-[var(--accent-color)]/10 text-[var(--accent-color)] flex items-center justify-center shrink-0 group-hover:bg-[var(--accent-color)] group-hover:text-white transition-colors">
+          <i class="fas fa-check text-sm"></i>
+        </div>
+        <p class="text-gray-800 dark:text-gray-200 font-medium pt-1">Signals integrate seamlessly with Angular's change
+          detection</p>
+      </div>
+    </div>
+  </div>
 
   <!-- Modal Component -->
   <app-dynamic-modal></app-dynamic-modal>
