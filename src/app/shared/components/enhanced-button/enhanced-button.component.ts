@@ -29,7 +29,7 @@ const ICON_MAP: Record<string, string> = {
   'pi pi-search': 'fa-search',
   'pi pi-ban': 'fa-ban',
   'pi pi-wrench': 'fa-wrench',
-  'pi pi-puzzle': 'fa-puzzle-piece',
+  'pi pi-objects-column': 'fa-puzzle-piece',
   'pi pi-sitemap': 'fa-sitemap',
   'pi pi-globe': 'fa-globe',
   'pi pi-star': 'fa-star',
@@ -56,11 +56,11 @@ export class EnhancedButtonComponent {
 
   getIconClass(): string {
     if (!this.icon) return '';
-    
+
     if (this.icon.startsWith('fa')) {
       return this.icon;
     }
-    
+
     const faIcon = ICON_MAP[this.icon] || 'fa-circle';
     return `fas ${faIcon}`;
   }

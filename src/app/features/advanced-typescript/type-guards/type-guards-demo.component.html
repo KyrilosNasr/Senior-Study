@@ -4,7 +4,8 @@
     <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
       <div class="flex-1">
         <div class="flex items-center gap-3 mb-4">
-          <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br from-blue-600 to-cyan-600 flex items-center justify-center shadow-lg">
+          <div
+            class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br from-blue-600 to-cyan-600 flex items-center justify-center shadow-lg">
             <i class="fas fa-shield-alt text-white text-xl sm:text-2xl"></i>
           </div>
           <div>
@@ -19,7 +20,8 @@
         </p>
       </div>
       <div class="hidden lg:block">
-        <div class="w-32 h-32 rounded-2xl bg-gradient-to-br from-blue-600/20 to-cyan-600/20 flex items-center justify-center">
+        <div
+          class="w-32 h-32 rounded-2xl bg-gradient-to-br from-blue-600/20 to-cyan-600/20 flex items-center justify-center">
           <i class="fas fa-shield-alt text-6xl text-blue-600"></i>
         </div>
       </div>
@@ -30,17 +32,18 @@
   <p-card class="card-modern hover-lift slide-in-up">
     <div class="padding-responsive space-y-6">
       <div class="flex items-center gap-3 mb-4">
-        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+        <div
+          class="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
           <i class="fas fa-lightbulb text-white"></i>
         </div>
         <h2 class="subheading-responsive text-gray-900 dark:text-gray-100">What are Type Guards?</h2>
       </div>
-      
+
       <p class="text-responsive text-gray-700 dark:text-gray-300 leading-relaxed">
         Type guards are functions that help TypeScript narrow down types at runtime. They use type predicates
         (value is Type) to tell the compiler that a value is of a specific type after a runtime check.
       </p>
-      
+
       <div class="glass rounded-xl p-6 border-l-4 border-accent">
         <div class="flex items-center gap-3 mb-4">
           <i class="fas fa-star text-accent text-xl"></i>
@@ -70,7 +73,7 @@
         </div>
         <h2 class="subheading-responsive text-gray-900 dark:text-gray-100">Code Examples</h2>
       </div>
-      
+
       <p-tabs value="0">
         <p-tablist class="flex flex-wrap gap-2 mb-6">
           <p-tab value="0" class="flex items-center gap-2">
@@ -111,42 +114,31 @@
   <p-card class="card-modern hover-lift slide-in-up">
     <div class="padding-responsive">
       <div class="flex items-center gap-3 mb-4">
-        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center">
+        <div
+          class="w-10 h-10 rounded-lg bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center">
           <i class="fas fa-play-circle text-white"></i>
         </div>
         <h2 class="subheading-responsive text-gray-900 dark:text-gray-100">Interactive Demo</h2>
       </div>
-      
+
       <p class="text-responsive text-gray-700 dark:text-gray-300 mb-8">
         Test type guards and type predicates in action.
       </p>
 
       <div class="space-y-6">
         <div class="flex gap-3 flex-wrap">
-          <p-button
-            label="Test Type Guards"
-            icon="pi pi-shield"
-            (click)="testTypeGuards()"
-            class="btn-modern"
-          ></p-button>
-          <p-button
-            label="Test Discriminated Unions"
-            icon="pi pi-sitemap"
-            (click)="testDiscriminatedUnions()"
-            class="btn-modern"
-          ></p-button>
-          <p-button
-            label="Test Result Pattern"
-            icon="pi pi-check-circle"
-            (click)="testResultPattern()"
-            class="btn-modern"
-          ></p-button>
+          <button (click)="testTypeGuards()" class="btn-modern"> <i class="pi pi-shield pe-3"></i> Test Type
+            Guards</button>
+          <button (click)="testDiscriminatedUnions()" class="btn-modern"> <i class="pi pi-sitemap pe-3"></i>Test
+            Discriminated Unions</button>
+          <button (click)="testResultPattern()" class="btn-modern"> <i class="pi pi-check-circle pe-3"></i>Test Result
+            Pattern</button>
         </div>
 
         @if (result()) {
-          <div class="glass rounded-xl p-6 fade-in">
-            <pre class="text-sm sm:text-base text-gray-800 dark:text-gray-200 whitespace-pre-wrap">{{ result() }}</pre>
-          </div>
+        <div class="glass rounded-xl p-6 fade-in">
+          <pre class="text-sm sm:text-base text-gray-800 dark:text-gray-200 whitespace-pre-wrap">{{ result() }}</pre>
+        </div>
         }
       </div>
     </div>
@@ -161,7 +153,7 @@
         </div>
         <h2 class="subheading-responsive text-gray-900 dark:text-gray-100">Key Takeaways</h2>
       </div>
-      
+
       <ul class="list-modern">
         <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
           Type guards use the <code>value is Type</code> return type annotation

@@ -5,11 +5,10 @@
     class="flex flex-col sm:flex-row gap-3 items-start sm:items-center justify-between p-4 bg-gray-50 dark:bg-gray-800/50 rounded-lg border border-gray-200 dark:border-gray-700">
     <div class="flex flex-col sm:flex-row gap-3 flex-1 w-full sm:w-auto">
       @if (config().globalFilter) {
-      <span class="p-input-icon-left w-full sm:w-auto flex-1 sm:flex-initial">
-        <i class="pi pi-search text-gray-400"></i>
-        <input type="text" pInputText [value]="globalFilterValue()" (input)="onGlobalFilter($event)"
-          placeholder="Search across all columns..." class="w-full pl-10" />
-      </span>
+      <p-iconfield iconPosition="left">
+        <input pInputText type="text" (input)="globalFilterValue()" placeholder="Search keyword" />
+        <p-inputicon class="pi pi-search"></p-inputicon>
+      </p-iconfield>
       }
       @if (config().advancedFilter && hasActiveFilters()) {
       <p-button severity="secondary" [outlined]="true" (onClick)="clearFilters(dt)" class="w-full sm:w-auto">

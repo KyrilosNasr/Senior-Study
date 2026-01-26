@@ -15,70 +15,70 @@ export interface IconMapping {
  */
 export const ICON_MAP: IconMapping = {
   // SOLID Principles
-  'Single Responsibility': 'fas fa-cube',
-  'Open/Closed': 'fas fa-door-open',
-  'Liskov Substitution': 'fas fa-exchange-alt',
-  'Interface Segregation': 'fas fa-layer-group',
-  'Dependency Inversion': 'fas fa-arrows-alt-v',
+  'Single Responsibility': 'pi pi-cube',
+  'Open/Closed': 'pi pi-door-open',
+  'Liskov Substitution': 'pi pi-exchange-alt',
+  'Interface Segregation': 'pi pi-layer-group',
+  'Dependency Inversion': 'pi pi-arrows-alt-v',
 
   // OOP Concepts
-  'Encapsulation': 'fas fa-lock',
-  'Inheritance': 'fas fa-sitemap',
-  'Polymorphism': 'fas fa-shapes',
-  'Abstraction': 'fas fa-eye-slash',
+  'Encapsulation': 'pi pi-lock',
+  'Inheritance': 'pi pi-sitemap',
+  'Polymorphism': 'pi pi-shapes',
+  'Abstraction': 'pi pi-eye-slash',
 
   // RxJS Patterns - Foundational Operators
-  'Part 1: Creation Operators': 'fas fa-plus-circle',
-  'Part 2: Transformation Operators': 'fas fa-random',
-  'Part 3: Filtering Operators': 'fas fa-filter',
-  'Part 4: Combination Operators': 'fas fa-code-branch',
-  'Part 5: Error Handling': 'fas fa-exclamation-triangle',
-  'Part 6: Utility Operators': 'fas fa-tools',
-  'Part 7: Multicasting Operators': 'fas fa-broadcast-tower',
+  'Part 1: Creation Operators': 'pi pi-plus-circle',
+  'Part 2: Transformation Operators': 'pi pi-random',
+  'Part 3: Filtering Operators': 'pi pi-filter',
+  'Part 4: Combination Operators': 'pi pi-code-branch',
+  'Part 5: Error Handling': 'pi pi-exclamation-triangle',
+  'Part 6: Utility Operators': 'pi pi-tools',
+  'Part 7: Multicasting Operators': 'pi pi-broadcast-tower',
 
   // RxJS Patterns - Advanced
-  'Custom Operators': 'fas fa-puzzle-piece',
-  'Higher-Order Observables': 'fas fa-layer-group',
-  'Subject Patterns': 'fas fa-share-alt',
-  'Memory Leak Prevention': 'fas fa-shield-alt',
-  'Backpressure': 'fas fa-compress-arrows-alt',
-  'Route Guards': 'fas fa-lock',
-  'RxJS Reactive Forms': 'fas fa-edit',
-  'WebSockets': 'fas fa-plug',
-  'Advanced Caching': 'fas fa-database',
-  'Race Conditions': 'fas fa-flag-checkered',
+  'Custom Operators': 'pi pi-puzzle-piece',
+  'Higher-Order Observables': 'pi pi-layer-group',
+  'Subject Patterns': 'pi pi-share',
+  'Memory Leak Prevention': 'pi pi-shield',
+  'Backpressure': 'pi pi-compress-arrows',
+  'Route Guards': 'pi pi-lock',
+  'RxJS Reactive Forms': 'pi pi-edit',
+  'WebSockets': 'pi pi-plug',
+  'Advanced Caching': 'pi pi-database',
+  'Race Conditions': 'pi pi-flag-checkered',
 
   // TypeScript Topics
-  'Advanced Types': 'fas fa-code',
-  'Type Guards': 'fas fa-shield-alt',
-  'Generics': 'fas fa-cog',
-  'Utility Types': 'fas fa-wrench',
-  'Decorators': 'fas fa-star',
-  'TypeScript 5.x': 'fas fa-bolt',
-  'Function Types': 'fas fa-function',
-  'Module Augmentation': 'fas fa-puzzle-piece',
+  'Advanced Types': 'pi pi-code',
+  'Type Guards': 'pi pi-shield',
+  'Generics': 'pi pi-cog',
+  'Utility Types': 'pi pi-wrench',
+  'Decorators': 'pi pi-star',
+  'TypeScript 5.x': 'pi pi-bolt',
+  'Function Types': 'pi pi-code',
+  'Module Augmentation': 'pi pi-objects-column',
 
   // Navigation/Switch Topic
-  'SOLID Principles': 'fas fa-cube',
-  'OOP Concepts': 'fas fa-object-group',
-  'RxJS Patterns': 'fas fa-stream',
-  'Advanced TypeScript': 'fas fa-code',
-  'Angular': 'pi-database',
+  'SOLID Principles': 'pi pi-cube',
+  'OOP Concepts': 'pi pi-object-group',
+  'RxJS Patterns': 'pi pi-stream',
+  'Advanced TypeScript': 'pi pi-code',
+  'Angular': 'pi pi-database',
 
   // Angular Components
-  'Dynamic Form': 'fas fa-edit',
-  'Dynamic Table': 'fas fa-table',
-  'Dynamic Modal': 'fas fa-window-maximize',
+  'Dynamic Form': 'pi pi-edit',
+  'Dynamic Table': 'pi pi-table',
+  'Dynamic Modal': 'pi pi-window-maximize',
 
   // Angular Topics
-  'Angular Signals': 'fas fa-signal',
-  'Reactive Forms': 'fas fa-edit',
-  'ControlValueAccessor': 'fas fa-plug',
-  'Multi-Step Form': 'fas fa-list-ol',
-  'Modern Control Flow': 'fas fa-code-branch',
+  'Angular Signals': 'pi pi-signal',
+  'Reactive Forms': 'pi pi-edit',
+  'ControlValueAccessor': 'pi pi-plug',
+  'Multi-Step Form': 'pi pi-list-ol',
+  'Modern Control Flow': 'pi pi-code-branch',
 
   // Default fallback
-  'default': 'fas fa-circle'
+  'default': 'pi pi-circle'
 };
 
 /**

@@ -28,14 +28,14 @@ import { MultiSelectModule } from 'primeng/multiselect';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 import { MenuItem } from 'primeng/api';
+import { IconFieldModule } from 'primeng/iconfield';
+import { InputIconModule } from 'primeng/inputicon';
 import { TableCellEditorComponent } from './components/table-cell-editor.component';
 
 import {
   DynamicTableConfig,
   TableColumn,
-  TableEventData,
-  TableAction,
-  FilterMetadata
+  TableEventData
 } from '../../types/table-config.types';
 import { SortOrder } from '../../types/common.types';
 import {
@@ -65,6 +65,8 @@ import { TableStateService } from './services/table-state.service';
     MultiSelectModule,
     InputNumberModule,
     ToggleButtonModule,
+    IconFieldModule,
+    InputIconModule,
     TableCellEditorComponent
   ],
   providers: [

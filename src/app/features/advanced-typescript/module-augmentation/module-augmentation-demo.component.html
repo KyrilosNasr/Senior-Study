@@ -4,8 +4,9 @@
     <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
       <div class="flex-1">
         <div class="flex items-center gap-3 mb-4">
-          <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br from-blue-600 to-cyan-600 flex items-center justify-center shadow-lg">
-            <i class="fas fa-puzzle-piece text-white text-xl sm:text-2xl"></i>
+          <div
+            class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br from-blue-600 to-cyan-600 flex items-center justify-center shadow-lg">
+            <i class="pi pi-objects-column text-white text-xl sm:text-2xl"></i>
           </div>
           <div>
             <span class="badge-modern text-xs sm:text-sm">TypeScript</span>
@@ -19,8 +20,9 @@
         </p>
       </div>
       <div class="hidden lg:block">
-        <div class="w-32 h-32 rounded-2xl bg-gradient-to-br from-blue-600/20 to-cyan-600/20 flex items-center justify-center">
-          <i class="fas fa-puzzle-piece text-6xl text-blue-600"></i>
+        <div
+          class="w-32 h-32 rounded-2xl bg-gradient-to-br from-blue-600/20 to-cyan-600/20 flex items-center justify-center">
+          <i class="pi pi-objects-column text-6xl text-blue-600"></i>
         </div>
       </div>
     </div>
@@ -30,17 +32,18 @@
   <p-card class="card-modern hover-lift slide-in-up">
     <div class="padding-responsive space-y-6">
       <div class="flex items-center gap-3 mb-4">
-        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+        <div
+          class="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
           <i class="fas fa-lightbulb text-white"></i>
         </div>
         <h2 class="subheading-responsive text-gray-900 dark:text-gray-100">What is Module Augmentation?</h2>
       </div>
-      
+
       <p class="text-responsive text-gray-700 dark:text-gray-300 leading-relaxed">
         Module augmentation and declaration merging allow you to extend existing types, interfaces, and modules
         without modifying their original source code. This is especially useful for extending third-party libraries.
       </p>
-      
+
       <div class="glass rounded-xl p-6 border-l-4 border-accent">
         <div class="flex items-center gap-3 mb-4">
           <i class="fas fa-star text-accent text-xl"></i>
@@ -73,11 +76,11 @@
         </div>
         <h2 class="subheading-responsive text-gray-900 dark:text-gray-100">Code Examples</h2>
       </div>
-      
+
       <p-tabs value="0">
         <p-tablist class="flex flex-wrap gap-2 mb-6">
           <p-tab value="0" class="flex items-center gap-2">
-            <i class="fas fa-puzzle-piece text-blue-500"></i>
+            <i class="pi pi-objects-column text-blue-500"></i>
             <span class="text-sm sm:text-base font-semibold">Module Augmentation</span>
           </p-tab>
           <p-tab value="1" class="flex items-center gap-2">
@@ -123,42 +126,31 @@
   <p-card class="card-modern hover-lift slide-in-up">
     <div class="padding-responsive">
       <div class="flex items-center gap-3 mb-4">
-        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center">
+        <div
+          class="w-10 h-10 rounded-lg bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center">
           <i class="fas fa-play-circle text-white"></i>
         </div>
         <h2 class="subheading-responsive text-gray-900 dark:text-gray-100">Interactive Demo</h2>
       </div>
-      
+
       <p class="text-responsive text-gray-700 dark:text-gray-300 mb-8">
         Test module augmentation and declaration merging.
       </p>
 
       <div class="space-y-6">
         <div class="flex gap-3 flex-wrap">
-          <p-button
-            label="Test Declaration Merging"
-            icon="pi pi-puzzle"
-            (click)="testDeclarationMerging()"
-            class="btn-modern"
-          ></p-button>
-          <p-button
-            label="Test Namespace Merging"
-            icon="pi pi-sitemap"
-            (click)="testNamespaceMerging()"
-            class="btn-modern"
-          ></p-button>
-          <p-button
-            label="Test Global Augmentation"
-            icon="pi pi-globe"
-            (click)="testGlobalAugmentation()"
-            class="btn-modern"
-          ></p-button>
+          <button (click)="testDeclarationMerging()" class="btn-modern"> <i class="pi pi-puzzle"></i> Test Declaration
+            Merging</button>
+          <button (click)="testNamespaceMerging()" class="btn-modern"><i class="pi pi-sitemap"></i> Test Namespace
+            Merging</button>
+          <button (click)="testGlobalAugmentation()" class="btn-modern"><i class="pi pi-globe"></i> Test Global
+            Augmentation</button>
         </div>
 
         @if (result()) {
-          <div class="glass rounded-xl p-6 fade-in">
-            <pre class="text-sm sm:text-base text-gray-800 dark:text-gray-200 whitespace-pre-wrap">{{ result() }}</pre>
-          </div>
+        <div class="glass rounded-xl p-6 fade-in">
+          <pre class="text-sm sm:text-base text-gray-800 dark:text-gray-200 whitespace-pre-wrap">{{ result() }}</pre>
+        </div>
         }
       </div>
     </div>
@@ -173,7 +165,7 @@
         </div>
         <h2 class="subheading-responsive text-gray-900 dark:text-gray-100">Key Takeaways</h2>
       </div>
-      
+
       <ul class="list-modern">
         <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
           Module augmentation extends types from external modules without modifying source

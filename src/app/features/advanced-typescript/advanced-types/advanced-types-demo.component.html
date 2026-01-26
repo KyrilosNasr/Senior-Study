@@ -4,7 +4,8 @@
     <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
       <div class="flex-1">
         <div class="flex items-center gap-3 mb-4">
-          <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br from-blue-600 to-cyan-600 flex items-center justify-center shadow-lg">
+          <div
+            class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br from-blue-600 to-cyan-600 flex items-center justify-center shadow-lg">
             <i class="fas fa-code text-white text-xl sm:text-2xl"></i>
           </div>
           <div>
@@ -15,11 +16,13 @@
           Advanced Types
         </h1>
         <p class="text-responsive text-gray-700 dark:text-gray-300">
-          Conditional Types, Mapped Types, and Template Literal Types - Powerful type manipulation features in TypeScript.
+          Conditional Types, Mapped Types, and Template Literal Types - Powerful type manipulation features in
+          TypeScript.
         </p>
       </div>
       <div class="hidden lg:block">
-        <div class="w-32 h-32 rounded-2xl bg-gradient-to-br from-blue-600/20 to-cyan-600/20 flex items-center justify-center">
+        <div
+          class="w-32 h-32 rounded-2xl bg-gradient-to-br from-blue-600/20 to-cyan-600/20 flex items-center justify-center">
           <i class="fas fa-code text-6xl text-blue-600"></i>
         </div>
       </div>
@@ -30,17 +33,18 @@
   <p-card class="card-modern hover-lift slide-in-up">
     <div class="padding-responsive space-y-6">
       <div class="flex items-center gap-3 mb-4">
-        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+        <div
+          class="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
           <i class="fas fa-lightbulb text-white"></i>
         </div>
         <h2 class="subheading-responsive text-gray-900 dark:text-gray-100">What are Advanced Types?</h2>
       </div>
-      
+
       <p class="text-responsive text-gray-700 dark:text-gray-300 leading-relaxed">
         Advanced types allow you to create complex type transformations and manipulations, enabling more expressive
         and type-safe code. They include Conditional Types, Mapped Types, and Template Literal Types.
       </p>
-      
+
       <div class="glass rounded-xl p-6 border-l-4 border-accent">
         <div class="flex items-center gap-3 mb-4">
           <i class="fas fa-star text-accent text-xl"></i>
@@ -54,7 +58,8 @@
             <strong>Mapped Types:</strong> Transform properties of existing types ([P in keyof T])
           </li>
           <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
-            <strong>Template Literal Types:</strong> String manipulation at the type level (<code>`on{{ '{' }}Capitalize&lt;T&gt;{{ '}' }}`</code>)
+            <strong>Template Literal Types:</strong> String manipulation at the type level
+            (<code>`on{{ '{' }}Capitalize&lt;T&gt;{{ '}' }}`</code>)
           </li>
         </ul>
       </div>
@@ -70,7 +75,7 @@
         </div>
         <h2 class="subheading-responsive text-gray-900 dark:text-gray-100">Code Examples</h2>
       </div>
-      
+
       <p-tabs value="0">
         <p-tablist class="flex flex-wrap gap-2 mb-6">
           <p-tab value="0" class="flex items-center gap-2">
@@ -120,42 +125,31 @@
   <p-card class="card-modern hover-lift slide-in-up">
     <div class="padding-responsive">
       <div class="flex items-center gap-3 mb-4">
-        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center">
+        <div
+          class="w-10 h-10 rounded-lg bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center">
           <i class="fas fa-play-circle text-white"></i>
         </div>
         <h2 class="subheading-responsive text-gray-900 dark:text-gray-100">Interactive Demo</h2>
       </div>
-      
+
       <p class="text-responsive text-gray-700 dark:text-gray-300 mb-8">
         Test the different advanced types in action.
       </p>
 
       <div class="space-y-6">
         <div class="flex gap-3 flex-wrap">
-          <p-button
-            label="Test Conditional Types"
-            icon="pi pi-code"
-            (click)="testConditionalTypes()"
-            class="btn-modern"
-          ></p-button>
-          <p-button
-            label="Test Mapped Types"
-            icon="pi pi-cog"
-            (click)="testMappedTypes()"
-            class="btn-modern"
-          ></p-button>
-          <p-button
-            label="Test Template Literal Types"
-            icon="pi pi-bolt"
-            (click)="testTemplateLiteralTypes()"
-            class="btn-modern"
-          ></p-button>
+          <button (click)="testConditionalTypes()" class="btn-modern"> <i class="pi pi-code pe-3"></i>
+            Test Conditional Types</button>
+          <button (click)="testMappedTypes()" class="btn-modern"> <i class="pi pi-cog pe-3"></i>
+            Test Mapped Types</button>
+          <button (click)="testTemplateLiteralTypes()" class="btn-modern"> <i class="pi pi-bolt pe-3"></i>
+            Test Template Literal Types</button>
         </div>
 
         @if (result()) {
-          <div class="glass rounded-xl p-6 fade-in">
-            <pre class="text-sm sm:text-base text-gray-800 dark:text-gray-200 whitespace-pre-wrap">{{ result() }}</pre>
-          </div>
+        <div class="glass rounded-xl p-6 fade-in">
+          <pre class="text-sm sm:text-base text-gray-800 dark:text-gray-200 whitespace-pre-wrap">{{ result() }}</pre>
+        </div>
         }
       </div>
     </div>
@@ -170,7 +164,7 @@
         </div>
         <h2 class="subheading-responsive text-gray-900 dark:text-gray-100">Key Takeaways</h2>
       </div>
-      
+
       <ul class="list-modern">
         <li class="text-sm sm:text-base text-gray-800 dark:text-gray-200">
           Conditional types enable type-level conditionals using the ternary operator
@@ -188,4 +182,3 @@
     </div>
   </p-card>
 </div>
-
