@@ -770,7 +770,7 @@ html.dark .text-gray-400 {
           }
           
           &:hover .p-treenode-icon {
-            color: rgb(96, 165, 250);
+            color: var(--accent-color);
           }
         }
         
@@ -786,7 +786,7 @@ html.dark .text-gray-400 {
           }
           
           .p-treenode-icon {
-            color: rgb(96, 165, 250);
+            color: var(--accent-color);
           }
           
           &::before {
