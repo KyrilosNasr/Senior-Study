@@ -43,7 +43,7 @@ import {
   PrimeNGMenu,
   PrimeNGColumnToggleMenu
 } from '../../types/primeng-table.types';
-import { getFontAwesomeIcon } from '../../utils/icon-mapper.util';
+
 import { getFieldValue, getRowId, fieldToString } from '../../utils/table-data.util';
 import { TableExportService } from '../../services/table-export.service';
 import { TableStateService } from './services/table-state.service';
@@ -192,7 +192,7 @@ export class DynamicTableComponent<T = unknown> {
   trackByField = (index: number, col: TableColumn<T>) => String(col.field);
   fieldToString = fieldToString;
   getFieldValue = getFieldValue;
-  getFontAwesomeIcon = getFontAwesomeIcon;
+  
 
   private emitEvent(type: TableEventData<T>['type'], data?: any, extra?: Partial<TableEventData<T>>): void {
     this.tableEvent.emit({ type, data, ...extra });

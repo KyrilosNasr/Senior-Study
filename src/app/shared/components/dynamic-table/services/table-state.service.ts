@@ -3,7 +3,7 @@ import { TableColumn, FilterMetadata, TableAction } from '../../../types/table-c
 import { PrimeNGTable } from '../../../types/primeng-table.types';
 import { getFieldValue, fieldToString, getFilterMatchModeOptions } from '../../../utils/table-data.util';
 import { MenuItem } from 'primeng/api';
-import { getFontAwesomeIcon } from '../../../utils/icon-mapper.util';
+
 import { DynamicModalService } from '../../dynamic-modal/dynamic-modal.service';
 
 @Injectable()
@@ -155,7 +155,7 @@ export class TableStateService<T> {
 
         items.push({
           label: action.label,
-          icon: action.icon ? getFontAwesomeIcon(action.icon) : undefined,
+          icon: action.icon ? action.icon : undefined,
           disabled: action.disabled ? action.disabled(row) : false,
           command: () => {
             if (action.disabled && action.disabled(row)) return;

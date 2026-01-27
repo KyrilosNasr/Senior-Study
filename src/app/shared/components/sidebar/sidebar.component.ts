@@ -63,7 +63,7 @@ export class SidebarComponent {
     if (node.icon) {
       return node.icon;
     }
-    return 'fas fa-circle';
+    return 'pi pi-circle';
   }
 
   toggleSidebar(): void {
