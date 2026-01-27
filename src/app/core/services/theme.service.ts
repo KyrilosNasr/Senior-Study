@@ -145,6 +145,6 @@ export class ThemeService {
    * Utility: Get text gradient classes
    */
   getTextGradientClasses(): string {
-    return `bg-gradient-to-r from-primary-500 to-primary-700 bg-clip-text text-transparent`;
+    return `bg-gradient-to-r from-primary-500 to-primary-700 bg-clip-text`;
   }
 }
