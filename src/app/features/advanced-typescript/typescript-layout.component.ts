@@ -35,12 +35,14 @@ export class TypeScriptLayoutComponent {
     return this.sidebarExpanded() ? 'lg:ml-64' : 'lg:ml-16';
   });
 
+  readonly accentClass = computed(() => `accent-${this.themeService.accentColor()}`);
+
   sidebarConfig: SidebarConfig = {
     title: 'TypeScript',
     subtitle: 'Advanced Types',
     headerText: 'Advanced TypeScript',
-    gradientFrom: 'from-indigo-600',
-    gradientTo: 'to-blue-600 dark:from-indigo-400 dark:to-blue-400'
+    gradientFrom: 'from-[var(--accent-gradient-from)]',
+    gradientTo: 'to-[var(--accent-gradient-to)] dark:from-[var(--accent-gradient-from)] dark:to-[var(--accent-gradient-to)]'
   };
 
   treeNodes: TreeNode[] = [

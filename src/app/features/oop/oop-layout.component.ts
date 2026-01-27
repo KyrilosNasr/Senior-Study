@@ -35,12 +35,14 @@ export class OopLayoutComponent {
     return this.sidebarExpanded() ? 'lg:ml-64' : 'lg:ml-16';
   });
 
+  readonly accentClass = computed(() => `accent-${this.themeService.accentColor()}`);
+
   sidebarConfig: SidebarConfig = {
     title: 'OOP',
     subtitle: 'Object-Oriented Programming',
     headerText: 'OOP Concepts',
-    gradientFrom: 'from-emerald-600',
-    gradientTo: 'to-teal-600 dark:from-emerald-400 dark:to-teal-400'
+    gradientFrom: 'from-[var(--accent-gradient-from)]',
+    gradientTo: 'to-[var(--accent-gradient-to)] dark:from-[var(--accent-gradient-from)] dark:to-[var(--accent-gradient-to)]'
   };
 
   treeNodes: TreeNode[] = [

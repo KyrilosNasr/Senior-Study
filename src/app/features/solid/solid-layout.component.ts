@@ -35,12 +35,14 @@ export class SolidLayoutComponent {
     return this.sidebarExpanded() ? 'lg:ml-64' : 'lg:ml-16';
   });
 
+  readonly accentClass = computed(() => `accent-${this.themeService.accentColor()}`);
+
   sidebarConfig: SidebarConfig = {
     title: 'SOLID',
     subtitle: 'Design Principles',
     headerText: 'SOLID Principles',
-    gradientFrom: 'from-orange-600',
-    gradientTo: 'to-red-600 dark:from-orange-400 dark:to-red-400'
+    gradientFrom: 'from-[var(--accent-gradient-from)]',
+    gradientTo: 'to-[var(--accent-gradient-to)] dark:from-[var(--accent-gradient-from)] dark:to-[var(--accent-gradient-to)]'
   };
 
   treeNodes: TreeNode[] = [

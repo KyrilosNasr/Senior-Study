@@ -35,12 +35,14 @@ export class RxjsLayoutComponent {
     return this.sidebarExpanded() ? 'lg:ml-64' : 'lg:ml-16';
   });
 
+  readonly accentClass = computed(() => `accent-${this.themeService.accentColor()}`);
+
   sidebarConfig: SidebarConfig = {
     title: 'RxJS',
     subtitle: 'Reactive Programming',
     headerText: 'RxJS Patterns',
-    gradientFrom: 'from-blue-600',
-    gradientTo: 'to-purple-600 dark:from-blue-400 dark:to-purple-400'
+    gradientFrom: 'from-[var(--accent-gradient-from)]',
+    gradientTo: 'to-[var(--accent-gradient-to)] dark:from-[var(--accent-gradient-from)] dark:to-[var(--accent-gradient-to)]'
   };
 
   treeNodes: TreeNode[] = [

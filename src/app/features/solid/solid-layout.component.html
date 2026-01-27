@@ -1,4 +1,4 @@
-<div class="flex min-h-screen">
+<div class="flex min-h-screen" [class]="accentClass()">
   <!-- Sidebar Component -->
   <app-sidebar [config]="sidebarConfig" [treeNodes]="treeNodes" [sidebarVisible]="sidebarVisible"
     (nodeSelect)="onNodeSelect($event)" (expandedChange)="sidebarExpanded.set($event)"></app-sidebar>
