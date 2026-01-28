@@ -1,58 +1,18 @@
-import {
-  Component,
-  signal,
-  inject,
-  computed,
-  ViewChild,
-  ChangeDetectionStrategy
-} from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router, RouterModule, RouterOutlet } from '@angular/router';
-import { ButtonModule } from 'primeng/button';
 import { TreeNode } from 'primeng/api';
-import { SidebarComponent, SidebarConfig } from '../../shared/components/sidebar/sidebar.component';
-import { ThemeService } from '../../core/services/theme.service';
-import { PageHeaderComponent } from '../../shared/components/page-header/page-header.component';
-import { ThemeToggleComponent } from '../../shared/components/theme-toggle/theme-toggle.component';
+import { SidebarConfig } from '../../shared/components/sidebar/sidebar.component';
+import { FeatureLayoutComponent } from '../../shared/components/feature-layout/feature-layout.component';
 import { getIconForLabel } from '../../shared/config/icon-mapping.config';
-import { Footer } from "../../shared/components/footer/footer";
 
 @Component({
   selector: 'app-angular-layout',
   standalone: true,
-  imports: [
-    CommonModule,
-    RouterModule,
-    RouterOutlet,
-    ButtonModule,
-    SidebarComponent,
-    PageHeaderComponent,
-    ThemeToggleComponent,
-    Footer
-  ],
+  imports: [CommonModule, FeatureLayoutComponent],
   templateUrl: './angular-layout.component.html',
-  styleUrl: './angular-layout.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AngularLayoutComponent {
-  private readonly router = inject(Router);
-  private readonly themeService = inject(ThemeService);
-
-  @ViewChild(SidebarComponent) sidebarComponent = signal<SidebarComponent | undefined>(undefined);
-
-  sidebarVisible = signal(false);
-  sidebarExpanded = signal(true);
-
-  readonly accentClass = computed(() => `accent-${this.themeService.accentColor()}`);
-
-  readonly contentGradient = computed(() => {
-    return this.themeService.getGradientClasses('to-br', 'subtle');
-  });
-
-  readonly mainContentClass = computed(() => {
-    return this.sidebarExpanded() ? 'lg:ml-64' : 'lg:ml-16';
-  });
-
   sidebarConfig: SidebarConfig = {
     title: 'Angular',
     subtitle: 'Dynamic Components',
@@ -153,15 +113,5 @@ export class AngularLayoutComponent {
       ]
     }
   ];
-
-  onNodeSelect(event: { node: TreeNode }): void {
-    if (event.node.data) {
-      this.router.navigate([event.node.data]);
-    }
-  }
-
-  toggleSidebar(): void {
-    this.sidebarVisible.update(v => !v);
-  }
 }
 
