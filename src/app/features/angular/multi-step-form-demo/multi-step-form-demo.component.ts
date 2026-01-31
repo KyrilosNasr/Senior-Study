@@ -26,7 +26,7 @@ interface StepConfig {
     ButtonModule,
     StepsModule,
     DynamicFormComponent
-],
+  ],
   templateUrl: './multi-step-form-demo.component.html',
   styleUrl: './multi-step-form-demo.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -34,7 +34,7 @@ interface StepConfig {
 export class MultiStepFormDemoComponent {
   // Expose Math to template for percentage calculation
   Math = Math;
-  
+
   currentStep = signal(0);
   formData = signal<Record<string, unknown>>({});
   loading = signal(false);
