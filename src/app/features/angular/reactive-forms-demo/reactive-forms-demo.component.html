@@ -7,7 +7,7 @@
         <div class="flex items-center gap-3 mb-4">
           <div
             class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br from-[var(--accent-gradient-from)] to-[var(--accent-gradient-to)] flex items-center justify-center shadow-lg">
-            <i class="fas fa-edit text-white text-xl sm:text-2xl"></i>
+            <ng-icon name="faSolidPenToSquare" class="text-white text-xl sm:text-2xl"></ng-icon>
           </div>
           <div>
             <span
@@ -27,7 +27,7 @@
       <div class="hidden lg:block">
         <div
           class="w-32 h-32 rounded-2xl bg-[var(--accent-color)]/10 dark:bg-[var(--accent-color)]/20 flex items-center justify-center backdrop-blur-sm border border-[var(--accent-color)]/20">
-          <i class="fas fa-file-signature text-6xl text-accent"></i>
+          <ng-icon name="faSolidFileSignature" class="text-6xl text-accent"></ng-icon>
         </div>
       </div>
     </div>
@@ -40,7 +40,7 @@
       <div class="flex items-center gap-3 mb-8">
         <div
           class="w-10 h-10 rounded-lg bg-gradient-to-br from-[var(--accent-gradient-from)] to-[var(--accent-gradient-to)] flex items-center justify-center shadow-md">
-          <i class="fas fa-play-circle text-white"></i>
+          <ng-icon name="faSolidCirclePlay" class="text-white"></ng-icon>
         </div>
         <h2 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-gray-100">Interactive Demos</h2>
       </div>
@@ -48,23 +48,23 @@
       <p-tabs [(value)]="activeTab" class="w-full">
         <p-tablist class="flex flex-wrap gap-2 mb-8 border-b dark:border-gray-800">
           <p-tab [value]="'0'" class="flex items-center gap-2">
-            <i class="fas fa-file-alt text-accent"></i>
+            <ng-icon name="faSolidFileLines" class="text-accent"></ng-icon>
             <span class="text-sm sm:text-base font-semibold">Basic Form</span>
           </p-tab>
           <p-tab [value]="'1'" class="flex items-center gap-2">
-            <i class="fas fa-search text-accent"></i>
+            <ng-icon name="faSolidMagnifyingGlass" class="text-accent"></ng-icon>
             <span class="text-sm sm:text-base font-semibold">Debounced Search</span>
           </p-tab>
           <p-tab [value]="'2'" class="flex items-center gap-2">
-            <i class="fas fa-check-double text-accent"></i>
+            <ng-icon name="faSolidCheckDouble" class="text-accent"></ng-icon>
             <span class="text-sm sm:text-base font-semibold">Async Validation</span>
           </p-tab>
           <p-tab [value]="'3'" class="flex items-center gap-2">
-            <i class="fas fa-sync text-accent"></i>
+            <ng-icon name="faSolidRotate" class="text-accent"></ng-icon>
             <span class="text-sm sm:text-base font-semibold">ValueChanges</span>
           </p-tab>
           <p-tab [value]="'4'" class="flex items-center gap-2">
-            <i class="fas fa-layer-group text-accent"></i>
+            <ng-icon name="faSolidLayerGroup" class="text-accent"></ng-icon>
             <span class="text-sm sm:text-base font-semibold">Dynamic Form</span>
           </p-tab>
         </p-tablist>
@@ -75,7 +75,7 @@
             <div
               class="bg-gray-50/50 dark:bg-gray-800/20 rounded-2xl p-6 border border-gray-200 dark:border-gray-700/50 border-l-4 border-l-[var(--accent-color)]">
               <div class="flex items-center gap-3 mb-6">
-                <i class="fas fa-file-alt text-accent text-xl"></i>
+                <ng-icon name="faSolidFileLines" class="text-accent text-xl"></ng-icon>
                 <h3 class="text-lg sm:text-xl font-semibold text-gray-900 dark:text-gray-100">
                   Basic Reactive Form with Validation
                 </h3>
@@ -85,7 +85,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div class="space-y-2">
                     <label for="name" class="block text-sm font-semibold text-gray-700 dark:text-gray-300">
-                      <i class="fas fa-user text-accent mr-2"></i>Name <span class="text-red-500">*</span>
+                      <ng-icon name="faSolidUser" class="text-accent mr-2"></ng-icon>Name <span class="text-red-500">*</span>
                     </label>
                     <input pInputText id="name" formControlName="name" placeholder="Enter your name"
                       class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 dark:border-gray-700 focus:border-[var(--accent-color)] dark:focus:border-[var(--accent-color)] bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 outline-none transition-all"
@@ -97,7 +97,7 @@
 
                   <div class="space-y-2">
                     <label for="email" class="block text-sm font-semibold text-gray-700 dark:text-gray-300">
-                      <i class="fas fa-envelope text-accent mr-2"></i>Email <span class="text-red-500">*</span>
+                      <ng-icon name="faSolidEnvelope" class="text-accent mr-2"></ng-icon>Email <span class="text-red-500">*</span>
                     </label>
                     <input pInputText id="email" type="email" formControlName="email" placeholder="Enter your email"
                       class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 dark:border-gray-700 focus:border-[var(--accent-color)] dark:focus:border-[var(--accent-color)] bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 outline-none transition-all"
@@ -111,7 +111,7 @@
                 <div class="flex gap-3 justify-end">
                   <button type="submit" [disabled]="basicForm.invalid"
                     class="bg-gradient-to-r from-[var(--accent-gradient-from)] to-[var(--accent-gradient-to)] text-white px-6 py-3 rounded-xl font-semibold flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed hover:shadow-lg transition-all active:scale-95">
-                    <i class="fas fa-paper-plane"></i>
+                    <ng-icon name="faSolidPaperPlane"></ng-icon>
                     Submit
                   </button>
                 </div>
@@ -121,7 +121,7 @@
               <div
                 class="mt-8 bg-white dark:bg-gray-950 rounded-xl p-4 border border-gray-200 dark:border-gray-800 shadow-sm">
                 <div class="flex items-center gap-2 mb-3">
-                  <i class="fas fa-info-circle text-accent"></i>
+                  <ng-icon name="faSolidCircleInfo" class="text-accent"></ng-icon>
                   <h4 class="text-sm font-semibold text-gray-900 dark:text-gray-100">Form State</h4>
                 </div>
                 <div class="bg-gray-900 rounded-lg p-4 overflow-x-auto text-sm text-gray-300 font-mono">
@@ -136,7 +136,7 @@
             <div
               class="bg-gray-50/50 dark:bg-gray-800/20 rounded-2xl p-6 border border-gray-200 dark:border-gray-700/50 border-l-4 border-l-[var(--accent-color)]">
               <div class="flex items-center gap-3 mb-6">
-                <i class="fas fa-search text-accent text-xl"></i>
+                <ng-icon name="faSolidMagnifyingGlass" class="text-accent text-xl"></ng-icon>
                 <h3 class="text-lg sm:text-xl font-semibold text-gray-900 dark:text-gray-100">
                   Debounced Search with RxJS
                 </h3>
@@ -145,14 +145,14 @@
               <form [formGroup]="searchForm" class="space-y-6">
                 <div class="space-y-2">
                   <label for="search" class="block text-sm font-semibold text-gray-700 dark:text-gray-300">
-                    <i class="fas fa-search text-accent mr-2"></i>Search
+                    <ng-icon name="faSolidMagnifyingGlass" class="text-accent mr-2"></ng-icon>Search
                   </label>
                   <input pInputText id="search" formControlName="search"
                     placeholder="Type to search (debounced 300ms)..."
                     class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 dark:border-gray-700 focus:border-[var(--accent-color)] dark:focus:border-[var(--accent-color)] bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 outline-none transition-all" />
                   @if (searchLoading()) {
                   <div class="flex items-center gap-2 text-accent">
-                    <i class="fas fa-spinner fa-spin"></i>
+                    <ng-icon name="faSolidSpinner" class="animate-spin"></ng-icon>
                     <span class="text-sm">Searching...</span>
                   </div>
                   }
@@ -162,7 +162,7 @@
               <!-- Search Results -->
               <div class="mt-8">
                 <div class="flex items-center gap-2 mb-4">
-                  <i class="fas fa-list text-accent"></i>
+                  <ng-icon name="faSolidList" class="text-accent"></ng-icon>
                   <h4 class="text-sm font-semibold text-gray-900 dark:text-gray-100">Results</h4>
                 </div>
                 @if (searchResults().length > 0) {
@@ -172,7 +172,7 @@
                     class="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl p-4 flex items-center gap-3 shadow-sm hover:border-[var(--accent-color)]/30 transition-colors">
                     <div
                       class="w-8 h-8 rounded-full bg-gradient-to-br from-[var(--accent-gradient-from)] to-[var(--accent-gradient-to)] flex items-center justify-center text-white">
-                      <i class="fas fa-check text-sm"></i>
+                      <ng-icon name="faSolidCheck" class="text-sm"></ng-icon>
                     </div>
                     <span class="text-gray-900 dark:text-gray-100 font-medium">{{ result }}</span>
                   </div>
@@ -181,13 +181,13 @@
                 } @else if (searchForm.get('search')?.value && !searchLoading()) {
                 <div
                   class="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl p-8 text-center shadow-sm">
-                  <i class="fas fa-search text-gray-400 text-3xl mb-3 opacity-50"></i>
+                  <ng-icon name="faSolidMagnifyingGlass" class="text-gray-400 text-3xl mb-3 opacity-50"></ng-icon>
                   <p class="text-gray-500 dark:text-gray-400">No results found</p>
                 </div>
                 } @else {
                 <div
                   class="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl p-8 text-center shadow-sm">
-                  <i class="fas fa-keyboard text-gray-400 text-3xl mb-3 opacity-50"></i>
+                  <ng-icon name="faSolidKeyboard" class="text-gray-400 text-3xl mb-3 opacity-50"></ng-icon>
                   <p class="text-gray-500 dark:text-gray-400 font-medium">Start typing to search...</p>
                 </div>
                 }
@@ -200,7 +200,7 @@
             <div
               class="bg-gray-50/50 dark:bg-gray-800/20 rounded-2xl p-6 border border-gray-200 dark:border-gray-700/50 border-l-4 border-l-[var(--accent-color)]">
               <div class="flex items-center gap-3 mb-6">
-                <i class="fas fa-check-double text-accent text-xl"></i>
+                <ng-icon name="faSolidCheckDouble" class="text-accent text-xl"></ng-icon>
                 <h3 class="text-lg sm:text-xl font-semibold text-gray-900 dark:text-gray-100">
                   Async Username Validation
                 </h3>
@@ -209,7 +209,7 @@
               <form [formGroup]="asyncForm" class="space-y-6">
                 <div class="space-y-2">
                   <label for="username" class="block text-sm font-semibold text-gray-700 dark:text-gray-300">
-                    <i class="fas fa-user text-accent mr-2"></i>Username <span class="text-red-500">*</span>
+                    <ng-icon name="faSolidUser" class="text-accent mr-2"></ng-icon>Username <span class="text-red-500">*</span>
                   </label>
                   <input pInputText id="username" formControlName="username"
                     placeholder="Enter username (try: admin, user, test)"
@@ -217,7 +217,7 @@
                     [class.border-red-500]="asyncForm.get('username')?.invalid && asyncForm.get('username')?.touched" />
                   @if (asyncForm.get('username')?.pending) {
                   <div class="flex items-center gap-2 text-accent">
-                    <i class="fas fa-spinner fa-spin"></i>
+                    <ng-icon name="faSolidSpinner" class="animate-spin"></ng-icon>
                     <span class="text-sm">Validating username...</span>
                   </div>
                   }
@@ -232,7 +232,7 @@
 
               <div class="mt-8 bg-amber-50 dark:bg-amber-900/10 border-l-4 border-amber-500 p-4 rounded-r-xl shadow-sm">
                 <div class="flex items-center gap-2 mb-2">
-                  <i class="fas fa-lightbulb text-amber-500"></i>
+                  <ng-icon name="faSolidLightbulb" class="text-amber-500"></ng-icon>
                   <span class="text-sm font-bold text-amber-900 dark:text-amber-200 uppercase tracking-wider">Tip</span>
                 </div>
                 <p class="text-sm text-amber-800 dark:text-amber-300">
@@ -248,7 +248,7 @@
             <div
               class="bg-gray-50/50 dark:bg-gray-800/20 rounded-2xl p-6 border border-gray-200 dark:border-gray-700/50 border-l-4 border-l-[var(--accent-color)]">
               <div class="flex items-center gap-3 mb-6">
-                <i class="fas fa-sync text-accent text-xl"></i>
+                <ng-icon name="faSolidRotate" class="text-accent text-xl"></ng-icon>
                 <h3 class="text-lg sm:text-xl font-semibold text-gray-900 dark:text-gray-100">
                   ValueChanges Pattern
                 </h3>
@@ -258,7 +258,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div class="space-y-2">
                     <label for="firstName" class="block text-sm font-semibold text-gray-700 dark:text-gray-300">
-                      <i class="fas fa-user text-accent mr-2"></i>First Name
+                      <ng-icon name="faSolidUser" class="text-accent mr-2"></ng-icon>First Name
                     </label>
                     <input pInputText id="firstName" formControlName="firstName" placeholder="Enter first name"
                       class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 dark:border-gray-700 focus:border-[var(--accent-color)] dark:focus:border-[var(--accent-color)] bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 outline-none transition-all" />
@@ -266,7 +266,7 @@
 
                   <div class="space-y-2">
                     <label for="lastName" class="block text-sm font-semibold text-gray-700 dark:text-gray-300">
-                      <i class="fas fa-user text-accent mr-2"></i>Last Name
+                      <ng-icon name="faSolidUser" class="text-accent mr-2"></ng-icon>Last Name
                     </label>
                     <input pInputText id="lastName" formControlName="lastName" placeholder="Enter last name"
                       class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 dark:border-gray-700 focus:border-[var(--accent-color)] dark:focus:border-[var(--accent-color)] bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 outline-none transition-all" />
@@ -275,13 +275,13 @@
 
                 <div class="space-y-2">
                   <label for="fullName" class="block text-sm font-semibold text-gray-700 dark:text-gray-300">
-                    <i class="fas fa-id-card text-accent mr-2"></i>Full Name (Computed)
+                    <ng-icon name="faSolidIdCard" class="text-accent mr-2"></ng-icon>Full Name (Computed)
                   </label>
                   <input pInputText id="fullName" formControlName="fullName"
                     class="w-full px-4 py-3 rounded-lg border-2 border-gray-100 dark:border-gray-800 bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-gray-100 outline-none transition-all"
                     readonly />
                   <p class="text-xs text-gray-500 dark:text-gray-400 flex items-center gap-2 px-1">
-                    <i class="fas fa-info-circle"></i>
+                    <ng-icon name="faSolidCircleInfo"></ng-icon>
                     Automatically computed from first and last name using valueChanges
                   </p>
                 </div>
@@ -294,7 +294,7 @@
             <div
               class="bg-gray-50/50 dark:bg-gray-800/20 rounded-2xl p-6 border border-gray-200 dark:border-gray-700/50 border-l-4 border-l-[var(--accent-color)]">
               <div class="flex items-center gap-3 mb-6">
-                <i class="fas fa-layer-group text-accent text-xl"></i>
+                <ng-icon name="faSolidLayerGroup" class="text-accent text-xl"></ng-icon>
                 <h3 class="text-lg sm:text-xl font-semibold text-gray-900 dark:text-gray-100">
                   Dynamic Form Integration
                 </h3>
@@ -313,7 +313,7 @@
     <div class="flex items-center gap-3 mb-8">
       <div
         class="w-10 h-10 rounded-lg bg-gradient-to-br from-[var(--accent-gradient-from)] to-[var(--accent-gradient-to)] flex items-center justify-center shadow-md">
-        <i class="fas fa-graduation-cap text-white"></i>
+        <ng-icon name="faSolidGraduationCap" class="text-white"></ng-icon>
       </div>
       <h2 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-gray-100">Key Takeaways</h2>
     </div>
@@ -323,7 +323,7 @@
         class="bg-gray-50 dark:bg-gray-800/50 border border-gray-100 dark:border-gray-700/50 p-4 rounded-xl flex items-start gap-4 transition-all hover:border-[var(--accent-color)]/30 group">
         <div
           class="w-8 h-8 rounded-full bg-[var(--accent-color)]/10 text-[var(--accent-color)] flex items-center justify-center shrink-0 group-hover:bg-[var(--accent-color)] group-hover:text-white transition-colors">
-          <i class="fas fa-check text-sm"></i>
+          <ng-icon name="faSolidCheck" class="text-sm"></ng-icon>
         </div>
         <p class="text-gray-800 dark:text-gray-200 font-medium pt-1">Use FormBuilder for cleaner form creation</p>
       </div>
@@ -331,7 +331,7 @@
         class="bg-gray-50 dark:bg-gray-800/50 border border-gray-100 dark:border-gray-700/50 p-4 rounded-xl flex items-start gap-4 transition-all hover:border-[var(--accent-color)]/30 group">
         <div
           class="w-8 h-8 rounded-full bg-[var(--accent-color)]/10 text-[var(--accent-color)] flex items-center justify-center shrink-0 group-hover:bg-[var(--accent-color)] group-hover:text-white transition-colors">
-          <i class="fas fa-check text-sm"></i>
+          <ng-icon name="faSolidCheck" class="text-sm"></ng-icon>
         </div>
         <p class="text-gray-800 dark:text-gray-200 font-medium pt-1">Debounce input with RxJS for better performance</p>
       </div>
@@ -339,7 +339,7 @@
         class="bg-gray-50 dark:bg-gray-800/50 border border-gray-100 dark:border-gray-700/50 p-4 rounded-xl flex items-start gap-4 transition-all hover:border-[var(--accent-color)]/30 group">
         <div
           class="w-8 h-8 rounded-full bg-[var(--accent-color)]/10 text-[var(--accent-color)] flex items-center justify-center shrink-0 group-hover:bg-[var(--accent-color)] group-hover:text-white transition-colors">
-          <i class="fas fa-check text-sm"></i>
+          <ng-icon name="faSolidCheck" class="text-sm"></ng-icon>
         </div>
         <p class="text-gray-800 dark:text-gray-200 font-medium pt-1">Async validators enable server-side validation</p>
       </div>
@@ -347,7 +347,7 @@
         class="bg-gray-50 dark:bg-gray-800/50 border border-gray-100 dark:border-gray-700/50 p-4 rounded-xl flex items-start gap-4 transition-all hover:border-[var(--accent-color)]/30 group">
         <div
           class="w-8 h-8 rounded-full bg-[var(--accent-color)]/10 text-[var(--accent-color)] flex items-center justify-center shrink-0 group-hover:bg-[var(--accent-color)] group-hover:text-white transition-colors">
-          <i class="fas fa-check text-sm"></i>
+          <ng-icon name="faSolidCheck" class="text-sm"></ng-icon>
         </div>
         <p class="text-gray-800 dark:text-gray-200 font-medium pt-1">ValueChanges enables reactive form updates</p>
       </div>

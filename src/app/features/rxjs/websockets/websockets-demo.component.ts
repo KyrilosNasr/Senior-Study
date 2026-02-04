@@ -1,3 +1,4 @@
+import { NgIcon } from '@ng-icons/core';
 import { Component, signal, inject, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CardModule } from 'primeng/card';
@@ -15,6 +16,7 @@ import { DestroyRef } from '@angular/core';
   selector: 'app-websockets-demo',
   standalone: true,
   imports: [
+    NgIcon,
     CommonModule,
     CardModule,
     Tabs,

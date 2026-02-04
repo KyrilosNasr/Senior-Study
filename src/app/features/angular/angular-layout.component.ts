@@ -52,31 +52,31 @@ export class AngularLayoutComponent {
       children: [
         {
           label: 'Angular Signals',
-          icon: 'fas fa-signal',
+          icon: 'faSolidSignal',
           data: '/angular/signals',
           leaf: true
         },
         {
           label: 'Reactive Forms',
-          icon: 'fas fa-edit',
+          icon: 'faSolidPenToSquare',
           data: '/angular/reactive-forms',
           leaf: true
         },
         {
           label: 'ControlValueAccessor',
-          icon: 'fas fa-plug',
+          icon: 'faSolidPlug',
           data: '/angular/control-value-accessor',
           leaf: true
         },
         {
           label: 'Multi-Step Form',
-          icon: 'fas fa-list-ol',
+          icon: 'faSolidListOl',
           data: '/angular/multi-step-form',
           leaf: true
         },
         {
           label: 'Modern Control Flow',
-          icon: 'fas fa-code-branch',
+          icon: 'faSolidCodeBranch',
           data: '/angular/modern-control-flow',
           leaf: true
         }

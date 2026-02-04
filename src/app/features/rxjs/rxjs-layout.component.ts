@@ -160,7 +160,7 @@ export class RxjsLayoutComponent {
         },
         {
           label: 'Angular',
-          icon: 'pi pi-book',
+          icon: 'faSolidBook',
           data: '/angular/dynamic-form',
           leaf: true
         }

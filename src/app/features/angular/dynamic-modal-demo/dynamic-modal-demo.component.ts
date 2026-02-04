@@ -1,3 +1,4 @@
+import { NgIcon } from '@ng-icons/core';
 import { Component, ChangeDetectionStrategy, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CardModule } from 'primeng/card';
@@ -15,6 +16,7 @@ import { DynamicModalConfig, ModalResult } from '../../../shared/types/modal-con
   selector: 'app-dynamic-modal-demo',
   standalone: true,
   imports: [
+    NgIcon,
     CommonModule,
     CardModule,
     ButtonModule,

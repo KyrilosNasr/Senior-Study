@@ -10,7 +10,7 @@
         <div class="flex items-center gap-3 mb-4">
           <div
             class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br from-[var(--accent-gradient-from)] to-[var(--accent-gradient-to)] flex items-center justify-center shadow-lg">
-            <i class="fas fa-table text-white text-xl sm:text-2xl"></i>
+            <ng-icon name="faSolidTable" class="text-white text-xl sm:text-2xl"></ng-icon>
           </div>
           <div>
             <span
@@ -30,7 +30,7 @@
       <div class="hidden lg:block">
         <div
           class="w-32 h-32 rounded-2xl bg-[var(--accent-color)]/10 dark:bg-[var(--accent-color)]/20 flex items-center justify-center backdrop-blur-sm border border-[var(--accent-color)]/20">
-          <i class="fas fa-th-list text-6xl text-accent"></i>
+          <ng-icon name="faSolidTableList" class="text-6xl text-accent"></ng-icon>
         </div>
       </div>
     </div>
@@ -44,7 +44,7 @@
         <p-tablist class="flex flex-wrap gap-2 mb-8 border-b dark:border-gray-800">
           @for (table of demoTables(); track table.id; let i = $index) {
           <p-tab [value]="i.toString()" class="flex items-center gap-2">
-            <i class="fas fa-database text-accent"></i>
+            <ng-icon name="faSolidDatabase" class="text-accent"></ng-icon>
             <span class="text-sm sm:text-base font-semibold">{{ table.title }}</span>
           </p-tab>
           }
@@ -56,7 +56,7 @@
             <div
               class="bg-gray-50/50 dark:bg-gray-800/20 rounded-2xl p-6 border border-gray-200 dark:border-gray-700/50 border-l-4 border-l-[var(--accent-color)]">
               <div class="flex items-center gap-3 mb-6">
-                <i class="fas fa-layer-group text-accent text-xl"></i>
+                <ng-icon name="faSolidLayerGroup" class="text-accent text-xl"></ng-icon>
                 <div>
                   <h3 class="text-lg sm:text-xl font-semibold text-gray-900 dark:text-gray-100">{{ table.title }}</h3>
                   <p class="text-sm text-gray-500 dark:text-gray-400">{{ table.description }}</p>
@@ -83,7 +83,7 @@
     <div class="flex items-center gap-3 mb-8">
       <div
         class="w-10 h-10 rounded-lg bg-gradient-to-br from-[var(--accent-gradient-from)] to-[var(--accent-gradient-to)] flex items-center justify-center shadow-md">
-        <i class="fas fa-graduation-cap text-white"></i>
+        <ng-icon name="faSolidGraduationCap" class="text-white"></ng-icon>
       </div>
       <h2 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-gray-100">Key Takeaways</h2>
     </div>
@@ -93,7 +93,7 @@
         class="bg-gray-50 dark:bg-gray-800/50 border border-gray-100 dark:border-gray-700/50 p-4 rounded-xl flex items-start gap-4 transition-all hover:border-[var(--accent-color)]/30 group">
         <div
           class="w-8 h-8 rounded-full bg-[var(--accent-color)]/10 text-[var(--accent-color)] flex items-center justify-center shrink-0 group-hover:bg-[var(--accent-color)] group-hover:text-white transition-colors">
-          <i class="fas fa-check text-sm"></i>
+          <ng-icon name="faSolidCheck" class="text-sm"></ng-icon>
         </div>
         <p class="text-gray-800 dark:text-gray-200 font-medium pt-1">Client-side and Server-side data handling support
         </p>
@@ -102,7 +102,7 @@
         class="bg-gray-50 dark:bg-gray-800/50 border border-gray-100 dark:border-gray-700/50 p-4 rounded-xl flex items-start gap-4 transition-all hover:border-[var(--accent-color)]/30 group">
         <div
           class="w-8 h-8 rounded-full bg-[var(--accent-color)]/10 text-[var(--accent-color)] flex items-center justify-center shrink-0 group-hover:bg-[var(--accent-color)] group-hover:text-white transition-colors">
-          <i class="fas fa-check text-sm"></i>
+          <ng-icon name="faSolidCheck" class="text-sm"></ng-icon>
         </div>
         <p class="text-gray-800 dark:text-gray-200 font-medium pt-1">Infinite nesting capabilities for complex data
           relationships</p>
@@ -111,7 +111,7 @@
         class="bg-gray-50 dark:bg-gray-800/50 border border-gray-100 dark:border-gray-700/50 p-4 rounded-xl flex items-start gap-4 transition-all hover:border-[var(--accent-color)]/30 group">
         <div
           class="w-8 h-8 rounded-full bg-[var(--accent-color)]/10 text-[var(--accent-color)] flex items-center justify-center shrink-0 group-hover:bg-[var(--accent-color)] group-hover:text-white transition-colors">
-          <i class="fas fa-check text-sm"></i>
+          <ng-icon name="faSolidCheck" class="text-sm"></ng-icon>
         </div>
         <p class="text-gray-800 dark:text-gray-200 font-medium pt-1">Extensive column management and custom cell
           templates</p>
@@ -120,7 +120,7 @@
         class="bg-gray-50 dark:bg-gray-800/50 border border-gray-100 dark:border-gray-700/50 p-4 rounded-xl flex items-start gap-4 transition-all hover:border-[var(--accent-color)]/30 group">
         <div
           class="w-8 h-8 rounded-full bg-[var(--accent-color)]/10 text-[var(--accent-color)] flex items-center justify-center shrink-0 group-hover:bg-[var(--accent-color)] group-hover:text-white transition-colors">
-          <i class="fas fa-check text-sm"></i>
+          <ng-icon name="faSolidCheck" class="text-sm"></ng-icon>
         </div>
         <p class="text-gray-800 dark:text-gray-200 font-medium pt-1">Deep integration with PrimeNG's rich feature set
         </p>

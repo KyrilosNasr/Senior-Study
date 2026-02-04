@@ -1,3 +1,4 @@
+import { NgIcon } from '@ng-icons/core';
 import { Component, Input, signal, inject, computed, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule, RouterOutlet } from '@angular/router';
@@ -13,6 +14,7 @@ import { Footer } from '../footer/footer';
     selector: 'app-feature-layout',
     standalone: true,
     imports: [
+    NgIcon,
         CommonModule,
         RouterModule,
         RouterOutlet,

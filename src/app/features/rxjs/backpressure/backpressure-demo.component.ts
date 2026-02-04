@@ -1,3 +1,4 @@
+import { NgIcon } from '@ng-icons/core';
 import { Component, signal, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CardModule } from 'primeng/card';
@@ -12,6 +13,7 @@ import { throttleTime, debounceTime, sampleTime, auditTime, map } from 'rxjs/ope
   selector: 'app-backpressure-demo',
   standalone: true,
   imports: [
+    NgIcon,
     CommonModule,
     CardModule,
     Tabs,

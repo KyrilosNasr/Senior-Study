@@ -180,7 +180,7 @@ export interface DynamicTableConfig<T = unknown> {
   selection?: TableSelectionConfig;
   // Actions (now displayed as icon menu)
   actions?: TableAction<T>[];
-  actionMenuIcon?: string; // Icon for action menu button (default: 'pi pi-ellipsis-v')
+  actionMenuIcon?: string; // Icon for action menu button (default: 'faSolidEllipsisVertical')
   // Row expansion
   rowExpansion?: RowExpansionConfig;
   // Column features

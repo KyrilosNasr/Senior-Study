@@ -1,3 +1,4 @@
+import { NgIcon } from '@ng-icons/core';
 import { Component, signal, inject, DestroyRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CardModule } from 'primeng/card';
@@ -12,6 +13,7 @@ import { takeUntil } from 'rxjs/operators';
   selector: 'app-memory-leak-prevention-demo',
   standalone: true,
   imports: [
+    NgIcon,
     CommonModule,
     CardModule,
     Tabs,

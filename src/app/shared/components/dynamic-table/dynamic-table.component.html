@@ -12,14 +12,14 @@
       }
       @if (config().advancedFilter && hasActiveFilters()) {
       <p-button severity="secondary" [outlined]="true" (onClick)="clearFilters(dt)" class="w-full sm:w-auto">
-        <i class="pi pi-filter-slash" class="mr-2"></i>
+        <ng-icon name="faSolidFilter" class="mr-2"></ng-icon>
         <span>Clear Filters</span>
       </p-button>
       }
       @if (config().columnToggle?.enabled) {
       <p-button severity="secondary" [outlined]="true" (onClick)="columnToggleMenu?.toggle($event)"
         class="w-full sm:w-auto">
-        <i class="pi pi-list" class="mr-2"></i>
+        <ng-icon name="faSolidList" class="mr-2"></ng-icon>
         <span>Columns</span>
       </p-button>
       }
@@ -27,13 +27,13 @@
     <div class="flex gap-2 w-full sm:w-auto">
       @if (config().exportable) {
       <p-button severity="secondary" [outlined]="true" (onClick)="exportCSV()" class="w-full sm:w-auto">
-        <i class="pi pi-download" class="mr-2"></i>
+        <ng-icon name="faSolidDownload" class="mr-2"></ng-icon>
         <span>Export</span>
       </p-button>
       }
       @if (isSelectionEnabled() && selectedRows().length > 0) {
       <p-button severity="info" [outlined]="true" class="w-full sm:w-auto">
-        <i class="pi pi-check-square" class="mr-2"></i>
+        <ng-icon name="faSolidSquareCheck" class="mr-2"></ng-icon>
         <span>Selected: {{ selectedRows().length }}</span>
       </p-button>
       }
@@ -122,7 +122,7 @@
             <button type="button" (click)="toggleRowExpansion(rowData); $event.stopPropagation()"
               class="p-button p-component p-button-text p-button-rounded p-button-sm p-button-icon-only w-8 h-8 flex items-center justify-center hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors cursor-pointer"
               [attr.aria-label]="rowExpanded ? 'Collapse row' : 'Expand row'" [attr.aria-expanded]="rowExpanded">
-              <i class="{{ rowExpanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right' }}" class="text-sm"></i>
+              <ng-icon [name]="rowExpanded ? 'faSolidChevronDown' : 'faSolidChevronRight'" class="text-sm"></ng-icon>
             </button>
           </td>
           }
@@ -165,9 +165,9 @@
                          focus:outline-none focus:ring-2 focus:ring-gray-400 dark:focus:ring-gray-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800
                          disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-gray-50 disabled:hover:border-gray-200
                          group cursor-pointer" [attr.aria-label]="'Actions'">
-                <i class="{{ config().actionMenuIcon || 'pi pi-ellipsis-v' }}" class="text-base text-gray-600 dark:text-gray-400 
+                <ng-icon [name]="config().actionMenuIcon || 'faSolidEllipsisVertical'" class="text-base text-gray-600 dark:text-gray-400 
                             group-hover:text-gray-900 dark:group-hover:text-gray-100 
-                            transition-colors duration-200"></i>
+                            transition-colors duration-200"></ng-icon>
               </button>
             </div>
           </td>
@@ -181,18 +181,18 @@
               <button type="button" (click)="saveRowEdit(rowData); $event.stopPropagation()" [title]="'Save'"
                 class="p-button p-component p-button-text p-button-rounded p-button-success p-button-sm p-button-icon-only w-10 h-10 min-w-[2.5rem] min-h-[2.5rem] flex items-center justify-center hover:bg-green-100 dark:hover:bg-green-900/30 transition-colors cursor-pointer"
                 [attr.aria-label]="'Save'">
-                <i class="pi pi-check" class="text-base"></i>
+                <ng-icon name="faSolidCheck" class="text-base"></ng-icon>
               </button>
               <button type="button" (click)="cancelRowEdit(rowData); $event.stopPropagation()" [title]="'Cancel'"
                 class="p-button p-component p-button-text p-button-rounded p-button-danger p-button-sm p-button-icon-only w-10 h-10 min-w-[2.5rem] min-h-[2.5rem] flex items-center justify-center hover:bg-red-100 dark:hover:bg-red-900/30 transition-colors cursor-pointer"
                 [attr.aria-label]="'Cancel'">
-                <i class="pi pi-times" class="text-base"></i>
+                <ng-icon name="faSolidXmark" class="text-base"></ng-icon>
               </button>
               } @else {
               <button type="button" (click)="startRowEdit(rowData); $event.stopPropagation()" [title]="'Edit Row'"
                 class="p-button p-component p-button-text p-button-rounded p-button-primary p-button-sm p-button-icon-only w-10 h-10 min-w-[2.5rem] min-h-[2.5rem] flex items-center justify-center hover:bg-accent-light/10 dark:hover:bg-accent-dark/10 transition-colors cursor-pointer"
                 [attr.aria-label]="'Edit Row'">
-                <i class="pi pi-pencil" class="text-base"></i>
+                <ng-icon name="faSolidPencil" class="text-base"></ng-icon>
               </button>
               }
             </div>
@@ -207,7 +207,7 @@
             @if (getNestedConfigForRow(rowData)) {
             <div class="space-y-4">
               <div class="flex items-center gap-2 mb-4">
-                <i class="pi pi-table text-gray-600 dark:text-gray-400"></i>
+                <ng-icon name="faSolidTable" class="text-gray-600 dark:text-gray-400"></ng-icon>
                 <h4 class="text-lg font-semibold text-gray-900 dark:text-gray-100">Related Data</h4>
               </div>
               <app-dynamic-table [config]="getNestedConfigForRow(rowData)!" class="nested-table" />
@@ -225,7 +225,7 @@
         <tr>
           <td [attr.colspan]="totalColspan()" class="p-0">
             <div class="text-center py-12">
-              <i class="pi pi-inbox text-4xl text-gray-400 dark:text-gray-500 mb-4"></i>
+              <ng-icon name="faSolidInbox" class="text-4xl text-gray-400 dark:text-gray-500 mb-4"></ng-icon>
               <p class="text-gray-500 dark:text-gray-400 text-lg font-medium">
                 {{ config().emptyMessage || 'No data available' }}
               </p>
@@ -241,7 +241,7 @@
       <ng-template pTemplate="loadingbody">
         <tr>
           <td [attr.colspan]="totalColspan()" class="p-8 text-center">
-            <i [class]="config().loadingIcon || 'pi pi-spin pi-spinner text-2xl text-gray-400'"></i>
+            <ng-icon [name]="config().loadingIcon || 'faSolidSpinner'" class="animate-spin text-2xl text-gray-400"></ng-icon>
           </td>
         </tr>
       </ng-template>

@@ -1,3 +1,4 @@
+import { NgIcon } from '@ng-icons/core';
 import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -12,6 +13,7 @@ import { TabsModule } from 'primeng/tabs';
   selector: 'app-polymorphism-demo',
   standalone: true,
   imports: [
+    NgIcon,
     CommonModule,
     FormsModule,
     CardModule,

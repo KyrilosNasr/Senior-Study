@@ -1,3 +1,4 @@
+import { NgIcon } from '@ng-icons/core';
 import { Component, signal, ChangeDetectionStrategy, inject, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -24,6 +25,7 @@ import { TabsModule } from 'primeng/tabs';
   selector: 'app-dynamic-table-demo',
   standalone: true,
   imports: [
+    NgIcon,
     CommonModule,
     CardModule,
     TabsModule,
@@ -173,12 +175,12 @@ export class DynamicTableDemoComponent {
     actions: [
       {
         label: 'View',
-        icon: 'pi pi-eye',
+        icon: 'faSolidEye',
         handler: (row) => { }
       },
       {
         label: 'Delete',
-        icon: 'pi pi-trash',
+        icon: 'faSolidTrash',
         severity: 'danger',
         confirmDialog: true,
         confirmMessage: (row) => `Delete ${row.name}?`,
@@ -191,14 +193,14 @@ export class DynamicTableDemoComponent {
    * Feature badges for the header
    */
   readonly featureBadges: DemoBadge[] = [
-    { label: 'Icon Menu Actions', icon: 'pi pi-ellipsis-v', color: 'blue' },
-    { label: 'Advanced Filtering', icon: 'pi pi-filter', color: 'green' },
-    { label: 'Column Resize', icon: 'pi pi-arrows-h', color: 'purple' },
-    { label: 'Column Reorder', icon: 'pi pi-bars', color: 'orange' },
-    { label: 'Row Expansion', icon: 'pi pi-chevron-down', color: 'pink' },
-    { label: 'Cell Editing', icon: 'pi pi-pencil', color: 'teal' },
-    { label: 'Column Toggle', icon: 'pi pi-list', color: 'indigo' },
-    { label: 'Export CSV', icon: 'pi pi-download', color: 'yellow' }
+    { label: 'Icon Menu Actions', icon: 'faSolidEllipsisVertical', color: 'blue' },
+    { label: 'Advanced Filtering', icon: 'faSolidFilter', color: 'green' },
+    { label: 'Column Resize', icon: 'faSolidArrowsLeftRight', color: 'purple' },
+    { label: 'Column Reorder', icon: 'faSolidBars', color: 'orange' },
+    { label: 'Row Expansion', icon: 'faSolidChevronDown', color: 'pink' },
+    { label: 'Cell Editing', icon: 'faSolidPencil', color: 'teal' },
+    { label: 'Column Toggle', icon: 'faSolidList', color: 'indigo' },
+    { label: 'Export CSV', icon: 'faSolidDownload', color: 'yellow' }
   ];
 
   /**

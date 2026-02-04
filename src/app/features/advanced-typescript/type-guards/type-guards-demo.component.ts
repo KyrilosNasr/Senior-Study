@@ -1,3 +1,4 @@
+import { NgIcon } from '@ng-icons/core';
 import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CardModule } from 'primeng/card';
@@ -49,6 +50,7 @@ type Result<T> =
   selector: 'app-type-guards-demo',
   standalone: true,
   imports: [
+    NgIcon,
     CommonModule,
     CardModule,
     Tabs,

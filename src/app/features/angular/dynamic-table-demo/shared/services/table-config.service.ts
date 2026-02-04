@@ -116,7 +116,7 @@ export class TableConfigService {
       showGridlines: false,
       size: 'normal',
       actions: this.getUserActions(),
-      actionMenuIcon: 'pi pi-ellipsis-v',
+      actionMenuIcon: 'faSolidEllipsisVertical',
       exportable: true,
       exportFileName: 'users',
       responsive: true
@@ -197,7 +197,7 @@ export class TableConfigService {
     return [
       {
         label: 'View Details',
-        icon: 'pi pi-eye',
+        icon: 'faSolidEye',
         severity: 'info',
         handler: (row) => {
           const detailsMessage = `Name: ${row.name}\nEmail: ${row.email}\nRole: ${row.role}\nStatus: ${row.status}\nCreated: ${new Date(row.createdAt).toLocaleDateString()}`;
@@ -206,7 +206,7 @@ export class TableConfigService {
       },
       {
         label: 'Edit',
-        icon: 'pi pi-pencil',
+        icon: 'faSolidPencil',
         severity: 'primary',
         handler: (row) => {
           this.toastService.info(
@@ -217,7 +217,7 @@ export class TableConfigService {
       },
       {
         label: 'Duplicate',
-        icon: 'pi pi-copy',
+        icon: 'faSolidCopy',
         severity: 'secondary',
         handler: (row) => {
           this.toastService.success(
@@ -233,7 +233,7 @@ export class TableConfigService {
       },
       {
         label: 'Activate',
-        icon: 'pi pi-check-circle',
+        icon: 'faSolidCircleCheck',
         severity: 'success',
         visible: (row) => row.status === 'inactive',
         handler: (row: User) => {
@@ -246,7 +246,7 @@ export class TableConfigService {
       },
       {
         label: 'Deactivate',
-        icon: 'pi pi-times-circle',
+        icon: 'faSolidCircleXmark',
         severity: 'warn',
         visible: (row) => row.status === 'active',
         handler: (row: User) => {
@@ -264,7 +264,7 @@ export class TableConfigService {
       },
       {
         label: 'Delete',
-        icon: 'pi pi-trash',
+        icon: 'faSolidTrash',
         severity: 'danger',
         visible: (row) => row.role !== 'Admin',
         // Simple confirmation dialog - no manual modal handling needed!

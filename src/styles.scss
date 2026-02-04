@@ -3,9 +3,6 @@
 /* Configure Tailwind v4 dark mode to use .dark class on html element */
 @custom-variant dark (&:where(.dark, .dark *));
 
-@import '@fortawesome/fontawesome-free/css/all.css';
-@import "primeicons/primeicons.css";
-
 /* You can add global styles to this file, and also import other style files */
 
 /* Global Typography & Readability Enhancements */
@@ -642,8 +639,8 @@ html.dark .text-gray-400 {
           
           .p-treenode-label {
             font-size: 0.875rem;
-            color: rgb(75, 85, 99);
-            font-weight: 500;
+            color: rgb(55, 65, 81); /* Darker gray for better contrast */
+            font-weight: 600; /* Bolder font */
             line-height: 1.5;
             white-space: normal;
             word-wrap: break-word;
@@ -652,19 +649,20 @@ html.dark .text-gray-400 {
           
           .p-treenode-icon {
             margin-right: 0.75rem;
-            margin-left: 0.5rem;
             color: rgb(107, 114, 128);
-            font-size: 0.875rem;
             width: 1.25rem;
+            height: 1.25rem;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
-            transition: color 0.2s ease;
+            transition: all 0.2s ease;
+            overflow: visible; /* Ensure icon isn't clipped */
           }
           
           &:hover .p-treenode-icon {
             color: var(--accent-color);
+            transform: scale(1.1);
           }
         }
         
@@ -686,6 +684,7 @@ html.dark .text-gray-400 {
           
           .p-treenode-icon {
             color: var(--accent-color);
+            transform: scale(1.1);
           }
           
           &::before {
@@ -757,7 +756,8 @@ html.dark .text-gray-400 {
           }
           
           .p-treenode-label {
-            color: rgb(209, 213, 219);
+            color: rgb(243, 244, 246); /* Brighter gray for dark mode */
+            font-weight: 600;
             line-height: 1.5;
             white-space: normal;
             word-wrap: break-word;
@@ -766,11 +766,19 @@ html.dark .text-gray-400 {
           
           .p-treenode-icon {
             color: rgb(156, 163, 175);
-            transition: color 0.2s ease;
+            width: 1.25rem;
+            height: 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: all 0.2s ease;
+            overflow: visible;
           }
           
           &:hover .p-treenode-icon {
             color: var(--accent-color);
+            transform: scale(1.1);
           }
         }
         
@@ -787,6 +795,7 @@ html.dark .text-gray-400 {
           
           .p-treenode-icon {
             color: var(--accent-color);
+            transform: scale(1.1);
           }
           
           &::before {

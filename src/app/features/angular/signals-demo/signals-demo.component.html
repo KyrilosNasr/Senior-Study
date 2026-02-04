@@ -7,7 +7,7 @@
         <div class="flex items-center gap-3 mb-4">
           <div
             class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br from-[var(--accent-gradient-from)] to-[var(--accent-gradient-to)] flex items-center justify-center shadow-lg">
-            <i class="fas fa-signal text-white text-xl sm:text-2xl"></i>
+            <ng-icon name="faSolidSignal" class="text-white text-xl sm:text-2xl"></ng-icon>
           </div>
           <div>
             <span
@@ -27,7 +27,7 @@
       <div class="hidden lg:block">
         <div
           class="w-32 h-32 rounded-2xl bg-[var(--accent-color)]/10 dark:bg-[var(--accent-color)]/20 flex items-center justify-center backdrop-blur-sm border border-[var(--accent-color)]/20">
-          <i class="fas fa-wave-square text-6xl text-accent"></i>
+          <ng-icon name="faSolidWaveSquare" class="text-6xl text-accent"></ng-icon>
         </div>
       </div>
     </div>
@@ -40,7 +40,7 @@
       <div class="flex items-center gap-3 mb-8">
         <div
           class="w-10 h-10 rounded-lg bg-gradient-to-br from-[var(--accent-gradient-from)] to-[var(--accent-gradient-to)] flex items-center justify-center shadow-md">
-          <i class="fas fa-play-circle text-white"></i>
+          <ng-icon name="faSolidCirclePlay" class="text-white"></ng-icon>
         </div>
         <h2 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-gray-100">Interactive Demos</h2>
       </div>
@@ -48,19 +48,19 @@
       <p-tabs [(value)]="activeTab" class="w-full">
         <p-tablist class="flex flex-wrap gap-2 mb-8 border-b dark:border-gray-800">
           <p-tab [value]="'0'" class="flex items-center gap-2">
-            <i class="fas fa-cube text-accent"></i>
+            <ng-icon name="faSolidCube" class="text-accent"></ng-icon>
             <span class="text-sm sm:text-base font-semibold">Basic Signals</span>
           </p-tab>
           <p-tab [value]="'1'" class="flex items-center gap-2">
-            <i class="fas fa-calculator text-accent"></i>
+            <ng-icon name="faSolidCalculator" class="text-accent"></ng-icon>
             <span class="text-sm sm:text-base font-semibold">Computed Signals</span>
           </p-tab>
           <p-tab [value]="'2'" class="flex items-center gap-2">
-            <i class="fas fa-layer-group text-accent"></i>
+            <ng-icon name="faSolidLayerGroup" class="text-accent"></ng-icon>
             <span class="text-sm sm:text-base font-semibold">With Components</span>
           </p-tab>
           <p-tab [value]="'3'" class="flex items-center gap-2">
-            <i class="fas fa-code text-accent"></i>
+            <ng-icon name="faSolidCode" class="text-accent"></ng-icon>
             <span class="text-sm sm:text-base font-semibold">Code Examples</span>
           </p-tab>
         </p-tablist>
@@ -72,7 +72,7 @@
               <div
                 class="bg-gray-50/50 dark:bg-gray-800/20 rounded-2xl p-6 border border-gray-200 dark:border-gray-700/50 border-l-4 border-l-[var(--accent-color)]">
                 <div class="flex items-center gap-3 mb-6">
-                  <i class="fas fa-info-circle text-accent text-xl"></i>
+                  <ng-icon name="faSolidCircleInfo" class="text-accent text-xl"></ng-icon>
                   <h3 class="text-lg sm:text-xl font-semibold text-gray-900 dark:text-gray-100">Basic Signal Operations
                   </h3>
                 </div>
@@ -84,7 +84,7 @@
                     <div class="flex items-center gap-3 mb-4">
                       <div
                         class="w-8 h-8 rounded-lg bg-gradient-to-br from-[var(--accent-gradient-from)] to-[var(--accent-gradient-to)] flex items-center justify-center shadow-sm">
-                        <i class="fas fa-hashtag text-white text-sm"></i>
+                        <ng-icon name="faSolidHashtag" class="text-white text-sm"></ng-icon>
                       </div>
                       <h4 class="text-lg font-semibold text-gray-900 dark:text-gray-100">Count Signal</h4>
                     </div>
@@ -92,10 +92,10 @@
                       class="text-4xl font-bold bg-gradient-to-r from-[var(--accent-gradient-from)] to-[var(--accent-gradient-to)] bg-clip-text text-transparent mb-6">
                       {{ count() }}</p>
                     <div class="flex flex-wrap gap-2">
-                      <p-button label="Increment" (onClick)="increment()" icon="pi pi-plus" class="flex-1" />
-                      <p-button label="Decrement" (onClick)="decrement()" severity="secondary" icon="pi pi-minus"
+                      <p-button label="Increment" (onClick)="increment()" icon="faSolidPlus" class="flex-1" />
+                      <p-button label="Decrement" (onClick)="decrement()" severity="secondary" icon="faSolidMinus"
                         class="flex-1" />
-                      <p-button label="Reset" (onClick)="reset()" severity="danger" icon="pi pi-refresh"
+                      <p-button label="Reset" (onClick)="reset()" severity="danger" icon="faSolidRotate"
                         class="flex-1" />
                     </div>
                   </div>
@@ -106,7 +106,7 @@
                     <div class="flex items-center gap-3 mb-4">
                       <div
                         class="w-8 h-8 rounded-lg bg-gradient-to-br from-[var(--accent-gradient-from)] to-[var(--accent-gradient-to)] flex items-center justify-center shadow-sm">
-                        <i class="fas fa-font text-white text-sm"></i>
+                        <ng-icon name="faSolidFont" class="text-white text-sm"></ng-icon>
                       </div>
                       <h4 class="text-lg font-semibold text-gray-900 dark:text-gray-100">Name Signal</h4>
                     </div>
@@ -125,7 +125,7 @@
                 class="bg-gray-50/50 dark:bg-gray-800/20 rounded-2xl p-6 border border-gray-200 dark:border-gray-700/50 border-l-4 border-l-[var(--accent-color)]">
                 <div class="flex items-center justify-between mb-6">
                   <div class="flex items-center gap-3">
-                    <i class="fas fa-list text-accent text-xl"></i>
+                    <ng-icon name="faSolidList" class="text-accent text-xl"></ng-icon>
                     <h3 class="text-lg sm:text-xl font-semibold text-gray-900 dark:text-gray-100">Array Signal
                       Operations</h3>
                   </div>
@@ -134,7 +134,7 @@
                     itemCount() }} items</span>
                 </div>
                 <div class="flex items-center justify-end mb-4">
-                  <p-button label="Add Item" icon="pi pi-plus" (onClick)="addItem()" />
+                  <p-button label="Add Item" icon="faSolidPlus" (onClick)="addItem()" />
                 </div>
                 <div class="space-y-2">
                   @for (item of items(); track $index) {
@@ -147,7 +147,7 @@
                       </div>
                       <span class="text-gray-900 dark:text-gray-100 font-medium">{{ item }}</span>
                     </div>
-                    <p-button icon="pi pi-trash" severity="danger" [text]="true" (onClick)="removeItem($index)" />
+                    <p-button icon="faSolidTrash" severity="danger" [text]="true" (onClick)="removeItem($index)" />
                   </div>
                   }
                 </div>
@@ -161,7 +161,7 @@
               <div
                 class="bg-gray-50/50 dark:bg-gray-800/20 rounded-2xl p-6 border border-gray-200 dark:border-gray-700/50 border-l-4 border-l-[var(--accent-color)]">
                 <div class="flex items-center gap-3 mb-8">
-                  <i class="fas fa-calculator text-accent text-xl"></i>
+                  <ng-icon name="faSolidCalculator" class="text-accent text-xl"></ng-icon>
                   <h3 class="text-lg sm:text-xl font-semibold text-gray-900 dark:text-gray-100">Computed Signals</h3>
                 </div>
 
@@ -169,7 +169,7 @@
                   <div
                     class="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl p-6 shadow-sm border-l-4 border-l-[var(--accent-color)]">
                     <div class="flex items-center gap-3 mb-3">
-                      <i class="fas fa-times text-accent"></i>
+                      <ng-icon name="faSolidXmark" class="text-accent"></ng-icon>
                       <h4 class="text-sm font-semibold text-gray-900 dark:text-gray-100">Double Count</h4>
                     </div>
                     <p
@@ -182,7 +182,7 @@
                   <div
                     class="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl p-6 shadow-sm border-l-4 border-l-[var(--accent-color-light)]">
                     <div class="flex items-center gap-3 mb-3">
-                      <i class="fas fa-comment text-accent-light"></i>
+                      <ng-icon name="faSolidComment" class="text-accent-light"></ng-icon>
                       <h4 class="text-sm font-semibold text-gray-900 dark:text-gray-100">Greeting</h4>
                     </div>
                     <p class="text-lg text-gray-700 dark:text-gray-300 font-medium">{{ greeting() }}</p>
@@ -197,7 +197,7 @@
                   <div class="flex items-center gap-3 mb-4">
                     <div
                       class="w-8 h-8 rounded-lg bg-gradient-to-br from-[var(--accent-gradient-from)] to-[var(--accent-gradient-to)] flex items-center justify-center shadow-sm">
-                      <i class="fas fa-object-group text-white text-sm"></i>
+                      <ng-icon name="faSolidObjectGroup" class="text-white text-sm"></ng-icon>
                     </div>
                     <h4 class="text-lg font-semibold text-gray-900 dark:text-gray-100">Summary Object</h4>
                   </div>
@@ -205,7 +205,7 @@
                     <pre><code>{{ summary() | json }}</code></pre>
                   </div>
                   <p class="text-xs text-gray-500 dark:text-gray-400 mt-3 px-1">
-                    <i class="fas fa-info-circle mr-2"></i>Computed object combining multiple signals
+                    <ng-icon name="faSolidCircleInfo" class="mr-2"></ng-icon>Computed object combining multiple signals
                   </p>
                 </div>
               </div>
@@ -221,7 +221,7 @@
                 <div class="flex items-center gap-3 mb-8">
                   <div
                     class="w-10 h-10 rounded-lg bg-gradient-to-br from-[var(--accent-gradient-from)] to-[var(--accent-gradient-to)] flex items-center justify-center shadow-md">
-                    <i class="fas fa-file-alt text-white"></i>
+                    <ng-icon name="faSolidFileLines" class="text-white"></ng-icon>
                   </div>
                   <h3 class="text-lg sm:text-xl font-semibold text-gray-900 dark:text-gray-100">
                     Dynamic Form with Signal Configuration
@@ -237,13 +237,13 @@
                   <div class="flex items-center gap-3">
                     <div
                       class="w-10 h-10 rounded-lg bg-gradient-to-br from-[var(--accent-gradient-from)] to-[var(--accent-gradient-to)] flex items-center justify-center shadow-md">
-                      <i class="fas fa-table text-white"></i>
+                      <ng-icon name="faSolidTable" class="text-white"></ng-icon>
                     </div>
                     <h3 class="text-lg sm:text-xl font-semibold text-gray-900 dark:text-gray-100">
                       Dynamic Table with Signal Data
                     </h3>
                   </div>
-                  <p-button label="Add User" icon="pi pi-plus" (onClick)="addUser()" />
+                  <p-button label="Add User" icon="faSolidPlus" (onClick)="addUser()" />
                 </div>
                 <app-dynamic-table [config]="tableConfig()" />
               </div>
@@ -254,7 +254,7 @@
                 <div class="flex items-center gap-3 mb-8">
                   <div
                     class="w-10 h-10 rounded-lg bg-gradient-to-br from-[var(--accent-gradient-from)] to-[var(--accent-gradient-to)] flex items-center justify-center shadow-md">
-                    <i class="fas fa-window-restore text-white"></i>
+                    <ng-icon name="faSolidWindowRestore" class="text-white"></ng-icon>
                   </div>
                   <h3 class="text-lg sm:text-xl font-semibold text-gray-900 dark:text-gray-100">
                     Modal with Signal Data
@@ -262,7 +262,7 @@
                 </div>
                 <button (click)="showSignalModal()"
                   class="bg-gradient-to-r from-[var(--accent-gradient-from)] to-[var(--accent-gradient-to)] text-white px-6 py-3 rounded-xl font-semibold flex items-center gap-2 hover:shadow-lg transition-all active:scale-95 shadow-md">
-                  <i class="pi pi-info-circle"></i>
+                  <ng-icon name="faSolidCircleInfo"></ng-icon>
                   Show Signal Summary
                 </button>
               </div>
@@ -275,14 +275,14 @@
               <div
                 class="bg-gray-50/50 dark:bg-gray-800/20 rounded-2xl p-6 border border-gray-200 dark:border-gray-700/50 border-l-4 border-l-[var(--accent-color)]">
                 <div class="flex items-center gap-3 mb-8">
-                  <i class="fas fa-code text-accent text-xl"></i>
+                  <ng-icon name="faSolidCode" class="text-accent text-xl"></ng-icon>
                   <h3 class="text-lg sm:text-xl font-semibold text-gray-900 dark:text-gray-100">Code Examples</h3>
                 </div>
 
                 <div class="space-y-8">
                   <div>
                     <div class="flex items-center gap-2 mb-3">
-                      <i class="fas fa-cube text-accent"></i>
+                      <ng-icon name="faSolidCube" class="text-accent"></ng-icon>
                       <h4 class="text-lg font-semibold text-gray-900 dark:text-gray-100">Basic Signal</h4>
                     </div>
                     <div
@@ -304,7 +304,7 @@ count.update(value => value + 1);</code></pre>
 
                   <div>
                     <div class="flex items-center gap-2 mb-3">
-                      <i class="fas fa-calculator text-accent"></i>
+                      <ng-icon name="faSolidCalculator" class="text-accent"></ng-icon>
                       <h4 class="text-lg font-semibold text-gray-900 dark:text-gray-100">Computed Signal</h4>
                     </div>
                     <div
@@ -326,7 +326,7 @@ summary = computed(() =&gt; (&#123;
 
                   <div>
                     <div class="flex items-center gap-2 mb-3">
-                      <i class="fas fa-bolt text-accent"></i>
+                      <ng-icon name="faSolidBolt" class="text-accent"></ng-icon>
                       <h4 class="text-lg font-semibold text-gray-900 dark:text-gray-100">Effects</h4>
                     </div>
                     <div
@@ -346,7 +346,7 @@ effect(() =&gt; &#123;
 
                   <div>
                     <div class="flex items-center gap-2 mb-3">
-                      <i class="fas fa-layer-group text-accent"></i>
+                      <ng-icon name="faSolidLayerGroup" class="text-accent"></ng-icon>
                       <h4 class="text-lg font-semibold text-gray-900 dark:text-gray-100">Signals with Dynamic Components
                       </h4>
                     </div>
@@ -380,7 +380,7 @@ formConfig = signal&lt;DynamicFormConfig&gt;(&#123;
     <div class="flex items-center gap-3 mb-8">
       <div
         class="w-10 h-10 rounded-lg bg-gradient-to-br from-[var(--accent-gradient-from)] to-[var(--accent-gradient-to)] flex items-center justify-center shadow-md">
-        <i class="fas fa-graduation-cap text-white"></i>
+        <ng-icon name="faSolidGraduationCap" class="text-white"></ng-icon>
       </div>
       <h2 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-gray-100">Key Takeaways</h2>
     </div>
@@ -390,7 +390,7 @@ formConfig = signal&lt;DynamicFormConfig&gt;(&#123;
         class="bg-gray-50 dark:bg-gray-800/50 border border-gray-100 dark:border-gray-700/50 p-4 rounded-xl flex items-start gap-4 transition-all hover:border-[var(--accent-color)]/30 group">
         <div
           class="w-8 h-8 rounded-full bg-[var(--accent-color)]/10 text-[var(--accent-color)] flex items-center justify-center shrink-0 group-hover:bg-[var(--accent-color)] group-hover:text-white transition-colors">
-          <i class="fas fa-check text-sm"></i>
+          <ng-icon name="faSolidCheck" class="text-sm"></ng-icon>
         </div>
         <p class="text-gray-800 dark:text-gray-200 font-medium pt-1">Signals provide fine-grained reactivity for Angular
           applications</p>
@@ -399,7 +399,7 @@ formConfig = signal&lt;DynamicFormConfig&gt;(&#123;
         class="bg-gray-50 dark:bg-gray-800/50 border border-gray-100 dark:border-gray-700/50 p-4 rounded-xl flex items-start gap-4 transition-all hover:border-[var(--accent-color)]/30 group">
         <div
           class="w-8 h-8 rounded-full bg-[var(--accent-color)]/10 text-[var(--accent-color)] flex items-center justify-center shrink-0 group-hover:bg-[var(--accent-color)] group-hover:text-white transition-colors">
-          <i class="fas fa-check text-sm"></i>
+          <ng-icon name="faSolidCheck" class="text-sm"></ng-icon>
         </div>
         <p class="text-gray-800 dark:text-gray-200 font-medium pt-1">Use computed() for derived values that depend on
           other signals</p>
@@ -408,7 +408,7 @@ formConfig = signal&lt;DynamicFormConfig&gt;(&#123;
         class="bg-gray-50 dark:bg-gray-800/50 border border-gray-100 dark:border-gray-700/50 p-4 rounded-xl flex items-start gap-4 transition-all hover:border-[var(--accent-color)]/30 group">
         <div
           class="w-8 h-8 rounded-full bg-[var(--accent-color)]/10 text-[var(--accent-color)] flex items-center justify-center shrink-0 group-hover:bg-[var(--accent-color)] group-hover:text-white transition-colors">
-          <i class="fas fa-check text-sm"></i>
+          <ng-icon name="faSolidCheck" class="text-sm"></ng-icon>
         </div>
         <p class="text-gray-800 dark:text-gray-200 font-medium pt-1">Effects run automatically when their dependencies
           change</p>
@@ -417,7 +417,7 @@ formConfig = signal&lt;DynamicFormConfig&gt;(&#123;
         class="bg-gray-50 dark:bg-gray-800/50 border border-gray-100 dark:border-gray-700/50 p-4 rounded-xl flex items-start gap-4 transition-all hover:border-[var(--accent-color)]/30 group">
         <div
           class="w-8 h-8 rounded-full bg-[var(--accent-color)]/10 text-[var(--accent-color)] flex items-center justify-center shrink-0 group-hover:bg-[var(--accent-color)] group-hover:text-white transition-colors">
-          <i class="fas fa-check text-sm"></i>
+          <ng-icon name="faSolidCheck" class="text-sm"></ng-icon>
         </div>
         <p class="text-gray-800 dark:text-gray-200 font-medium pt-1">Signals integrate seamlessly with Angular's change
           detection</p>

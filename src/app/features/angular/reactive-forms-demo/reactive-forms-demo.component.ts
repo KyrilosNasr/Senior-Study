@@ -1,3 +1,4 @@
+import { NgIcon } from '@ng-icons/core';
 import { Component, ChangeDetectionStrategy, signal, computed, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
@@ -26,6 +27,7 @@ import { DynamicFormConfig } from '../../../shared/types/form-field.types';
   selector: 'app-reactive-forms-demo',
   standalone: true,
   imports: [
+    NgIcon,
     CommonModule,
     ReactiveFormsModule,
     CardModule,

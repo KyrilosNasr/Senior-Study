@@ -1,3 +1,4 @@
+import { NgIcon } from '@ng-icons/core';
 import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CardModule } from 'primeng/card';
@@ -74,7 +75,8 @@ class GoodManager implements Workable, Eatable, Sleepable, Manageable {
 @Component({
   selector: 'app-isp-demo',
   standalone: true,
-  imports: [CommonModule, CardModule, Tabs, Tab, TabList, TabPanel, TabPanels, MessageModule, EnhancedButtonComponent],
+  imports: [
+    NgIcon,CommonModule, CardModule, Tabs, Tab, TabList, TabPanel, TabPanels, MessageModule, EnhancedButtonComponent],
   templateUrl: './isp-demo.component.html',
   styleUrl: './isp-demo.component.scss'
 })

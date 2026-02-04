@@ -5,16 +5,16 @@
       <div class="flex-1">
         <div class="flex items-center gap-3 mb-4">
           <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center shadow-lg">
-            <i class="pi pi-layer text-white text-xl sm:text-2xl"></i>
+            <ng-icon name="faSolidLayerGroup" class="text-white text-xl sm:text-2xl"></ng-icon>
           </div>
           <div class="flex-1">
             <span class="badge-modern text-xs sm:text-sm">RxJS</span>
             <h2 class="heading-responsive text-gradient">Higher-Order Observables</h2>
           </div>
           <div class="flex items-center gap-2">
-            <i class="pi pi-star text-accent text-xl"></i>
-            <i class="pi pi-star text-accent text-xl"></i>
-            <i class="pi pi-star text-accent text-xl"></i>
+            <ng-icon name="faSolidStar" class="text-accent text-xl"></ng-icon>
+            <ng-icon name="faSolidStar" class="text-accent text-xl"></ng-icon>
+            <ng-icon name="faSolidStar" class="text-accent text-xl"></ng-icon>
 
           </div>
           <div>
@@ -30,7 +30,7 @@
       </div>
       <div class="hidden lg:block">
         <div class="w-32 h-32 rounded-2xl bg-gradient-to-br from-purple-500/20 to-pink-600/20 flex items-center justify-center">
-          <i class="pi pi-layer text-6xl text-purple-500"></i>
+          <ng-icon name="faSolidLayerGroup" class="text-6xl text-purple-500"></ng-icon>
         </div>
       </div>
     </div>
@@ -41,7 +41,7 @@
     <div class="padding-responsive space-y-6">
       <div class="flex items-center gap-3 mb-4">
         <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
-          <i class="pi pi-lightbulb text-white"></i>
+          <ng-icon name="faSolidLightbulb" class="text-white"></ng-icon>
         </div>
         <h2 class="subheading-responsive text-gray-900 dark:text-gray-100">What are Higher-Order Observables?</h2>
       </div>
@@ -53,7 +53,7 @@
       
       <div class="glass rounded-xl p-6 border-l-4 border-accent">
         <div class="flex items-center gap-3 mb-4">
-          <i class="pi pi-star text-accent text-xl"></i>
+          <ng-icon name="faSolidStar" class="text-accent text-xl"></ng-icon>
           <h3 class="text-lg sm:text-xl font-semibold text-gray-900 dark:text-gray-100">Key Patterns</h3>
         </div>
         <ul class="list-modern">
@@ -79,7 +79,7 @@
     <div class="padding-responsive">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-green-500 to-teal-600 flex items-center justify-center">
-          <i class="pi pi-code text-white"></i>
+          <ng-icon name="faSolidCode" class="text-white"></ng-icon>
         </div>
         <h2 class="subheading-responsive text-gray-900 dark:text-gray-100">Code Examples</h2>
       </div>
@@ -87,11 +87,11 @@
       <p-tabs value="0">
         <p-tablist class="flex flex-wrap gap-2 mb-6">
           <p-tab value="0" class="flex items-center gap-2">
-            <i class="pi pi-times-circle text-red-500"></i>
+            <ng-icon name="faSolidCircleXmark" class="text-red-500"></ng-icon>
             <span class="text-sm sm:text-base font-semibold">Violation</span>
           </p-tab>
           <p-tab value="1" class="flex items-center gap-2">
-            <i class="pi pi-check-circle text-green-500"></i>
+            <ng-icon name="faSolidCircleCheck" class="text-green-500"></ng-icon>
             <span class="text-sm sm:text-base font-semibold">Solution</span>
           </p-tab>
         </p-tablist>
@@ -116,7 +116,7 @@
     <div class="padding-responsive">
       <div class="flex items-center gap-3 mb-4">
         <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center">
-          <i class="pi pi-play text-white"></i>
+          <ng-icon name="faSolidPlay" class="text-white"></ng-icon>
         </div>
         <h2 class="subheading-responsive text-gray-900 dark:text-gray-100">Interactive Demo</h2>
       </div>
@@ -126,7 +126,7 @@
           <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">Polling Pattern</h3>
           <p-button
             label="Start Polling"
-            icon="pi pi-play"
+            icon="faSolidPlay"
             (click)="startPolling()"
             [disabled]="isPolling()"
             class="mb-4"
@@ -148,7 +148,7 @@
           <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">Sequential Request Chain</h3>
           <p-button
             label="Load User Data (Sequential)"
-            icon="pi pi-download"
+            icon="faSolidDownload"
             (click)="testSequential()"
             class="mb-4"
           ></p-button>
@@ -168,7 +168,7 @@
     <div class="padding-responsive">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-teal-500 to-cyan-600 flex items-center justify-center">
-          <i class="pi pi-book text-white"></i>
+          <ng-icon name="faSolidBook" class="text-white"></ng-icon>
         </div>
         <h2 class="subheading-responsive text-gray-900 dark:text-gray-100">Key Takeaways</h2>
       </div>

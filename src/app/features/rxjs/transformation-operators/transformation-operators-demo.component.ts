@@ -1,3 +1,4 @@
+import { NgIcon } from '@ng-icons/core';
 import { Component, signal, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CardModule } from 'primeng/card';
@@ -13,6 +14,7 @@ import { map, switchMap, mergeMap, concatMap, exhaustMap, delay } from 'rxjs/ope
   selector: 'app-transformation-operators-demo',
   standalone: true,
   imports: [
+    NgIcon,
     CommonModule,
     CardModule,
     Tabs,

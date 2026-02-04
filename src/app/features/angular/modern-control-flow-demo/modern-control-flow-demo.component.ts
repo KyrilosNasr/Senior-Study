@@ -1,3 +1,4 @@
+import { NgIcon } from '@ng-icons/core';
 import { Component, ChangeDetectionStrategy, signal, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -20,6 +21,7 @@ interface DemoItem {
   selector: 'app-modern-control-flow-demo',
   standalone: true,
   imports: [
+    NgIcon,
     CommonModule,
     FormsModule,
     CardModule,

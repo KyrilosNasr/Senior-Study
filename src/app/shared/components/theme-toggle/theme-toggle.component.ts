@@ -1,3 +1,4 @@
+import { NgIcon } from '@ng-icons/core';
 import { Component, ChangeDetectionStrategy, inject, signal, HostListener, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ThemeService, AccentColor } from '../../../core/services/theme.service';
@@ -5,7 +6,8 @@ import { ThemeService, AccentColor } from '../../../core/services/theme.service'
 @Component({
   selector: 'app-theme-toggle',
   standalone: true,
-  imports: [CommonModule],
+  imports: [
+    NgIcon,CommonModule],
   templateUrl: './theme-toggle.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })

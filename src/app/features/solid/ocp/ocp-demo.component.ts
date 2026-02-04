@@ -1,3 +1,4 @@
+import { NgIcon } from '@ng-icons/core';
 import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -17,6 +18,7 @@ import { Payment, PaymentRequest } from '../shared/models/payment.model';
   selector: 'app-ocp-demo',
   standalone: true,
   imports: [
+    NgIcon,
     CommonModule,
     FormsModule,
     CardModule,

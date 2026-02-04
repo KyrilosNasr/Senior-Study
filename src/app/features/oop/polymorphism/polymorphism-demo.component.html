@@ -5,7 +5,7 @@
       <div class="flex-1">
         <div class="flex items-center gap-3 mb-4">
           <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br from-yellow-500 to-orange-600 flex items-center justify-center shadow-lg">
-            <i class="fas fa-shapes text-white text-xl sm:text-2xl"></i>
+            <ng-icon name="faSolidShapes" class="text-white text-xl sm:text-2xl"></ng-icon>
           </div>
           <div>
             <span class="badge-modern text-xs sm:text-sm">OOP Concepts</span>
@@ -20,7 +20,7 @@
       </div>
       <div class="hidden lg:block">
         <div class="w-32 h-32 rounded-2xl bg-gradient-to-br from-yellow-500/20 to-orange-600/20 flex items-center justify-center">
-          <i class="fas fa-puzzle-piece text-6xl text-yellow-500"></i>
+          <ng-icon name="faSolidPuzzlePiece" class="text-6xl text-yellow-500"></ng-icon>
         </div>
       </div>
     </div>
@@ -31,7 +31,7 @@
     <div class="padding-responsive space-y-6">
       <div class="flex items-center gap-3 mb-4">
         <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-yellow-500 to-orange-600 flex items-center justify-center">
-          <i class="fas fa-lightbulb text-white"></i>
+          <ng-icon name="faSolidLightbulb" class="text-white"></ng-icon>
         </div>
         <h2 class="subheading-responsive text-gray-900 dark:text-gray-100">What is Polymorphism?</h2>
       </div>
@@ -44,7 +44,7 @@
       
       <div class="glass rounded-xl p-6 border-l-4 border-accent">
         <div class="flex items-center gap-3 mb-4">
-          <i class="fas fa-star text-accent text-xl"></i>
+          <ng-icon name="faSolidStar" class="text-accent text-xl"></ng-icon>
           <h3 class="text-lg sm:text-xl font-semibold text-gray-900 dark:text-gray-100">Key Benefits</h3>
         </div>
         <ul class="list-modern">
@@ -70,7 +70,7 @@
     <div class="padding-responsive">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-green-500 to-teal-600 flex items-center justify-center">
-          <i class="fas fa-code text-white"></i>
+          <ng-icon name="faSolidCode" class="text-white"></ng-icon>
         </div>
         <h2 class="subheading-responsive text-gray-900 dark:text-gray-100">Code Examples</h2>
       </div>
@@ -78,11 +78,11 @@
       <p-tabs value="0">
         <p-tablist class="flex flex-wrap gap-2 mb-6">
           <p-tab value="0" class="flex items-center gap-2">
-            <i class="fas fa-times-circle text-red-500"></i>
+            <ng-icon name="faSolidCircleXmark" class="text-red-500"></ng-icon>
             <span class="text-sm sm:text-base font-semibold">Violation</span>
           </p-tab>
           <p-tab value="1" class="flex items-center gap-2">
-            <i class="fas fa-check-circle text-green-500"></i>
+            <ng-icon name="faSolidCircleCheck" class="text-green-500"></ng-icon>
             <span class="text-sm sm:text-base font-semibold">Solution</span>
           </p-tab>
         </p-tablist>
@@ -107,7 +107,7 @@
     <div class="padding-responsive">
       <div class="flex items-center gap-3 mb-4">
         <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center">
-          <i class="fas fa-play-circle text-white"></i>
+          <ng-icon name="faSolidCirclePlay" class="text-white"></ng-icon>
         </div>
         <h2 class="subheading-responsive text-gray-900 dark:text-gray-100">Interactive Demo</h2>
       </div>
@@ -121,13 +121,13 @@
         <!-- Create Animal -->
         <div class="glass rounded-xl p-6 border border-gray-200 dark:border-gray-700">
           <h3 class="text-lg sm:text-xl font-semibold text-gray-800 dark:text-gray-200 mb-4 flex items-center gap-2">
-            <i class="fas fa-paw text-accent"></i>
+            <ng-icon name="faSolidPaw" class="text-accent"></ng-icon>
             Create Animal
           </h3>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6 mb-4">
             <div class="space-y-2">
               <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300">
-                <i class="fas fa-list text-accent mr-2"></i>Animal Type
+                <ng-icon name="faSolidList" class="text-accent mr-2"></ng-icon>Animal Type
               </label>
               <p-select
                 [options]="animalTypes"
@@ -139,7 +139,7 @@
             </div>
             <div class="space-y-2">
               <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300">
-                <i class="fas fa-tag text-accent mr-2"></i>Animal Name
+                <ng-icon name="faSolidTag" class="text-accent mr-2"></ng-icon>Animal Name
               </label>
               <input
                 pInputText
@@ -155,7 +155,7 @@
             [disabled]="!animalName().trim()"
             class="btn-modern px-8 py-4 rounded-xl font-semibold text-base sm:text-lg flex items-center justify-center gap-3 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 active:scale-100 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
           >
-            <i class="fas fa-plus-circle text-lg sm:text-xl" aria-hidden="true"></i>
+            <ng-icon name="faSolidCirclePlus" class="text-lg sm:text-xl" aria-hidden="true"></ng-icon>
             <span>Create Animal</span>
           </button>
         </div>
@@ -164,7 +164,7 @@
         @if (animals().length > 0) {
           <div class="glass rounded-xl p-6 border-l-4 border-green-500">
             <h3 class="text-lg sm:text-xl font-semibold text-green-800 dark:text-green-200 mb-4 flex items-center gap-2">
-              <i class="fas fa-list text-green-500"></i>
+              <ng-icon name="faSolidList" class="text-green-500"></ng-icon>
               Created Animals
             </h3>
             <div class="space-y-2 mb-4">
@@ -181,7 +181,7 @@
             @if (selectedAnimal(); as animal) {
               <div class="p-6 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-lg border border-blue-200 dark:border-blue-800 mb-4">
                 <h4 class="text-lg font-semibold text-blue-900 dark:text-blue-100 mb-4 flex items-center gap-2">
-                  <i class="fas fa-info-circle text-blue-500"></i>
+                  <ng-icon name="faSolidCircleInfo" class="text-blue-500"></ng-icon>
                   Selected Animal
                 </h4>
                 <div class="space-y-2 text-sm sm:text-base text-blue-800 dark:text-blue-300">
@@ -193,7 +193,7 @@
 
             <app-enhanced-button
               label="Interact with All Animals"
-              icon="pi pi-play"
+              icon="faSolidPlay"
               (buttonClick)="interactWithAll()"
               [disabled]="animals().length === 0"
               [fullWidth]="true"
@@ -202,7 +202,7 @@
             @if (allInteractions().length > 0) {
               <div class="mt-4 p-6 bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 rounded-lg border border-purple-200 dark:border-purple-800">
                 <h4 class="text-lg font-semibold text-purple-900 dark:text-purple-200 mb-3 flex items-center gap-2">
-                  <i class="fas fa-comments text-purple-500"></i>
+                  <ng-icon name="faSolidComments" class="text-purple-500"></ng-icon>
                   All Animals Interacting
                 </h4>
                 <div class="space-y-2">
@@ -223,7 +223,7 @@
     <div class="padding-responsive">
       <div class="flex items-center gap-3 mb-6">
         <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-teal-500 to-cyan-600 flex items-center justify-center">
-          <i class="fas fa-graduation-cap text-white"></i>
+          <ng-icon name="faSolidGraduationCap" class="text-white"></ng-icon>
         </div>
         <h2 class="subheading-responsive text-gray-900 dark:text-gray-100">Key Takeaways</h2>
       </div>
@@ -246,18 +246,18 @@
       <!-- Additional Resources -->
       <div class="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
         <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4 flex items-center gap-2">
-          <i class="fas fa-book-open text-accent"></i>
+          <ng-icon name="faSolidBookOpen" class="text-accent"></ng-icon>
           Learn More
         </h3>
         <div class="flex flex-wrap gap-3">
           <a href="#" class="badge-outline hover:scale-105 transition-transform">
-            <i class="fas fa-external-link-alt mr-2"></i>Documentation
+            <ng-icon name="faSolidArrowUpRightFromSquare" class="mr-2"></ng-icon>Documentation
           </a>
           <a href="#" class="badge-outline hover:scale-105 transition-transform">
-            <i class="fas fa-video mr-2"></i>Video Tutorial
+            <ng-icon name="faSolidVideo" class="mr-2"></ng-icon>Video Tutorial
           </a>
           <a href="#" class="badge-outline hover:scale-105 transition-transform">
-            <i class="fas fa-code-branch mr-2"></i>GitHub Examples
+            <ng-icon name="faSolidCodeBranch" class="mr-2"></ng-icon>GitHub Examples
           </a>
         </div>
       </div>

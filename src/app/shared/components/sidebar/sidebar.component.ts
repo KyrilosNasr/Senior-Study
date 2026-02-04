@@ -1,3 +1,4 @@
+import { NgIcon } from '@ng-icons/core';
 import { Component, Input, Output, EventEmitter, WritableSignal, inject, computed, signal, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Drawer } from 'primeng/drawer';
@@ -16,7 +17,8 @@ export interface SidebarConfig {
 @Component({
   selector: 'app-sidebar',
   standalone: true,
-  imports: [CommonModule, Drawer, TreeModule],
+  imports: [
+    NgIcon,CommonModule, Drawer, TreeModule],
   templateUrl: './sidebar.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -63,7 +65,7 @@ export class SidebarComponent {
     if (node.icon) {
       return node.icon;
     }
-    return 'pi pi-circle';
+    return 'faSolidCircle';
   }
 
   toggleSidebar(): void {

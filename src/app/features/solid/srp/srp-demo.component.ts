@@ -1,3 +1,4 @@
+import { NgIcon } from '@ng-icons/core';
 import { Component, signal, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -15,6 +16,7 @@ import { CreateUserDto, User } from '../shared/models/user.model';
   selector: 'app-srp-demo',
   standalone: true,
   imports: [
+    NgIcon,
     CommonModule,
     FormsModule,
     CardModule,

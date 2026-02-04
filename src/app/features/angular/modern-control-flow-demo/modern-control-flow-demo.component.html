@@ -7,7 +7,7 @@
         <div class="flex items-center gap-3 mb-4">
           <div
             class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br from-[var(--accent-gradient-from)] to-[var(--accent-gradient-to)] flex items-center justify-center shadow-lg">
-            <i class="fas fa-code-branch text-white text-xl sm:text-2xl"></i>
+            <ng-icon name="faSolidCodeBranch" class="text-white text-xl sm:text-2xl"></ng-icon>
           </div>
           <div>
             <span
@@ -27,7 +27,7 @@
       <div class="hidden lg:block">
         <div
           class="w-32 h-32 rounded-2xl bg-[var(--accent-color)]/10 dark:bg-[var(--accent-color)]/20 flex items-center justify-center backdrop-blur-sm border border-[var(--accent-color)]/20">
-          <i class="fas fa-project-diagram text-6xl text-accent"></i>
+          <ng-icon name="faSolidDiagramProject" class="text-6xl text-accent"></ng-icon>
         </div>
       </div>
     </div>
@@ -40,7 +40,7 @@
       <div class="flex items-center gap-3 mb-8">
         <div
           class="w-10 h-10 rounded-lg bg-gradient-to-br from-[var(--accent-gradient-from)] to-[var(--accent-gradient-to)] flex items-center justify-center shadow-md">
-          <i class="fas fa-play-circle text-white"></i>
+          <ng-icon name="faSolidCirclePlay" class="text-white"></ng-icon>
         </div>
         <h2 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-gray-100">Interactive Demo</h2>
       </div>
@@ -48,19 +48,19 @@
       <p-tabs [value]="activeTab()" (valueChange)="activeTab.set($event?.toString() ?? '0')" class="w-full">
         <p-tablist class="flex flex-wrap gap-2 mb-8 border-b dark:border-gray-800">
           <p-tab [value]="'0'" class="flex items-center gap-2">
-            <i class="fas fa-question text-accent"></i>
+            <ng-icon name="faSolidQuestion" class="text-accent"></ng-icon>
             <span class="text-sm sm:text-base font-semibold">&#64;if / &#64;else</span>
           </p-tab>
           <p-tab [value]="'1'" class="flex items-center gap-2">
-            <i class="fas fa-list text-accent"></i>
+            <ng-icon name="faSolidList" class="text-accent"></ng-icon>
             <span class="text-sm sm:text-base font-semibold">&#64;for / &#64;empty</span>
           </p-tab>
           <p-tab [value]="'2'" class="flex items-center gap-2">
-            <i class="fas fa-toggle-on text-accent"></i>
+            <ng-icon name="faSolidToggleOn" class="text-accent"></ng-icon>
             <span class="text-sm sm:text-base font-semibold">&#64;switch</span>
           </p-tab>
           <p-tab [value]="'3'" class="flex items-center gap-2">
-            <i class="fas fa-code text-accent"></i>
+            <ng-icon name="faSolidCode" class="text-accent"></ng-icon>
             <span class="text-sm sm:text-base font-semibold">Code</span>
           </p-tab>
         </p-tablist>
@@ -72,7 +72,7 @@
               class="bg-gray-50/50 dark:bg-gray-800/20 rounded-2xl p-6 border border-gray-200 dark:border-gray-700/50 border-l-4 border-l-[var(--accent-color)]">
               <div class="flex items-center justify-between mb-8">
                 <div class="flex items-center gap-3">
-                  <i class="fas fa-question-circle text-accent text-xl"></i>
+                  <ng-icon name="faSolidCircleQuestion" class="text-accent text-xl"></ng-icon>
                   <h3 class="text-lg sm:text-xl font-semibold text-gray-900 dark:text-gray-100">Conditional Rendering
                   </h3>
                 </div>
@@ -86,13 +86,13 @@
                 <div class="text-center animate-fade-in py-8">
                   <div
                     class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[var(--accent-color)]/10 text-[var(--accent-color)] mb-4">
-                    <i class="fas fa-check-circle text-3xl"></i>
+                    <ng-icon name="faSolidCircleCheck" class="text-3xl"></ng-icon>
                   </div>
                   <p class="text-lg font-medium text-gray-900 dark:text-gray-100 italic">Content is now visible!</p>
                 </div>
                 } @else {
                 <div class="text-center animate-fade-in py-8 text-gray-400 dark:text-gray-500">
-                  <i class="fas fa-ghost text-3xl mb-4 opacity-50"></i>
+                  <ng-icon name="faSolidGhost" class="text-3xl mb-4 opacity-50"></ng-icon>
                   <p class="text-lg">Content is hidden</p>
                 </div>
                 }
@@ -106,12 +106,12 @@
               class="bg-gray-50/50 dark:bg-gray-800/20 rounded-2xl p-6 border border-gray-200 dark:border-gray-700/50 border-l-4 border-l-[var(--accent-color)]">
               <div class="flex items-center justify-between mb-8">
                 <div class="flex items-center gap-3">
-                  <i class="fas fa-list-ul text-accent text-xl"></i>
+                  <ng-icon name="faSolidListUl" class="text-accent text-xl"></ng-icon>
                   <h3 class="text-lg sm:text-xl font-semibold text-gray-900 dark:text-gray-100">List Rendering</h3>
                 </div>
                 <div class="flex gap-2">
-                  <p-button label="Add Item" icon="pi pi-plus" (onClick)="addItem()" size="small" />
-                  <p-button label="Clear All" icon="pi pi-trash" severity="danger" (onClick)="clearItems()"
+                  <p-button label="Add Item" icon="faSolidPlus" (onClick)="addItem()" size="small" />
+                  <p-button label="Clear All" icon="faSolidTrash" severity="danger" (onClick)="clearItems()"
                     size="small" />
                 </div>
               </div>
@@ -128,14 +128,14 @@
                     @if (first) { <span class="text-[10px] uppercase font-bold text-accent">First</span> }
                     @if (last) { <span class="text-[10px] uppercase font-bold text-accent-light">Last</span> }
                   </div>
-                  <p-button icon="pi pi-times" [text]="true" severity="danger" (onClick)="removeItem(item.id)" />
+                  <p-button icon="faSolidXmark" [text]="true" severity="danger" (onClick)="removeItem(item.id)" />
                 </div>
                 } @empty {
                 <div
                   class="text-center py-12 bg-white dark:bg-gray-900 rounded-xl border border-dashed border-gray-300 dark:border-gray-700 animate-fade-in">
                   <div
                     class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-400 mb-4">
-                    <i class="fas fa-inbox text-3xl"></i>
+                    <ng-icon name="faSolidInbox" class="text-3xl"></ng-icon>
                   </div>
                   <p class="text-gray-500 dark:text-gray-400 font-medium">The list is current empty.</p>
                   <p class="text-sm text-gray-400 mt-1">Add items using the button above.</p>
@@ -150,7 +150,7 @@
             <div
               class="bg-gray-50/50 dark:bg-gray-800/20 rounded-2xl p-6 border border-gray-200 dark:border-gray-700/50 border-l-4 border-l-[var(--accent-color)]">
               <div class="flex items-center gap-3 mb-8">
-                <i class="fas fa-toggle-on text-accent text-xl"></i>
+                <ng-icon name="faSolidToggleOn" class="text-accent text-xl"></ng-icon>
                 <h3 class="text-lg sm:text-xl font-semibold text-gray-900 dark:text-gray-100">State Switching</h3>
               </div>
 
@@ -165,7 +165,7 @@
                   <div class="animate-fade-in group">
                     <div
                       class="w-20 h-20 rounded-2xl bg-gradient-to-br from-red-500 to-red-600 flex items-center justify-center text-white text-3xl shadow-lg mx-auto mb-6 group-hover:scale-110 transition-transform">
-                      <i class="fas fa-user-shield"></i>
+                      <ng-icon name="faSolidUserShield"></ng-icon>
                     </div>
                     <h4 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-2">Administrator Access</h4>
                     <p class="text-gray-500 dark:text-gray-400">Full system permissions granted.</p>
@@ -175,7 +175,7 @@
                   <div class="animate-fade-in group">
                     <div
                       class="w-20 h-20 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center text-white text-3xl shadow-lg mx-auto mb-6 group-hover:scale-110 transition-transform">
-                      <i class="fas fa-user-edit"></i>
+                      <ng-icon name="faSolidUserPen"></ng-icon>
                     </div>
                     <h4 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-2">Editor Access</h4>
                     <p class="text-gray-500 dark:text-gray-400">Content management permissions granted.</p>
@@ -185,7 +185,7 @@
                   <div class="animate-fade-in group">
                     <div
                       class="w-20 h-20 rounded-2xl bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center text-white text-3xl shadow-lg mx-auto mb-6 group-hover:scale-110 transition-transform">
-                      <i class="fas fa-user"></i>
+                      <ng-icon name="faSolidUser"></ng-icon>
                     </div>
                     <h4 class="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-2">Viewer Access</h4>
                     <p class="text-gray-500 dark:text-gray-400">Read-only permissions granted.</p>
@@ -193,7 +193,7 @@
                   }
                   @default {
                   <div class="text-gray-400 dark:text-gray-600 py-4 italic animate-pulse">
-                    <i class="fas fa-user-slash text-4xl mb-4"></i>
+                    <ng-icon name="faSolidUserSlash" class="text-4xl mb-4"></ng-icon>
                     <p class="text-xl">No role selected</p>
                   </div>
                   }
@@ -208,7 +208,7 @@
             <div
               class="bg-gray-50/50 dark:bg-gray-800/20 rounded-2xl p-6 border border-gray-200 dark:border-gray-700/50 border-l-4 border-l-[var(--accent-color)]">
               <div class="flex items-center gap-3 mb-8">
-                <i class="fas fa-code text-accent text-xl"></i>
+                <ng-icon name="faSolidCode" class="text-accent text-xl"></ng-icon>
                 <h3 class="text-lg sm:text-xl font-semibold text-gray-900 dark:text-gray-100">Syntax Comparison</h3>
               </div>
 
@@ -270,7 +270,7 @@
     <div class="flex items-center gap-3 mb-8">
       <div
         class="w-10 h-10 rounded-lg bg-gradient-to-br from-[var(--accent-gradient-from)] to-[var(--accent-gradient-to)] flex items-center justify-center shadow-md">
-        <i class="fas fa-graduation-cap text-white"></i>
+        <ng-icon name="faSolidGraduationCap" class="text-white"></ng-icon>
       </div>
       <h2 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-gray-100">Key Takeaways</h2>
     </div>
@@ -280,7 +280,7 @@
         class="bg-gray-50 dark:bg-gray-800/50 border border-gray-100 dark:border-gray-700/50 p-4 rounded-xl flex items-start gap-4 transition-all hover:border-[var(--accent-color)]/30 group">
         <div
           class="w-8 h-8 rounded-full bg-[var(--accent-color)]/10 text-[var(--accent-color)] flex items-center justify-center shrink-0 group-hover:bg-[var(--accent-color)] group-hover:text-white transition-colors">
-          <i class="fas fa-check text-sm"></i>
+          <ng-icon name="faSolidCheck" class="text-sm"></ng-icon>
         </div>
         <p class="text-gray-800 dark:text-gray-200 font-medium pt-1">New control flow is more performant than *ngIf and
           *ngFor</p>
@@ -289,7 +289,7 @@
         class="bg-gray-50 dark:bg-gray-800/50 border border-gray-100 dark:border-gray-700/50 p-4 rounded-xl flex items-start gap-4 transition-all hover:border-[var(--accent-color)]/30 group">
         <div
           class="w-8 h-8 rounded-full bg-[var(--accent-color)]/10 text-[var(--accent-color)] flex items-center justify-center shrink-0 group-hover:bg-[var(--accent-color)] group-hover:text-white transition-colors">
-          <i class="fas fa-check text-sm"></i>
+          <ng-icon name="faSolidCheck" class="text-sm"></ng-icon>
         </div>
         <p class="text-gray-800 dark:text-gray-200 font-medium pt-1">The &#64;empty block simplifies handling empty
           lists in
@@ -299,7 +299,7 @@
         class="bg-gray-50 dark:bg-gray-800/50 border border-gray-100 dark:border-gray-700/50 p-4 rounded-xl flex items-start gap-4 transition-all hover:border-[var(--accent-color)]/30 group">
         <div
           class="w-8 h-8 rounded-full bg-[var(--accent-color)]/10 text-[var(--accent-color)] flex items-center justify-center shrink-0 group-hover:bg-[var(--accent-color)] group-hover:text-white transition-colors">
-          <i class="fas fa-check text-sm"></i>
+          <ng-icon name="faSolidCheck" class="text-sm"></ng-icon>
         </div>
         <p class="text-gray-800 dark:text-gray-200 font-medium pt-1">Built-in track by property is mandatory and
           improves DOM management</p>
@@ -308,7 +308,7 @@
         class="bg-gray-50 dark:bg-gray-800/50 border border-gray-100 dark:border-gray-700/50 p-4 rounded-xl flex items-start gap-4 transition-all hover:border-[var(--accent-color)]/30 group">
         <div
           class="w-8 h-8 rounded-full bg-[var(--accent-color)]/10 text-[var(--accent-color)] flex items-center justify-center shrink-0 group-hover:bg-[var(--accent-color)] group-hover:text-white transition-colors">
-          <i class="fas fa-check text-sm"></i>
+          <ng-icon name="faSolidCheck" class="text-sm"></ng-icon>
         </div>
         <p class="text-gray-800 dark:text-gray-200 font-medium pt-1">Syntax is more concise and easier to read without
           [brackets] and (parentheses)</p>

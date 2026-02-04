@@ -1,3 +1,4 @@
+import { NgIcon } from '@ng-icons/core';
 import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -15,6 +16,7 @@ import { inject } from '@angular/core';
   selector: 'app-reactive-forms-demo',
   standalone: true,
   imports: [
+    NgIcon,
     CommonModule,
     ReactiveFormsModule,
     CardModule,

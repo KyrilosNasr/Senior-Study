@@ -1,3 +1,4 @@
+import { NgIcon } from '@ng-icons/core';
 import { Component, signal, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Validators } from '@angular/forms';
@@ -25,6 +26,7 @@ import { SelectOption } from '../../../shared/types/common.types';
   selector: 'app-dynamic-form-demo',
   standalone: true,
   imports: [
+    NgIcon,
     CommonModule,
     CardModule,
     TabsModule,

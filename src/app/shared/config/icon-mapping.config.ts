@@ -15,70 +15,70 @@ export interface IconMapping {
  */
 export const ICON_MAP: IconMapping = {
   // SOLID Principles
-  'Single Responsibility': 'pi pi-box',
-  'Open/Closed': 'pi pi-unlock',
-  'Liskov Substitution': 'pi pi-arrow-right-arrow-left',
-  'Interface Segregation': 'pi pi-align-justify',
-  'Dependency Inversion': 'pi pi-arrows-v',
+  'Single Responsibility': 'faSolidBox',
+  'Open/Closed': 'faSolidUnlock',
+  'Liskov Substitution': 'faSolidArrowRightArrowLeft',
+  'Interface Segregation': 'faSolidAlignJustify',
+  'Dependency Inversion': 'faSolidArrowsUpDown',
 
   // OOP Concepts
-  'Encapsulation': 'pi pi-lock',
-  'Inheritance': 'pi pi-sitemap',
-  'Polymorphism': 'pi pi-objects-column',
-  'Abstraction': 'pi pi-eye-slash',
+  'Encapsulation': 'faSolidLock',
+  'Inheritance': 'faSolidSitemap',
+  'Polymorphism': 'faSolidTableColumns',
+  'Abstraction': 'faSolidEyeSlash',
 
   // RxJS Patterns - Foundational Operators
-  'Part 1: Creation Operators': 'pi pi-plus-circle',
-  'Part 2: Transformation Operators': 'pi pi-arrow-right-arrow-left',
-  'Part 3: Filtering Operators': 'pi pi-filter',
-  'Part 4: Combination Operators': 'pi pi-sparkles',
-  'Part 5: Error Handling': 'pi pi-exclamation-triangle',
-  'Part 6: Utility Operators': 'pi pi-wrench',
-  'Part 7: Multicasting Operators': 'pi pi-megaphone',
+  'Part 1: Creation Operators': 'faSolidCirclePlus',
+  'Part 2: Transformation Operators': 'faSolidArrowRightArrowLeft',
+  'Part 3: Filtering Operators': 'faSolidFilter',
+  'Part 4: Combination Operators': 'faSolidWandMagicSparkles',
+  'Part 5: Error Handling': 'faSolidTriangleExclamation',
+  'Part 6: Utility Operators': 'faSolidWrench',
+  'Part 7: Multicasting Operators': 'faSolidBullhorn',
 
   // RxJS Patterns - Advanced
-  'Custom Operators': 'pi pi-cog',
-  'Higher-Order Observables': 'pi pi-bars',
-  'Subject Patterns': 'pi pi-bars',
-  'Memory Leak Prevention': 'pi pi-shield',
-  'Backpressure': 'pi pi-gauge',
-  'Route Guards': 'pi pi-lock',
-  'RxJS Reactive Forms': 'pi pi-pencil',
-  'WebSockets': 'pi pi-bell',
-  'Advanced Caching': 'pi pi-database',
-  'Race Conditions': 'pi pi-bolt',
+  'Custom Operators': 'faSolidGear',
+  'Higher-Order Observables': 'faSolidBars',
+  'Subject Patterns': 'faSolidBars',
+  'Memory Leak Prevention': 'faSolidShieldHalved',
+  'Backpressure': 'faSolidGauge',
+  'Route Guards': 'faSolidLock',
+  'RxJS Reactive Forms': 'faSolidPencil',
+  'WebSockets': 'faSolidPlug',
+  'Advanced Caching': 'faSolidDatabase',
+  'Race Conditions': 'faSolidBolt',
 
   // TypeScript Topics
-  'Advanced Types': 'pi pi-code',
-  'Type Guards': 'pi pi-shield',
-  'Generics': 'pi pi-cog',
-  'Utility Types': 'pi pi-wrench',
-  'Decorators': 'pi pi-star',
-  'TypeScript 5.x': 'pi pi-bolt',
-  'Function Types': 'pi pi-code',
-  'Module Augmentation': 'pi pi-objects-column',
+  'Advanced Types': 'faSolidCode',
+  'Type Guards': 'faSolidShieldHalved',
+  'Generics': 'faSolidGear',
+  'Utility Types': 'faSolidWrench',
+  'Decorators': 'faSolidStar',
+  'TypeScript 5.x': 'faSolidBolt',
+  'Function Types': 'faSolidCode',
+  'Module Augmentation': 'faSolidTableColumns',
 
   // Navigation/Switch Topic
-  'SOLID Principles': 'pi pi-cube',
-  'OOP Concepts': 'pi pi-object-group',
-  'RxJS Patterns': 'pi pi-stream',
-  'Advanced TypeScript': 'pi pi-code',
-  'Angular': 'pi pi-database',
+  'SOLID Principles': 'faSolidCube',
+  'OOP Concepts': 'faSolidObjectGroup',
+  'RxJS Patterns': 'faSolidBarsStaggered',
+  'Advanced TypeScript': 'faSolidCode',
+  'Angular': 'faSolidDatabase',
 
   // Angular Components
-  'Dynamic Form': 'pi pi-pen-to-square',
-  'Dynamic Table': 'pi pi-table',
-  'Dynamic Modal': 'pi pi-window-maximize',
+  'Dynamic Form': 'faSolidPenToSquare',
+  'Dynamic Table': 'faSolidTable',
+  'Dynamic Modal': 'faSolidWindowMaximize',
 
   // Angular Topics
-  'Angular Signals': 'pi pi-signal',
-  'Reactive Forms': 'pi pi-edit',
-  'ControlValueAccessor': 'pi pi-plug',
-  'Multi-Step Form': 'pi pi-list-ol',
-  'Modern Control Flow': 'pi pi-share-alt',
+  'Angular Signals': 'faSolidSignal',
+  'Reactive Forms': 'faSolidPenToSquare',
+  'ControlValueAccessor': 'faSolidPlug',
+  'Multi-Step Form': 'faSolidListOl',
+  'Modern Control Flow': 'faSolidShareNodes',
 
   // Default fallback
-  'default': 'pi pi-circle'
+  'default': 'faSolidCircle'
 };
 
 /**

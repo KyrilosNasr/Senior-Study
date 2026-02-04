@@ -1,3 +1,4 @@
+import { NgIcon } from '@ng-icons/core';
 import { Component, signal, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CardModule } from 'primeng/card';
@@ -29,7 +30,8 @@ class GoodUserService {
 @Component({
   selector: 'app-dip-demo',
   standalone: true,
-  imports: [CommonModule, CardModule, Tabs, Tab, TabList, TabPanel, TabPanels, ButtonModule, MessageModule],
+  imports: [
+    NgIcon,CommonModule, CardModule, Tabs, Tab, TabList, TabPanel, TabPanels, ButtonModule, MessageModule],
   templateUrl: './dip-demo.component.html',
   styleUrl: './dip-demo.component.scss'
 })

@@ -1,3 +1,4 @@
+import { NgIcon } from '@ng-icons/core';
 import { Component, ChangeDetectionStrategy, signal, computed, effect, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CardModule } from 'primeng/card';
@@ -26,6 +27,7 @@ interface User {
   selector: 'app-signals-demo',
   standalone: true,
   imports: [
+    NgIcon,
     CommonModule,
     CardModule,
     ButtonModule,

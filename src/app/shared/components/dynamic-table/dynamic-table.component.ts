@@ -1,3 +1,4 @@
+import { NgIcon } from '@ng-icons/core';
 import {
   Component,
   Output,
@@ -52,6 +53,7 @@ import { TableStateService } from './services/table-state.service';
   selector: 'app-dynamic-table',
   standalone: true,
   imports: [
+    NgIcon,
     CommonModule,
     FormsModule,
     TableModule,

@@ -1,3 +1,4 @@
+import { NgIcon } from '@ng-icons/core';
 import { Component, ChangeDetectionStrategy, signal, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -17,6 +18,7 @@ import { DynamicFormConfig } from '../../../shared/types/form-field.types';
   selector: 'app-control-value-accessor-demo',
   standalone: true,
   imports: [
+    NgIcon,
     CommonModule,
     ReactiveFormsModule,
     CardModule,

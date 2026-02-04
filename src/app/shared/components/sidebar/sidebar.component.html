@@ -5,7 +5,18 @@
   <div class="p-4 overflow-y-auto max-h-[calc(100vh-4rem)] scrollbar-thin">
     <p-tree [value]="treeNodes" (onNodeSelect)="onNodeSelect($event)" selectionMode="single"
       [style]="{ width: '100%', border: 'none' }" styleClass="w-full border-none modern-tree"
-      [ariaLabel]="'Navigation tree for ' + config.title + ' topics'"></p-tree>
+      [ariaLabel]="'Navigation tree for ' + config.title + ' topics'">
+      <ng-template pTemplate="default" let-node>
+        <div class="flex items-center w-full py-1">
+          @if (getIconClass(node)) {
+          <div class="p-treenode-icon flex items-center justify-center mr-3">
+            <ng-icon [name]="getIconClass(node)" size="1.25rem"></ng-icon>
+          </div>
+          }
+          <span class="p-treenode-label truncate font-semibold text-sm">{{ node.label }}</span>
+        </div>
+      </ng-template>
+    </p-tree>
   </div>
 </p-drawer>
 
@@ -20,8 +31,8 @@
     [title]="isExpanded() ? 'Collapse sidebar' : 'Expand sidebar'"
     [attr.aria-label]="isExpanded() ? 'Collapse sidebar to show only icons' : 'Expand sidebar to show full navigation'"
     [attr.aria-expanded]="isExpanded()" aria-controls="sidebar-navigation">
-    <i [class]="'pi text-xs text-white transition-transform duration-300 ' + (isExpanded() ? 'pi-chevron-left' : 'pi-chevron-right')"
-      aria-hidden="true"></i>
+    <ng-icon [name]="isExpanded() ? 'faSolidChevronLeft' : 'faSolidChevronRight'" size="1rem"
+      class="text-white transition-transform duration-300" aria-hidden="true"></ng-icon>
   </button>
 
   <!-- Sidebar Header -->
@@ -32,7 +43,7 @@
       <div
         class="w-10 h-10 rounded-lg bg-gradient-to-br from-[var(--accent-color-light)] to-[var(--accent-color-dark)] flex items-center justify-center shadow-lg flex-shrink-0"
         aria-hidden="true">
-        <i class="pi pi-book text-white text-lg"></i>
+        <ng-icon name="faSolidBook" size="1.5rem" class="text-white"></ng-icon>
       </div>
       <div class="min-w-0 flex-1">
         <h1 [class]="'text-xl font-bold truncate ' + titleGradient()" id="sidebar-title">{{ config.title }}</h1>
@@ -45,7 +56,7 @@
       <div
         class="w-10 h-10 rounded-lg bg-gradient-to-br from-[var(--accent-color-light)] to-[var(--accent-color-dark)] flex items-center justify-center shadow-lg"
         aria-hidden="true">
-        <i class="pi pi-book text-white text-lg"></i>
+        <ng-icon name="faSolidBook" size="1.5rem" class="text-white"></ng-icon>
       </div>
     </div>
     }
@@ -53,12 +64,22 @@
 
   <!-- Navigation Tree -->
   <nav id="sidebar-navigation" class="flex-1 overflow-y-auto overflow-x-hidden py-4 scrollbar-thin min-h-0"
-    [class.px-2]="!isExpanded()" [class.px-4]="isExpanded()"
-    [attr.aria-label]="isExpanded() ? 'Full navigation menu' : 'Icon navigation menu'">
+    [class.px-2]="!isExpanded()" [attr.aria-label]="isExpanded() ? 'Full navigation menu' : 'Icon navigation menu'">
     @if (isExpanded()) {
     <p-tree [value]="treeNodes" (onNodeSelect)="onNodeSelect($event)" selectionMode="single"
-      [style]="{ width: '100%', border: 'none' }" styleClass="w-full border-none modern-tree"
-      [ariaLabel]="'Navigation tree for ' + config.title + ' topics'"></p-tree>
+      [style]="{ width: '100%', border: 'none' }" styleClass="w-full border-none modern-tree !p-0"
+      [ariaLabel]="'Navigation tree for ' + config.title + ' topics'">
+      <ng-template pTemplate="default" let-node>
+        <div class="flex items-center w-full py-1">
+          @if (getIconClass(node)) {
+          <div class="p-treenode-icon flex items-center justify-center mr-3">
+            <ng-icon [name]="getIconClass(node)" size="1.25rem"></ng-icon>
+          </div>
+          }
+          <span class="p-treenode-label truncate font-semibold text-sm">{{ node.label }}</span>
+        </div>
+      </ng-template>
+    </p-tree>
     } @else {
     <!-- Collapsed view - show clickable topic icons -->
     <div class="space-y-2" role="list" [attr.aria-label]="'Quick navigation icons for ' + config.title">
@@ -72,9 +93,9 @@
           <button type="button px-3" (click)="onCollapsedNodeClick(child)"
             class="w-full p-3 rounded-xl hover:bg-gradient-to-r hover:from-[var(--accent-color)]/10 hover:to-[var(--accent-color-dark)]/10 dark:hover:from-[var(--accent-color-light)]/20 dark:hover:to-[var(--accent-color)]/20 transition-all duration-200 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-[var(--accent-color)] focus:ring-offset-2 focus:ring-offset-transparent group-hover:scale-105 active:scale-95"
             [title]="child.label" [attr.aria-label]="'Navigate to ' + child.label" tabindex="0">
-            <i [class]="getIconClass(child)"
-              class="text-[var(--accent-color)] dark:text-[var(--accent-color-light)] text-lg transition-colors duration-200 group-hover:text-[var(--accent-color-dark)] dark:group-hover:text-[var(--accent-color)]"
-              aria-hidden="true"></i>
+            <ng-icon [name]="getIconClass(child)" size="1.5rem"
+              class="text-[var(--accent-color)] dark:text-[var(--accent-color-light)] transition-colors duration-200 group-hover:text-[var(--accent-color-dark)] dark:group-hover:text-[var(--accent-color)]"
+              aria-hidden="true"></ng-icon>
           </button>
           <!-- Enhanced Tooltip on hover -->
           <div
